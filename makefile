@@ -9,9 +9,9 @@ INCLUDES=-I${SDLINC_DIR}
 
 PROG=othello
 
-all: othello_projet
+all: projet
 
-othello_projet: main.c
+projet: main.c
 	${CC} -o ${PROG} main.c ${LIBS} ${INCLUDES}
 
 clean: 
