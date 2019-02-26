@@ -12,7 +12,7 @@ PROG=othello
 all: projet
 
 projet: main.c
-	${CC} -o ${PROG} main.c ${LIBS} ${INCLUDES}
+	${CC} -o ${PROG} main.c othello.c othello.h ${LIBS} ${INCLUDES}
 
 clean: 
 	rm -f ${PROG}
