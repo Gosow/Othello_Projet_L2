@@ -5,11 +5,13 @@
 
 
 
-/* Fonction pour initialiser la grille */
+
+/*Foncction d'initialisation de la grille*/
 void init_matrice (t_matrice m) {
     int i, j;
 
-    /* On met tout a vide */
+    /*on initialise la matrice a vide
+    */
     for (i=0; i<N; i++)
         for (j=0; j<N; j++)
             m[i][j] = VIDE;
