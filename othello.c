@@ -171,26 +171,26 @@ int peut_jouer (t_matrice m, int joueur) {
 int joueur_suivant (int joueur) {
     return (joueur %2 + 1);
 }
-/*ICI JE SUIS LA*/
-/* Permet au joueur de choisir un coup */
+
+/* Demander le coup du joueur */
 void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
     char c;
     printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
-    /* On change les minuscules en majuscules */
+    /* On transforme les minuscules en majuscules */
     if ((c >= 'a') && (c < 'a'+N))
         c = c + 'A' - 'a';
     (*col) = c - 'A';
     scanf ("%d", lig);
     (*lig)--;
 
-    /* On redemande de choisir tant que le coup n'est pas accepte */
+    /* On redemande tant que le coup n'est pas valide */
     while (!coup_valide (m, *lig, *col, joueur)) {
         printf ("\nCe coup n'est pas valide\n");
         printf ("Choisissez une autre case (ex: A1) :\n");
         scanf ("\n%c", &c);
-        /* On change les minuscules en majuscules */
+        /* On transforme les minuscules en majuscules */
         if ((c >= 'a') && (c < 'a'+N))
             c = c + 'A' - 'a';
         (*col) = c - 'A';
@@ -217,14 +217,14 @@ int partie_terminee (t_matrice m) {
         }
     }
 
-    /* La partie est terminee, on affiche le gagnant */
+    /* Fin de partie, on affiche le gagnant */
     if (nb_noir > nb_blanc)
         printf ("\nLe joueur 1 a gagne !!!\n");
     else if (nb_blanc > nb_noir)
         printf ("\nLe joueur 2 a gagne !!!\n");
     else printf ("\nLes deux joueurs sont a egalite\n");
 
-    /* On range les pions par couleur et on affiche la grille */
+    /* RAngement des pions par couleur et affichage de la grille */
     cpt = 0;
     for (i=0; i<N; i++)
         for (j=0; j<N; j++) {
@@ -254,7 +254,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     }
     m[lig][col] = cj;
 
-    /* Vertical vers le haut */
+    /* Vers le haut */
     i = lig - 1;
     while (case_existe(i, col) && m[i][col] == ca) i--;
     if (case_existe(i, col) && m[i][col] == cj) {
@@ -265,7 +265,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
         }
     }
 
-    /* Vertical vers le bas */
+    /* Vers le bas */
     i = lig + 1;
     while (case_existe(i, col) && m[i][col] == ca) i++;
     if (case_existe(i, col) && m[i][col] == cj) {
@@ -276,7 +276,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
         }
     }
 
-    /* Horizontal vers la gauche */
+    /* Vers la gauche */
     j = col - 1;
     while (case_existe(lig, j) && m[lig][j] == ca) j--;
     if (case_existe(lig, j) && m[lig][j] == cj) {
@@ -287,7 +287,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
         }
     }
 
-    /* Horizontal vers la droite */
+    /* Vers la droite */
     j = col + 1;
     while (case_existe(lig, j) && m[lig][j] == ca) j++;
     if (case_existe(lig, j) && m[lig][j] == cj) {
