@@ -5,35 +5,36 @@
 
 
 
-/* Fonction pour initialiser la grille */
+
+/*Fonction d'initialisation de la grille*/
 void init_matrice (t_matrice m) {
     int i, j;
 
-    /* On met tout a vide */
+    /* On initialise la matrice a vide */
     for (i=0; i<N; i++)
         for (j=0; j<N; j++)
             m[i][j] = VIDE;
 
-    /* On place les 4 premiers pions */
+    /* Placement des 4 premiers pions */
     m[N/2-1][N/2-1] = NOIR;
     m[N/2-1][N/2] = BLANC;
     m[N/2][N/2-1] = BLANC;
     m[N/2][N/2] = NOIR;
 }
 
-/* Fonction pour afficher la grille */
+/* Fonction qui nous affiche la grille */
 void afficher_matrice (t_matrice m) {
     int i, j;
     char a = 'A';
 
-    /* Affichage des lettres */
+    /* Lettres */
     printf ("\n");
     for (i=0; i<N; i++) {
         printf ("  %c ", a);
         a++;
     }
 
-    /* Affichage de la grille */
+    /* Grille */
     printf ("\n+");
     for (i=0; i<N; i++)
         printf ("---+");
@@ -52,17 +53,17 @@ void afficher_matrice (t_matrice m) {
     }
 }
 
-/* Fonction pour verifier qu'une case existe */
+/* Fonction qui verifie si la case existe */
 int case_existe (int lig, int col) {
     return ((col >= 0) && (col < N) && (lig >= 0) && (lig < N));
 }
 
-/* Fonction pour verifier qu'un coup est valide */
+/* Fonction qui verifie si le coup est valide */
 int coup_valide (t_matrice m, int lig, int col, int joueur) {
     int i, j, ok;
     char cj, ca;
 
-    /* On definit la couleur du joueur et celle de l'adversaire */
+    /* Definition des couleurs pour les 2 joueurs */
     if (joueur == 1) {
         cj = NOIR;
         ca = BLANC;
@@ -72,7 +73,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (!case_existe(lig, col) || m[lig][col] != VIDE) return 0;
 
-    /* Vertical vers le haut */
+    /* Vers le haut */
     i = lig - 1;
     ok = 0;
     while (case_existe(i, col) && m[i][col] == ca) {
@@ -81,7 +82,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(i, col) && m[i][col] == cj && ok == 1) return 1;
 
-    /* Vertical vers le bas */
+    /* Vers le bas */
     i = lig + 1;
     ok = 0;
     while (case_existe(i, col) && m[i][col] == ca) {
@@ -90,7 +91,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(i, col) && m[i][col] == cj && ok == 1) return 1;
 
-    /* Horizontal vers la gauche */
+    /* Vers la gauche */
     j = col - 1;
     ok = 0;
     while (case_existe(lig, j) && m[lig][j] == ca) {
@@ -99,7 +100,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(lig, j) && m[lig][j] == cj && ok == 1) return 1;
 
-    /* Horizontal vers la droite */
+    /* Vers la droite */
     j = col + 1;
     ok = 0;
     while (case_existe(lig, j) && m[lig][j] == ca) {
@@ -155,7 +156,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     return 0;
 }
 
-/* Fonction qui determine si un joueur peut encore jouer */
+/* Fonction qui indique si le joueur peut encore jouer */
 int peut_jouer (t_matrice m, int joueur) {
     int i, j;
     for (i=0; i<N; i++)
@@ -166,30 +167,30 @@ int peut_jouer (t_matrice m, int joueur) {
     return 0;
 }
 
-/* Renvoie le numero du joueur suivant */
+/* Retourne le joueur suivant */
 int joueur_suivant (int joueur) {
     return (joueur %2 + 1);
 }
 
-/* Permet au joueur de choisir un coup */
+/* Demander le coup du joueur */
 void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
     char c;
     printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
-    /* On change les minuscules en majuscules */
+    /* On transforme les minuscules en majuscules */
     if ((c >= 'a') && (c < 'a'+N))
         c = c + 'A' - 'a';
     (*col) = c - 'A';
     scanf ("%d", lig);
     (*lig)--;
 
-    /* On redemande de choisir tant que le coup n'est pas accepte */
+    /* On redemande tant que le coup n'est pas valide */
     while (!coup_valide (m, *lig, *col, joueur)) {
         printf ("\nCe coup n'est pas valide\n");
         printf ("Choisissez une autre case (ex: A1) :\n");
         scanf ("\n%c", &c);
-        /* On change les minuscules en majuscules */
+        /* On transforme les minuscules en majuscules */
         if ((c >= 'a') && (c < 'a'+N))
             c = c + 'A' - 'a';
         (*col) = c - 'A';
@@ -216,14 +217,14 @@ int partie_terminee (t_matrice m) {
         }
     }
 
-    /* La partie est terminee, on affiche le gagnant */
+    /* Fin de partie, on affiche le gagnant */
     if (nb_noir > nb_blanc)
         printf ("\nLe joueur 1 a gagne !!!\n");
     else if (nb_blanc > nb_noir)
         printf ("\nLe joueur 2 a gagne !!!\n");
     else printf ("\nLes deux joueurs sont a egalite\n");
 
-    /* On range les pions par couleur et on affiche la grille */
+    /* RAngement des pions par couleur et affichage de la grille */
     cpt = 0;
     for (i=0; i<N; i++)
         for (j=0; j<N; j++) {
@@ -253,7 +254,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     }
     m[lig][col] = cj;
 
-    /* Vertical vers le haut */
+    /* Vers le haut */
     i = lig - 1;
     while (case_existe(i, col) && m[i][col] == ca) i--;
     if (case_existe(i, col) && m[i][col] == cj) {
@@ -264,7 +265,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
         }
     }
 
-    /* Vertical vers le bas */
+    /* Vers le bas */
     i = lig + 1;
     while (case_existe(i, col) && m[i][col] == ca) i++;
     if (case_existe(i, col) && m[i][col] == cj) {
@@ -275,7 +276,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
         }
     }
 
-    /* Horizontal vers la gauche */
+    /* Vers la gauche */
     j = col - 1;
     while (case_existe(lig, j) && m[lig][j] == ca) j--;
     if (case_existe(lig, j) && m[lig][j] == cj) {
@@ -286,7 +287,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
         }
     }
 
-    /* Horizontal vers la droite */
+    /* Vers la droite */
     j = col + 1;
     while (case_existe(lig, j) && m[lig][j] == ca) j++;
     if (case_existe(lig, j) && m[lig][j] == cj) {

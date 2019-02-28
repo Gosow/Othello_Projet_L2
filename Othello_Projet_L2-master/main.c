@@ -3,16 +3,17 @@
 
 
 
-/* Le main */
+//La fonction main
 int main (int argc,char **argv) {
     t_matrice m;
     int lig, col, joueur = 1;
 
-    /* Initialisation du jeu */
+//Initialisation du jeux
     init_matrice (m);
     afficher_matrice (m);
 
-    /* Deroulement d'une partie */
+    
+    /*deroulement*/
     while (!partie_terminee (m)) {
         choisir_coup (m, &lig, &col, joueur);
         jouer_coup (m, lig, col, joueur);
