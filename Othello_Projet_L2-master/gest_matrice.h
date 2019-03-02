@@ -1,1 +1,0 @@
-void init_matrice (t_matrice m);

@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "othello.h"
+#include "define.h"
+#include "gest_aff.h"
+#include "gest_matrice.h"
 #include <string.h>
 #include <stdlib.h>
 
