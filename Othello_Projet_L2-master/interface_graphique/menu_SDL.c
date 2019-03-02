@@ -91,12 +91,12 @@ int main(int argc, char** argv)
 		fprintf(stderr, "Erreur à la création du renderer\n");
 		exit(EXIT_FAILURE);
 	}
-	SDL_Texture *texte_tex= tex_text("ChowFun2.ttf",100,"Othello",couleurNoire,renderer);
+	SDL_Texture *texte_tex= tex_text("./ttf/PoliceTitre.ttf",100,"Othello",couleurNoire,renderer);
 	SDL_Texture *texteMenu_tex[4];
-	texteMenu_tex[0] = tex_text("MenuPolice.ttf",40,"Solo",couleurNoire,renderer);
-	texteMenu_tex[1] = tex_text("MenuPolice.ttf",40,"Duo",couleurNoire,renderer);
-	texteMenu_tex[2] = tex_text("MenuPolice.ttf",40,"En ligne",couleurNoire,renderer);
-	texteMenu_tex[3] = tex_text("MenuPolice.ttf",40,"Quitter",couleurNoire,renderer);
+	texteMenu_tex[0] = tex_text("./ttf/PoliceMenu.ttf",40,"Solo",couleurNoire,renderer);
+	texteMenu_tex[1] = tex_text("./ttf/PoliceMenu.ttf",40,"Duo",couleurNoire,renderer);
+	texteMenu_tex[2] = tex_text("./ttf/PoliceMenu.ttf",40,"En ligne",couleurNoire,renderer);
+	texteMenu_tex[3] = tex_text("./ttf/PoliceMenu.ttf",40,"Quitter",couleurNoire,renderer);
 
 	//Position ou sera mis le texte dans la fenêtre 
     txtDestRect.x = 300;
