@@ -1,5 +1,12 @@
 #include <"ToTexture.h">
 
+/**
+ * \fn SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer)
+ * \brief Transforme une image PNG en format texture pour pouvoir l'afficher dans la fenêtre SDL
+ * \param s : chemin d'accès vers l'image PNG
+ * \param renderer : le renderer de la fenêtre.
+ * \return Pointeur sur SDL_Texture
+ */
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
     
     SDL_RWops *rwop=SDL_RWFromFile(s, "rb");
@@ -16,6 +23,16 @@ SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
     return image_btn_tex;
 }
 
+/**
+ * \fn SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer)
+ * \brief Transforme du texte en format texture pour pouvoir l'afficher dans la fenêtre SDL
+ * \param font : chemin d'accès vers la police d'écriture.
+ * \param size : taille de la police
+ * \param s : texte
+ * \param color : couleur pour le texte
+ * \param renderer : le renderer de la fenêtre.
+ * \return Pointeur sur SDL_Texture
+ */
 SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer){
     SDL_Rect txtDestRect;
     TTF_Font *policeTitre = NULL;

@@ -1,3 +1,11 @@
+/**
+ * \file menu_SDL.c
+ * \brief Affichage du menu sur une fenêtre grâce à la SDL 2
+ * \author Mario Hotaj
+ * \date 2 mars 2019
+ *
+ *
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL2/SDL.h>
