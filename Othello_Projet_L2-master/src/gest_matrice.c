@@ -216,13 +216,15 @@ int partie_terminee (t_matrice m) {
 void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     int i, j;
     char cj, ca;
+   
 
-    if (joueur == 1) {
-        cj = NOIR;
-        ca = BLANC;
-    } else {
+    if (joueur != 1) {
         cj = BLANC;
         ca = NOIR;
+    } else {
+        cj = NOIR;
+        ca = BLANC;
+        
     }
     m[lig][col] = cj;
 
