@@ -19,7 +19,7 @@ int main (int argc,char **argv) {
     do{
         /* Affichage du menu */
 		printf("\nMenu :\n");
-		printf(" 1 - Jouer contre Un ami sur le même ordi\n");
+		printf(" 1 - Jouer contre Un ami sur le mÃªme ordi\n");
 		printf(" 2 - Jouer contre l'ordinateur\n");
 		printf(" 3 - Jouer en reseaux contre un ami\n");
         printf(" 4 - Quitter\n");
