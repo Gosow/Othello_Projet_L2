@@ -1,6 +1,6 @@
 
 CC=gcc
-
+OPTS=-g
 SDL_DIR=${HOME}/SDL2
 SDLLIB_DIR=../../lib/
 SDLINC_DIR=${SDL_DIR}/include
@@ -13,7 +13,7 @@ PROG=menu_SDL
 all: sdl_text
 
 sdl_text: menu_SDL.c
-	${CC} -o ${PROG} menu_SDL.c ${LIBS} ${INCLUDES}
+	${CC} ${OPTS} -o ${PROG} menu_SDL.c ${LIBS} ${INCLUDES}
 
 clean: 
 	rm -f ${PROG}

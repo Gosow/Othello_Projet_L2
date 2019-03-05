@@ -340,3 +340,19 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
         }
     }
 }
+void calculer_score(t_matrice m,int *score1 , int *score2)
+{
+  int i,j;
+  *score1=0;
+  *score2=0;
+  for(i=0;i<N;i++){
+    for(j=0;j<N;j++){
+      if (m[i][j] == NOIR)
+        *score1=*score1 + 1;
+      else if (m[i][j] == BLANC)
+        *score2=*score2 + 1 ;
+    }
+  }
+  
+
+}
