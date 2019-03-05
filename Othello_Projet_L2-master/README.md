@@ -2,4 +2,5 @@
 Projet réalisé par Yacine, Mario, Mendy et Chabane
 lien drive -> https://drive.google.com/drive/folders/1PDQk1CSGfl4nt6YvfpG_8J8k8Q71GR52?usp=sharing
 Gantt progio -> https://app.proggio.com/map/project/22873
-https://stackoverflow.com/questions/44512619/sdl-bmp-image-background
+
+Mendy : https://stackoverflow.com/questions/44512619/sdl-bmp-image-background
