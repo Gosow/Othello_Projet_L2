@@ -272,7 +272,7 @@ int menu_SDL(){
                         //Positionnement du premier bouton
                         imgBtnRect.x = 440;
                         imgBtnRect.y = 150;
-                        SDL_QueryTexture(temp, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
+                        SDL_QueryTexture(image_btnHover_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
                         for(i=0;i<4;i++){
                             if(x<620 && 440<x && y<imgBtnRect.y+77 && imgBtnRect.y<y){
                                 temp = image_btnHover_tex;
