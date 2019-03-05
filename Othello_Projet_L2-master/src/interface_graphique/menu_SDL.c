@@ -13,6 +13,7 @@
 #define SOLO 0
 #define DUO 1
 #define ONLINE 2
+#define QUITTER 3
 
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
 
@@ -54,7 +55,8 @@ SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color, SDL_Rendere
     TTF_CloseFont(policeTitre); /* Doit être avant TTF_Quit() */
     return texte_tex;
 }
-int lancement_jeu(int a){
+int lancement_jeu(int modeJeu){
+    if(modeJeu==QUITTER) return 0;
     int x,y;
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
@@ -75,7 +77,7 @@ int lancement_jeu(int a){
     pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
                                SDL_WINDOWPOS_UNDEFINED,
                                1080,
-                               650,
+                               655,
                                SDL_WINDOW_SHOWN);
     
     if(!pWindow){
@@ -95,9 +97,14 @@ int lancement_jeu(int a){
     //Chargement de l'image de fond
     SDL_Texture *image_BG_tex = tex_img_png("./img/OthelloBG.png",renderer);
     //Chargement de l'image bouton
-    SDL_Texture *image_casePoss_tex = tex_img_png("./img/caseNorm.png",renderer);
+    SDL_Texture *image_caseNorm_tex = tex_img_png("./img/caseNorm.png",renderer);
     //Chargement de l'image bouton (utilisé quand la souris passe sur l'image)
-    SDL_Texture *image_caseNorm_tex = tex_img_png("./img/casePoss.png",renderer);
+    SDL_Texture *image_casePoss_tex = tex_img_png("./img/casePoss.png",renderer);
+    
+    //PION NOIR
+    SDL_Texture *image_noir_tex = tex_img_png("./img/noir.png",renderer);
+    //PION BLANC
+    SDL_Texture *image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
     
     SDL_Texture *temp;
     int i=0,j=0;
@@ -106,7 +113,6 @@ int lancement_jeu(int a){
     if( pWindow )
     {
         int running = 1;
-        
         while(running) {
             SDL_Event e;           
             while(SDL_PollEvent(&e)) {
@@ -114,7 +120,7 @@ int lancement_jeu(int a){
                     case SDL_QUIT: running = 0;
                         break;
                     case SDL_WINDOWEVENT:
-                        /* Le fond de la fenêtre sera blanc */
+                        /* Le fond de la fenêtre sera vert */
                         
                         SDL_RenderClear(renderer);
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
@@ -123,16 +129,18 @@ int lancement_jeu(int a){
                         imgBtnRect.x = 0;
                         imgBtnRect.y = 0;
                         SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
+                        
                         for(i=0;i<8;i++){
                             imgBtnRect.x = i*82;
                             imgBtnRect.y = 0;
                             for(j=0;j<8;j++){
-                                if(0){
+                                if(1){
                                     temp = image_caseNorm_tex;
                                 }else{
                                     temp = image_casePoss_tex;
                                 }
                                 SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
+                                SDL_RenderCopy(renderer, image_noir_tex, NULL, &imgBtnRect);
                                 imgBtnRect.y += 82;
                             }
                         }
