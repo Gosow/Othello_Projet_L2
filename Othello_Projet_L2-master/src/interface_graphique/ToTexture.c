@@ -10,7 +10,7 @@
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
     
     SDL_RWops *rwop=SDL_RWFromFile(s, "rb");
-    SDL_Surface *image=IMG_LoadPNG_RW(rwop);
+    SDL_Susrface *image=IMG_LoadPNG_RW(rwop);
     if(!image) {
         printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
     }
