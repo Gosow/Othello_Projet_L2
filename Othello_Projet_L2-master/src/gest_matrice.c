@@ -355,4 +355,8 @@ void calculer_score(t_matrice m,int *score1 , int *score2)
   }
   
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1e48bfff8ccfc1041e0e18bc378335ea83e82024
