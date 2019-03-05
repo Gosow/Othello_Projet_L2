@@ -23,6 +23,18 @@ char menu(){
 	return choix;
 }
 
+void envoyer_crd(int to_server_socket){
+    char msg[200], buffer[512];
+	printf("quel sont les coordonnées? A1 par exemple : ");
+	scanf(" %[^\n]s", buffer);
+	sprintf(msg, "MSG %s", buffer);
+	send(to_server_socket, msg, strlen(msg), 0); //on augmente la taille de 4 pour l'entête
+	// lecture de la réponse
+	memset(buffer, 0, sizeof(buffer));
+	recv(to_server_socket,buffer,512,0);
+	printf("[client] reponse du serveur : '%s'\n", buffer);
+	
+	}
 void envoyer_message(int to_server_socket){
 	char msg[200], buffer[512];
 	printf("quel est votre message : ");
