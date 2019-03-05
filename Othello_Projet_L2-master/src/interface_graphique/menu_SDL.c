@@ -122,7 +122,7 @@ int lancement_jeu(int a){
                         //Positionnement du premier bouton
                         imgBtnRect.x = 0;
                         imgBtnRect.y = 0;
-                        SDL_QueryTexture(temp, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
+                        SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
                         for(i=0;i<8;i++){
                             imgBtnRect.x = i*82;
                             imgBtnRect.y = 0;
