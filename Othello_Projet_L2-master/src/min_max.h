@@ -1,4 +1,4 @@
-#ifndef
+
 #define __MIN_MAX_H__
 #include "define.h"
 #include <stdio.h>
@@ -8,9 +8,9 @@
 
 
 
-int eval_point(t_matrice m , int color);
+int eval_point(t_matrice m , int joueur);
 
 
 
 
-#endif
+

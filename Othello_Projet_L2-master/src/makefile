@@ -1,4 +1,3 @@
-CC=gcc
 
 SDL_DIR=${HOME}/SDL2
 SDLLIB_DIR=${SDL_DIR}/lib
