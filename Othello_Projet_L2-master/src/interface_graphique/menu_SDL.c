@@ -100,41 +100,41 @@ int lancement_jeu(int a){
     SDL_Texture *image_caseNorm_tex = tex_img_png("./img/casePoss.png",renderer);
     
     SDL_Texture *temp;
-    int i=0;
+    int i=0,j=0;
     int numBtn = 0;
     
     if( pWindow )
     {
         int running = 1;
-        SDL_Event e;
-        while(running) {           
+        
+        while(running) {
+            SDL_Event e;           
             while(SDL_PollEvent(&e)) {
                 switch(e.type) {
                     case SDL_QUIT: running = 0;
                         break;
-                    case SDL_MOUSEBUTTONDOWN:
-                        
-                        //printf("Ok%i\n",i++);
-                        goto etiq1;
                     case SDL_WINDOWEVENT:
-                    etiq1:
                         /* Le fond de la fenêtre sera blanc */
                         
                         SDL_RenderClear(renderer);
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
 
                         //Positionnement du premier bouton
-                        imgBtnRect.x = 440;
-                        imgBtnRect.y = 10;
+                        imgBtnRect.x = 0;
+                        imgBtnRect.y = 0;
                         SDL_QueryTexture(temp, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
-                        for(i=0;i<4;i++){
-                            if(0){
-                                temp = image_caseNorm_tex;
-                            }else{
-                                temp = image_casePoss_tex;
+                        for(i=0;i<8;i++){
+                            imgBtnRect.x = i*82;
+                            imgBtnRect.y = 0;
+                            for(j=0;j<8;j++){
+                                if(0){
+                                    temp = image_caseNorm_tex;
+                                }else{
+                                    temp = image_casePoss_tex;
+                                }
+                                SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
+                                imgBtnRect.y += 82;
                             }
-                            SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
-                            imgBtnRect.y += 82;
                         }
                         
                         /* On fait le rendu ! */
