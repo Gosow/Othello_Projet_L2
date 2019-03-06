@@ -19,5 +19,6 @@ SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer);
 SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer);
 
 //JEU : INTERFACE GRAPHIQUE
-int lancement_jeu(int modeJeu);
+int lancement_jeu(int modeJeu,t_matrice mat);
+int menu_SDL(t_matrice mat);
 #endif

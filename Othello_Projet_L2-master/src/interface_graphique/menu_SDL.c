@@ -6,7 +6,7 @@
  */
 #include "SDL_jeu.h"
 
-int menu_SDL(void){
+int menu_SDL(t_matrice mat){
     int x,y;
     char bvn[80] ="Bienvenue ";
     //Le pointeur vers la fenetre
@@ -91,19 +91,15 @@ int menu_SDL(void){
         while(running) {
             SDL_Event e;
             SDL_GetMouseState(&x,&y);
-            if(x<700 && 385<x && y<526 && 130<y) goto etiq1;
+            if(x<700 && 385<x && y<526 && 130<y) goto affichage;
             //printf("x:%i y:%i\n",x,y);
             
             while(SDL_PollEvent(&e)) {
                 switch(e.type) {
-                    case SDL_QUIT: running = 0;
-                        break;
+                    case SDL_QUIT: running = 0;break;
                     case SDL_MOUSEBUTTONDOWN:
-                        
-                        //printf("Ok%i\n",i++);
-                        goto etiq1;
                     case SDL_WINDOWEVENT:
-                    etiq1:
+                    affichage:
                         /* Le fond de la fenêtre sera blanc */
                         //SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
                         SDL_RenderClear(renderer);
@@ -131,7 +127,7 @@ int menu_SDL(void){
                                 temp = image_btnHover_tex;
                                 if(e.type == SDL_MOUSEBUTTONDOWN){
                                     SDL_DestroyWindow(pWindow);
-                                    lancement_jeu(i);
+                                    lancement_jeu(i,mat);
                                     return 0;
                                 }
                             }else{

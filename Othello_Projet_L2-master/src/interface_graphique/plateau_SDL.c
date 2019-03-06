@@ -1,6 +1,6 @@
 #include "SDL_jeu.h"
 
-int lancement_jeu(int modeJeu){
+int lancement_jeu(int modeJeu,t_matrice mat){
     if(modeJeu==QUITTER) return 0;
     int x,y;
     //Le pointeur vers la fenetre
@@ -64,9 +64,9 @@ int lancement_jeu(int modeJeu){
                 switch(e.type) {
                     case SDL_QUIT: running = 0;
                         break;
+                    case SDL_MOUSEBUTTONDOWN:
                     case SDL_WINDOWEVENT:
                         /* Le fond de la fenêtre sera vert */
-                        
                         SDL_RenderClear(renderer);
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
 
@@ -76,8 +76,8 @@ int lancement_jeu(int modeJeu){
                         SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
                         
                         for(i=0;i<8;i++){
-                            imgBtnRect.x = i*82;
-                            imgBtnRect.y = 0;
+                            imgBtnRect.y = i*82;
+                            imgBtnRect.x = 0;
                             for(j=0;j<8;j++){
                                 if(1){
                                     temp = image_caseNorm_tex;
@@ -86,7 +86,7 @@ int lancement_jeu(int modeJeu){
                                 }
                                 SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
                                 SDL_RenderCopy(renderer, image_noir_tex, NULL, &imgBtnRect);
-                                imgBtnRect.y += 82;
+                                imgBtnRect.x += 82;
                             }
                         }
                         
