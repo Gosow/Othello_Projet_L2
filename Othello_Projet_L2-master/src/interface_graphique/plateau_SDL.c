@@ -1,6 +1,7 @@
-#include <"jeu_SDL.h">
+#include "SDL_jeu.h"
 
-int lancement_jeu(int a){
+int lancement_jeu(int modeJeu){
+    if(modeJeu==QUITTER) return 0;
     int x,y;
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
@@ -16,13 +17,12 @@ int lancement_jeu(int a){
     //Initialisation du username
     char *pseudo=getenv("USER");
     if(pseudo==NULL) return EXIT_FAILURE;
-    strcat(bvn,pseudo);
     
     /* Création de la fenêtre */
     pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
                                SDL_WINDOWPOS_UNDEFINED,
                                1080,
-                               650,
+                               655,
                                SDL_WINDOW_SHOWN);
     
     if(!pWindow){
@@ -42,47 +42,52 @@ int lancement_jeu(int a){
     //Chargement de l'image de fond
     SDL_Texture *image_BG_tex = tex_img_png("./img/OthelloBG.png",renderer);
     //Chargement de l'image bouton
-    SDL_Texture *image_casePoss_tex = tex_img_png("./img/caseNorm.png",renderer);
+    SDL_Texture *image_caseNorm_tex = tex_img_png("./img/caseNorm.png",renderer);
     //Chargement de l'image bouton (utilisé quand la souris passe sur l'image)
-    SDL_Texture *image_caseNorm_tex = tex_img_png("./img/casePoss.png",renderer);
+    SDL_Texture *image_casePoss_tex = tex_img_png("./img/casePoss.png",renderer);
+    
+    //PION NOIR
+    SDL_Texture *image_noir_tex = tex_img_png("./img/noir.png",renderer);
+    //PION BLANC
+    SDL_Texture *image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
     
     SDL_Texture *temp;
-    int i=0;
+    int i=0,j=0;
     int numBtn = 0;
     
     if( pWindow )
     {
         int running = 1;
-        SDL_Event e;
-        while(running) {           
+        while(running) {
+            SDL_Event e;           
             while(SDL_PollEvent(&e)) {
                 switch(e.type) {
                     case SDL_QUIT: running = 0;
                         break;
-                    case SDL_MOUSEBUTTONDOWN:
-                        
-                        //printf("Ok%i\n",i++);
-                        goto etiq1;
                     case SDL_WINDOWEVENT:
-                    etiq1:
-                        /* Le fond de la fenêtre sera blanc */
+                        /* Le fond de la fenêtre sera vert */
                         
                         SDL_RenderClear(renderer);
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
 
                         //Positionnement du premier bouton
-                        imgBtnRect.x = 440;
-                        imgBtnRect.y = 150;
-                        SDL_QueryTexture(temp, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
-                        for(i=0;i<4;i++){
-                            if(1){
-                                temp = image_caseNorm_tex;
-                            }else{
-                                temp = image_casePoss_tex;
+                        imgBtnRect.x = 0;
+                        imgBtnRect.y = 0;
+                        SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
+                        
+                        for(i=0;i<8;i++){
+                            imgBtnRect.x = i*82;
+                            imgBtnRect.y = 0;
+                            for(j=0;j<8;j++){
+                                if(1){
+                                    temp = image_caseNorm_tex;
+                                }else{
+                                    temp = image_casePoss_tex;
+                                }
+                                SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
+                                SDL_RenderCopy(renderer, image_noir_tex, NULL, &imgBtnRect);
+                                imgBtnRect.y += 82;
                             }
-                            SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
-                            SDL_RenderCopy(renderer, texteMenu_tex[i], NULL, &(txtMenuRect[i]));
-                            imgBtnRect.y += 90;
                         }
                         
                         /* On fait le rendu ! */
