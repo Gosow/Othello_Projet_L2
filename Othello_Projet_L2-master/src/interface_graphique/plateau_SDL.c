@@ -41,29 +41,34 @@ int lancement_jeu(int modeJeu,t_matrice mat){
     
     //Chargement de l'image de fond
     SDL_Texture *image_BG_tex = tex_img_png("./img/OthelloBG.png",renderer);
- 
+    int joueur=1;
     if( pWindow )
     {
         int running = 1;
         while(running) {
+            SDL_GetMouseState(&x,&y);
             SDL_Event e;           
             while(SDL_PollEvent(&e)) {
                 switch(e.type) {
                     case SDL_QUIT: running = 0;
                         break;
                     case SDL_MOUSEBUTTONDOWN:
+                        // 82 px taille d'une case
+                        if(x<=656 && y<=656){
+                            x=x/82;
+                            y=y/82;
+                            printf("x:%i, y:%i\n",x,y);
+                            if(coup_valide(mat,y,x,joueur)){
+                                jouer_coup(mat,y,x,1);
+                            }
+                        }
                     case SDL_WINDOWEVENT:
-                        /* Le fond de la fenêtre sera vert */
-                        SDL_RenderClear(renderer);
-                        SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
-                        afficher_matriceSDL(mat,renderer);
-                        
-                        /* On fait le rendu ! */
-                        SDL_RenderPresent(renderer);
+                        afficher_matriceSDL(mat,renderer,&joueur);
                         break;
                         
                 }
             }
+
         }
     } else {
         fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());

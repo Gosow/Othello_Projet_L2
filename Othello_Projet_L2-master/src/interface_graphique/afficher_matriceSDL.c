@@ -1,6 +1,6 @@
 #include "SDL_jeu.h"
 
-int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer){
+int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
     SDL_Texture *temp;
     int i=0,j=0;
     SDL_Rect imgBtnRect;
@@ -16,12 +16,16 @@ int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer){
     imgBtnRect.x = 0;
     imgBtnRect.y = 0;
     SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
-    
+
+    /* Le fond de la fenêtre sera vert */
+    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
+
     for(i=0;i<N;i++){
         imgBtnRect.y = i*82;
         imgBtnRect.x = 0;
         for(j=0;j<N;j++){
-            if(coup_valide(mat,i,j,1)){
+            if(coup_valide(mat,i,j,*joueur)){
                 temp = image_casePoss_tex;
             }else{
                 temp = image_caseNorm_tex;
@@ -36,4 +40,7 @@ int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer){
             imgBtnRect.x += 82;
         }
     }
+    /* On fait le rendu ! */
+    SDL_RenderPresent(renderer);
+    joueur_suivant(*joueur);
 }
