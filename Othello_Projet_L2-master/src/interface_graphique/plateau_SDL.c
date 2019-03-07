@@ -42,6 +42,8 @@ int lancement_jeu(int modeJeu,t_matrice mat){
     //Chargement de l'image de fond
     SDL_Texture *image_BG_tex = tex_img_png("./img/OthelloBG.png",renderer);
     int joueur=1;
+    init_texture(renderer);
+
     if( pWindow )
     {
         int running = 1;

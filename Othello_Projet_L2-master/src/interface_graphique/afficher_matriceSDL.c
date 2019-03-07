@@ -1,18 +1,23 @@
 #include "SDL_jeu.h"
 
+static SDL_Texture *image_caseNorm_tex;
+static SDL_Texture *image_casePoss_tex;
+static SDL_Texture *image_noir_tex;
+static SDL_Texture *image_blanc_tex;
+
+void init_texture(SDL_Renderer* renderer){
+    image_caseNorm_tex = tex_img_png("./img/caseNorm.png",renderer);
+    image_casePoss_tex = tex_img_png("./img/casePoss.png",renderer);
+    //PION NOIR
+    image_noir_tex = tex_img_png("./img/noir.png",renderer);
+    //PION BLANC
+    image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
+}
+
 int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
     SDL_Texture *temp;
     int i=0,j=0;
     SDL_Rect imgBtnRect;
-    //Chargement de l'image bouton
-    SDL_Texture *image_caseNorm_tex = tex_img_png("./img/caseNorm.png",renderer);
-    //Chargement de l'image bouton (utilisé quand la souris passe sur l'image)
-    SDL_Texture *image_casePoss_tex = tex_img_png("./img/casePoss.png",renderer);
-    
-    //PION NOIR
-    SDL_Texture *image_noir_tex = tex_img_png("./img/noir.png",renderer);
-    //PION BLANC
-    SDL_Texture *image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
     imgBtnRect.x = 0;
     imgBtnRect.y = 0;
     SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
@@ -40,6 +45,7 @@ int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
             imgBtnRect.x += 82;
         }
     }
+
     /* On fait le rendu ! */
     SDL_RenderPresent(renderer);
 }
