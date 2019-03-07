@@ -13,10 +13,12 @@ INCLUDES=-I${SDLINC_DIR}
 
 PROG=main_SDL
 
-all: othello
+all: javel othello
 
 othello: ${FICHIER_O}
 	${CC} ${OPTS} ${PROG} $(FICHIER_O) ${LIBS} ${INCLUDES} ${CFLAGS}
+	rm -f *.o
+	./main_SDL
 
 main_SDL.o: main_SDL.c ${INT_SDL}SDL_jeu.h
 	${CC} -o main_SDL.o -c main_SDL.c ${CFLAGS}

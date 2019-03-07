@@ -23,7 +23,6 @@ int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
     SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
 
     /* Le fond de la fenêtre sera vert */
-    SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
 
     for(i=0;i<N;i++){
@@ -45,7 +44,4 @@ int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
             imgBtnRect.x += 82;
         }
     }
-
-    /* On fait le rendu ! */
-    SDL_RenderPresent(renderer);
 }

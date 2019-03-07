@@ -9,6 +9,7 @@
 #include "../gest_matrice.h"
 #include "../define.h"
 #include <string.h>
+#include <time.h>
 #define SOLO 0
 #define DUO 1
 #define ONLINE 2
