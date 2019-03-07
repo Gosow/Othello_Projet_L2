@@ -72,7 +72,7 @@ int main ( void )
     char ip[100];
      
     hostname_to_ip(hostname , ip);
-	fprintf(stderr, "%s resolved to %s" , hostname , ip);
+	fprintf(stderr, "%s resolved to %s\n" , hostname , ip);
 	view_ip();
 
 	/* creation de socket */
