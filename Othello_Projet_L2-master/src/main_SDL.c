@@ -10,6 +10,7 @@ int main(int argc, char** argv)
         return -1;
     }
 
+
 	/* Initialisation TTF */
 	if(TTF_Init() == -1) {
 		fprintf(stderr, "Erreur d'initialisation de TTF_Init : %s\n", TTF_GetError());
