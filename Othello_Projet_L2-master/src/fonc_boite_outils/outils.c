@@ -4,6 +4,14 @@
 const double epsilon = 1e-10;
 
 
+inline int bool_max_equals(int a , int b)
+{
+    //retourne 1 si a est superieur ou egale a b
+    if (a >= b) 
+        return 1;
+    else       
+        return 0;
+}
 
 inline int min(int a, int b)
 {

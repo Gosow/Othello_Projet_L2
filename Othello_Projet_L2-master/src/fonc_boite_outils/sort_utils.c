@@ -1,89 +1,4 @@
-/**
- * @file
- *
- * @todo Refactor quick-sort.
- *       The swap macro is complicated .... and does not bring performance in.
- *
- * @todo Add dedicated sort functions for object (pointer and structure) sorting.
- *       This version can have a dedicated swap macro/function.
- *
- * @todo Prepare tests for:
- *         - Added compare functions.
- *         - Dedicated integer, pointer, object sorting functions.
- *         - Write a sanity check test that verifies the list of sort functions comparing each other results.
- *
- * @todo Write performance tests for ordered and mostly ordered data, organ-pipe data
- *       few values data (eg. a long array of ones and zeroes).
- *       Rewrite test helper function (has to support more use cases than just random order).
- *       - Organ pipe shape - two occurrences per value, linear distribution.
- *       - Ascending ramp up ...
- *       - Sawtooth shape
- *       - Flat distribution without duplicates
- *       - Flat distribution with duplicates
- *       - Normal distribution
- *
- * @todo Write a complete introduction to document the module.
- *
- * @todo Prepare one or more plots to document performances of the different functions.
- *
- *
- *
- * @brief Sort utilities module implementation.
- *
- * @details The functions made available by this module are all in-memory algorithms for "internal sorting".
- *
- * A lot of effort has been devoted to study and research sorting procedures, but a silver bullet has still to come.
- * Depending on the sorting data distribution, the patterns in the data, the type and number of the records,
- * the cost of comparing versus swapping, the availability of extra space, and finally our tolerance to the risk
- * of exploding running time and memory consumption caused by unpredicted data distributions which might drive the
- * algorithm into the abyss, one procedure can be more suitable than the others.
- *
- * The algorithms here proposed are:
- *   - Insertion-sort
- *   - Binary-sort
- *   - Heap-sort
- *   - Smooth-sort
- *   - Quick-sort
- *   - Shell-sort
- *   - Merge-sort
- *   - Tim-sort
- *
- * There are mainly three different approaches when we have to rearrange records of information in a given order:
- *   - Address table sorting that means moving the complete records around.
- *   - Key-sorting that is carried out by preparing an auxiliary array of references and sort them.
- *   - List sorting that is done organizing auxiliary references into a linked list.
- *
- * The first one is more appealing when the data to be sorted is not too big when compared with the pointer size
- * of the machine, on the other side linked lists are very efficient when we have to make an insertion and
- * key-sorting shines when two elements has to be swapped.
- *
- *
- * @par sort_utils.c
- * <tt>
- * This file is part of the reversi program
- * http://github.com/rcrr/reversi
- * </tt>
- * @author Roberto Corradini mailto:rob_corradini@yahoo.it
- * @copyright 2014, 2015, 2017, 2018 Roberto Corradini. All rights reserved.
- *
- * @par License
- * <tt>
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation; either version 3, or (at your option) any
- * later version.
- * \n
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- * \n
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- * or visit the site <http://www.gnu.org/licenses/>.
- * </tt>
- */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -97,14 +12,6 @@
 
 
 
-/**
- * @cond
- */
-
-/*
- * Prototypes for internal functions.
- */
-
 static void
 copy (void *const dest,
       const void *const src,
@@ -115,9 +22,6 @@ swap (void *const a,
       void *const b,
       const size_t element_size);
 
-/**
- * @endcond
- */
 
 
 
@@ -128,16 +32,16 @@ swap (void *const a,
 /* double */
 
 /**
- * @brief Compares double values pointed by `a` and `b`.
+ * Compares double values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ *  Compare function that returns:
  *          - `+1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `-1` when `a` is less then `b`
  *
- * @param a a pointer to the first double
- * @param b a pointer to the second double
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first double
+ * param b a pointer to the second double
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_double_cmp (const void *const a,
@@ -149,16 +53,16 @@ sort_utils_double_cmp (const void *const a,
 }
 
 /**
- * @brief Compares double values pointed by `a` and `b`.
+ *  Compares double values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ *  Compare function that returns:
  *          - `-1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `+1` when `a` is less then `b`
  *
- * @param a a pointer to the first double
- * @param b a pointer to the second double
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first double
+ * param b a pointer to the second double
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_double_icmp (const void *const a,
@@ -174,16 +78,16 @@ sort_utils_double_icmp (const void *const a,
 /* int */
 
 /**
- * @brief Compares int values pointed by `a` and `b`.
+ *  Compares int values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `+1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `-1` when `a` is less then `b`
  *
- * @param a a pointer to the first integer
- * @param b a pointer to the second integer
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first integer
+ * param b a pointer to the second integer
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_int_cmp (const void *const a,
@@ -195,16 +99,16 @@ sort_utils_int_cmp (const void *const a,
 }
 
 /**
- * @brief Compares int values pointed by `a` and `b`.
+ *  Compares int values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `-1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `+1` when `a` is less then `b`
  *
- * @param a a pointer to the first integer
- * @param b a pointer to the second integer
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first integer
+ * param b a pointer to the second integer
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_int_icmp (const void *const a,
@@ -220,16 +124,16 @@ sort_utils_int_icmp (const void *const a,
 /* uint64_t */
 
 /**
- * @brief Compares `uint64_t` values pointed by `a` and `b`.
+ *  Compares `uint64_t` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `+1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `-1` when `a` is less then `b`
  *
- * @param a a pointer to the first `uint64_t` value
- * @param b a pointer to the second `uint64_t` value
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first `uint64_t` value
+ * param b a pointer to the second `uint64_t` value
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_uint64_t_cmp (const void *const a,
@@ -241,16 +145,16 @@ sort_utils_uint64_t_cmp (const void *const a,
 }
 
 /**
- * @brief Compares `uint64_t` values pointed by `a` and `b`.
+ *  Compares `uint64_t` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `-1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `+1` when `a` is less then `b`
  *
- * @param a a pointer to the first `uint64_t` value
- * @param b a pointer to the second `uint64_t` value
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first `uint64_t` value
+ * param b a pointer to the second `uint64_t` value
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_uint64_t_icmp (const void *const a,
@@ -266,16 +170,16 @@ sort_utils_uint64_t_icmp (const void *const a,
 /* int64_t */
 
 /**
- * @brief Compares `int64_t` values pointed by `a` and `b`.
+ *  Compares `int64_t` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `+1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `-1` when `a` is less then `b`
  *
- * @param a a pointer to the first `int64_t` value
- * @param b a pointer to the second `int64_t` value
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first `int64_t` value
+ * param b a pointer to the second `int64_t` value
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_int64_t_cmp (const void *const a,
@@ -287,16 +191,16 @@ sort_utils_int64_t_cmp (const void *const a,
 }
 
 /**
- * @brief Compares `int64_t` values pointed by `a` and `b`.
+ *  Compares `int64_t` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `-1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `+1` when `a` is less then `b`
  *
- * @param a a pointer to the first `int64_t` value
- * @param b a pointer to the second `int64_t` value
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first `int64_t` value
+ * param b a pointer to the second `int64_t` value
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_int64_t_icmp (const void *const a,
@@ -312,16 +216,16 @@ sort_utils_int64_t_icmp (const void *const a,
 /* (void *) */
 
 /**
- * @brief Compares `(void *)` values pointed by `a` and `b`.
+ *  Compares `(void *)` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `+1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `-1` when `a` is less then `b`
  *
- * @param a a pointer to the first `(void *)` value
- * @param b a pointer to the second `(void *)` value
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first `(void *)` value
+ * param b a pointer to the second `(void *)` value
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_pointer_cmp (const void *const a,
@@ -333,16 +237,16 @@ sort_utils_pointer_cmp (const void *const a,
 }
 
 /**
- * @brief Compares `(void *)` values pointed by `a` and `b`.
+ *  Compares `(void *)` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `-1` when `a` is greater than `b`
  *          - ` 0` when `a` is equal to `b`
  *          - `+1` when `a` is less then `b`
  *
- * @param a a pointer to the first `(void *)` value
- * @param b a pointer to the second `(void *)` value
- * @return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
+ * param a a pointer to the first `(void *)` value
+ * param b a pointer to the second `(void *)` value
+ * return  a value in `{-1, 0, +1}` based on the comparison of `a` and `b`
  */
 int
 sort_utils_pointer_icmp (const void *const a,
@@ -358,16 +262,16 @@ sort_utils_pointer_icmp (const void *const a,
 /* (char **) */
 
 /**
- * @brief Compares lexicographically `(char **)` values pointed by `a` and `b`.
+ *  Compares lexicographically `(char **)` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `greater then 0` when `a` is greater than `b`
  *          - `equal to 0`     when `a` is equal to `b`
  *          - `less than 0`    when `a` is less then `b`
  *
- * @param a a pointer to the first `(char *)` value
- * @param b a pointer to the second `(char *)` value
- * @return  an integer value based on the comparison of `a` and `b`
+ * param a a pointer to the first `(char *)` value
+ * param b a pointer to the second `(char *)` value
+ * return  an integer value based on the comparison of `a` and `b`
  */
 int
 sort_utils_string_cmp (const void *const a,
@@ -379,16 +283,16 @@ sort_utils_string_cmp (const void *const a,
 }
 
 /**
- * @brief Compares lexicographically `(char **)` values pointed by `a` and `b`.
+ *  Compares lexicographically `(char **)` values pointed by `a` and `b`.
  *
- * @details Compare function that returns:
+ * details Compare function that returns:
  *          - `less then 0`    when `a` is greater than `b`
  *          - `equal to 0`     when `a` is equal to `b`
  *          - `greater than 0` when `a` is less then `b`
  *
- * @param a a pointer to the first `(char *)` value
- * @param b a pointer to the second `(char *)` value
- * @return  an integer value based on the comparison of `a` and `b`
+ * param a a pointer to the first `(char *)` value
+ * param b a pointer to the second `(char *)` value
+ * return  an integer value based on the comparison of `a` and `b`
  */
 int
 sort_utils_string_icmp (const void *const a,
@@ -410,9 +314,9 @@ sort_utils_string_icmp (const void *const a,
 /******************/
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a`, collecting elements of size `element_size`, having length equal to `count`,
+ * details The vector `a`, collecting elements of size `element_size`, having length equal to `count`,
  *          is sorted in place applying the insertion-sort algorithm.
  *          The compare function `cmp` has to comply with the signature of #sort_utils_compare_function.
  *
@@ -421,7 +325,7 @@ sort_utils_string_icmp (const void *const a,
  *          Nevertheless sometimes its simplicity makes it a valid choice. The given
  *          implementation is between two or three percent slower compared to a bare
  *          metal version, sorting doubles values, like the one here transcribed:
- * @code
+ * code
  * void
  * sort_utils_insertionsort_asc_d (double *const a,
  *                                 const int count)
@@ -430,12 +334,12 @@ sort_utils_string_icmp (const void *const a,
  *      double t = a[j]; a[j] = a[j - 1]; a[j - 1] = t;
  *    }
  *  }
- * @endcode
+ * endcode
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_insertionsort (void *const a,
@@ -455,13 +359,13 @@ sort_utils_insertionsort (void *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_asc_d (double *const a,
@@ -471,13 +375,13 @@ sort_utils_insertionsort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_dsc_d (double *const a,
@@ -487,13 +391,13 @@ sort_utils_insertionsort_dsc_d (double *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_asc_i (int *const a,
@@ -503,13 +407,13 @@ sort_utils_insertionsort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_dsc_i (int *const a,
@@ -519,13 +423,13 @@ sort_utils_insertionsort_dsc_i (int *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of unsigned sixtyfour bit integers.
+ *  Sorts in ascending order the `a` array of unsigned sixtyfour bit integers.
  *
- * @details The vector of unsigned sixtyfour bit integers `a` having length equal to `count` is sorted
+ * details The vector of unsigned sixtyfour bit integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_asc_u64 (uint64_t *const a,
@@ -535,13 +439,13 @@ sort_utils_insertionsort_asc_u64 (uint64_t *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of unsigned sixtyfour bit integers.
+ *  Sorts in descending order the `a` array of unsigned sixtyfour bit integers.
  *
- * @details The vector of unsigned sixtyfour bit integers `a` having length equal to `count` is sorted
+ * details The vector of unsigned sixtyfour bit integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_dsc_u64 (uint64_t *const a,
@@ -551,13 +455,13 @@ sort_utils_insertionsort_dsc_u64 (uint64_t *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of signed sixtyfour bit integers.
+ *  Sorts in ascending order the `a` array of signed sixtyfour bit integers.
  *
- * @details The vector of signed sixtyfour bit integers `a` having length equal to `count` is sorted
+ * details The vector of signed sixtyfour bit integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_asc_i64 (int64_t *const a,
@@ -567,13 +471,13 @@ sort_utils_insertionsort_asc_i64 (int64_t *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of signed sixtyfour bit integers.
+ *  Sorts in descending order the `a` array of signed sixtyfour bit integers.
  *
- * @details The vector of signed sixtyfour bit integers `a` having length equal to `count` is sorted
+ * details The vector of signed sixtyfour bit integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_dsc_i64 (int64_t *const a,
@@ -583,13 +487,13 @@ sort_utils_insertionsort_dsc_i64 (int64_t *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of pointers.
+ *  Sorts in ascending order the `a` array of pointers.
  *
- * @details The vector of pointers `a` having length equal to `count` is sorted
+ * details The vector of pointers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_asc_p (void **const a,
@@ -599,13 +503,13 @@ sort_utils_insertionsort_asc_p (void **const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of pointers to strings.
+ *  Sorts in ascending order the `a` array of pointers to strings.
  *
- * @details The vector of pointersto strings `a` having length equal to `count` is sorted
+ * details The vector of pointersto strings `a` having length equal to `count` is sorted
  *          in place in ascending order applying the insertion-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_insertionsort_asc_string (char **const a,
@@ -621,22 +525,22 @@ sort_utils_insertionsort_asc_string (char **const a,
 /***************/
 
 /**
- * @cond
+ * cond
  */
 
 /**
- * @brief Sorts the specified portion of the `a` array using a binary
+ *  Sorts the specified portion of the `a` array using a binary
  * insertion sort.
  *
- * @details If the initial part of the array is already sorted,
+ * details If the initial part of the array is already sorted,
  * this function assumes that the elements from the beginning,
  * to `start`, exclusive, are already sorted.
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     start        the index of the first element out of sequence
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     start        the index of the first element out of sequence
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 static void
 bnr_sort_from_ordered_initial_run  (void *const a,
@@ -675,20 +579,20 @@ bnr_sort_from_ordered_initial_run  (void *const a,
 }
 
 /**
- * @endcond
+ * endcond
  */
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a`, collecting elements of size `element_size`, having length equal to `count`,
+ * details The vector `a`, collecting elements of size `element_size`, having length equal to `count`,
  *          is sorted in place applying the binary-sort algorithm.
  *          The compare function `cmp` has to comply with the signature of #sort_utils_compare_function.
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_binarysort (void *const a,
@@ -700,13 +604,13 @@ sort_utils_binarysort (void *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the binary-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_binarysort_asc_d (double *const a,
@@ -716,13 +620,13 @@ sort_utils_binarysort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the binary-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_binarysort_dsc_d (double *const a,
@@ -732,13 +636,13 @@ sort_utils_binarysort_dsc_d (double *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the binary-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_binarysort_asc_i (int *const a,
@@ -748,13 +652,13 @@ sort_utils_binarysort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the binary-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_binarysort_dsc_i (int *const a,
@@ -770,17 +674,17 @@ sort_utils_binarysort_dsc_i (int *const a,
 /*************/
 
 /**
- * @cond
+ * cond
  */
 
 /**
- * @brief Sift down function used by the heap-sort algorithm.
+ *  Sift down function used by the heap-sort algorithm.
  *
- * @param [in,out] a            the array being sorted
- * @param [in]     start        tbd
- * @param [in]     end          tbd
- * @param [in]     element_size tbd
- * @param [in]     cmp          tbd
+ * param [in,out] a            the array being sorted
+ * param [in]     start        tbd
+ * param [in]     end          tbd
+ * param [in]     element_size tbd
+ * param [in]     cmp          tbd
  */
 static void
 hps_sift_down (void *const a,
@@ -808,20 +712,20 @@ hps_sift_down (void *const a,
 }
 
 /**
- * @endcond
+ * endcond
  */
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a` having length equal to `count` is sorted
+ * details The vector `a` having length equal to `count` is sorted
  *          in place applying the heap-sort algorithm.
  *          The compare function is a predicate and must return `true` or `false`.
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_heapsort (void *const a,
@@ -840,13 +744,13 @@ sort_utils_heapsort (void *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the heap-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_heapsort_asc_d (double *const a,
@@ -856,13 +760,13 @@ sort_utils_heapsort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the heap-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_heapsort_dsc_i (int *const a,
@@ -872,13 +776,13 @@ sort_utils_heapsort_dsc_i (int *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the heap-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_heapsort_asc_i (int *const a,
@@ -888,13 +792,13 @@ sort_utils_heapsort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the heap-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_heapsort_dsc_d (double *const a,
@@ -910,34 +814,34 @@ sort_utils_heapsort_dsc_d (double *const a,
 /***************/
 
 /**
- * @cond
+ * cond
  */
 
 /**
- * @brief Function up as described by the sooth-sort paper.
+ *  Function up as described by the sooth-sort paper.
  */
 #define sms_up(ia, ib) do { unsigned long long int temp = ia; ia += ib + 1; ib = temp; } while (0)
 
 /**
- * @brief Function down as described by the sooth-sort paper.
+ *  Function down as described by the sooth-sort paper.
  */
 #define sms_down(ia, ib) do { unsigned long long int temp = ib; ib = ia - ib - 1; ia = temp; } while (0)
 
 /**
- * @brief Function sift as defined by the smooth-sort paper.
+ *  Function sift as defined by the smooth-sort paper.
  *
- * @details When stretches thus parsed are viewed as post-order traversals of binary-trees,
+ * details When stretches thus parsed are viewed as post-order traversals of binary-trees,
  *          trustiness means that no son exceeds its father. A dubious stretch is made into
  *          a trusty one by applying the operation "sift" –a direct inheritance from heap-sort– to its root,
  *          where sift is defined as follow: sift applied to an element m[r1] that is exceeded by its
  *          largest son m[r2] consists of a swap of these two values, followed by an application of sift to m[r2].
  *
- * @param [in]     cmp compare function
- * @param [in]     es  element size
- * @param [in,out] r1  one of the reference described in the smooth-sort paper
- * @param [in]     tmp a reference to a temporary value having the same size of the array elements.
- * @param [in,out] b1  a reference to the b1 variable described in the paper
- * @param [in,out] c1  a reference to the c1 variable also described in the paper
+ * param [in]     cmp compare function
+ * param [in]     es  element size
+ * param [in,out] r1  one of the reference described in the smooth-sort paper
+ * param [in]     tmp a reference to a temporary value having the same size of the array elements.
+ * param [in,out] b1  a reference to the b1 variable described in the paper
+ * param [in,out] c1  a reference to the c1 variable also described in the paper
  */
 static void
 sms_sift (const sort_utils_compare_function cmp,
@@ -969,9 +873,9 @@ sms_sift (const sort_utils_compare_function cmp,
 }
 
 /**
- * @brief Function trinkle as defined by the smooth-sort paper.
+ *  Function trinkle as defined by the smooth-sort paper.
  *
- * @details In the case `p mod 4 = 1`, the standard concatenation ends on a dubious stretch of length b,
+ * details In the case `p mod 4 = 1`, the standard concatenation ends on a dubious stretch of length b,
  *          which in this step becomes the last but one stretch of the standard concatenation and,
  *          hence, must be made trusty. In the case `q + c < N`, it suffices to apply sift to m[r] as before,
  *          since this stretch will later disappear from the standard concatenation. In the case `q + c >= N`,
@@ -979,15 +883,15 @@ sms_sift (const sort_utils_compare_function cmp,
  *          in the standard concatenation of length N. Making such a dubious stretch trusty and including its
  *          root in the sequence of ascending roots is achieved by applying "trinkle“ to m[r].
  *
- * @param [in]     cmp compare function
- * @param [in]     es  element size
- * @param [in,out] r1  one of the reference described in the smooth-sort paper
- * @param [in]     tmp a reference to a temporary value having the same size of the array elements.
- * @param [in]     p   the corresponding variable described in the paper
- * @param [in]     b   the corresponding variable described in the paper
- * @param [in]     c   the corresponding variable described in the paper
- * @param [in,out] b1  a reference to the b1 variable described in the paper
- * @param [in,out] c1  a reference to the c1 variable also described in the paper
+ * param [in]     cmp compare function
+ * param [in]     es  element size
+ * param [in,out] r1  one of the reference described in the smooth-sort paper
+ * param [in]     tmp a reference to a temporary value having the same size of the array elements.
+ * param [in]     p   the corresponding variable described in the paper
+ * param [in]     b   the corresponding variable described in the paper
+ * param [in]     c   the corresponding variable described in the paper
+ * param [in,out] b1  a reference to the b1 variable described in the paper
+ * param [in,out] c1  a reference to the c1 variable also described in the paper
  */
 static void
 sms_trinkle (const sort_utils_compare_function cmp,
@@ -1046,23 +950,23 @@ sms_trinkle (const sort_utils_compare_function cmp,
 }
 
 /**
- * @brief Function semi-trinkle as defined by the smooth-sort paper.
+ *  Function semi-trinkle as defined by the smooth-sort paper.
  *
- * @details In the case `b >= 3`, the rightmost stretch of length b is replaced by two trusty ones; hence P3 is maintained.
+ * details In the case `b >= 3`, the rightmost stretch of length b is replaced by two trusty ones; hence P3 is maintained.
  *          To restore P4 it would suffice to apply trinkle first to the root of the first new stretch and then to the
  *          root of the second new stretch, but this would fail to exploit the fact that the new stretches are already
  *          trusty to start with. This is exploited by applying "semitrinkle“ in order to those roots.
  *
- * @param [in]     cmp compare function
- * @param [in]     es  element size
- * @param [in,out] r   one of the reference described in the smooth-sort paper
- * @param [in,out] r1  one of the reference described in the smooth-sort paper
- * @param [in]     tmp a reference to a temporary value having the same size of the array elements.
- * @param [in]     p   the corresponding variable described in the paper
- * @param [in]     b   the corresponding variable described in the paper
- * @param [in]     c   the corresponding variable described in the paper
- * @param [in,out] b1  a reference to the b1 variable described in the paper
- * @param [in,out] c1  a reference to the c1 variable also described in the paper
+ * param [in]     cmp compare function
+ * param [in]     es  element size
+ * param [in,out] r   one of the reference described in the smooth-sort paper
+ * param [in,out] r1  one of the reference described in the smooth-sort paper
+ * param [in]     tmp a reference to a temporary value having the same size of the array elements.
+ * param [in]     p   the corresponding variable described in the paper
+ * param [in]     b   the corresponding variable described in the paper
+ * param [in]     c   the corresponding variable described in the paper
+ * param [in,out] b1  a reference to the b1 variable described in the paper
+ * param [in,out] c1  a reference to the c1 variable also described in the paper
  */
 static void
 sms_semitrinkle (const sort_utils_compare_function cmp,
@@ -1084,13 +988,13 @@ sms_semitrinkle (const sort_utils_compare_function cmp,
 }
 
 /**
- * @endcond
+ * endcond
  */
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a` having length equal to `count` is sorted
+ * details The vector `a` having length equal to `count` is sorted
  *          in place applying the smooth-sort algorithm.
  *          The compare function is a predicate and must return `true` or `false`.
  *
@@ -1102,10 +1006,10 @@ sms_semitrinkle (const sort_utils_compare_function cmp,
  *          order `N·log N` in the worst case, but of order `N` in the best case, with a smooth transition between
  *          the two. (Hence its name.)"</em>
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_smoothsort (void *const a,
@@ -1195,13 +1099,13 @@ sort_utils_smoothsort (void *const a,
 #undef sms_down
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the smooth-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_smoothsort_asc_d (double *const a,
@@ -1211,13 +1115,13 @@ sort_utils_smoothsort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the smooth-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_smoothsort_dsc_d (double *const a,
@@ -1227,13 +1131,13 @@ sort_utils_smoothsort_dsc_d (double *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the smooth-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_smoothsort_asc_i (int *const a,
@@ -1243,13 +1147,13 @@ sort_utils_smoothsort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the smooth-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_smoothsort_dsc_i (int *const a,
@@ -1265,33 +1169,33 @@ sort_utils_smoothsort_dsc_i (int *const a,
 /**************/
 
 /**
- * @cond
+ * cond
  */
 
 /**
- * @brief Used to optimize the swap operation for quick-sort.
+ *  Used to optimize the swap operation for quick-sort.
  */
 typedef long long int QksSwapWord;
 
 /**
- * @brief The size of a register, on x86_64 it is eight.
+ *  The size of a register, on x86_64 it is eight.
  */
 #define qks_sws sizeof(QksSwapWord)
 
 /**
- * @brief This macro must be called at the beginning of a function using qks_swap.
+ *  This macro must be called at the beginning of a function using qks_swap.
  *        Variables `size_t es` and `QksSwapWord t` must be defined.
  */
 #define qks_swap_init(a, es) swaptype =                                 \
     ((a - (char *) 0) | es) % qks_sws ? 2 : es > qks_sws ? 1 : 0
 
 /**
- * @brief Inline exchange of values among `a` and `b`.
+ *  Inline exchange of values among `a` and `b`.
  */
 #define qks_exch(a, b, t) (t = a, a = b, b = t)
 
 /**
- * @brief Swaps values among `a` and `b`.
+ *  Swaps values among `a` and `b`.
  *        A call to qks_swap_init macro must be done once in advance.
  */
 #define qks_swap(a, b)                                                  \
@@ -1299,19 +1203,19 @@ typedef long long int QksSwapWord;
     (void) qks_exch(*(QksSwapWord *) (a), *(QksSwapWord *) (b), t)
 
 /**
- * @brief Swaps vectors.
+ *  Swaps vectors.
  */
 #define qks_vec_swap(a, b, n) if (n > 0) qks_swapfunc(a, b, n, swaptype)
 
 /**
- * @brief Prepares pivot elements.
+ *  Prepares pivot elements.
  */
 #define qks_pv_init(pv, pm)                             \
   if (swaptype != 0) pv = a, qks_swap(pv, pm);          \
   else pv = (char *) &v, v = *(QksSwapWord *) pm
 
 /**
- * @brief Swaps values among pointers `a` and `b`.
+ *  Swaps values among pointers `a` and `b`.
  */
 static void
 qks_swapfunc (char *a,
@@ -1331,7 +1235,7 @@ qks_swapfunc (char *a,
 }
 
 /**
- * @brief Returns the median element among `a`, `b`, and `c`.
+ *  Returns the median element among `a`, `b`, and `c`.
  */
 static char *
 qks_med3 (char *const a,
@@ -1345,7 +1249,7 @@ qks_med3 (char *const a,
 }
 
 /**
- * @brief Returns the minimum between pointer differences `a` and `b`.
+ *  Returns the minimum between pointer differences `a` and `b`.
  */
 static ptrdiff_t
 qks_min (const ptrdiff_t a,
@@ -1355,13 +1259,13 @@ qks_min (const ptrdiff_t a,
 }
 
 /**
- * @endcond
+ * endcond
  */
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a` having length equal to `count` is sorted
+ * details The vector `a` having length equal to `count` is sorted
  *          in place applying the quick-sort algorithm.
  *          The compare function is a comparator and must return `-1`, `0`, or `+1` constrained by
  *          the sorting order of the two elements.
@@ -1370,10 +1274,10 @@ qks_min (const ptrdiff_t a,
  *          See: http://www.skidmore.edu/~meckmann/2009Spring/cs206/papers/spe862jb.pdf
  *          See also: http://en.wikipedia.org/wiki/Quicksort
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_quicksort (void *const a,
@@ -1468,13 +1372,13 @@ sort_utils_quicksort (void *const a,
 #undef qks_pv_init
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the quick-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_quicksort_asc_d (double *const a,
@@ -1484,13 +1388,13 @@ sort_utils_quicksort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the quick-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_quicksort_dsc_d (double *const a,
@@ -1500,13 +1404,13 @@ sort_utils_quicksort_dsc_d (double *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the quick-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_quicksort_asc_i (int *const a,
@@ -1516,13 +1420,13 @@ sort_utils_quicksort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the quick-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_quicksort_dsc_i (int *const a,
@@ -1538,9 +1442,9 @@ sort_utils_quicksort_dsc_i (int *const a,
 /**************/
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a` having length equal to `count` is sorted
+ * details The vector `a` having length equal to `count` is sorted
  *          in place applying the shell-sort algorithm.
  *          The compare function is a predicate and must return `true` or `false`.
  *
@@ -1574,10 +1478,10 @@ sort_utils_quicksort_dsc_i (int *const a,
  * The first sequence is described by Knuth and works quite well, the second one is a sensible improvement, Knuth himself reports that it has been suggested by Tokuda.
  * The sequence number three, the Tokuda sequence, is slightly better than the second one, and it has been selected and applied here. The last one is too short to be adopted.
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_shellsort (void *const a,
@@ -1631,13 +1535,13 @@ sort_utils_shellsort (void *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the shell-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_shellsort_asc_d (double *const a,
@@ -1647,13 +1551,13 @@ sort_utils_shellsort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the shell-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_shellsort_dsc_d (double *const a,
@@ -1663,13 +1567,13 @@ sort_utils_shellsort_dsc_d (double *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the shell-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_shellsort_asc_i (int *const a,
@@ -1679,13 +1583,13 @@ sort_utils_shellsort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the shell-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_shellsort_dsc_i (int *const a,
@@ -1701,16 +1605,16 @@ sort_utils_shellsort_dsc_i (int *const a,
 /**************/
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a` having length equal to `count` is sorted
+ * details The vector `a` having length equal to `count` is sorted
  *          using auxiliary space applying the merge-sort algorithm.
  *          The compare function is a predicate and must return `true` or `false`.
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_mergesort (void *const a,
@@ -1724,19 +1628,19 @@ sort_utils_mergesort (void *const a,
 }
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a` having length equal to `count` is sorted
+ * details The vector `a` having length equal to `count` is sorted
  *          using auxiliary space applying the merge-sort algorithm.
  *          The compare function is a predicate and must return `true` or `false`.
  *          The auxiliary space must have the same size of the `a` array or larger,
  *          the content of it when the function returns is garbage.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element in array
- * @param [in]     es    the number of bytes used by one element
- * @param [in]     cmp   the compare function applied by the algorithm
- * @param [in]     aux   an auxiliary array
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element in array
+ * param [in]     es    the number of bytes used by one element
+ * param [in]     cmp   the compare function applied by the algorithm
+ * param [in]     aux   an auxiliary array
  */
 void
 sort_utils_mergesort_a (void *const a,
@@ -1792,13 +1696,13 @@ sort_utils_mergesort_a (void *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the merge-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_mergesort_asc_d (double *const a,
@@ -1808,13 +1712,13 @@ sort_utils_mergesort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the merge-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_mergesort_dsc_d (double *const a,
@@ -1824,13 +1728,13 @@ sort_utils_mergesort_dsc_d (double *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the merge-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_mergesort_asc_i (int *const a,
@@ -1840,13 +1744,13 @@ sort_utils_mergesort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the merge-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_mergesort_dsc_i (int *const a,
@@ -1862,13 +1766,13 @@ sort_utils_mergesort_dsc_i (int *const a,
 /************/
 
 /**
- * @cond
+ * cond
  */
 
 /**
- * @brief Minimum merge length.
+ *  Minimum merge length.
  *
- * @details This is the minimum sized sequence that will be merged. Shorter
+ * details This is the minimum sized sequence that will be merged. Shorter
  *          sequences will be lengthened by calling `bnr_sort_from_ordered_initial_run`.
  *          If the entire array is less than this length, no merges will be performed.
  *
@@ -1890,17 +1794,17 @@ sort_utils_mergesort_dsc_i (int *const a,
 static const size_t tms_min_merge = 32;
 
 /**
- * @brief Minimum gallop length.
+ *  Minimum gallop length.
  *
- * @details When we get into galloping mode, we stay there until both runs win less
+ * details When we get into galloping mode, we stay there until both runs win less
  *          often than `tms_min_gallop` consecutive times.
  */
 static const long long int tms_min_gallop = 7;
 
 /**
- * @brief A team sort structure holds internal data for the algorithm.
+ *  A team sort structure holds internal data for the algorithm.
  *
- * @details Variables `stack_size`, `run_base`, and `run_len` define a stack
+ * details Variables `stack_size`, `run_base`, and `run_len` define a stack
  *          of pending runs yet to be merged.  Run i starts at
  *          address base[i] and extends for len[i] elements.  It's always
  *          true (so long as the indices are in bounds) that:
@@ -1911,29 +1815,29 @@ static const long long int tms_min_gallop = 7;
  *          and keeping all the info explicit simplifies the code.
  */
 typedef struct {
-  void                       *a;            /**< @brief The array to be sorted. */
-  size_t                      count;        /**< @brief The number of elements in array. */
-  size_t                      element_size; /**< @brief The number of bytes used by one element. */
-  sort_utils_compare_function cmp;          /**< @brief The compare function applied by the algorithm. */
-  long long int               min_gallop;   /**< @brief This controls when we get *into* galloping mode. It is initialized to tms_min_gallop.
+  void                       *a;            /**<  The array to be sorted. */
+  size_t                      count;        /**<  The number of elements in array. */
+  size_t                      element_size; /**<  The number of bytes used by one element. */
+  sort_utils_compare_function cmp;          /**<  The compare function applied by the algorithm. */
+  long long int               min_gallop;   /**<  This controls when we get *into* galloping mode. It is initialized to tms_min_gallop.
                                              *          The tms_merge_lo and tms_merge_hi methods nudge it higher for random data,
                                              *          and lower for highly structured data. */
-  void                       *tmp;          /**< @brief Temp storage for merges. */
-  size_t                      tmp_count;    /**< @brief The max number of elements contained by temp storage. */
-  size_t                      stack_size;   /**< @brief Number of pending runs on stack. */
-  size_t                     *run_base;     /**< @brief Index of first element for the ith run. */
-  size_t                     *run_len;      /**< @brief Run Lenght. */
+  void                       *tmp;          /**<  Temp storage for merges. */
+  size_t                      tmp_count;    /**<  The max number of elements contained by temp storage. */
+  size_t                      stack_size;   /**<  Number of pending runs on stack. */
+  size_t                     *run_base;     /**<  Index of first element for the ith run. */
+  size_t                     *run_len;      /**<  Run Lenght. */
 } TimSort;
 
 /**
- * @brief Ensures that the external array tmp has at least the specified
+ *  Ensures that the external array tmp has at least the specified
  *        number of elements, increasing its size if necessary.
  *
- * @details The size increases exponentially to ensure amortized linear time complexity.
+ * details The size increases exponentially to ensure amortized linear time complexity.
  *
- * @param [in,out] ts           a pointer to the `TimSort` structure
- * @param [in]     min_capacity the minimum required capacity of the tmp array
- * @return                      a pointer to the tmp array in the `ts` structure, whether or not it grew
+ * param [in,out] ts           a pointer to the `TimSort` structure
+ * param [in]     min_capacity the minimum required capacity of the tmp array
+ * return                      a pointer to the tmp array in the `ts` structure, whether or not it grew
  */
 static void *
 tms_ensure_capacity (TimSort *const ts,
@@ -1960,19 +1864,19 @@ tms_ensure_capacity (TimSort *const ts,
 }
 
 /**
- * @brief Locates the position at which to insert the specified key into the
+ *  Locates the position at which to insert the specified key into the
  *        specified sorted range; if the range contains an element equal to key,
  *        returns the index of the leftmost equal element.
  *
- * @param [in] key  the key whose insertion point to search for
- * @param [in] a    the array in which to search
- * @param [in] es   element size
- * @param [in] base the index of the first element in the range
- * @param [in] len  the length of the range; must be > 0
- * @param [in] hint the index at which to begin the search, 0 <= hint < n.
+ * param [in] key  the key whose insertion point to search for
+ * param [in] a    the array in which to search
+ * param [in] es   element size
+ * param [in] base the index of the first element in the range
+ * param [in] len  the length of the range; must be > 0
+ * param [in] hint the index at which to begin the search, 0 <= hint < n.
  *                  The closer hint is to the result, the faster this method will run.
- * @param [in] cmp  the comparator used to order the range, and to search
- * @return          the int k,  0 <= k <= n such that a[b + k - 1] < key <= a[b + k],
+ * param [in] cmp  the comparator used to order the range, and to search
+ * return          the int k,  0 <= k <= n such that a[b + k - 1] < key <= a[b + k],
  *                  pretending that a[b - 1] is minus infinity and a[b + n] is infinity.
  *                  In other words, key belongs at index b + k; or in other words,
  *                  the first k elements of a should precede key, and the last n - k
@@ -2043,18 +1947,18 @@ tms_gallop_left (const void *const key,
 }
 
 /**
- * @brief Like tms_gallop_left, except that if the range contains an element equal to
+ *  Like tms_gallop_left, except that if the range contains an element equal to
  *        key, tms_gallop_right returns the index after the rightmost equal element.
  *
- * @param [in] key  the key whose insertion point to search for
- * @param [in] a    the array in which to search
- * @param [in] es   element size
- * @param [in] base the index of the first element in the range
- * @param [in] len  the length of the range; must be > 0
- * @param [in] hint the index at which to begin the search, 0 <= hint < n.
+ * param [in] key  the key whose insertion point to search for
+ * param [in] a    the array in which to search
+ * param [in] es   element size
+ * param [in] base the index of the first element in the range
+ * param [in] len  the length of the range; must be > 0
+ * param [in] hint the index at which to begin the search, 0 <= hint < n.
  *                  The closer hint is to the result, the faster this method will run.
- * @param [in] cmp  the comparator used to order the range, and to search
- * @return          the int k,  0 <= k <= n such that a[b + k - 1] <= key < a[b + k]
+ * param [in] cmp  the comparator used to order the range, and to search
+ * return          the int k,  0 <= k <= n such that a[b + k - 1] <= key < a[b + k]
  */
 static size_t
 tms_gallop_right (const void *const key,
@@ -2123,9 +2027,9 @@ tms_gallop_right (const void *const key,
 }
 
 /**
- * @brief Merges two adjacent runs in place, in a stable fashion.
+ *  Merges two adjacent runs in place, in a stable fashion.
  *
- * @details The first element of the first run must be greater than the first element of the
+ * details The first element of the first run must be greater than the first element of the
  *          second run (a[base1] > a[base2]), and the last element of the first run
  *          (a[base1 + len1 - 1]) must be greater than all elements of the second run.
  *
@@ -2133,11 +2037,11 @@ tms_gallop_right (const void *const key,
  *          its twin, tms_merge_hi should be called if len1 >= len2. (Either method
  *          may be called if len1 == len2.)
  *
- * @param [in,out] ts    tim sort structure
- * @param [in]     base1 index of first element in first run to be merged
- * @param [in]     len1  length of first run to be merged (must be > 0)
- * @param [in]     base2 index of first element in second run to be merged
- * @param [in]     len2  length of second run to be merged (must be > 0)
+ * param [in,out] ts    tim sort structure
+ * param [in]     base1 index of first element in first run to be merged
+ * param [in]     len1  length of first run to be merged (must be > 0)
+ * param [in]     base2 index of first element in second run to be merged
+ * param [in]     len2  length of second run to be merged (must be > 0)
  */
 static void
 tms_merge_lo (TimSort *const ts,
@@ -2254,17 +2158,17 @@ tms_merge_lo (TimSort *const ts,
 }
 
 /**
- * @brief Merges two adjacent runs in place, in a stable fashion.
+ *  Merges two adjacent runs in place, in a stable fashion.
  *
- * @details Like tms_merge_lo, except that this method should be called only if
+ * details Like tms_merge_lo, except that this method should be called only if
  *          len1 >= len2; tms_merge_lo should be called if len1 <= len2.
  *          Either method may be called if len1 == len2.
  *
- * @param [in,out] ts    tim sort structure
- * @param [in]     base1 index of first element in first run to be merged
- * @param [in]     len1  length of first run to be merged (must be > 0)
- * @param [in]     base2 index of first element in second run to be merged
- * @param [in]     len2  length of second run to be merged (must be > 0)
+ * param [in,out] ts    tim sort structure
+ * param [in]     base1 index of first element in first run to be merged
+ * param [in]     len1  length of first run to be merged (must be > 0)
+ * param [in]     base2 index of first element in second run to be merged
+ * param [in]     len2  length of second run to be merged (must be > 0)
  */
 static void
 tms_merge_hi (TimSort *const ts,
@@ -2385,13 +2289,13 @@ tms_merge_hi (TimSort *const ts,
 }
 
 /**
- * @brief Merges the two runs at stack indices i and i + 1.
+ *  Merges the two runs at stack indices i and i + 1.
  *
- * @details Run i must be the penultimate or antepenultimate run on the stack.
+ * details Run i must be the penultimate or antepenultimate run on the stack.
  *          In other words, i must be equal to stack_size - 2 or stack_size - 3.
  *
- * @param [in,out] ts tim sort structure
- * @param [in]     i  stack index of the first of the two runs to merge
+ * param [in,out] ts tim sort structure
+ * param [in]     i  stack index of the first of the two runs to merge
  */
 static void
 tms_merge_at (TimSort *const ts,
@@ -2451,9 +2355,9 @@ tms_merge_at (TimSort *const ts,
 }
 
 /**
- * @brief Merges the run accumulated in the stack.
+ *  Merges the run accumulated in the stack.
  *
- * @details Examines the stack of runs waiting to be merged and merges adjacent runs
+ * details Examines the stack of runs waiting to be merged and merges adjacent runs
  *          until the stack invariants are reestablished:
  *
  *             1. run_len[i - 3] > run_len[i - 2] + run_len[i - 1]
@@ -2463,7 +2367,7 @@ tms_merge_at (TimSort *const ts,
  *          so the invariants are guaranteed to hold for i < stack_size upon
  *          entry to the method.
  *
- * @param [in,out] ts tim sort structure
+ * param [in,out] ts tim sort structure
  */
 static void
 tms_merge_collapse (TimSort *const ts)
@@ -2483,10 +2387,10 @@ tms_merge_collapse (TimSort *const ts)
 }
 
 /**
- * @brief Merges all runs on the stack until only one remains. This method is
+ *  Merges all runs on the stack until only one remains. This method is
  *        called once, to complete the sort.
  *
- * @param [in,out] ts tim sort structure
+ * param [in,out] ts tim sort structure
  */
 static void
 tms_merge_force_collapse (TimSort *const ts) {
@@ -2499,13 +2403,13 @@ tms_merge_force_collapse (TimSort *const ts) {
 }
 
 /**
- * @brief TimSort structure constructor.
+ *  TimSort structure constructor.
  *
- * @param [in] a            the array to be sorted
- * @param [in] count        the number of element in array
- * @param [in] element_size the number of bytes used by one element
- * @param [in] cmp          the compare function applied by the algorithm
- * @return                  a pointer to a new tim sort structure
+ * param [in] a            the array to be sorted
+ * param [in] count        the number of element in array
+ * param [in] element_size the number of bytes used by one element
+ * param [in] cmp          the compare function applied by the algorithm
+ * return                  a pointer to a new tim sort structure
  */
 static TimSort *
 tim_sort_new (void *const a,
@@ -2553,11 +2457,11 @@ tim_sort_new (void *const a,
 }
 
 /**
- * @brief Deallocates the memory previously allocated by a call to #tim_sort_new.
+ *  Deallocates the memory previously allocated by a call to #tim_sort_new.
  *
- * @details If a null pointer is passed as argument, no action occurs.
+ * details If a null pointer is passed as argument, no action occurs.
  *
- * @param [in,out] ts the pointer to be deallocated
+ * param [in,out] ts the pointer to be deallocated
  */
 static void
 tim_sort_free (TimSort *const ts)
@@ -2569,11 +2473,11 @@ tim_sort_free (TimSort *const ts)
 }
 
 /**
- * @brief Pushes the specified run onto the pending-run stack.
+ *  Pushes the specified run onto the pending-run stack.
  *
- * @param [in,out] ts       tim sort structure pointer
- * @param [in]     run_base index of the first element in the run
- * @param [in]     run_len  the number of elements in the run
+ * param [in,out] ts       tim sort structure pointer
+ * param [in]     run_base index of the first element in the run
+ * param [in]     run_len  the number of elements in the run
  */
 static void
 tms_push_run (TimSort *const ts,
@@ -2585,10 +2489,10 @@ tms_push_run (TimSort *const ts,
 }
 
 /**
- * @brief Returns the minimum acceptable run length for an array of the specified
+ *  Returns the minimum acceptable run length for an array of the specified
  *        length. Natural runs shorter than this will be extended with binary sort.
  *
- * @details Roughly speaking, the computation is:
+ * details Roughly speaking, the computation is:
  *
  *            If n < tms_min_merge, return n (it's too small to bother with fancy stuff).
  *            Else if n is an exact power of 2, return tms_min_merge/2.
@@ -2597,8 +2501,8 @@ tms_push_run (TimSort *const ts,
  *
  *          For the rationale, see listsort.txt.
  *
- * @param [in] n the length of the array to be sorted
- * @return       the length of the minimum run to be merged
+ * param [in] n the length of the array to be sorted
+ * return       the length of the minimum run to be merged
  */
 static size_t
 tms_min_run_length (size_t n) {
@@ -2612,12 +2516,12 @@ tms_min_run_length (size_t n) {
 }
 
 /**
- * @brief Reverse the specified range of the specified array.
+ *  Reverse the specified range of the specified array.
  *
- * @param [in,out] a  the array in which a range is to be reversed
- * @param [in]     es element size, the number of bytes used by one element
- * @param [in]     lo the index of the first element in the range to be reversed
- * @param [in]     hi the index after the last element in the range to be reversed
+ * param [in,out] a  the array in which a range is to be reversed
+ * param [in]     es element size, the number of bytes used by one element
+ * param [in]     lo the index of the first element in the range to be reversed
+ * param [in]     hi the index after the last element in the range to be reversed
  */
 static void
 tms_reverse_range (void *const a,
@@ -2634,11 +2538,11 @@ tms_reverse_range (void *const a,
 }
 
 /**
- * @brief Returns the length of the run at the beginning of the specified array
+ *  Returns the length of the run at the beginning of the specified array
  *        and reverses the run if it is descending, ensuring
  *        that the run will always be ascending when the method returns.
  *
- * @details A run is the longest ascending sequence with:
+ * details A run is the longest ascending sequence with:
  *
  *            a[0] <= a[0 + 1] <= a[0 + 2] <= ...
  *
@@ -2650,11 +2554,11 @@ tms_reverse_range (void *const a,
  *          definition of "descending" is needed so that the call can safely
  *          reverse a descending sequence without violating stability.
  *
- * @param [in,out] a     the array in which a run is to be counted and possibly reversed
- * @param [in]     count index after the last element that may be contained in the run.
- * @param [in]     es    element size, the number of bytes used by one element
- * @param [in]     cmp   the comparator to use for the sort
- * @return               the length of the run at the beginning of the specified array
+ * param [in,out] a     the array in which a run is to be counted and possibly reversed
+ * param [in]     count index after the last element that may be contained in the run.
+ * param [in]     es    element size, the number of bytes used by one element
+ * param [in]     cmp   the comparator to use for the sort
+ * return               the length of the run at the beginning of the specified array
  */
 static size_t
 tms_count_run_and_make_ascending (void *const a,
@@ -2681,13 +2585,13 @@ tms_count_run_and_make_ascending (void *const a,
 }
 
 /**
- * @endcond
+ * endcond
  */
 
 /**
- * @brief Sorts the `a` array.
+ *  Sorts the `a` array.
  *
- * @details The vector `a` having length equal to `count` is sorted
+ * details The vector `a` having length equal to `count` is sorted
  *          in place applying the tim-sort algorithm.
  *          The compare function is a comparator and must return `-1`, `0`, or `+1` constrained by
  *          the sorting order of the two elements.
@@ -2717,10 +2621,10 @@ tms_count_run_and_make_ascending (void *const a,
  *          SODA (Fourth Annual ACM-SIAM Symposium on Discrete Algorithms),
  *          pp 467-474, Austin, Texas, 25-27 January 1993.
  *
- * @param [in,out] a            the array to be sorted
- * @param [in]     count        the number of element in array
- * @param [in]     element_size the number of bytes used by one element
- * @param [in]     cmp          the compare function applied by the algorithm
+ * param [in,out] a            the array to be sorted
+ * param [in]     count        the number of element in array
+ * param [in]     element_size the number of bytes used by one element
+ * param [in]     cmp          the compare function applied by the algorithm
  */
 void
 sort_utils_timsort (void *const a,
@@ -2782,13 +2686,13 @@ sort_utils_timsort (void *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of doubles.
+ *  Sorts in ascending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in ascending order applying the tim-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_timsort_asc_d (double *const a,
@@ -2798,13 +2702,13 @@ sort_utils_timsort_asc_d (double *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of doubles.
+ *  Sorts in descending order the `a` array of doubles.
  *
- * @details The vector of doubles `a` having length equal to `count` is sorted
+ * details The vector of doubles `a` having length equal to `count` is sorted
  *          in place in descending order applying the tim-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_timsort_dsc_d (double *const a,
@@ -2814,13 +2718,13 @@ sort_utils_timsort_dsc_d (double *const a,
 }
 
 /**
- * @brief Sorts in ascending order the `a` array of integers.
+ *  Sorts in ascending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in ascending order applying the tim-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_timsort_asc_i (int *const a,
@@ -2830,13 +2734,13 @@ sort_utils_timsort_asc_i (int *const a,
 }
 
 /**
- * @brief Sorts in descending order the `a` array of integers.
+ *  Sorts in descending order the `a` array of integers.
  *
- * @details The vector of integers `a` having length equal to `count` is sorted
+ * details The vector of integers `a` having length equal to `count` is sorted
  *          in place in descending order applying the tim-sort algorithm.
  *
- * @param [in,out] a     the array to be sorted
- * @param [in]     count the number of element of array a
+ * param [in,out] a     the array to be sorted
+ * param [in]     count the number of element of array a
  */
 void
 sort_utils_timsort_dsc_i (int *const a,
@@ -2848,7 +2752,7 @@ sort_utils_timsort_dsc_i (int *const a,
 
 
 /**
- * @cond
+ * cond
  */
 
 /*
@@ -2856,15 +2760,15 @@ sort_utils_timsort_dsc_i (int *const a,
  */
 
 /**
- * @brief Copies values from `src` to `dest` pointers.
+ *  Copies values from `src` to `dest` pointers.
  *
- * @details It is an enhanced version of memcpy function,
+ * details It is an enhanced version of memcpy function,
  *          that leverages the dimension of the data copied
  *          when it fits into a standard register size.
  *
- * @param [in,out] dest         a pointer to the first byte to be overwritten
- * @param [in]     src          a pointer to the first byte of data to be copied
- * @param [in]     element_size number of bytes to be copied
+ * param [in,out] dest         a pointer to the first byte to be overwritten
+ * param [in]     src          a pointer to the first byte of data to be copied
+ * param [in]     element_size number of bytes to be copied
  */
 static void
 copy (void *const dest,
@@ -2881,11 +2785,11 @@ copy (void *const dest,
 }
 
 /**
- * @brief Swaps values pointed by `a` with `b`.
+ *  Swaps values pointed by `a` with `b`.
  *
- * @param [in,out] a            first value
- * @param [in,out] b            second value
- * @param [in]     element_size number of bytes occupied by a and b values
+ * param [in,out] a            first value
+ * param [in,out] b            second value
+ * param [in]     element_size number of bytes occupied by a and b values
  */
 static void
 swap (void *const a,
@@ -2911,5 +2815,5 @@ swap (void *const a,
 }
 
 /**
- * @endcond
+ * endcond
  */
