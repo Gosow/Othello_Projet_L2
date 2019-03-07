@@ -8,8 +8,8 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include<strings.h>
-//#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
-#define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
+#define SERVEURNAME "172.18.41.139" // adresse IP de mon serveur
+//#define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 
 #define QUITTER "QUITTER"
 

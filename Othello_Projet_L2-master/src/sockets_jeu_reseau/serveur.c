@@ -72,7 +72,7 @@ int main ( void )
     char ip[100];
      
     hostname_to_ip(hostname , ip);
-	fprintf(stderr, "%s resolved to %s" , hostname , ip);
+	fprintf(stderr, "%s resolved to %s\n" , hostname , ip);
 	view_ip();
 
 	/* creation de socket */
@@ -88,10 +88,13 @@ int main ( void )
 	sock_err=bind(ma_socket,(struct sockaddr *)&mon_address,sizeof(mon_address));
 
 	if(sock_err != SOCKET_ERROR){
+		printf("Connexion etablie avec le client\n");
+
 		/* ecoute sur la socket */
 		sock_err=listen(ma_socket,5);
 
 		if(sock_err != SOCKET_ERROR){
+			printf("Connexion acceptée\n");
 			/* accept la connexion */
 			mon_address_longueur = sizeof(client_address);
 			
