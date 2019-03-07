@@ -3,14 +3,14 @@
 int lancement_jeu(int modeJeu,t_matrice mat){
     srand(time(NULL));
     if(modeJeu==QUITTER) return 0;
-    int x,y;
+    int x,y,score_j1=0,score_j2=0;
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
     //Le pointeur vers la surface incluse dans la fenetre
     SDL_Surface *textePseudo=NULL, *texteJoueur[4], *image=NULL, *imageBG=NULL;
     SDL_Renderer *renderer=NULL;
     SDL_Rect txtDestRect, txtBvnRect, txtJeuRect[4], imgBtnRect, imgBtnHoverRect, imgBGRect;
-    
+    char* score_aff[20];
     // Le pointeur vers notre policeTitre
     TTF_Font *policeTitre = NULL, *policeMenu = NULL;
     // Une variable de couleur noire
@@ -37,16 +37,19 @@ int lancement_jeu(int modeJeu,t_matrice mat){
         fprintf(stderr, "Erreur à la création du renderer\n");
         exit(EXIT_FAILURE);
     }
-    SDL_Rect rectTEST[2];
+    SDL_Rect rectTEST[4];
     SDL_Texture *texteJoueur_tex[4];
 
-    rectTEST[0].x=rectTEST[1].x=800;
-    rectTEST[0].y=50;
-    rectTEST[1].y=110;
-    SDL_Rect pion;
+    rectTEST[0].x=670;
+    rectTEST[0].y=rectTEST[1].y=110;
+    rectTEST[1].x=930;
 
+    rectTEST[3].x=800;
+    rectTEST[3].y=10;
+    SDL_Rect pion;
     pion.x=800;
     pion.y=10;
+
     SDL_Texture *image_noir_tex = tex_img_png("./img/noir.png",renderer);
     SDL_Texture *image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
     SDL_Texture *image_noirTour_tex = tex_img_png("./img/noirTour.png",renderer);
@@ -92,30 +95,40 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                         SDL_RenderClear(renderer);
                         SDL_RenderCopy(renderer, texteJoueur_tex[0], NULL, &(rectTEST[0]));
                         SDL_RenderCopy(renderer, texteJoueur_tex[1], NULL, &(rectTEST[1]));
+                        
+                        
+                        calculer_score(mat,&score_j1,&score_j2);
+                        printf("score 1:%i, score 2 :%i\n",score_j1,score_j2);
+                        sprintf(score_aff, "%d - %d", score_j1,score_j2);
+                        
+                        texteJoueur_tex[3] = tex_text("./ttf/PoliceMenu.ttf",70,score_aff,couleurNoire,renderer);
 
+                        SDL_QueryTexture(texteJoueur_tex[3], NULL, NULL, &(rectTEST[3].w), &(rectTEST[3].h));
+                        
                         if(joueur==1){
-                            pion.x=690;
+                            pion.x=680;
                             pion.y=10;
                             SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
-                            pion.y+=90;
+                            pion.x+=270;
                             SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);
 
-                            rectTEST[2].x=930;
-                            rectTEST[2].y=rectTEST[0].y;
+                            rectTEST[2].y=150;
+                            rectTEST[2].x=rectTEST[0].x;
                             SDL_RenderCopy(renderer, texteJoueur_tex[2], NULL, &(rectTEST[2]));
                             
                         }else{
-                            pion.x=690;
+                            pion.x=680;
                             pion.y=10;
                             SDL_RenderCopy(renderer, image_noir_tex, NULL, &pion);
-                            pion.y+=90;
+                            pion.x+=270;
                             SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                            rectTEST[2].x=930;
-                            rectTEST[2].y=rectTEST[1].y;
+                            rectTEST[2].y=150;
+                            rectTEST[2].x=rectTEST[1].x;
                             SDL_RenderCopy(renderer, texteJoueur_tex[2], NULL, &(rectTEST[2]));
                         }
                         afficher_matriceSDL(mat,renderer,&joueur);
-                        
+                        SDL_RenderCopy(renderer, texteJoueur_tex[3], NULL, &(rectTEST[3]));
+                        //SDL_RenderCopy(renderer, texteJoueur_tex[3], NULL, &(rectTEST[3]));
                         /* On fait le rendu ! */
                         SDL_RenderPresent(renderer);
                         break;

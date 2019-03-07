@@ -21,25 +21,25 @@ othello: ${FICHIER_O}
 	./main_SDL
 
 main_SDL.o: main_SDL.c ${INT_SDL}SDL_jeu.h
-	${CC} -o main_SDL.o -c main_SDL.c ${CFLAGS}
+	${CC} ${OPTS} main_SDL.o -c main_SDL.c ${CFLAGS}
 
 ToTexture.o: ${INT_SDL}ToTexture.c ${INT_SDL}SDL_jeu.h
-	${CC} -o ToTexture.o -c ${INT_SDL}ToTexture.c ${CFLAGS}
+	${CC} ${OPTS} ToTexture.o -c ${INT_SDL}ToTexture.c ${CFLAGS}
 
 plateau_SDL.o: ${INT_SDL}plateau_SDL.c ${INT_SDL}SDL_jeu.h 
-	${CC} -o plateau_SDL.o -c ${INT_SDL}plateau_SDL.c ${CFLAGS}
+	${CC} ${OPTS} plateau_SDL.o -c ${INT_SDL}plateau_SDL.c ${CFLAGS}
 
 menu_SDL.o: ${INT_SDL}menu_SDL.c ${INT_SDL}SDL_jeu.h
-	${CC} -o menu_SDL.o -c ${INT_SDL}menu_SDL.c ${CFLAGS}
+	${CC} ${OPTS} menu_SDL.o -c ${INT_SDL}menu_SDL.c ${CFLAGS}
 
 afficher_matriceSDL.o : ${INT_SDL}afficher_matriceSDL.c ${INT_SDL}SDL_jeu.h
-	${CC} -o afficher_matriceSDL.o -c ${INT_SDL}afficher_matriceSDL.c ${CFLAGS}
+	${CC} ${OPTS} afficher_matriceSDL.o -c ${INT_SDL}afficher_matriceSDL.c ${CFLAGS}
 
 gest_matrice.o: gest_matrice.c gest_matrice.h
-	${CC} -o gest_matrice.o -c gest_matrice.c ${CFLAGS}
+	${CC} ${OPTS} gest_matrice.o -c gest_matrice.c ${CFLAGS}
 
 gest_aff.o: gest_aff.c gest_aff.h
-	${CC} -o gest_aff.o -c gest_aff.c ${CFLAGS}
+	${CC} ${OPTS} gest_aff.o -c gest_aff.c ${CFLAGS}
 
 
 
