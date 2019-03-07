@@ -46,20 +46,21 @@ int lancement_jeu(int modeJeu,t_matrice mat){
     {
         int running = 1;
         while(running) {
-            SDL_GetMouseState(&x,&y);
             SDL_Event e;           
             while(SDL_PollEvent(&e)) {
                 switch(e.type) {
                     case SDL_QUIT: running = 0;
                         break;
                     case SDL_MOUSEBUTTONDOWN:
+                        SDL_GetMouseState(&x,&y);
                         // 82 px taille d'une case
                         if(x<=656 && y<=656){
                             x=x/82;
                             y=y/82;
                             printf("x:%i, y:%i\n",x,y);
                             if(coup_valide(mat,y,x,joueur)){
-                                jouer_coup(mat,y,x,1);
+                                jouer_coup(mat,y,x,joueur);
+                                joueur=joueur_suivant(joueur);
                             }
                         }
                     case SDL_WINDOWEVENT:

@@ -42,5 +42,4 @@ int afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
     }
     /* On fait le rendu ! */
     SDL_RenderPresent(renderer);
-    joueur_suivant(*joueur);
 }
