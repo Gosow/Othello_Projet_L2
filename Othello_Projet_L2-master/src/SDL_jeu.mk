@@ -7,7 +7,7 @@ SDLLIB_DIR=./../lib/
 SDLINC_DIR=${SDL_DIR}/include
 INT_SDL=./interface_graphique/
 
-FICHIER_O=plateau_SDL.o menu_SDL.o main_SDL.o ToTexture.o gest_matrice.o gest_aff.o
+FICHIER_O=plateau_SDL.o menu_SDL.o main_SDL.o ToTexture.o gest_matrice.o gest_aff.o afficher_matriceSDL.o
 LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
 INCLUDES=-I${SDLINC_DIR}
 
@@ -30,11 +30,16 @@ plateau_SDL.o: ${INT_SDL}plateau_SDL.c ${INT_SDL}SDL_jeu.h
 menu_SDL.o: ${INT_SDL}menu_SDL.c ${INT_SDL}SDL_jeu.h
 	${CC} -o menu_SDL.o -c ${INT_SDL}menu_SDL.c ${CFLAGS}
 
+afficher_matriceSDL.o : ${INT_SDL}afficher_matriceSDL.c ${INT_SDL}SDL_jeu.h
+	${CC} -o afficher_matriceSDL.o -c ${INT_SDL}afficher_matriceSDL.c ${CFLAGS}
+
 gest_matrice.o: gest_matrice.c gest_matrice.h
 	${CC} -o gest_matrice.o -c gest_matrice.c ${CFLAGS}
 
 gest_aff.o: gest_aff.c gest_aff.h
 	${CC} -o gest_aff.o -c gest_aff.c ${CFLAGS}
+
+
 
 clean:
 	rm -f *.o

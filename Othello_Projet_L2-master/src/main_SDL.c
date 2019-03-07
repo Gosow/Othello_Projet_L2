@@ -2,15 +2,13 @@
 
 int main(int argc, char** argv)
 {
-    /*char *p=getenv("USER");
-    if(p==NULL) return EXIT_FAILURE;
-    printf("%s\n",p);*/
     /* Initialisation simple */
     t_matrice mat;
+    init_matrice(mat);
     if (SDL_Init(SDL_INIT_VIDEO) != 0 ) {
         fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
         return -1;
-    } 
+    }
 
 	/* Initialisation TTF */
 	if(TTF_Init() == -1) {
@@ -19,7 +17,6 @@ int main(int argc, char** argv)
 	}
 
     menu_SDL(mat);
-    //lancement_jeu(1);
     
 	TTF_Quit();
     SDL_Quit();
