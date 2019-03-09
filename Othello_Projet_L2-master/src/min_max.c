@@ -48,7 +48,7 @@ int point(t_matrice m , int couleur)
 	
 	if(m[0][N-1] == couleur){
 		h_d = 1;
-		cpt_final += pt_coins;
+		cpt += pt_coins;
 	}
 	if(m[0][0] == couleur){
 		h_g = 1;
@@ -202,6 +202,6 @@ int point(t_matrice m , int couleur)
 	if(m[(N/2)-1][(N/2)-1] == couleur)
 		cpt += pt_centre_plt;
 //retourne le compteur
-	return cpt_final;
+	return cpt;
     
 }

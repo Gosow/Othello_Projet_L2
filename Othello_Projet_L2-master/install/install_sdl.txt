@@ -1,0 +1,14 @@
+Pour installer la SDL 2 sur votre système:
+
+-Linux:
+	sudo apt install libsdl2-*
+	
+-Os:
+	sudo brew install libsdl2-*
+
+
+Pour l'installer localement:
+
+suivre le tutoriel dans le dossier SDL2
+
+
