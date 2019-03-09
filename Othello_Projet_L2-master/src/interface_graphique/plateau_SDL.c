@@ -40,15 +40,22 @@ int lancement_jeu(int modeJeu,t_matrice mat){
         fprintf(stderr, "Erreur à la création du renderer\n");
         exit(EXIT_FAILURE);
     }
-    SDL_Rect rectTEST[7];
+    SDL_Rect rectTEST[9];
     SDL_Texture *texteJoueur_tex[7];
+    
 
-    rectTEST[0].x=670;
-    rectTEST[0].y=rectTEST[1].y=110;
+    rectTEST[7].x=rectTEST[0].x=670;
     rectTEST[1].x=930;
+    
+    rectTEST[0].y=rectTEST[1].y=110;
+    
     rectTEST[3].y = rectTEST[4].y = rectTEST[5].y = 150;
+    
     rectTEST[6].x=800;
     rectTEST[6].y=10;
+    
+    rectTEST[7].y=rectTEST[8].y=560;
+    rectTEST[8].x=980;
     SDL_Rect pion;
     pion.x=800;
     pion.y=10;
@@ -57,9 +64,13 @@ int lancement_jeu(int modeJeu,t_matrice mat){
     SDL_Texture *image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
     SDL_Texture *image_noirTour_tex = tex_img_png("./img/noirTour.png",renderer);
     SDL_Texture *image_blancTour_tex = tex_img_png("./img/blancTour.png",renderer);
+    SDL_Texture *image_replay_tex = tex_img_png("./img/replay.png",renderer);
+    SDL_Texture *image_home_tex = tex_img_png("./img/home.png",renderer);
     SDL_QueryTexture(image_noir_tex, NULL, NULL, &(pion.w), &(pion.h));
+    SDL_QueryTexture(image_replay_tex, NULL, NULL, &(rectTEST[7].w), &(rectTEST[7].h));
+    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectTEST[8].w), &(rectTEST[8].h));
 
-    texteJoueur_tex[0] = tex_text("./ttf/PoliceMenu.ttf",40,"Joueur 1",couleurNoire,renderer);
+    texteJoueur_tex[0] = tex_text("./ttf/PoliceMenu.ttf",40,pseudo,couleurNoire,renderer);
     texteJoueur_tex[1] = tex_text("./ttf/PoliceMenu.ttf",40,"Joueur 2",couleurNoire,renderer);
     texteJoueur_tex[2] = tex_text("./ttf/PoliceMenu.ttf",40,"(à vous)",couleurNoire,renderer);
     texteJoueur_tex[3] = tex_text("./ttf/PoliceMenu.ttf",40,"GAGNÉ !!",couleurNoire,renderer);
@@ -88,16 +99,20 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                     case SDL_MOUSEBUTTONDOWN:
                         SDL_GetMouseState(&x,&y);
                         // 82 px taille d'une case
+                        if(x>= rectTEST[7].x && x<= (rectTEST[7].x+rectTEST[7].w) && y>=rectTEST[7].y &&y<=(rectTEST[7].y+rectTEST[7].h)){
+                            init_matrice(mat);
+                        }
+                        if(x>= rectTEST[8].x && x<= (rectTEST[8].x+rectTEST[8].w) && y>=rectTEST[8].y &&y<=(rectTEST[8].y+rectTEST[8].h)){
+                            running=0;
+                            if(pWindow != NULL) SDL_DestroyWindow(pWindow);
+                            init_matrice(mat);
+                            menu_SDL(mat);
+                        }
                         if(!arret){
                             if(x<=656 && y<=656){
                                 x=x/82;
                                 y=y/82;
-                                //printf("x:%d | y:%d\n",x,y);
-                                /*if(!peut_jouer(mat,joueur)&&peut_jouer(mat,joueur%2+1)){
-                                    joueur=joueur_suivant(joueur);
-                                }*/
-                                //printf("x:%i, y:%i\n",x,y);
-                                if(coup_valide(mat,y,x,joueur) && arret==NON){
+                                if(coup_valide(mat,y,x,joueur)){
                                     jouer_coup(mat,y,x,joueur);
                                     joueur=joueur_suivant(joueur);
                                     if(!peut_jouer(mat,joueur)&&peut_jouer(mat,joueur%2+1)){
@@ -132,7 +147,7 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                         }
                         else afficher_matriceSDL(mat,renderer,&joueur);
 
-                        printf("%c\n",afficher_gagnant(mat,renderer));
+                        //printf("%c\n",afficher_gagnant(mat,renderer));
                         pion.x=680;
                         pion.y=10;
                         rectTEST[2].y=150;
@@ -179,7 +194,11 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                                 SDL_RenderCopy(renderer, texteJoueur_tex[4], NULL, &(rectTEST[5]));
                             }
                         }
+
                         SDL_RenderCopy(renderer, texteJoueur_tex[6], NULL, &(rectTEST[6]));
+                        SDL_RenderCopy(renderer, image_replay_tex, NULL, &(rectTEST[7]));
+                        SDL_RenderCopy(renderer, image_home_tex, NULL, &(rectTEST[8]));
+
                         SDL_RenderPresent(renderer);
                         break;
                 }
