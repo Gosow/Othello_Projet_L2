@@ -27,9 +27,9 @@ int main(void)
     if(music == NULL){
         fprintf(stderr, "Erreur du chargement de l'audio : %s\n", Mix_GetError());
         exit(EXIT_FAILURE);
-        
     }
     song=1;
+    Mix_VolumeMusic(MIX_MAX_VOLUME/4);
     Mix_PlayMusic(music,-1);
 
     menu_SDL();
