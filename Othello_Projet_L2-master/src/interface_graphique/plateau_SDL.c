@@ -101,6 +101,7 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                         // 82 px taille d'une case
                         if(x>= rectTEST[7].x && x<= (rectTEST[7].x+rectTEST[7].w) && y>=rectTEST[7].y &&y<=(rectTEST[7].y+rectTEST[7].h)){
                             init_matrice(mat);
+                            arret=!arret;
                         }
                         if(x>= rectTEST[8].x && x<= (rectTEST[8].x+rectTEST[8].w) && y>=rectTEST[8].y &&y<=(rectTEST[8].y+rectTEST[8].h)){
                             running=0;
