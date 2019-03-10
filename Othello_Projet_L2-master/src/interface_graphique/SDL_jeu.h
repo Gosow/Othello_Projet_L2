@@ -23,7 +23,7 @@ int song;
 //TEXTURE
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer);
 SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer);
-void init_texture(SDL_Renderer* renderer);
+void init_jeuSDL(SDL_Renderer* renderer);
 
 //AFFICHAGE MATRICE / JEU
 void afficher_matriceSDL(int* joueur);

@@ -13,8 +13,7 @@
  * \fn int lancement_jeu(int modeJeu,t_matrice mat)
  * \brief Lance le jeu en fonction du mode choisie
  * \param modeJeu : le mode jeu choisi selon SOLO, DUO ou ONLINE.
- * \param mat : matrice contenant la table de jeu
- * \return Pointeur sur SDL_Texture
+ * \return entier
  */
 int lancement_jeu(int modeJeu){
     srand(time(NULL));
@@ -92,7 +91,7 @@ int lancement_jeu(int modeJeu){
     
     int joueur=rand()%2+1;
     int joueur_sauv=joueur;
-    init_texture(renderer);
+    init_jeuSDL(renderer);
     int arret=NON;
     if( pWindow )
     {

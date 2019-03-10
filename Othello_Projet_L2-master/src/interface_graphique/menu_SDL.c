@@ -7,7 +7,12 @@
 #include "SDL_jeu.h"
 #define PLAY 1
 #define PAUSE 0
-
+/**
+ * \fn int menu_SDL(void)
+ * \brief Fonction qui va nous afficher le menu grâce à la SDL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu.
+ * \param rien
+ * \return entier
+ */
 int menu_SDL(void){
     int x,y;
     char bvn[80] ="Bienvenue ";

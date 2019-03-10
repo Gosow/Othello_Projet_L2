@@ -1,3 +1,10 @@
+/**
+ * \file afficher_jeuSDL.c
+ * \brief Regroupe les fonctions pour la mise en place du jeu dans un environnement graphique.
+ * \author Mario Hotaj
+ * \date 4 mars 2019
+ */
+
 #include "SDL_jeu.h"
 #define EGALITE 'E'
 
@@ -8,7 +15,13 @@ static SDL_Texture *image_blanc_tex;
 static SDL_Rect imgBtnRect;
 static SDL_Renderer *renderer_temp;
 
-void init_texture(SDL_Renderer* renderer){
+/**
+ * \fn void init_jeuSDL(SDL_Renderer* renderer)
+ * \brief Initialise tout les données nécessaire pour l'affichage du plateau
+ * \param SDL_Renderer* renderer : renderer de la page.
+ * \return void
+ */
+void init_jeuSDL(SDL_Renderer* renderer){
     image_caseNorm_tex = tex_img_png("./img/caseNorm.png",renderer);
     image_casePoss_tex = tex_img_png("./img/casePoss.png",renderer);
     //PION NOIR
@@ -23,6 +36,12 @@ void init_texture(SDL_Renderer* renderer){
     renderer_temp=renderer;
 }
 
+/**
+ * \fn afficher_matriceSDL(int* joueur)
+ * \brief Affiche le plateau de jeu avec les pions et affiche les coup possible en fonctions du tour du joueur
+ * \param int* joueur : renderer de la page.
+ * \return void
+ */
 void afficher_matriceSDL(int* joueur){
     SDL_Texture *temp;
     int i=0,j=0;
@@ -48,7 +67,13 @@ void afficher_matriceSDL(int* joueur){
     }
 }
 
-int partie_termineeSDL(){
+/**
+ * \fn afficher_matriceSDL(int* joueur)
+ * \brief La fonction permet de savoir si le jeu est terminé ou non.
+ * \param void
+ * \return entier
+ */
+int partie_termineeSDL(void){
         int i, j, nb_noir, nb_blanc, cpt;
 
     /* On compte les pions noirs et les blancs */
@@ -83,7 +108,13 @@ int partie_termineeSDL(){
     return 1;
 }
 
-char afficher_gagnant(){
+/**
+ * \fn afficher_matriceSDL(int* joueur)
+ * \brief La fonction permet de savoir qui a gagné, et aussi si on a match nul.
+ * \param void
+ * \return char soit NOIR, BLANC ou EGALITE qui sont des constantes contenant un caractère.
+ */
+char afficher_gagnant(void){
     int nb_noir, nb_blanc;
     calculer_score(mat,&nb_noir,&nb_blanc);
     /* Fin de partie, on affiche le gagnant */
