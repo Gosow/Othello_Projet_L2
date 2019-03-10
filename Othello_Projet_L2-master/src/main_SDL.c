@@ -17,8 +17,25 @@ int main(int argc, char** argv)
 		exit(EXIT_FAILURE);
 	}
 
+    /*Initialisation Mixer*/
+    if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096)==-1){
+        fprintf(stderr, "Erreur à l'initailisation de l'audio\n");
+        exit(EXIT_FAILURE);
+    }
+
+    music = Mix_LoadMUS("./music/test.ogg");
+    if(music == NULL){
+        fprintf(stderr, "Erreur du chargement de l'audio : %s\n", Mix_GetError());
+        exit(EXIT_FAILURE);
+        
+    }
+    song=1;
+    Mix_PlayMusic(music,-1);
+
     menu_SDL(mat);
     
+    Mix_FreeMusic(music);
+    Mix_CloseAudio();
 	TTF_Quit();
     SDL_Quit();
 

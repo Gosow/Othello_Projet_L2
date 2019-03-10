@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include "../gest_aff.h"
 #include "../gest_matrice.h"
 #include "../define.h"
@@ -15,6 +16,8 @@
 #define ONLINE 2
 #define QUITTER 3
 
+Mix_Music *music;
+int song;
 //TEXTURE
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer);
 SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer);

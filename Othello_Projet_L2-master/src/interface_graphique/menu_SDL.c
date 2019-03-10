@@ -5,6 +5,8 @@
  * \date 2 mars 2019
  */
 #include "SDL_jeu.h"
+#define PLAY 1
+#define PAUSE 0
 
 int menu_SDL(t_matrice mat){
     int x,y;
@@ -36,8 +38,7 @@ int menu_SDL(t_matrice mat){
         fprintf(stderr, "Erreur à la création de la fenetre : %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
-    
-    
+
     renderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
     if(renderer == NULL){
         fprintf(stderr, "Erreur à la création du renderer\n");
@@ -80,8 +81,13 @@ int menu_SDL(t_matrice mat){
     SDL_Texture *image_btn_tex = tex_img_png("./img/btn.png",renderer);
     //Chargement de l'image bouton (utilisé quand la souris passe sur l'image)
     SDL_Texture *image_btnHover_tex = tex_img_png("./img/btnHover.png",renderer);
-    
+    //IMAGE PLAY
+    SDL_Texture *image_play_tex = tex_img_png("./img/play.png",renderer);
+    //IMAGE PAUSE
+    SDL_Texture *image_pause_tex = tex_img_png("./img/pause.png",renderer);
+
     SDL_Texture *temp;
+    SDL_Texture *temp_music;
     int i=0;
     int numBtn = 0;
     
@@ -98,6 +104,9 @@ int menu_SDL(t_matrice mat){
                 switch(e.type) {
                     case SDL_QUIT: running = 0;break;
                     case SDL_MOUSEBUTTONDOWN:
+                        if(x>1000 && x<1000+82 && y>570 && y<570+82){
+                            song = !(song);
+                        }
                     case SDL_WINDOWEVENT:
                     affichage:
                         /* Le fond de la fenêtre sera blanc */
@@ -137,12 +146,22 @@ int menu_SDL(t_matrice mat){
                             SDL_RenderCopy(renderer, texteMenu_tex[i], NULL, &(txtMenuRect[i]));
                             imgBtnRect.y += 90;
                         }
-                        
-                        
+
+                        imgBtnRect.x = 1000;
+                        imgBtnRect.y = 570;
+                        if(song==PLAY){
+                            temp_music = image_pause_tex;
+                            Mix_ResumeMusic();
+                        }else{
+                            temp_music = image_play_tex;
+                            Mix_PauseMusic();
+                        }
+                        SDL_QueryTexture(temp_music, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
+                        SDL_RenderCopy(renderer, temp_music, NULL, &imgBtnRect);
+
                         /* On fait le rendu ! */
                         SDL_RenderPresent(renderer);
                         break;
-                        
                 }
             }
         }

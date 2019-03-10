@@ -8,7 +8,7 @@ SDLINC_DIR=${SDL_DIR}/include
 INT_SDL=./interface_graphique/
 
 FICHIER_O=plateau_SDL.o menu_SDL.o main_SDL.o ToTexture.o gest_matrice.o gest_aff.o afficher_matriceSDL.o
-LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
+LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer
 INCLUDES=-I${SDLINC_DIR}
 
 PROG=main_SDL
