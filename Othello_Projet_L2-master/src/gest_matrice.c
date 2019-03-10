@@ -1,4 +1,11 @@
-/* toutes les fonctions hors affichage de la matrice*/
+/**
+ * \file gest_aff.C
+ * \brief Fichier qui contient toutes les fonctions hors affichage de la matrice et SDL du jeu
+ * \author Alkassoum Yacine
+ * \version 3
+ * \date 10 mars 2019
+ **/
+
 #include "define.h"
 #include "gest_matrice.h"
 #include "gest_aff.h"
@@ -7,16 +14,18 @@
 
 
 
-/*Fonction d'initialisation de la grille*/
+/**
+ *\brief la Fonction init_matrice initialisation de la grille
+ **/
 void init_matrice (t_matrice m) {
     int i, j;
 
-    /* On initialise la matrice a vide */
+    /** On initialise la matrice a vide **/
     for (i=0; i<N; i++)
         for (j=0; j<N; j++)
             m[i][j] = VIDE;
 
-    /* Placement des 4 premiers pions */
+    /** Placement des 4 premiers pions **/
     m[N/2-1][N/2-1] = NOIR;
     m[N/2-1][N/2] = BLANC;
     m[N/2][N/2-1] = BLANC;
@@ -25,7 +34,9 @@ void init_matrice (t_matrice m) {
 
 
 
-/* Fonction qui verifie si la case existe */
+/**
+ *\brief La fonction case_existe verifie si la case existe , voir si on est a l'interrieur de la matrice
+ **/
 int case_existe (int lig, int col) {
     return ((col >= 0) && (col < N) && (lig >= 0) && (lig < N));
 }
@@ -35,7 +46,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     int i, j, ok;
     char cj, ca;
 
-    /* Definition des couleurs pour les 2 joueurs */
+    /** Definition des couleurs pour les 2 joueurs **/
     if (joueur == 1) {
         cj = NOIR;
         ca = BLANC;
@@ -45,7 +56,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (!case_existe(lig, col) || m[lig][col] != VIDE) return 0;
 
-    /* Vers le haut */
+    /** Vers le haut **/
     i = lig - 1;
     ok = 0;
     while (case_existe(i, col) && m[i][col] == ca) {
@@ -54,7 +65,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(i, col) && m[i][col] == cj && ok == 1) return 1;
 
-    /* Vers le bas */
+    /** Vers le bas **/
     i = lig + 1;
     ok = 0;
     while (case_existe(i, col) && m[i][col] == ca) {
@@ -63,7 +74,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(i, col) && m[i][col] == cj && ok == 1) return 1;
 
-    /* Vers la gauche */
+    /** Vers la gauche **/
     j = col - 1;
     ok = 0;
     while (case_existe(lig, j) && m[lig][j] == ca) {
@@ -72,7 +83,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(lig, j) && m[lig][j] == cj && ok == 1) return 1;
 
-    /* Vers la droite */
+    /** Vers la droite **/
     j = col + 1;
     ok = 0;
     while (case_existe(lig, j) && m[lig][j] == ca) {
@@ -81,7 +92,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(lig, j) && m[lig][j] == cj && ok == 1) return 1;
 
-    /* Diagonal \ vers le haut */
+    /** Diagonal  vers le haut **/
     i = lig - 1;
     j = col - 1;
     ok = 0;
@@ -92,7 +103,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(i, j) && m[i][j] == cj && ok == 1) return 1;
 
-    /* Diagonal \ vers le bas */
+    /** Diagonal  vers le bas **/
     i = lig + 1;
     j = col + 1;
     ok = 0;
@@ -103,7 +114,6 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(i, j) && m[i][j] == cj && ok == 1) return 1;
 
-    /* Diagonal / vers le haut */
     i = lig - 1;
     j = col + 1;
     ok = 0;
@@ -114,7 +124,6 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     }
     if (case_existe(i, j) && m[i][j] == cj && ok == 1) return 1;
 
-    /* Diagonal / vers le bas */
     i = lig + 1;
     j = col - 1;
     ok = 0;
@@ -128,7 +137,8 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
     return 0;
 }
 
-/* Fonction qui indique si le joueur peut encore jouer */
+/**
+ *\brief Fonction qui indique si le joueur peut encore jouer */
 int peut_jouer (t_matrice m, int joueur) {
     int i, j;
     for (i=0; i<N; i++)
