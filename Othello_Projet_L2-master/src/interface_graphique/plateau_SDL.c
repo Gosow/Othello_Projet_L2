@@ -1,8 +1,22 @@
+/**
+ * \file plateau_SDL.c
+ * \brief Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l'interface graphique pour pouvoir jouer.
+ * \author Mario Hotaj
+ * \date 10 mars 2019 (dernière modif.)
+ */
+
 #include "SDL_jeu.h"
 #define OUI 1
 #define NON 0
 
-int lancement_jeu(int modeJeu,t_matrice mat){
+/**
+ * \fn int lancement_jeu(int modeJeu,t_matrice mat)
+ * \brief Lance le jeu en fonction du mode choisie
+ * \param modeJeu : le mode jeu choisi selon SOLO, DUO ou ONLINE.
+ * \param mat : matrice contenant la table de jeu
+ * \return Pointeur sur SDL_Texture
+ */
+int lancement_jeu(int modeJeu){
     srand(time(NULL));
     if(modeJeu==QUITTER) return 0;
     int x,y,score_j1=0,score_j2=0,i;
@@ -10,14 +24,10 @@ int lancement_jeu(int modeJeu,t_matrice mat){
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
     //Le pointeur vers la surface incluse dans la fenetre
-    SDL_Surface *textePseudo=NULL, *texteJoueur[4], *image=NULL, *imageBG=NULL;
     SDL_Renderer *renderer=NULL;
-    SDL_Rect txtDestRect, txtBvnRect, txtJeuRect[4], imgBtnRect, imgBtnHoverRect, imgBGRect;
-    char* score_aff[20];
-    // Le pointeur vers notre policeTitre
-    TTF_Font *policeTitre = NULL, *policeMenu = NULL;
+    char score_aff[20];
     // Une variable de couleur noire
-    SDL_Color couleurNoire = {0, 0, 0};
+    SDL_Color couleurNoire = {0, 0, 0, 0};
     //Initialisation du username
     char *pseudo=getenv("USER");
     if(pseudo==NULL) return EXIT_FAILURE;
@@ -79,12 +89,9 @@ int lancement_jeu(int modeJeu,t_matrice mat){
     for(i=0;i<6;i++){
         SDL_QueryTexture(texteJoueur_tex[i], NULL, NULL, &(rectTEST[i].w), &(rectTEST[i].h));
     }
-    //printf("TEST: x:%i, y:%i\n",rectTEST[2].x,rectTEST[2].y);
-    //Position ou sera mis le texte dans la fenêtre
     
-    //Chargement de l'image de fond
-    SDL_Texture *image_BG_tex = tex_img_png("./img/OthelloBG.png",renderer);
     int joueur=rand()%2+1;
+    int joueur_sauv=joueur;
     init_texture(renderer);
     int arret=NON;
     if( pWindow )
@@ -101,13 +108,14 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                         // 82 px taille d'une case
                         if(x>= rectTEST[7].x && x<= (rectTEST[7].x+rectTEST[7].w) && y>=rectTEST[7].y &&y<=(rectTEST[7].y+rectTEST[7].h)){
                             init_matrice(mat);
-                            arret=!arret;
+                            arret=NON;
+                            joueur=joueur_sauv;
                         }
                         if(x>= rectTEST[8].x && x<= (rectTEST[8].x+rectTEST[8].w) && y>=rectTEST[8].y &&y<=(rectTEST[8].y+rectTEST[8].h)){
                             running=0;
                             if(pWindow != NULL) SDL_DestroyWindow(pWindow);
                             init_matrice(mat);
-                            menu_SDL(mat);
+                            menu_SDL();
                         }
                         if(!arret){
                             if(x<=656 && y<=656){
@@ -142,17 +150,17 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
 
                         /* On fait le rendu ! */
-                        if (partie_termineeSDL(mat)){
+                        if (partie_termineeSDL()){
                             arret=OUI;
-                            afficher_gagnant(mat,renderer);
+                            afficher_gagnant();
                         }
-                        else afficher_matriceSDL(mat,renderer,&joueur);
+                        else afficher_matriceSDL(&joueur);
 
                         //printf("%c\n",afficher_gagnant(mat,renderer));
                         pion.x=680;
                         pion.y=10;
                         rectTEST[2].y=150;
-                        if(!partie_termineeSDL(mat)){
+                        if(!partie_termineeSDL()){
                             if(joueur==1){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;
@@ -167,7 +175,7 @@ int lancement_jeu(int modeJeu,t_matrice mat){
                             }
                             SDL_RenderCopy(renderer, texteJoueur_tex[2], NULL, &(rectTEST[2]));
                         }else{
-                            gagnant=afficher_gagnant(mat,renderer);
+                            gagnant=afficher_gagnant();
                             if(gagnant==NOIR){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;

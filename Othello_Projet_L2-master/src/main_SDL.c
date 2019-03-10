@@ -1,9 +1,9 @@
 #include "./interface_graphique/SDL_jeu.h"
 
-int main(int argc, char** argv)
+int main(void)
 {
     /* Initialisation simple */
-    t_matrice mat;
+    
     init_matrice(mat);
     if (SDL_Init(SDL_INIT_VIDEO) != 0 ) {
         fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
     song=1;
     Mix_PlayMusic(music,-1);
 
-    menu_SDL(mat);
+    menu_SDL();
     
     Mix_FreeMusic(music);
     Mix_CloseAudio();

@@ -1,3 +1,10 @@
+/**
+ * \file ToTexture.c
+ * \brief Fichier qui contient les fonctions qui transforme les images et texte en texture pour la  SDL
+ * \author Mario Hotaj
+ * \date 2 mars 2019
+ */
+
 #include "SDL_jeu.h"
 
 /**
@@ -34,7 +41,6 @@ SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
  * \return Pointeur sur SDL_Texture
  */
 SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer){
-    SDL_Rect txtDestRect;
     TTF_Font *policeTitre = NULL;
 	if( (policeTitre = TTF_OpenFont(font, size)) == NULL){
         fprintf(stderr, "erreur chargement font\n");

@@ -17,6 +17,8 @@
 #define QUITTER 3
 
 Mix_Music *music;
+t_matrice mat;
+
 int song;
 //TEXTURE
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer);
@@ -24,12 +26,12 @@ SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Rendere
 void init_texture(SDL_Renderer* renderer);
 
 //AFFICHAGE MATRICE / JEU
-void afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur);
-int partie_termineeSDL(t_matrice mat);
-char afficher_gagnant(t_matrice mat, SDL_Renderer* renderer);
+void afficher_matriceSDL(int* joueur);
+int partie_termineeSDL(void);
+char afficher_gagnant(void);
 
 //JEU : INTERFACE GRAPHIQUE
-int lancement_jeu(int modeJeu,t_matrice mat);
-int menu_SDL(t_matrice mat);
+int lancement_jeu(int modeJeu);
+int menu_SDL(void);
 
 #endif

@@ -8,20 +8,17 @@
 #define PLAY 1
 #define PAUSE 0
 
-int menu_SDL(t_matrice mat){
+int menu_SDL(void){
     int x,y;
     char bvn[80] ="Bienvenue ";
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
     //Le pointeur vers la surface incluse dans la fenetre
-    SDL_Surface *texte=NULL, *texteMenu[4], *image=NULL, *imageBG=NULL;
     SDL_Renderer *renderer=NULL;
-    SDL_Rect txtDestRect, txtBvnRect, txtMenuRect[4], imgBtnRect, imgBtnHoverRect, imgBGRect;
+    SDL_Rect txtDestRect, txtBvnRect, txtMenuRect[4], imgBtnRect, imgBGRect;
     
-    // Le pointeur vers notre policeTitre
-    TTF_Font *policeTitre = NULL, *policeMenu = NULL;
     // Une variable de couleur noire
-    SDL_Color couleurNoire = {0, 0, 0};
+    SDL_Color couleurNoire = {0, 0, 0, 0};
     //Initialisation du username
     char *pseudo=getenv("USER");
     if(pseudo==NULL) return EXIT_FAILURE;
@@ -89,7 +86,6 @@ int menu_SDL(t_matrice mat){
     SDL_Texture *temp;
     SDL_Texture *temp_music;
     int i=0;
-    int numBtn = 0;
     
     if( pWindow )
     {
@@ -136,7 +132,7 @@ int menu_SDL(t_matrice mat){
                                 temp = image_btnHover_tex;
                                 if(e.type == SDL_MOUSEBUTTONDOWN){
                                     SDL_DestroyWindow(pWindow);
-                                    lancement_jeu(i,mat);
+                                    lancement_jeu(i);
                                     return 0;
                                 }
                             }else{

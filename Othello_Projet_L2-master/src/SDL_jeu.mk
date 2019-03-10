@@ -18,7 +18,6 @@ all: javel othello
 othello: ${FICHIER_O}
 	${CC} ${OPTS} ${PROG} $(FICHIER_O) ${LIBS} ${INCLUDES} ${CFLAGS}
 	rm -f *.o
-	./main_SDL
 
 main_SDL.o: main_SDL.c ${INT_SDL}SDL_jeu.h
 	${CC} ${OPTS} main_SDL.o -c main_SDL.c ${CFLAGS}

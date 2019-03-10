@@ -23,7 +23,7 @@ void init_texture(SDL_Renderer* renderer){
     renderer_temp=renderer;
 }
 
-void afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
+void afficher_matriceSDL(int* joueur){
     SDL_Texture *temp;
     int i=0,j=0;
 
@@ -36,19 +36,19 @@ void afficher_matriceSDL(t_matrice mat,SDL_Renderer* renderer,int* joueur){
             }else{
                 temp = image_caseNorm_tex;
             }
-            SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
+            SDL_RenderCopy(renderer_temp, temp, NULL, &imgBtnRect);
             if(mat[i][j] == NOIR){
-                SDL_RenderCopy(renderer, image_noir_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer_temp, image_noir_tex, NULL, &imgBtnRect);
             }
             else if(mat[i][j] == BLANC){
-                SDL_RenderCopy(renderer, image_blanc_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer_temp, image_blanc_tex, NULL, &imgBtnRect);
             }
             imgBtnRect.x += 82;
         }
     }
 }
 
-int partie_termineeSDL(t_matrice m){
+int partie_termineeSDL(){
         int i, j, nb_noir, nb_blanc, cpt;
 
     /* On compte les pions noirs et les blancs */
@@ -56,11 +56,11 @@ int partie_termineeSDL(t_matrice m){
     nb_blanc = 0;
     for (i=0; i<N; i++) {
         for (j=0; j<N; j++) {
-            if (m[i][j] == VIDE && ((peut_jouer(m, 1) || peut_jouer(m, 2)))) {
+            if (mat[i][j] == VIDE && ((peut_jouer(mat, 1) || peut_jouer(mat, 2)))) {
                 return 0; /* La partie n'est pas finie */
             } else {
-                if (m[i][j] == NOIR) nb_noir++;
-                else if (m[i][j] == BLANC) nb_blanc++;
+                if (mat[i][j] == NOIR) nb_noir++;
+                else if (mat[i][j] == BLANC) nb_blanc++;
             }
         }
     }
@@ -83,17 +83,11 @@ int partie_termineeSDL(t_matrice m){
     return 1;
 }
 
-void damier_gagnantSDL(){
-    
-};
-
-char afficher_gagnant(t_matrice mat, SDL_Renderer* renderer){
-    int i, j, nb_noir, nb_blanc, cpt;
-    SDL_Rect rect;
-    char winner;
+char afficher_gagnant(){
+    int nb_noir, nb_blanc;
     calculer_score(mat,&nb_noir,&nb_blanc);
     /* Fin de partie, on affiche le gagnant */
     if (nb_noir > nb_blanc) return NOIR;
     else if (nb_blanc > nb_noir) return BLANC;
-    else EGALITE;
+    else return EGALITE;
 };
