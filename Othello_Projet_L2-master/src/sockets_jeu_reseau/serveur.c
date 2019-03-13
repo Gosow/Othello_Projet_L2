@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include<netdb.h>
+#include <netdb.h>
 #include <signal.h>
-#include <unistd.h>
+#include <string.h>
+
+
 
 #define SOCKET_ERROR -1
 char buffer[512];
@@ -53,14 +55,14 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-void envoyer_entier(int client_socket,int *tab_jeux,int i){
+void envoyer_entier(int client_socket,int *tab_jeux,int j){
 	int entier;
 
 	printf("[SERVEUR] Quel est votre entier : ");
 	scanf("%d",&entier);
-	tab_jeux[i]=entier;
-	//send(client_socket,tab_jeux,sizeof(int)*20,0);//envoie du tableau
-	write(client_socket,tab_jeux,sizeof(int)*20);
+	tab_jeux[j]=entier;
+	//write(client_socket,tab_jeux,sizeof(int)*20);
+	send(client_socket,tab_jeux,sizeof(int)*20,0);
 }
 
 int main ( void )
@@ -111,13 +113,15 @@ int main ( void )
 		    /* on attend que le client se connecte */
 		    //int accept(int socket, struct sockaddr* addr, socklen_t* addrlen);
 				//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage
-				/*int hreads(numsoc, tampon, nboctets)
+				/*int read(numsoc, tampon, nboctets)
 				int numsoc : numero de socket
 				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
 				int nboctets : nb octets du tampon*/
-				/*int haccept(numsoc, padrclient)
+				/*int write(numsoc, tampon, nboctets)
 				int numsoc : numero de socket
-				struct sockadrrin *padrclient; adresses (port, adresse IP) du distant (client)*/
+				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
+				int nboctets : nb octets du tampon*/
+
 			client_socket = accept(ma_socket,
 	                         (struct sockaddr *)&client_address,
 	                         &mon_address_longueur);
@@ -130,14 +134,15 @@ int main ( void )
 	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
 	int tab_jeux[20];
-	int i=0;
+	int j=0;
 	int quitter=0;
-  while(!quitter || i < 20)
+  while(!quitter || j < 20)
 	{
-		read(client_socket,tab_jeux,sizeof(int)*20);
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-		i++;
-		envoyer_entier(client_socket,tab_jeux,i);
+		//read(client_socket,tab_jeux,sizeof(int)*20);
+		recv(client_socket,tab_jeux,sizeof(int)*20,0);
+		printf("tab[%d]=%d\n",j,tab_jeux[j]);
+		j++;
+		envoyer_entier(client_socket,tab_jeux,j);
 	}
 
 	shutdown(client_socket,2);
