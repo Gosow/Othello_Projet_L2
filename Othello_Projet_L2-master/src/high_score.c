@@ -23,10 +23,11 @@ void fct_tridecroitableau(int tableau[], int tailletableau){
 }
 
 
-int high_score(t_matrice m){
-  if(!partie_terminee(m)){
+int high_score(t_matrice m) {
+  if(!partie_terminee(m)) {
     return 0;
   }
+  i=0;
   else {
     int i,j;
     int max=
@@ -64,7 +65,7 @@ int high_score(t_matrice m){
       i++;
     }
     fct_tridecroitableau(top[],5);
-    
+
 
 
 }
