@@ -7,16 +7,18 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include<strings.h>
+#include <string.h>
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 
 #define QUITTER "QUITTER"
 
+
+
 char menu(){
 	char choix;
 	printf("Que voulez-vous faire ?\n");
-	printf("m: envoyer un message au serveur\n");
+	printf("m: envoyer un entier au serveur\n");
 	printf("q: quitter\n");
 	printf("Que voulez-vous faire ?\n");
 	scanf(" %c", &choix);
@@ -35,7 +37,8 @@ void envoyer_crd(int to_server_socket){
 	printf("[client] reponse du serveur : '%s'\n", buffer);
 	
 	}
-void envoyer_message(int to_server_socket){
+
+/*void envoyer_message(int to_server_socket){
 	char msg[200], buffer[512];
 	printf("quel est votre message : ");
 	scanf(" %[^\n]s", buffer);
@@ -45,6 +48,15 @@ void envoyer_message(int to_server_socket){
 	memset(buffer, 0, sizeof(buffer));
 	recv(to_server_socket,buffer,512,0);
 	printf("[client] reponse du serveur : '%s'\n", buffer);
+}*/
+
+void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
+	int entier;
+
+	printf("[CLIENT] Quel est votre entier : ");
+	scanf("%d",&entier);
+	tab_jeux[i]=entier;
+	send(to_server_socket,tab_jeux,sizeof(int)*20,0);//envoie du tableau
 }
 
 void quitter(int to_server_socket){
@@ -91,18 +103,21 @@ int main (  int argc, char** argv )
 	  	exit(0);
 	}
 	/* envoie de données et reception */
-	send(to_server_socket,"BONJOUR",7,0);
-	memset(buffer, 0, sizeof(buffer));
-	recv(to_server_socket,buffer,512, 0);
-	printf("[client] %s [du serveur]\n", buffer);
+	
 
     /* Un menu pour faire differentes actions */
 	char choix;
+	int i=0;
+	int tab_jeux[20];
 	do {
+		recv(to_server_socket,tab_jeux,sizeof(int)*20,0);
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
+		i++;
 		choix = menu();
 		switch(choix){
 			case 'm':
-				envoyer_message(to_server_socket);
+				//envoyer_message(to_server_socket);
+				envoyer_entier(to_server_socket,tab_jeux,i);
 				break;
 			case 'q':
 				quitter(to_server_socket);
@@ -112,7 +127,7 @@ int main (  int argc, char** argv )
 				break;
 		}
 
-	} while (choix != 'q');
+	} while (choix != 'q' || i <20);
 
 	/* fermeture de la connexion */
 	shutdown(to_server_socket,2);

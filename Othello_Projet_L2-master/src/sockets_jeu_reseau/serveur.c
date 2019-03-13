@@ -53,6 +53,16 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
+void envoyer_entier(int client_socket,int *tab_jeux,int i){
+	int entier;
+
+	printf("[SERVEUR] Quel est votre entier : ");
+	scanf("%d",&entier);
+	tab_jeux[i]=entier;
+	send(client_socket,tab_jeux,sizeof(int)*20,0);//envoie du tableau
+
+}
+
 int main ( void )
 {
 	int ma_socket;
@@ -70,10 +80,12 @@ int main ( void )
 
 	char *hostname = "localhost";
     char ip[100];
-     
+
     hostname_to_ip(hostname , ip);
 	fprintf(stderr, "%s resolved to %s" , hostname , ip);
 	view_ip();
+
+
 
 	/* creation de socket */
 	//int socket(int domain, int type, int protocol) 
@@ -101,37 +113,28 @@ int main ( void )
 			client_socket = accept(ma_socket,
 	                         (struct sockaddr *)&client_address,
 	                         &mon_address_longueur);
+
+			printf("Connexion avec le client réussi!\n");
 		}
     
 	}
-	
+	//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
+	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
+	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
+	int tab_jeux[20];
+	int i=0;
 	int quitter=0;
-    while(!quitter)
+    while(!quitter || i < 20)
 	{
-		memset(buffer, 0, sizeof(buffer));
-		lg = recv(client_socket, buffer, 512,0);
-		
-		if(strncmp("MSG", buffer, 3)==0){
-			printf("[serveur] message reçu : '%s'\n",buffer+4);
-			printf("[serveur] envoi de la réponse ");
-			sprintf(buffer,"REPONSE DU SERVEUR");
-			send(client_socket, buffer, 512, 0);
-		} else if(strncmp("QUITTER", buffer, 7) == 0) {
-			printf("[serveur] déconnexion demandée : '%s'\n",buffer);
-			shutdown(client_socket,2);
-			close(client_socket);
-			quitter=1;
-		} else if(strncmp("BONJOUR", buffer, 7) == 0){
-			printf("[serveur] BONJOUR d'un client\n");
-			send(client_socket, "BONJOUR", 7, 0);
-		} else {
-			printf("[serveur] message inconnu : '%s'\n", buffer);
-		}
+		//memset(buffer, 0, sizeof(buffer));//permet de vidé le message du buffer pour en ecrire un nouveau
+		recv(ma_socket,tab_jeux, sizeof(int)*20,0);
+		printf("tab[%d]=%d\n",tab_jeux[i]);
+		i++;
+		envoyer_entier(ma_socket,tab_jeux,i);
 	}
+	shutdown(client_socket,2);
+	close(client_socket);
 	shutdown(ma_socket,2);
 	close(ma_socket);
 	return 0;
 }
-
-
-
