@@ -129,7 +129,6 @@ int main ( void )
 	int quitter=0;
     while(!quitter || i < 20)
 	{
-		//memset(buffer, 0, sizeof(buffer));//permet de vidé le message du buffer pour en ecrire un nouveau
 		recv(ma_socket,tab_jeux, sizeof(int)*20,0);
 		printf("tab[%d]=%d\n",tab_jeux[i]);
 		i++;

@@ -7,15 +7,12 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
-<<<<<<< HEAD
 #include <string.h>
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
-=======
 #include<strings.h>
 #define SERVEURNAME "172.18.41.139" // adresse IP de mon serveur
 //#define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
->>>>>>> 49e78b2525f3e83950a3753e567864800af2ea6f
 
 #define QUITTER "QUITTER"
 
@@ -94,6 +91,7 @@ int main (  int argc, char** argv )
 	//sin_port sera égal à la valeur retournée par la fonction htons, avec comme paramètre le port utilisé
 	serveur_addr.sin_port = htons(30000);
 	serveur_addr.sin_family = AF_INET;
+
 	/* creation de la socket */
 	//int socket(int domain, int type, int protocol) 
 	//avec domain:AF_INET pour TCP/IP et type :SOCK_STREAM si on utilise TCP/IP
@@ -101,6 +99,7 @@ int main (  int argc, char** argv )
 		printf("Impossible de créer la socket client\n");
 	  	exit(0);
 	}
+
 	/* requete de connexion */
 	//int connect(int socket, struct sockaddr* addr, socklen_t addrlen);
 	//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage comme le fonction accept() cote serveur
