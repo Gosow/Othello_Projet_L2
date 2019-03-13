@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+git pull
 
 var=&1
 
