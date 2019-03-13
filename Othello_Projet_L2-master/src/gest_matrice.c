@@ -2,7 +2,7 @@
  * \file gest_aff.C
  * \brief Fichier qui contient toutes les fonctions hors affichage de la matrice et SDL du jeu
  * \author Alkassoum Yacine
- * \version 3
+ * \version 2
  * \date 10 mars 2019
  **/
 
