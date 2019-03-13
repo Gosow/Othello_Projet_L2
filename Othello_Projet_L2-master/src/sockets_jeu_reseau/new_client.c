@@ -19,11 +19,11 @@ void main()
     {
         printf("\n Enter the string:");
         scanf("%s",s);
-        write(sid,(void*)s,strlen(s));
+        write(sid,s,strlen(s));
         if(strlen(s)==0)
             break;
         sleep(1);
-        read(sid,(void*)s1,sizeof(s1));
+        read(sid,s1,sizeof(s1));
         printf("\n The received string is:%s\n",s1);
     }
     close(sid);

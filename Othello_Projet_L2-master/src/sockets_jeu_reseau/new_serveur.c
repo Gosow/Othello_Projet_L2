@@ -45,14 +45,14 @@ if(fork() == 0) {
 /* If we're the child, we can now read/write to the client on
 client_sockfd.
 The five second delay is just for this demonstration. */
-
+while(ch != -1){
 read(client_sockfd, &ch, 1);
 sleep(5);
 if(ch=='a')
   printf("Bonjour");
 write(client_sockfd, &ch, 1);
+}
 close(client_sockfd);
-exit(0);
 }
 
 /* Otherwise, we must be the parent and our work for this client is
