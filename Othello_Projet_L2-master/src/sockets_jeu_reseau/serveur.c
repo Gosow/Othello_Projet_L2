@@ -12,7 +12,7 @@
 #define SOCKET_ERROR -1
 char buffer[512];
 
-void fin(int sig){
+void fin(){//int sig parametre
 	printf("fin du serveur");
 }
 
@@ -21,23 +21,23 @@ int hostname_to_ip(char * hostname , char* ip)
     struct hostent *he;
     struct in_addr **addr_list;
     int i;
-         
-    if ( (he = gethostbyname( hostname ) ) == NULL) 
+
+    if ( (he = gethostbyname( hostname ) ) == NULL)
     {
         // get the host info
         herror("gethostbyname");
         return 1;
     }
- 
+
     addr_list = (struct in_addr **) he->h_addr_list;
-     
-    for(i = 0; addr_list[i] != NULL; i++) 
+
+    for(i = 0; addr_list[i] != NULL; i++)
     {
         //Return the first one;
         strcpy(ip , inet_ntoa(*addr_list[i]) );
         return 0;
     }
-     
+
     return 1;
 }
 
@@ -59,8 +59,8 @@ void envoyer_entier(int client_socket,int *tab_jeux,int i){
 	printf("[SERVEUR] Quel est votre entier : ");
 	scanf("%d",&entier);
 	tab_jeux[i]=entier;
-	send(client_socket,tab_jeux,sizeof(int)*20,0);//envoie du tableau
-
+	//send(client_socket,tab_jeux,sizeof(int)*20,0);//envoie du tableau
+	write(client_socket,tab_jeux,sizeof(int)*20);
 }
 
 int main ( void )
@@ -81,14 +81,14 @@ int main ( void )
 	char *hostname = "localhost";
     char ip[100];
 
-    hostname_to_ip(hostname , ip);
+  hostname_to_ip(hostname , ip);
 	fprintf(stderr, "%s resolved to %s\n" , hostname , ip);
 	view_ip();
 
 
 
 	/* creation de socket */
-	//int socket(int domain, int type, int protocol) 
+	//int socket(int domain, int type, int protocol)
 	//avec domain:AF_INET pour TCP/IP et type :SOCK_STREAM si on utilise TCP/IP
 	if ((ma_socket = socket(AF_INET,SOCK_STREAM,0))== SOCKET_ERROR) {
 		printf("Impossible de créer la socket\n");
@@ -98,28 +98,33 @@ int main ( void )
 	/* bind serveur - socket */
 	//bind permet d'etablir la connexion avec le client
 	sock_err=bind(ma_socket,(struct sockaddr *)&mon_address,sizeof(mon_address));
-
 	if(sock_err != SOCKET_ERROR){
 		printf("Connexion etablie avec le client\n");
 
 		/* ecoute sur la socket */
-		sock_err=listen(ma_socket,5);
+		sock_err=listen(ma_socket,client_socket);
 
 		if(sock_err != SOCKET_ERROR){
-			printf("Connexion acceptée\n");
 			/* accept la connexion */
 			mon_address_longueur = sizeof(client_address);
-			
+
 		    /* on attend que le client se connecte */
 		    //int accept(int socket, struct sockaddr* addr, socklen_t* addrlen);
-		    //avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage
+				//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage
+				/*int hreads(numsoc, tampon, nboctets)
+				int numsoc : numero de socket
+				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
+				int nboctets : nb octets du tampon*/
+				/*int haccept(numsoc, padrclient)
+				int numsoc : numero de socket
+				struct sockadrrin *padrclient; adresses (port, adresse IP) du distant (client)*/
 			client_socket = accept(ma_socket,
 	                         (struct sockaddr *)&client_address,
 	                         &mon_address_longueur);
 
 			printf("Connexion avec le client réussi!\n");
 		}
-    
+
 	}
 	//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
 	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
@@ -127,13 +132,14 @@ int main ( void )
 	int tab_jeux[20];
 	int i=0;
 	int quitter=0;
-    while(!quitter || i < 20)
+  while(!quitter || i < 20)
 	{
-		recv(ma_socket,tab_jeux, sizeof(int)*20,0);
-		printf("tab[%d]=%d\n",tab_jeux[i]);
+		read(client_socket,tab_jeux,sizeof(int)*20);
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
 		i++;
-		envoyer_entier(ma_socket,tab_jeux,i);
+		envoyer_entier(client_socket,tab_jeux,i);
 	}
+
 	shutdown(client_socket,2);
 	close(client_socket);
 	shutdown(ma_socket,2);

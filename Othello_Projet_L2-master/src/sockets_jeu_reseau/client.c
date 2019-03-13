@@ -11,11 +11,11 @@
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 #include<strings.h>
-#define SERVEURNAME "172.18.41.139" // adresse IP de mon serveur
+//#define SERVEURNAME "172.18.41.139" // adresse IP de mon serveur
 //#define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 
 #define QUITTER "QUITTER"
-
+#define SOCKET_ERROR -1
 
 
 char menu(){
@@ -38,7 +38,7 @@ void envoyer_crd(int to_server_socket){
 	memset(buffer, 0, sizeof(buffer));
 	recv(to_server_socket,buffer,512,0);
 	printf("[client] reponse du serveur : '%s'\n", buffer);
-	
+
 	}
 
 /*void envoyer_message(int to_server_socket){
@@ -59,7 +59,8 @@ void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
 	printf("[CLIENT] Quel est votre entier : ");
 	scanf("%d",&entier);
 	tab_jeux[i]=entier;
-	send(to_server_socket,tab_jeux,sizeof(int)*20,0);//envoie du tableau
+	//send(to_server_socket,tab_jeux,sizeof(int)*20,0);//envoie du tableau
+	write(to_server_socket,tab_jeux,sizeof(int)*20);
 }
 
 void quitter(int to_server_socket){
@@ -93,7 +94,7 @@ int main (  int argc, char** argv )
 	serveur_addr.sin_family = AF_INET;
 
 	/* creation de la socket */
-	//int socket(int domain, int type, int protocol) 
+	//int socket(int domain, int type, int protocol)
 	//avec domain:AF_INET pour TCP/IP et type :SOCK_STREAM si on utilise TCP/IP
 	if ( (to_server_socket = socket(AF_INET,SOCK_STREAM,0)) < 0) {
 		printf("Impossible de créer la socket client\n");
@@ -108,20 +109,18 @@ int main (  int argc, char** argv )
 	  	exit(0);
 	}
 	/* envoie de données et reception */
-	
+
+	printf("Connexion avec le serveur reussi!\n");
 
     /* Un menu pour faire differentes actions */
 	char choix;
 	int i=0;
 	int tab_jeux[20];
+
 	do {
-		recv(to_server_socket,tab_jeux,sizeof(int)*20,0);
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-		i++;
 		choix = menu();
 		switch(choix){
 			case 'm':
-				//envoyer_message(to_server_socket);
 				envoyer_entier(to_server_socket,tab_jeux,i);
 				break;
 			case 'q':
@@ -131,6 +130,10 @@ int main (  int argc, char** argv )
 				printf("Commande '%c' invalide... recommencez\n", choix);
 				break;
 		}
+	//	while(recv(to_server_socket,tab_jeux,sizeof(int)*20,0)!= SOCKET_ERROR);
+	read(to_server_socket,tab_jeux,sizeof(int)*20);
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
+		i++;
 
 	} while (choix != 'q' || i <20);
 
@@ -139,5 +142,3 @@ int main (  int argc, char** argv )
 	close(to_server_socket);
 	return 0;
 }
-
-
