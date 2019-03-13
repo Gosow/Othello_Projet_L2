@@ -1,4 +1,11 @@
-#include <"ToTexture.h">
+/**
+ * \file ToTexture.c
+ * \brief Fichier qui contient les fonctions qui transforme les images et texte en texture pour la  SDL
+ * \author Mario Hotaj
+ * \date 2 mars 2019
+ */
+
+#include "SDL_jeu.h"
 
 /**
  * \fn SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer)
@@ -8,18 +15,18 @@
  * \return Pointeur sur SDL_Texture
  */
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
-    
+
     SDL_RWops *rwop=SDL_RWFromFile(s, "rb");
-    SDL_Susrface *image=IMG_LoadPNG_RW(rwop);
-    if(!image) {
-        printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
-    }
-    SDL_Texture *image_btn_tex = SDL_CreateTextureFromSurface(renderer, image);
-    if(!image_btn_tex){
-        fprintf(stderr, "Erreur à la création du rendu de l'image : %s\n", SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-    SDL_FreeSurface(image); /* on a la texture, plus besoin de l'image */
+	SDL_Surface *image=IMG_LoadPNG_RW(rwop);
+	if(!image) {
+	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
+	}
+	SDL_Texture *image_btn_tex = SDL_CreateTextureFromSurface(renderer, image); 
+	if(!image_btn_tex){
+		fprintf(stderr, "Erreur à la création du rendu de l'image : %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+	SDL_FreeSurface(image); /* on a la texture, plus besoin de l'image */
     return image_btn_tex;
 }
 
@@ -34,9 +41,8 @@ SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
  * \return Pointeur sur SDL_Texture
  */
 SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer){
-    SDL_Rect txtDestRect;
     TTF_Font *policeTitre = NULL;
-    if( (policeTitre = TTF_OpenFont(font, size)) == NULL){
+	if( (policeTitre = TTF_OpenFont(font, size)) == NULL){
         fprintf(stderr, "erreur chargement font\n");
         exit(EXIT_FAILURE);
     }
@@ -45,14 +51,14 @@ SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color, SDL_Rendere
         fprintf(stderr, "Erreur à la création du texte : %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
-    
+
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_Texture *texte_tex = SDL_CreateTextureFromSurface(renderer, texte);
     if(!texte_tex){
         fprintf(stderr, "Erreur à la création du rendu du texte : %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
-    
+
     SDL_FreeSurface(texte); /* on a la texture, plus besoin du texte */
     TTF_CloseFont(policeTitre); /* Doit être avant TTF_Quit() */
     return texte_tex;

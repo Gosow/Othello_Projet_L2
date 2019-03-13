@@ -7,9 +7,15 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+<<<<<<< HEAD
 #include <string.h>
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
+=======
+#include<strings.h>
+#define SERVEURNAME "172.18.41.139" // adresse IP de mon serveur
+//#define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
+>>>>>>> 49e78b2525f3e83950a3753e567864800af2ea6f
 
 #define QUITTER "QUITTER"
 

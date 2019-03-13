@@ -11,10 +11,10 @@
 
 int point(t_matrice m , int couleur)
 {	
-	int pt_coins=500;//points des coins(rapportent le plus)
-	int pt_ctr_2=150;//points cotes plt
-	int pt_ctr_1=250;// point pour les cotés du plateau cotes du plateau
-	int pt_centre_plt = 16;//points pour le centre du plateau
+	int pt_coins=250;//points des coins(rapportent le plus)
+	int pt_ctr_2=75;//points cotes plt
+	int pt_ctr_1=125;// point pour les cotés du plateau cotes du plateau
+	int pt_centre_plt = 8;//points pour le centre du plateau
     int i,j;//compteurs lignes/colonnes
     int cpt,calc;//compteurs de points
     int b_d=0, h_d=0,b_g=0,h_g=0;//haut gauche/droit , bas gauche/droit
@@ -48,7 +48,7 @@ int point(t_matrice m , int couleur)
 	
 	if(m[0][N-1] == couleur){
 		h_d = 1;
-		cpt_final += pt_coins;
+		cpt += pt_coins;
 	}
 	if(m[0][0] == couleur){
 		h_g = 1;
@@ -202,6 +202,6 @@ int point(t_matrice m , int couleur)
 	if(m[(N/2)-1][(N/2)-1] == couleur)
 		cpt += pt_centre_plt;
 //retourne le compteur
-	return cpt_final;
+	return cpt;
     
 }
