@@ -65,7 +65,5 @@ int high_score(t_matrice m) {
       i++;
     }
     fct_tridecroitableau(top[],5);
-
-
-
+  }
 }
