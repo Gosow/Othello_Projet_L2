@@ -1,5 +1,6 @@
-#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 int max(int a, int b){
     if (a > b)
@@ -51,12 +52,15 @@ int high_score(t_matrice m) {
     fclose(f);
     int score_gagnant = max(*score1,*score2);
 
-    for(i=0;i<5;i++){
+    for(i=5;i>0 && top[i] < score_gagnant;i++){
       if(top[i] < score_gagnant){
-        FILE *f=fopen("high_scores.txt","w");
-        fprintf(f,"%i",score_gagnant);
+        top[i]=score_gagnant;
       }
     }
+
+    fct_tridecroitableau(top,5);
+
+    FILE *f=fopen("high_scores.txt","w");
     fclose(f);
     i=0;
     FILE *f=fopen("high_scores.txt","r");
@@ -64,6 +68,6 @@ int high_score(t_matrice m) {
       fscanf(f,%i,top[i]);
       i++;
     }
-    fct_tridecroitableau(top[],5);
+
   }
 }
