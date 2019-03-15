@@ -244,7 +244,6 @@ t_liste_coord liste_coup(t_matrice mat,int joueur){
 	for(i;i<N;i++){
 		for(j;j<N;j++){
 			if(coup_valide(mat,i,j,joueur)){
-				temp.x
 				ajouter_liste(res,temp,i,j);
 			}
 		}
