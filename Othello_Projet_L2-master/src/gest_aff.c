@@ -6,27 +6,12 @@
  * \date 10 mars 2019
  * */
 
-
-
-
-
-
-
-
-
 #include "define.h"
 #include "gest_aff.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-
-
-
-
-
-
-
-/** 
+/**
  *\brief LaFonction afficher_matrice est la fonction qui  affiche la grille de jeu
 **/
 void afficher_matrice (t_matrice m) {

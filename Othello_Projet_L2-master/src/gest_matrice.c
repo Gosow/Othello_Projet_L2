@@ -164,7 +164,6 @@ void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
     (*col) = c - 'A';
     scanf ("%d", lig);
     (*lig)--;
-
     /* On redemande tant que le coup n'est pas valide */
     while (!coup_valide (m, *lig, *col, joueur)) {
         printf ("\nCe coup n'est pas valide\n");
@@ -224,7 +223,6 @@ int partie_terminee (t_matrice m) {
 void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     int i, j;
     char cj, ca;
-
 
     if (joueur != 1) {
         cj = BLANC;
