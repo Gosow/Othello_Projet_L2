@@ -230,10 +230,13 @@ int adversaire(t_matrice etat_courant, int profondeur, int alpha){
 	return min;	
 }										
 
-void ajouter_liste(t_liste_coord* dest,t_liste_coord* src){
+void ajouter_liste(t_liste_coord* dest,int x, int y){
 	t_liste_coord* ec = dest;
+	t_liste_coord* temp = malloc(sizeof(t_liste_coord*));
+	temp.x=x;
+	temp.y=y;
 	while(ec != NULL) ec=ec->next;
-	if()
+	ec->next=temp;
 }
 
 t_liste_coord liste_coup(t_matrice mat,int joueur){
@@ -242,7 +245,8 @@ t_liste_coord liste_coup(t_matrice mat,int joueur){
 	for(i;i<N;i++){
 		for(j;j<N;j++){
 			if(coup_valide(mat,i,j,joueur)){
-				ajouter_liste()
+				temp.x
+				ajouter_liste(res,temp,i,j);
 			}
 		}
 	}
