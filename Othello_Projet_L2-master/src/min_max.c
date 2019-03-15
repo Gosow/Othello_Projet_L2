@@ -209,7 +209,8 @@ int adversaire(t_matrice etat_courant, int profondeur, int alpha){
 	int min = MAX_INT;int v;
 	t_list_coord *entete , *ec;
 
-	if(!profondeur || !entete){									
+	if(!profondeur || !entete){	
+		return eval(mat);								
 	}
 								
 	while(!ec->next)
@@ -272,4 +273,7 @@ int ordi(t_matrice etat_courant, int beta, int profondeur){
 		if(v>max) max = v;
 	}
 	return max;
+}
+t_coord tour_ordi(t_matrice m,int profondeur , int alpha, int beta){
+
 }
