@@ -7,8 +7,6 @@
 
 
 //fonction qui retourne le nombre de points par rapport a un coup, plus le return est grand et plus le coup est interressant
-
-
 int point(t_matrice m , int couleur)
 {	
 	int pt_coins=250;//points des coins(rapportent le plus)
@@ -203,42 +201,82 @@ int point(t_matrice m , int couleur)
 		cpt += pt_centre_plt;
 //retourne le compteur
 	return cpt;
-    
 }
 
-t_coord adversaire(t_matrice m, int couleur, int profondeur, int alpha, int beta){
+int adversaire(t_matrice etat_courant, int profondeur, int alpha){
 
-	int i, j, val_ret;
-	t_matrice temp = m	;
-	int val_min = MAX_INT;
+	t_matrice mat = etat_courant	;
+	int min = MAX_INT;int v;
+	t_list_coord *entete , *ec;
 
-	if(profondeur == 1){									/** Si on est arrivé à la profondeur voulue, on renvoie la valeur de point **/
-		return point(m, couleur);
+	if(!profondeur || !entete){	
+		return eval(mat);								
 	}
-									/** On renvoie les coordonnées de la valeur minimum valeur minimum **/
-}
-int alphabeta(int profondeur, int alpha, int beta)
-{
-if (game_over or profondeur <= 0)
-return eval();
-move meilleur_coup;
-for (chaque coup possible m) {
-jouer le coup m;
-int score = -alphabeta(profondeur - 1, -beta, -alpha)
-annuler le coup m;
-if (score >= alpha){
-alpha = score ;
-meilleur_coup = m ;
-if (alpha >= beta)
-break;
-}
-}
-return alpha;
+								
+	while(!ec->next)
+	{
+		jouer_coup(mat,ec->x,ec->y,2);
+		if(partie_terminee(mat))return eval(m,couleur);
+		mat=etat_courant;
+		ec=ec->next;
+	}
+	ec=entete;
+	while(!ec->next){
+		mat=etat_courant;
+		joueur_coup(mat,ec->x,ec->y,2);
+		v=ordi(mat,alpha,profondeur-1);
+		min=v<min?v:min;
+	}
+	return min;	
+}										
+
+void ajouter_liste(t_liste_coord* dest,int x, int y){
+	t_liste_coord* ec = dest;
+	t_liste_coord* temp = malloc(sizeof(t_liste_coord*));
+	temp.x=x;
+	temp.y=y;
+	while(ec != NULL) ec=ec->next;
+	ec->next=temp;
 }
 
-int Min_Max(t_matrice m,int profondeur,int couleur){
+t_liste_coord liste_coup(t_matrice mat,int joueur){
+	int i, j;
+	t_liste_coord* res = malloc(sizeof(t_liste_coord*));
+	for(i;i<N;i++){
+		for(j;j<N;j++){
+			if(coup_valide(mat,i,j,joueur)){
+				ajouter_liste(res,temp,i,j);
+			}
+		}
+	}
+}
 
-	if(partie_terminee(m) || profondeur <=0)
-		return point(m,couleur):
-	for()
+int ordi(t_matrice etat_courant, int beta, int profondeur){
+	int max=-10000, v;
+	t_matrice mat = etat_courant;
+	t_list_coord *entete, *ec;
+	entete=liste_coup(etat_courant);
+	ec=entete;
+
+	if(profondeur == 0 || entete == NULL) return eval(mat);
+
+	while(ec->next != NULL){
+		jouer_coup(mat,ec->x,ec->y,2);
+		if(partie_terminee(mat)) return eval(mat);
+		mat = etat_courant;
+		ec=ec->next;
+	}
+
+	//On met l'élément courant dans l'entete
+	ec=entete;
+	while(ec->next != NULL){
+		mat = etat_courant;
+		jouer_coup(mat,ec->x,ec->y,2);
+		v=adversaire(mat,beta,profondeur-1);
+		if(v>max) max = v;
+	}
+	return max;
+}
+t_coord tour_ordi(t_matrice m,int profondeur , int alpha, int beta){
+
 }
