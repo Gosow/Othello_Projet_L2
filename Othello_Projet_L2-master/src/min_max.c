@@ -205,3 +205,29 @@ int point(t_matrice m , int couleur)
 	return cpt;
     
 }
+
+int alphabeta(int profondeur, int alpha, int beta)
+{
+if (game_over or profondeur <= 0)
+return eval();
+move meilleur_coup;
+for (chaque coup possible m) {
+jouer le coup m;
+int score = -alphabeta(profondeur - 1, -beta, -alpha)
+annuler le coup m;
+if (score >= alpha){
+alpha = score ;
+meilleur_coup = m ;
+if (alpha >= beta)
+break;
+}
+}
+return alpha;
+}
+
+int Min_Max(t_matrice m,int profondeur,int couleur){
+
+	if(partie_terminee(m) || profondeur <=0)
+		return point(m,couleur):
+	for()
+}
