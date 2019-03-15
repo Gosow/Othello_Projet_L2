@@ -113,7 +113,7 @@ int main ( void )
 		    /* on attend que le client se connecte */
 		    //int accept(int socket, struct sockaddr* addr, socklen_t* addrlen);
 				//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage
-				/*int read(numsoc, tampon, nboctets)
+				/*int read(numsoc, tampon, nboctets));
 				int numsoc : numero de socket
 				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
 				int nboctets : nb octets du tampon*/
@@ -134,15 +134,15 @@ int main ( void )
 	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
 	int tab_jeux[20];
-	int i;
+	int i=0;
 	int quitter=0;
   while(!quitter || i < 20)
 	{
 		read(client_socket,&tab_jeux,sizeof(int)*20);
 		//recv(client_socket,tab_jeux,sizeof(int)*20,0);
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
 		i++;
 		envoyer_entier(client_socket,tab_jeux,i);
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
 	}
 
 	shutdown(client_socket,2);

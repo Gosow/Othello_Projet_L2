@@ -60,9 +60,17 @@ void quitter(int to_server_socket){
 	send(to_server_socket,QUITTER,7,0);
 }
 
+void afficher_tableau(int *tab_jeux){
+	int i;
+	for(i=0;i<20;i++){
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
+	}
+}
+
+
 void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
 	int entier;
-
+	i++;
 	printf("[CLIENT] Quel est votre entier : ");
 	scanf("%d",&entier);
 	tab_jeux[i]=entier;
@@ -124,9 +132,13 @@ int main (  int argc, char** argv )
 		switch(choix){
 			case 'm':
 				envoyer_entier(to_server_socket,tab_jeux,i);
+				printf("tab[%d]=%d\n",i,tab_jeux[i]);
 				break;
 			case 'q':
 				quitter(to_server_socket);
+				break;
+			case 'a':
+				afficher_tableau(tab_jeux);
 				break;
 			default:
 				printf("Commande '%c' invalide... recommencez\n", choix);
@@ -134,7 +146,6 @@ int main (  int argc, char** argv )
 		}
 		//read(to_server_socket,tab_jeux,sizeof(int)*20);
 		recv(to_server_socket,&tab_jeux,sizeof(int)*20,0);
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
 		i++;
 
 	} while (choix != 'q' || i <20);
