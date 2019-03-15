@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-
 /**
  *\brief la Fonction init_matrice initialisation de la grille
  **/
@@ -226,7 +224,7 @@ int partie_terminee (t_matrice m) {
 void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     int i, j;
     char cj, ca;
-   
+
 
     if (joueur != 1) {
         cj = BLANC;
@@ -234,7 +232,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     } else {
         cj = NOIR;
         ca = BLANC;
-        
+
     }
     m[lig][col] = cj;
 
