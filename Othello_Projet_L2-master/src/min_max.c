@@ -15,14 +15,14 @@ int point(t_matrice m , int couleur)
 	int pt_ctr_2=75;//points cotes plt
 	int pt_ctr_1=125;// point pour les cotés du plateau cotes du plateau
 	int pt_centre_plt = 8;//points pour le centre du plateau
-    int i,j;//compteurs lignes/colonnes
+    int i,j;//compteurs ines/jonnes
     int cpt,calc;//compteurs de points
     int b_d=0, h_d=0,b_g=0,h_g=0;//haut gauche/droit , bas gauche/droit
     /*chaque case jouable est susceptible de rapporter des points*/
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++)
 		{
-			if(coup_valide(m,i,j,couleur)==1)
+			if(coup_valide(m,i,j,couleur))
 			{
 				cpt+=2;
 			}
@@ -206,6 +206,17 @@ int point(t_matrice m , int couleur)
     
 }
 
+t_coord adversaire(t_matrice m, int couleur, int profondeur, int alpha, int beta){
+
+	int i, j, val_ret;
+	t_matrice temp = m	;
+	int val_min = MAX_INT;
+
+	if(profondeur == 1){									/** Si on est arrivé à la profondeur voulue, on renvoie la valeur de point **/
+		return point(m, couleur);
+	}
+									/** On renvoie les coordonnées de la valeur minimum valeur minimum **/
+}
 int alphabeta(int profondeur, int alpha, int beta)
 {
 if (game_over or profondeur <= 0)
