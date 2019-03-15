@@ -206,17 +206,31 @@ int point(t_matrice m , int couleur)
     
 }
 
-t_coord adversaire(t_matrice m, int couleur, int profondeur, int alpha, int beta){
+int adversaire(t_matrice etat_courant, int profondeur, int alpha){
 
-	int i, j, val_ret;
-	t_matrice temp = m	;
-	int val_min = MAX_INT;
+	t_matrice mat = etat_courant	;
+	int min = MAX_INT;int v;
+	t_list_coord *entete , *ec;
 
-	if(profondeur == 1){									/** Si on est arrivé à la profondeur voulue, on renvoie la valeur de point **/
-		return point(m, couleur);
+	if(!profondeur || !entete){									
 	}
-									/** On renvoie les coordonnées de la valeur minimum valeur minimum **/
-}
+								
+	while(!ec->next)
+	{
+		jouer_coup(mat,ec->x,ec->y,2);
+		if(partie_terminee(mat))return eval(m,couleur);
+		mat=etat_courant;
+		ec=ec->next;
+	}
+	ec=entete;
+	while(!ec->next){
+		mat=etat_courant;
+		joueur_coup(mat,ec->x,ec->y,2);
+		v=ordi(mat,alpha,profondeur-1);
+		min=v<min?v:min;
+	}
+	return min;	
+}										
 int alphabeta(int profondeur, int alpha, int beta)
 {
 if (game_over or profondeur <= 0)
