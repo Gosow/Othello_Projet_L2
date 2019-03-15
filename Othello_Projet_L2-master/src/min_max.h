@@ -7,5 +7,5 @@
 #include "gest_matrice.h"
 
 int eval_point(t_matrice m, int joueur);
-
+t_liste_coord* liste_coup(t_matrice mat);
 #endif
