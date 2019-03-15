@@ -55,6 +55,13 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
+void afficher_tableau(int *tab_jeux){
+	int i;
+	for(i=0;i<20;i++){
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
+	}
+}
+
 void envoyer_entier(int client_socket,int *tab_jeux,int i){
 	int entier;
 
@@ -122,9 +129,7 @@ int main ( void )
 				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
 				int nboctets : nb octets du tampon*/
 
-			client_socket = accept(ma_socket,
-	                         (struct sockaddr *)&client_address,
-	                         &mon_address_longueur);
+			client_socket = accept(ma_socket,(struct sockaddr *)&client_address,&mon_address_longueur);
 
 			printf("Connexion avec le client réussi!\n");
 		}
@@ -141,8 +146,8 @@ int main ( void )
 		read(client_socket,&tab_jeux,sizeof(int)*20);
 		//recv(client_socket,tab_jeux,sizeof(int)*20,0);
 		i++;
-		envoyer_entier(client_socket,tab_jeux,i);
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
+		envoyer_entier(client_socket,tab_jeux,i++);
+		printf("tab[%d]=%d\n",i-1,tab_jeux[i-1]);
 	}
 
 	shutdown(client_socket,2);

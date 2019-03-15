@@ -23,6 +23,7 @@ char menu(){
 	printf("Que voulez-vous faire ?\n");
 	printf("m: envoyer un entier au serveur\n");
 	printf("q: quitter\n");
+	printf("a: afficher tableau\n");
 	printf("Que voulez-vous faire ?\n");
 	scanf(" %c", &choix);
 	return choix;
@@ -60,9 +61,9 @@ void quitter(int to_server_socket){
 	send(to_server_socket,QUITTER,7,0);
 }
 
-void afficher_tableau(int *tab_jeux){
+void afficher_tableau(int *tab_jeux, int nbval){
 	int i;
-	for(i=0;i<20;i++){
+	for(i=0;i<nbval;i++){
 		printf("tab[%d]=%d\n",i,tab_jeux[i]);
 	}
 }
@@ -70,7 +71,7 @@ void afficher_tableau(int *tab_jeux){
 
 void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
 	int entier;
-	i++;
+
 	printf("[CLIENT] Quel est votre entier : ");
 	scanf("%d",&entier);
 	tab_jeux[i]=entier;
@@ -131,14 +132,14 @@ int main (  int argc, char** argv )
 		choix = menu();
 		switch(choix){
 			case 'm':
-				envoyer_entier(to_server_socket,tab_jeux,i);
-				printf("tab[%d]=%d\n",i,tab_jeux[i]);
+				envoyer_entier(to_server_socket,tab_jeux,i++);
+				printf("tab[%d]=%d\n",i-1,tab_jeux[i-1]);
 				break;
 			case 'q':
 				quitter(to_server_socket);
 				break;
 			case 'a':
-				afficher_tableau(tab_jeux);
+				afficher_tableau(tab_jeux, i);
 				break;
 			default:
 				printf("Commande '%c' invalide... recommencez\n", choix);
