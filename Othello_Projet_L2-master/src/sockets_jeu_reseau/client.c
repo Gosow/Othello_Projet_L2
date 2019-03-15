@@ -53,6 +53,13 @@ void envoyer_crd(int to_server_socket){
 	printf("[client] reponse du serveur : '%s'\n", buffer);
 }*/
 
+
+
+void quitter(int to_server_socket){
+	printf("[client] envoi message QUITTER au serveur\n");
+	send(to_server_socket,QUITTER,7,0);
+}
+
 void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
 	int entier;
 
@@ -61,11 +68,6 @@ void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
 	tab_jeux[i]=entier;
 	//write(to_server_socket,tab_jeux,sizeof(int)*20);
 	send(to_server_socket,tab_jeux,sizeof(int)*20,0);
-}
-
-void quitter(int to_server_socket){
-	printf("[client] envoi message QUITTER au serveur\n");
-	send(to_server_socket,QUITTER,7,0);
 }
 
 int main (  int argc, char** argv )
@@ -131,7 +133,7 @@ int main (  int argc, char** argv )
 				break;
 		}
 		//read(to_server_socket,tab_jeux,sizeof(int)*20);
-		recv(to_server_socket,tab_jeux,sizeof(int)*20,0);
+		recv(to_server_socket,&tab_jeux,sizeof(int)*20,0);
 		printf("tab[%d]=%d\n",i,tab_jeux[i]);
 		i++;
 

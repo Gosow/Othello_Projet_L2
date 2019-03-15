@@ -55,12 +55,12 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-void envoyer_entier(int client_socket,int *tab_jeux,int j){
+void envoyer_entier(int client_socket,int *tab_jeux,int i){
 	int entier;
 
 	printf("[SERVEUR] Quel est votre entier : ");
 	scanf("%d",&entier);
-	tab_jeux[j]=entier;
+	tab_jeux[i]=entier;
 	//write(client_socket,tab_jeux,sizeof(int)*20);
 	send(client_socket,tab_jeux,sizeof(int)*20,0);
 }
@@ -134,15 +134,15 @@ int main ( void )
 	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
 	int tab_jeux[20];
-	int j=0;
+	int i;
 	int quitter=0;
-  while(!quitter || j < 20)
+  while(!quitter || i < 20)
 	{
-		//read(client_socket,tab_jeux,sizeof(int)*20);
-		recv(client_socket,tab_jeux,sizeof(int)*20,0);
-		printf("tab[%d]=%d\n",j,tab_jeux[j]);
-		j++;
-		envoyer_entier(client_socket,tab_jeux,j);
+		read(client_socket,&tab_jeux,sizeof(int)*20);
+		//recv(client_socket,tab_jeux,sizeof(int)*20,0);
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
+		i++;
+		envoyer_entier(client_socket,tab_jeux,i);
 	}
 
 	shutdown(client_socket,2);
