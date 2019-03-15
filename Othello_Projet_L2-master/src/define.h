@@ -15,7 +15,7 @@ typedef struct s_list_coord t_list_coord;
 typedef struct s_list_coord{
 	int x;
 	int y;
-	t_liste_coord* next;
+	t_list_coord* next;
 };
 #endif
 
