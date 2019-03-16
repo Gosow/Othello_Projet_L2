@@ -3,6 +3,7 @@
 #include "gest_aff.h"
 #include "gest_matrice.h"
 
+static t_coord bestMove;
 
 
 
@@ -235,6 +236,7 @@ void ajouter_liste(t_liste_coord* dest,int x, int y){
 	t_liste_coord* temp = malloc(sizeof(t_liste_coord*));
 	temp.x=x;
 	temp.y=y;
+	temp.next=NULL;
 	while(ec != NULL) ec=ec->next;
 	ec->next=temp;
 }
@@ -248,6 +250,15 @@ t_liste_coord liste_coup(t_matrice mat,int joueur){
 				ajouter_liste(res,temp,i,j);
 			}
 		}
+	}
+}
+
+void supprimer_liste(t_liste_coord* l){
+	t_liste_coord *temp;
+	while(l != NULL){
+		temp=l->suivant;
+		free(l);
+		l = temp;
 	}
 }
 
@@ -274,9 +285,104 @@ int ordi(t_matrice etat_courant, int beta, int profondeur){
 		jouer_coup(mat,ec->x,ec->y,2);
 		v=adversaire(mat,beta,profondeur-1);
 		if(v>max) max = v;
+		if(max>beta) return max;
+		ec = ec->next;
 	}
+	supprimer_liste(entete);
 	return max;
 }
-t_coord tour_ordi(t_matrice m,int profondeur , int alpha, int beta){
 
+
+
+
+
+
+/*
+test DE L'ALPHA BETA
+*/
+
+
+
+
+
+
+
+
+t_coord tour_ordi(t_matrice mat,int profondeur , int alpha, int beta){
+	t_list_coord list_coord = liste_coup(mat,JBLANC), ec;
+	ec = liste_coord;	
+	t_coord pos;
+	int v, max=-MAX_SCORE;
+
+	while(ec->next != NULL){
+		v = alphabeta(mat,DEPTH,-MAX_SCORE,MAX_SCORE,BLANC);
+		if(v > max){
+			max=v;
+			pos.x=ec.x;
+			pos.y=ec.y
+
+		}
+		ec = ec->next;
+	}
+	supprimer_liste(liste_coord);
+	return pos;
+}
+
+int eval(t_matrice m, char c){
+	int i, j, cmpt=0;
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			if(m[i][j]==c) cmpt++; 
+		}
+	}
+	return cmpt;
+};
+
+int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
+{
+	t_list_coord en_tete,list_coord;
+	t_matrice temp;
+
+	if (partie_terminee(mat) || depth <= 0)
+		if(noeud == MAX) return eval(mat,BLANC);
+		return eval(mat,NOIR);
+
+	if(noeud == MAX){ //Programme
+		en_tete = list_coord = liste_coup(mat,JBLANC);
+		jouer_coup(mat,bestMove.x, bestMove.y, JBLANC);
+    	while(list_coord->next != NULL){
+        	jouer_coup(temp, list_coord.x, list_coord.y, JNOIR);
+        	int score = alphabeta(temp, depth - 1, alpha, beta, MIN);
+        	temp = mat;
+        	if (score > alpha) {
+            	alpha = score;
+            	bestMove.x = list_coord.x;
+				bestMove.y = list_coord.y;
+            	if (alpha >= beta)
+            	   break;
+        	}
+			list_coord = list_coord->next;
+      	}
+		supprimer_liste(en_tete);
+		return alpha;
+    } 
+    else { //type MIN = adversaire
+		en_tete = list_coord = liste_coup(mat,JNOIR);
+		jouer_coup(mat,bestMove.x, bestMove.y, JNOIR);
+		while(list_coord->next != NULL){
+			jouer_coup(temp, list_coord.x, list_coord.y, JBLANC);
+			int score = alphabeta(temp, depth - 1, alpha, beta, MAX);
+			temp = mat;
+			if (score < beta) {
+				beta = score;
+				bestMove.x = list_coord.x;
+				bestMove.y = list_coord.y;
+				if (alpha >= beta)
+					break;
+			}
+			list_coord = list_coord->next;
+		}
+		supprimer_liste(en_tete);
+    	return beta;
+    }
 }

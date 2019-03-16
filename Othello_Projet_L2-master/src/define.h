@@ -11,6 +11,13 @@
 typedef char t_matrice[N][N];
 
 /* Liste de coordonnées */
+typedef struct s_coord t_coord;
+typedef struct s_coord{
+	int x;
+	int y;
+};
+
+/* Liste de coordonnées */
 typedef struct s_list_coord t_list_coord;
 typedef struct s_list_coord{
 	int x;
