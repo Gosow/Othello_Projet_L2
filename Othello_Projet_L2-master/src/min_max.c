@@ -333,6 +333,7 @@ int eval(t_matrice m, char c){
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
 			if(m[i][j]==c) cmpt++; 
+			else if(m[i][j] != VIDE) cmpt--;
 		}
 	}
 	return cmpt;
