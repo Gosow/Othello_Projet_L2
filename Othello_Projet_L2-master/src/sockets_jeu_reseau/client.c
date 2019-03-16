@@ -8,6 +8,11 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <string.h>
+
+#include "define.h"
+#include "gest_aff.h"
+#include "gest_matrice.h"
+
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 #include<strings.h>
@@ -63,7 +68,22 @@ void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
 	send(to_server_socket,tab_jeux,sizeof(int)*20,0);
 }
 
-int main(){
+void jouer(){
+	afficher_matrice (m);
+	while (!partie_terminee (m)) {
+		choisir_coup (m, &lig, &col, joueur);
+		jouer_coup (m, lig, col, joueur);
+		afficher_matrice (m);
+		if (peut_jouer(m, joueur_suivant(joueur)))
+			joueur = joueur_suivant (joueur);
+		else
+		 printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+		calculer_score(m,&score1,&score2);
+		printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+	}
+}
+
+int main (int argc,char **argv){
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in serveur_addr;
 	struct hostent *serveur_info;
@@ -108,19 +128,16 @@ int main(){
 	char choix;
 	int i=0;
 	int tab_jeux[20];
+	t_matrice m;
 
 	do {
 		choix = menu();
 		switch(choix){
 			case 'm':
-				envoyer_entier(to_server_socket,tab_jeux,i++);
-				printf("tab[%d]=%d\n",i-1,tab_jeux[i-1]);
+				jouer();
 				break;
 			case 'q':
 				quitter(to_server_socket);
-				break;
-			case 'a':
-				afficher_tableau(tab_jeux, i);
 				break;
 			default:
 				printf("Commande '%c' invalide... recommencez\n", choix);

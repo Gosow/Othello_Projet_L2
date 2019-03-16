@@ -8,6 +8,12 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <string.h>
+
+#include "define.h"
+#include "gest_aff.h"
+#include "gest_matrice.h"
+
+
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 #include<strings.h>
@@ -108,6 +114,7 @@ int main(){
 	char choix;
 	int i=0;
 	int tab_jeux[20];
+	t_matrice m;
 
 	do {
 		choix = menu();

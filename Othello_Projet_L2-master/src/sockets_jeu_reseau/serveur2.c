@@ -9,6 +9,10 @@
 #include <signal.h>
 #include <string.h>
 
+#include "define.h"
+#include "gest_aff.h"
+#include "gest_matrice.h"
+
 #define SOCKET_ERROR -1
 char buffer[512];
 
@@ -146,10 +150,17 @@ int main(){
 	int tab_jeux[20];
 	int i=0;
 	int quitter=0;
+	t_matrice m;
+
   while(!quitter || i < 20)
 	{
+		afficher_matrice(m);
+		while(!partie_terminee(m)){
+			choisir_coup (m, &lig, &col, joueur);
+			jouer_coup (m, lig, col, joueur);
+		}
 		read(client_socket,&tab_jeux,sizeof(int)*20);
-		recv(client_socket,tab_jeux,sizeof(int)*20,0);
+		//recv(client_socket,tab_jeux,sizeof(int)*20,0);
 		i++;
 		envoyer_entier(client_socket,tab_jeux,i++);
 		printf("tab[%d]=%d\n",i-1,tab_jeux[i-1]);
