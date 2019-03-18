@@ -1,7 +1,6 @@
 #ifndef __MIN_MAX_H
 #define __MIN_MAX_H__
-#define JNOIR 1
-#define JBLANC 2
+
 #include "define.h"
 #include <stdio.h>
 #include <stdlib.h>

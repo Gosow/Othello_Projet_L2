@@ -22,10 +22,16 @@ typedef struct s_coord{
 
 /* Liste de coordonnées */
 //typedef struct s_list_coord t_list_coord;
-typedef struct s_list_coord{
+typedef struct s_lelem_coord{
 	int x;
 	int y;
-	struct s_list_coord* next;
-}t_list_coord;
+	struct s_elem_coord* next;
+}t_elem_coord
+
+typedef struct {
+	t_elem_coord * drapeau;
+	t_elem_coord *ec ;
+}t_liste;
+
 #endif
 
