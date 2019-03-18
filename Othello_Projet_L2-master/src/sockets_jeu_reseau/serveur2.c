@@ -42,13 +42,6 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-void afficher_tableau(int *tab_jeux){
-	int i;
-	for(i=0;i<20;i++){
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-	}
-}
-
 
 int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2){
 	int ma_socket;
@@ -65,9 +58,9 @@ int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2){
 	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	char *hostname = "localhost";
-  char ip[100];
+  	char ip[100];
 
-  hostname_to_ip(hostname , ip);
+  	hostname_to_ip(hostname , ip);
 	fprintf(stderr, "%s resolved to %s\n" , hostname , ip);
 	view_ip();
 

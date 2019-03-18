@@ -36,18 +36,15 @@
 #include <string.h>
 
 
-int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2);
+
 
 /*serveur*/
 void fin();
 int hostname_to_ip(char * hostname , char* ip);
 void view_ip();
-void afficher_tableau(int *tab_jeux);
-int jeux_reseaux(t_matrice m);
+int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2);
 
 /*client*/
 char menu();
 void envoyer_crd(int to_server_socket);
 void quitter(int to_server_socket);
-void afficher_tableau(int *tab_jeux, int nbval);
-void envoyer_entier(int to_server_socket,int *tab_jeux,int i);

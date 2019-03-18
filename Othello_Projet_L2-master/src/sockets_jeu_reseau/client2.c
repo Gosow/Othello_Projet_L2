@@ -30,23 +30,8 @@ void quitter(int to_server_socket){
 	send(to_server_socket,QUITTER,7,0);
 }
 
-void afficher_tableau(int *tab_jeux, int nbval){
-	int i;
-	for(i=0;i<nbval;i++){
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-	}
-}
 
-void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
-	int entier;
-	printf("[CLIENT] Quel est votre entier : ");
-	scanf("%d",&entier);
-	tab_jeux[i]=entier;
-	//write(to_server_socket,tab_jeux,sizeof(int)*20);
-	send(to_server_socket,tab_jeux,sizeof(int)*20,0);
-}
-
-int jeux_reseaux(t_matrice m,int col,int joueur,int score1,int score2){ 
+int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2){ 
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in serveur_addr;
 	struct hostent *serveur_info;
