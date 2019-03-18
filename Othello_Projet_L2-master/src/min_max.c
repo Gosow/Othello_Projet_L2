@@ -397,6 +397,10 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
 }
 
 void main(void)
-{
-	fprintf(stderr,"test min max");
+{	t_matrice i;
+	init_matrice(i);
+	t_coord c = tour_ordi(i,MAX_SCORE,-MAX_SCORE);
+	fprintf(stderr,"test min max \n");
+	printf("%d %d \n ", c.x,c.y);
+	
 }
