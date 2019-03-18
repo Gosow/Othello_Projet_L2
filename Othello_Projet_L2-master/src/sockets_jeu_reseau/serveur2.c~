@@ -49,6 +49,14 @@ void afficher_tableau(int *tab_jeux){
 	}
 }
 
+/*void envoyer_entier(int client_socket,int *tab_jeux,int i){
+	int entier;
+	printf("[SERVEUR] Quel est votre entier : ");
+	scanf("%d",&entier);
+	tab_jeux[i]=entier;
+	//write(client_socket,tab_jeux,sizeof(int)*20);
+	send(client_socket,tab_jeux,sizeof(int)*20,0);
+}*/
 
 int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2){
 	int ma_socket;
@@ -142,7 +150,5 @@ int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2){
 
 void main (void){
 	int lig, col, joueur = 1 ,score1=0,score2=0;
-	t_matrice m;
-	
-	jeux_reseaux(m,lig,col,joueur,score1,score2);
+	jeux_reseaux(lig,col,joueur,score1,score2);
 }

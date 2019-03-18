@@ -26,11 +26,7 @@ typedef struct s_list_coord t_list_coord;
 typedef struct s_list_coord{
 	int x;
 	int y;
-<<<<<<< HEAD
 	struct t_list_coord * next;
-=======
-	t_list_coord* next;
->>>>>>> dcaed557adea4b43470bb86eb511b918ca30c413
 };
 #endif
 

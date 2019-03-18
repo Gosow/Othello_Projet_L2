@@ -48,8 +48,7 @@ int main (int argc,char **argv) {
         case 2: // min max ordi avec fonction
         break;
         case 3: 
-                jeux_reseaux(m,lig,col,joueur,score1,score2);
-);
+                jeux_reseaux(m);
         break;
         case 4:break;
         default:
