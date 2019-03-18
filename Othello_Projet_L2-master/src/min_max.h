@@ -8,6 +8,6 @@
 #include "gest_aff.h"
 #include "gest_matrice.h"
 
-int eval(t_matrice m, int joueur);
-t_liste_coord* liste_coup(t_matrice mat);
+int eval(t_matrice m, char c);
+t_list_coord* liste_coup(t_matrice mat , int joueur);
 #endif

@@ -6,7 +6,7 @@
 static t_coord bestMove;
 
 
-
+/*
 //fonction qui retourne le nombre de points par rapport a un coup, plus le return est grand et plus le coup est interressant
 int point(t_matrice m , int couleur)
 {	
@@ -18,7 +18,7 @@ int point(t_matrice m , int couleur)
     int cpt,calc;//compteurs de points
     int b_d=0, h_d=0,b_g=0,h_g=0;//haut gauche/droit , bas gauche/droit
     /*chaque case jouable est susceptible de rapporter des points*/
-	for(i=0;i<N;i++){
+/*	for(i=0;i<N;i++){
 		for(j=0;j<N;j++)
 		{
 			if(coup_valide(m,i,j,couleur))
@@ -175,7 +175,7 @@ int point(t_matrice m , int couleur)
 		j = 1;
 		i = N-2;
 		if(m[i][j] == couleur)
-			cpt -= pt_ctr_1;
+			cpt -= pt_ctt_list_coordt_list_coordr_1;
 		
 		while(i > 0){
 			if(m[i][0] == couleur)
@@ -203,11 +203,11 @@ int point(t_matrice m , int couleur)
 //retourne le compteur
 	return cpt;
 }
-
-int adversaire(t_matrice etat_courant, int profondeur, int alpha){
+*/
+/*int adversaire(t_matrice etat_courant, int profondeur, int alpha){
 
 	t_matrice mat = etat_courant	;
-	int min = MAX_INT;int v;
+	int min = 9999;int v;
 	t_list_coord *entete , *ec;
 
 	if(!profondeur || !entete){	
@@ -218,7 +218,7 @@ int adversaire(t_matrice etat_courant, int profondeur, int alpha){
 	{
 		jouer_coup(mat,ec->x,ec->y,2);
 		if(partie_terminee(mat))return eval(m,couleur);
-		mat=etat_courant;
+		t_list_coordmat=etat_courant;
 		ec=ec->next;
 	}
 	ec=entete;
@@ -231,37 +231,8 @@ int adversaire(t_matrice etat_courant, int profondeur, int alpha){
 	return min;	
 }										
 
-void ajouter_liste(t_liste_coord* dest,int x, int y){
-	t_liste_coord* ec = dest;
-	t_liste_coord* temp = malloc(sizeof(t_liste_coord*));
-	temp.x=x;
-	temp.y=y;
-	temp.next=NULL;
-	while(ec != NULL) ec=ec->next;
-	ec->next=temp;
-}
-
-t_liste_coord liste_coup(t_matrice mat,int joueur){
-	int i, j;
-	t_liste_coord* res = malloc(sizeof(t_liste_coord*));
-	for(i;i<N;i++){
-		for(j;j<N;j++){
-			if(coup_valide(mat,i,j,joueur)){
-				ajouter_liste(res,temp,i,j);
-			}
-		}
-	}
-}
-
-void supprimer_liste(t_liste_coord* l){
-	t_liste_coord *temp;
-	while(l != NULL){
-		temp=l->suivant;
-		free(l);
-		l = temp;
-	}
-}
-
+*/
+/*
 int ordi(t_matrice etat_courant, int beta, int profondeur){
 	int max=-10000, v;
 	t_matrice mat = etat_courant;
@@ -303,14 +274,45 @@ test DE L'ALPHA BETA
 
 
 
+void ajouter_liste(t_list_coord* dest,int x, int y){
+	t_list_coord* ec = dest;
+	t_list_coord* temp = malloc(sizeof(t_list_coord*));
+	temp->x=x;
+	temp->y=y;
+	temp->next=NULL;
+	while(ec != NULL) ec=ec->next;
+	ec->next=temp;
+}
+
+t_list_coord* liste_coup(t_matrice mat,int joueur){
+	int i, j;
+	t_list_coord* res = malloc(sizeof(t_list_coord*));
+	for(i;i<N;i++){
+		for(j;j<N;j++){
+			if(coup_valide(mat,i,j,joueur)){
+				ajouter_liste(res,i,j);
+			}
+		}
+	}
+	return res;
+}
+
+void supprimer_liste(t_list_coord* l){
+	t_list_coord *temp;
+	while(l != NULL){
+		temp=l->next;
+		free(l);
+		l = temp;
+	}
+}
 
 
 
 
 
-t_coord tour_ordi(t_matrice mat,int profondeur , int alpha, int beta){
-	t_list_coord list_coord = liste_coup(mat,JBLANC), ec;
-	ec = liste_coord;	
+t_coord tour_ordi(t_matrice mat, int alpha, int beta){
+	t_list_coord* list_coord = liste_coup(mat,JBLANC), *ec;
+	ec = list_coord;	
 	t_coord pos;
 	int v, max=-MAX_SCORE;
 
@@ -318,13 +320,13 @@ t_coord tour_ordi(t_matrice mat,int profondeur , int alpha, int beta){
 		v = alphabeta(mat,DEPTH,-MAX_SCORE,MAX_SCORE,BLANC);
 		if(v > max){
 			max=v;
-			pos.x=ec.x;
-			pos.y=ec.y
+			pos.x=ec->x;
+			pos.y=ec->y;
 
 		}
 		ec = ec->next;
 	}
-	supprimer_liste(liste_coord);
+	supprimer_liste(list_coord);
 	return pos;
 }
 
@@ -341,7 +343,7 @@ int eval(t_matrice m, char c){
 
 int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
 {
-	t_list_coord en_tete,list_coord;
+	t_list_coord *en_tete,*list_coord;
 	t_matrice temp;
 
 	if (partie_terminee(mat) || depth <= 0)
@@ -352,13 +354,16 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
 		en_tete = list_coord = liste_coup(mat,JBLANC);
 		jouer_coup(mat,bestMove.x, bestMove.y, JBLANC);
     	while(list_coord->next != NULL){
-        	jouer_coup(temp, list_coord.x, list_coord.y, JNOIR);
+        	jouer_coup(temp, list_coord->x, list_coord->y, JNOIR);
         	int score = alphabeta(temp, depth - 1, alpha, beta, MIN);
-        	temp = mat;
+        	// ICI temp = mat;
+			for(int tt=0;tt<N;tt++)
+				for(int ttt=0;ttt<N;ttt++)
+					temp[tt][ttt]=mat[tt][ttt];
         	if (score > alpha) {
             	alpha = score;
-            	bestMove.x = list_coord.x;
-				bestMove.y = list_coord.y;
+            	bestMove.x = list_coord->x;
+				bestMove.y = list_coord->y;
             	if (alpha >= beta)
             	   break;
         	}
@@ -371,13 +376,16 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
 		en_tete = list_coord = liste_coup(mat,JNOIR);
 		jouer_coup(mat,bestMove.x, bestMove.y, JNOIR);
 		while(list_coord->next != NULL){
-			jouer_coup(temp, list_coord.x, list_coord.y, JBLANC);
+			jouer_coup(temp, list_coord->x, list_coord->y, JBLANC);
 			int score = alphabeta(temp, depth - 1, alpha, beta, MAX);
-			temp = mat;
+			// ICI temp = mat;
+			for(int tt=0;tt<N;tt++)
+				for(int ttt=0;ttt<N;ttt++)
+					temp[tt][ttt]=mat[tt][ttt];
 			if (score < beta) {
 				beta = score;
-				bestMove.x = list_coord.x;
-				bestMove.y = list_coord.y;
+				bestMove.x = list_coord->x;
+				bestMove.y = list_coord->y;
 				if (alpha >= beta)
 					break;
 			}
@@ -386,4 +394,9 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
 		supprimer_liste(en_tete);
     	return beta;
     }
+}
+
+void main(void)
+{
+	fprintf(stderr,"test min max");
 }
