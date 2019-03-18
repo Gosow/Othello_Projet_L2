@@ -1,30 +1,24 @@
 
-#CC=gcc
-#FLAGS=-Wall -g
+CC=gcc
+FLAGS=-Wall -g
+OBJS=gest_matrice.o 
 
-#all: client2 serveur2
+all: client serveur 
 
-
-#%2.o: %2.c define.h gest_matrice.h gest_aff.h
-	#$(CC) -o $@ -c $< $(FLAGS)
-#
-
-#client2: client2.o
-	#$(CC) -o $@ $^ $(LDFLAGS)
-
-#serveur2: serveur.c define.h gest_matrice.h gest_aff.h
-	#$(CC) -o serveur2 serveur2.c
-
-#clean:
-#	rm -rf *2.o
-
-#mrproper: clean
-#	rm -rf $(EXEC)
+%.o: %.c socket.h
+	$(CC) -c $< $(FLAGS) -o $@
 
 
-client2:
-	gcc client2.c ../gest_matrice.c ../gest_aff.c ../define.h ../gest_matrice.h ../gest_aff.h
+client: client.o $(OBJS)
+	$(CC)  $^ $(LDFLAGS)  -o $@
+
+serveur: serveur.o $(OBJS)
+	$(CC)  serveur.c -o serveur
+
+clean:
+	rm -rf *.o
+
+mrproper: clean
+	rm -rf $(EXEC)
 
 
-serveur2:
-	gcc serveur.c ../gest_matrice.c ../gest_aff.c ../define.h ../gest_matrice.h ../gest_aff.h

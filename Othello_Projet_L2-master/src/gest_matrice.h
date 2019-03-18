@@ -3,6 +3,7 @@
 
 
 void init_matrice (t_matrice m);
+void afficher_matrice (t_matrice m) ;
 int case_existe (int lig, int col);
 int coup_valide (t_matrice m, int lig, int col, int joueur) ;
 int peut_jouer (t_matrice m, int joueur) ;

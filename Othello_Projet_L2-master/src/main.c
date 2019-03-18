@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include "define.h"
-#include "gest_aff.h"
-#include "gest_matrice.h"
 #include <string.h>
 #include <stdlib.h>
+#include "sockets_jeu_reseau/socket.h"
 
 
 //La fonction main
@@ -40,7 +38,7 @@ int main (int argc,char **argv) {
               if (peut_jouer(m, joueur_suivant(joueur)))
                 joueur = joueur_suivant (joueur);
               else
-               printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+              printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
               calculer_score(m,&score1,&score2);
               printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
             }
@@ -48,8 +46,8 @@ int main (int argc,char **argv) {
         case 2: // min max ordi avec fonction
         break;
         case 3: 
-                jeux_reseaux(m,lig,col,joueur,score1,score2);
-);
+                system(serveur2.c);
+                system(client2.c);
         break;
         case 4:break;
         default:
