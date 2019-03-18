@@ -8,7 +8,6 @@
 
 #include "define.h"
 #include "gest_matrice.h"
-#include "gest_aff.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -182,13 +181,15 @@ int peut_jouer (t_matrice m, int joueur) {
 
 /* Retourne le joueur suivant */
 int joueur_suivant (int joueur) {
-    return (joueur %2 + 1);
+    joueur = joueur %2 +1 ;
+    printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
+    return (joueur);
 }
 
 /* Demander le coup du joueur */
 void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
     char c;
-    printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
+    printf ("\nJoueur %d a vous de jouer\n", joueur);
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
     /* On transforme les minuscules en majuscules */

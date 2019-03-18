@@ -35,12 +35,14 @@ int main (int argc,char **argv) {
               choisir_coup (m, &lig, &col, joueur);
               jouer_coup (m, lig, col, joueur);
               afficher_matrice (m);
-              if (peut_jouer(m, joueur_suivant(joueur)))
+              if (peut_jouer(m, joueur_suivant(joueur))){
                 joueur = joueur_suivant (joueur);
-              else
-              printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
-              calculer_score(m,&score1,&score2);
-              printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+              }
+              else{ 
+                printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+                calculer_score(m,&score1,&score2);
+                printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+              }
             }
             break;
         case 2: // min max ordi avec fonction
