@@ -111,14 +111,16 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
   while(!quitter || i < 20)
 	{	
 		recv(client_socket,m,sizeof(t_matrice),0); //recv placé en debut car on attend que le client joue avant d'afficher
+		write(client_socket,joueur,sizeof(int));
 		afficher_matrice (m);
 		while (!partie_terminee (m)) {
 			choisir_coup (m, &lig, &col, joueur);
 			jouer_coup (m, lig, col, joueur);
 			afficher_matrice (m);
 			if (peut_jouer(m, joueur_suivant(joueur))){
-				joueur = joueur_suivant (joueur);
 				send(client_socket,m,sizeof(t_matrice),0);
+				read(client_socket,joueur,sizeof(int));
+				joueur = joueur_suivant (joueur);
 			}
 			else {
 				printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
@@ -141,7 +143,7 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 }
 
 int main (void){
-	int lig, col, joueur = 1 ,score1=0,score2=0;
+	int lig, col, joueur =  2 ,score1=0,score2=0;
 	t_matrice m;
 	
 	jeux_reseaux_s(m,lig,col,joueur,score1,score2);

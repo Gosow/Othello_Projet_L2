@@ -84,8 +84,8 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 		afficher_matrice (m);
 		if (peut_jouer(m, joueur_suivant(joueur))){
 				send(to_server_socket,m,sizeof(t_matrice),0);
+				read(to_server_socket,joueur,sizeof(int));
 				joueur = joueur_suivant (joueur);
-				
 		}
 		else {
 			printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
@@ -93,6 +93,8 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 		}
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 			recv(to_server_socket,m,sizeof(t_matrice),0);
+			write(to_server_socket,joueur,sizeof(int));
+
 	}
 	/* fermeture de la connexion */
 	shutdown(to_server_socket,2);
