@@ -43,11 +43,12 @@ int main (int argc,char **argv) {
                printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
               calculer_score(m,&score1,&score2);
               printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
-         }
+            }
             break;
         case 2: // min max ordi avec fonction
         break;
-        case 3: //Sockets
+        case 3: 
+                jeux_reseaux(m);
         break;
         case 4:break;
         default:

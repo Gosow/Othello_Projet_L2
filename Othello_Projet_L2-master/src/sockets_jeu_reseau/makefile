@@ -1,24 +1,30 @@
 
-CC=gcc
-FLAGS=-Wall -g
+#CC=gcc
+#FLAGS=-Wall -g
 
-all: client serveur
-
-
-%.o: %.c
-	$(CC) -o $@ -c $< $(FLAGS)
+#all: client2 serveur2
 
 
-client: client.o
-	$(CC) -o $@ $^ $(LDFLAGS)
+#%2.o: %2.c define.h gest_matrice.h gest_aff.h
+	#$(CC) -o $@ -c $< $(FLAGS)
+#
 
-serveur: serveur.c
-	$(CC) -o serveur serveur.c
+#client2: client2.o
+	#$(CC) -o $@ $^ $(LDFLAGS)
 
-clean:
-	rm -rf *.o
+#serveur2: serveur.c define.h gest_matrice.h gest_aff.h
+	#$(CC) -o serveur2 serveur2.c
 
-mrproper: clean
-	rm -rf $(EXEC)
+#clean:
+#	rm -rf *2.o
+
+#mrproper: clean
+#	rm -rf $(EXEC)
 
 
+client2:
+	gcc client2.c ../gest_matrice.c ../gest_aff.c ../define.h ../gest_matrice.h ../gest_aff.h
+
+
+serveur2:
+	gcc serveur.c ../gest_matrice.c ../gest_aff.c ../define.h ../gest_matrice.h ../gest_aff.h
