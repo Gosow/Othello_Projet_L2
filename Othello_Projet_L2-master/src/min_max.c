@@ -4,7 +4,7 @@
 #include "gest_matrice.h"
 
 static t_coord bestMove;
-
+//gcc min_max.c min_max.h gest_aff.c gest_aff.h gest_matrice.c gest_matrice.h define.h
 
 /*
 //fonction qui retourne le nombre de points par rapport a un coup, plus le return est grand et plus le coup est interressant
@@ -217,7 +217,7 @@ int point(t_matrice m , int couleur)
 	while(!ec->next)
 	{
 		jouer_coup(mat,ec->x,ec->y,2);
-		if(partie_terminee(mat))return eval(m,couleur);
+		if(partie_termineebis(mat))return eval(m,couleur);
 		t_list_coordmat=etat_courant;
 		ec=ec->next;
 	}
@@ -244,7 +244,7 @@ int ordi(t_matrice etat_courant, int beta, int profondeur){
 
 	while(ec->next != NULL){
 		jouer_coup(mat,ec->x,ec->y,2);
-		if(partie_terminee(mat)) return eval(mat);
+		if(partie_termineebis(mat)) return eval(mat);
 		mat = etat_courant;
 		ec=ec->next;
 	}
@@ -271,26 +271,51 @@ int ordi(t_matrice etat_courant, int beta, int profondeur){
 /*
 test DE L'ALPHA BETA
 */
+int partie_termineebis(t_matrice mat){
+        int i, j, nb_noir, nb_blanc, cpt;
 
+    /* On compte les pions noirs et les blancs */
+    nb_noir = 0;
+    nb_blanc = 0;
+    for (i=0; i<N; i++) {
+        for (j=0; j<N; j++) {
+            if (mat[i][j] == VIDE && ((peut_jouer(mat, 1) || peut_jouer(mat, 2)))) {
+                return 0; /* La partie n'est pas finie */
+            } else {
+                if (mat[i][j] == NOIR) nb_noir++;
+                else if (mat[i][j] == BLANC) nb_blanc++;
+            }
+        }
+    }
+	return 1;
+}
 
-
+void afficher_liste(t_list_coord *t,char c)
+{
+	t_list_coord *temp=t;
+	while(temp=temp->next)
+		printf("x: %d y %d\n  %c  QUI JOUE MON GAAAARS ",temp->x,temp->y,c);
+}
 void ajouter_liste(t_list_coord* dest,int x, int y){
 	t_list_coord* ec = dest;
 	t_list_coord* temp = malloc(sizeof(t_list_coord*));
 	temp->x=x;
 	temp->y=y;
 	temp->next=NULL;
-	while(ec != NULL) ec=ec->next;
+	while(ec->next ) ec=ec->next;
 	ec->next=temp;
 }
 
 t_list_coord* liste_coup(t_matrice mat,int joueur){
 	int i, j;
 	t_list_coord* res = malloc(sizeof(t_list_coord*));
-	for(i;i<N;i++){
-		for(j;j<N;j++){
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			//printf(" \n Liste : %d %d \n ",i,j);
+
 			if(coup_valide(mat,i,j,joueur)){
 				ajouter_liste(res,i,j);
+				//printf(" \n Liste : %d %d \n ",i,j);
 			}
 		}
 	}
@@ -317,7 +342,7 @@ t_coord tour_ordi(t_matrice mat, int alpha, int beta){
 	int v, max=-MAX_SCORE;
 
 	while(ec->next != NULL){
-		v = alphabeta(mat,DEPTH,-MAX_SCORE,MAX_SCORE,BLANC);
+		v = alphabeta(mat,DEPTH,-MAX_SCORE,MAX_SCORE,MIN);
 		if(v > max){
 			max=v;
 			pos.x=ec->x;
@@ -341,17 +366,19 @@ int eval(t_matrice m, char c){
 	return cmpt;
 };
 
-int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
+int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 {
 	t_list_coord *en_tete,*list_coord;
 	t_matrice temp;
 
-	if (partie_terminee(mat) || depth <= 0)
+	if (partie_termineebis(mat) || depth <= 0){
 		if(noeud == MAX) return eval(mat,BLANC);
 		return eval(mat,NOIR);
-
+	}
 	if(noeud == MAX){ //Programme
-		en_tete = list_coord = liste_coup(mat,JBLANC);
+		en_tete = list_coord = liste_coup(mat,JNOIR);
+			afficher_liste(en_tete,NOIR);
+
 		jouer_coup(mat,bestMove.x, bestMove.y, JBLANC);
     	while(list_coord->next != NULL){
         	jouer_coup(temp, list_coord->x, list_coord->y, JNOIR);
@@ -373,8 +400,10 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, int noeud)
 		return alpha;
     } 
     else { //type MIN = adversaire
-		en_tete = list_coord = liste_coup(mat,JNOIR);
+		en_tete = list_coord = liste_coup(mat,JBLANC);
 		jouer_coup(mat,bestMove.x, bestMove.y, JNOIR);
+			afficher_liste(en_tete,BLANC);
+
 		while(list_coord->next != NULL){
 			jouer_coup(temp, list_coord->x, list_coord->y, JBLANC);
 			int score = alphabeta(temp, depth - 1, alpha, beta, MAX);
@@ -400,7 +429,7 @@ void main(void)
 {	t_matrice i;
 	init_matrice(i);
 	t_coord c = tour_ordi(i,MAX_SCORE,-MAX_SCORE);
-	fprintf(stderr,"test min max \n");
-	printf("%d %d \n ", c.x,c.y);
+	//fprintf(stderr,"test min max \n");
+	printf(" FINALE %d %d \n ", c.x,c.y);
 	
 }
