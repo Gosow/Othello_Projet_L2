@@ -75,7 +75,6 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 	//bind permet d'etablir la connexion avec le client
 	sock_err=bind(ma_socket,(struct sockaddr *)&mon_address,sizeof(mon_address));
 	if(sock_err != SOCKET_ERROR){
-		printf("Connexion etablie avec le client\n");
 		/* ecoute sur la socket */
 		sock_err=listen(ma_socket,client_socket);
 
@@ -105,18 +104,26 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 	int i=0;
 	int quitter=0;
 
+
+//Initialisation du jeux
+    init_matrice (m);
+
   while(!quitter || i < 20)
-	{
+	{	
+		recv(client_socket,m,sizeof(t_matrice),0); //recv placé en debut car on attend que le client joue avant d'afficher
 		afficher_matrice (m);
 		while (!partie_terminee (m)) {
 			choisir_coup (m, &lig, &col, joueur);
 			jouer_coup (m, lig, col, joueur);
 			afficher_matrice (m);
-			if (peut_jouer(m, joueur_suivant(joueur)))
+			if (peut_jouer(m, joueur_suivant(joueur))){
 				joueur = joueur_suivant (joueur);
-			else
-			printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
-			calculer_score(m,&score1,&score2);
+				send(client_socket,m,sizeof(t_matrice),0);
+			}
+			else {
+				printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+				calculer_score(m,&score1,&score2);
+			}
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 		}
 	}
@@ -133,9 +140,12 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 	
 }
 
-void main (void){
+int main (void){
 	int lig, col, joueur = 1 ,score1=0,score2=0;
 	t_matrice m;
 	
 	jeux_reseaux_s(m,lig,col,joueur,score1,score2);
+
+
+	return 0;
 }

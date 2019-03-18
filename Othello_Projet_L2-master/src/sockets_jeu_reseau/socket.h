@@ -13,7 +13,6 @@
 
 /*Module cummun a client et serveur*/
 #include "../define.h"
-#include "../gest_aff.h"
 #include "../gest_matrice.h"
 #include <stdio.h>
 #include <stdlib.h>

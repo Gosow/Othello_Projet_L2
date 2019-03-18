@@ -35,7 +35,7 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 	struct sockaddr_in serveur_addr;
 	struct hostent *serveur_info;
 	long hostAddr;
-	char buffer[512];
+	//char buffer[512];
 	int to_server_socket;
 
 	bzero(&serveur_addr,sizeof(serveur_addr));
@@ -71,17 +71,28 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 	/* envoie de données et reception */
 	printf("Connexion avec le serveur reussi!\n");
 
-	afficher_matrice (m);
+
+
+//Initialisation du jeux
+    init_matrice (m);
+
+	
 	while (!partie_terminee (m)) {
+		afficher_matrice (m);
 		choisir_coup (m, &lig, &col, joueur);
 		jouer_coup (m, lig, col, joueur);
 		afficher_matrice (m);
-		if (peut_jouer(m, joueur_suivant(joueur)))
-			joueur = joueur_suivant (joueur);
-		else
-		 printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
-		calculer_score(m,&score1,&score2);
-		printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+		if (peut_jouer(m, joueur_suivant(joueur))){
+				send(to_server_socket,m,sizeof(t_matrice),0);
+				joueur = joueur_suivant (joueur);
+				
+		}
+		else {
+			printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+			calculer_score(m,&score1,&score2);
+		}
+			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+			recv(to_server_socket,m,sizeof(t_matrice),0);
 	}
 	/* fermeture de la connexion */
 	shutdown(to_server_socket,2);
@@ -96,9 +107,12 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 }
 
 
-void main(void){
+int main(void){
 	int lig, col, joueur = 1,score1=0,score2=0;
 	t_matrice m;
 	
 	jeux_reseaux_c(m,lig,col,joueur,score1,score2);
+
+
+	return 0;
 }

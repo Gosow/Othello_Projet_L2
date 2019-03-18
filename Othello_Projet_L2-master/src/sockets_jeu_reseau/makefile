@@ -5,20 +5,19 @@ OBJS=gest_matrice.o
 
 all: client serveur 
 
-%.o: %.c socket.h
+%.o: %.c socket.h 
 	$(CC) -c $< $(FLAGS) -o $@
 
 
 client: client.o $(OBJS)
-	$(CC)  $^ $(LDFLAGS)  -o $@
+	$(CC)  $^  (LDFLAGS) -o $@
 
 serveur: serveur.o $(OBJS)
-	$(CC)  serveur.c -o serveur
+	$(CC)  serveur.c  -o serveur 
 
 clean:
 	rm -rf *.o
 
 mrproper: clean
 	rm -rf $(EXEC)
-
 
