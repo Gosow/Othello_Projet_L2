@@ -181,8 +181,14 @@ int peut_jouer (t_matrice m, int joueur) {
 
 /* Retourne le joueur suivant */
 int joueur_suivant (int joueur) {
-    joueur = joueur %2 +1 ;
+    if(joueur == 1){
+        joueur ++;
+    }
+    else{
+        joueur--;
+    }
     printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
+
     return (joueur);
 }
 
