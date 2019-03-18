@@ -1,27 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <signal.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <string.h>
-
-#include "define.h"
-#include "gest_aff.h"
-#include "gest_matrice.h"
-
-
-//#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
-#define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
-#include<strings.h>
-//#define SERVEURNAME "172.18.41.139" // adresse IP de mon serveur
-//#define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
-
-#define QUITTER "QUITTER"
-#define SOCKET_ERROR -1
+#include "socket.h"
 
 
 char menu(){
@@ -53,23 +30,8 @@ void quitter(int to_server_socket){
 	send(to_server_socket,QUITTER,7,0);
 }
 
-void afficher_tableau(int *tab_jeux, int nbval){
-	int i;
-	for(i=0;i<nbval;i++){
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-	}
-}
 
-void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
-	int entier;
-	printf("[CLIENT] Quel est votre entier : ");
-	scanf("%d",&entier);
-	tab_jeux[i]=entier;
-	//write(to_server_socket,tab_jeux,sizeof(int)*20);
-	send(to_server_socket,tab_jeux,sizeof(int)*20,0);
-}
-
-int main(){
+int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2){ 
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in serveur_addr;
 	struct hostent *serveur_info;
@@ -111,36 +73,39 @@ int main(){
 	printf("Connexion avec le serveur reussi!\n");
 
     /* Un menu pour faire differentes actions */
-	char choix;
-	int i=0;
-	int tab_jeux[20];
-	t_matrice m;
 
-	do {
-		choix = menu();
-		switch(choix){
-			case 'm':
-				envoyer_entier(to_server_socket,tab_jeux,i++);
-				printf("tab[%d]=%d\n",i-1,tab_jeux[i-1]);
-				break;
-			case 'q':
-				quitter(to_server_socket);
-				break;
-			case 'a':
-				afficher_tableau(tab_jeux, i);
-				break;
-			default:
-				printf("Commande '%c' invalide... recommencez\n", choix);
-				break;
-		}
-		//read(to_server_socket,tab_jeux,sizeof(int)*20);
-		recv(to_server_socket,&tab_jeux,sizeof(int)*20,0);
-		i++;
+	int i=0; 
 
-	} while (choix != 'q' || i <20);
-
+	afficher_matrice (m);
+	while (!partie_terminee (m)) {
+		choisir_coup (m, &lig, &col, joueur);
+		jouer_coup (m, lig, col, joueur);
+		afficher_matrice (m);
+		if (peut_jouer(m, joueur_suivant(joueur)))
+			joueur = joueur_suivant (joueur);
+		else
+		 printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+		calculer_score(m,&score1,&score2);
+		printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+	}
+	
+	
 	/* fermeture de la connexion */
 	shutdown(to_server_socket,2);
-	close(to_server_socket);
-	return 0;
+
+	if(close(to_server_socket)==0){
+		return 0;	
+	}
+	else {
+		return -1;
+	}
+	
+}
+
+
+void main(void){
+	int lig, col, joueur = 1,score1=0,score2=0;
+	t_matrice m;
+	
+	jeux_reseaux(m,lig,col,joueur,score1,score2);
 }

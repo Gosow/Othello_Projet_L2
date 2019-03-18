@@ -1,20 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <signal.h>
-#include <string.h>
+#include "socket.h"
 
-#include "define.h"
-#include "gest_aff.h"
-#include "gest_matrice.h"
-
-#define SOCKET_ERROR -1
-char buffer[512];
 
 void fin(){//int sig (parametre)
 	printf("fin du serveur");
@@ -57,39 +42,8 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-void afficher_tableau(int *tab_jeux){
-	int i;
-	for(i=0;i<20;i++){
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-	}
-}
 
-/*void envoyer_entier(int client_socket,int *tab_jeux,int i){
-	int entier;
-	printf("[SERVEUR] Quel est votre entier : ");
-	scanf("%d",&entier);
-	tab_jeux[i]=entier;
-	//write(client_socket,tab_jeux,sizeof(int)*20);
-	send(client_socket,tab_jeux,sizeof(int)*20,0);
-}*/
-
-void jouer () {
-
-	afficher_matrice (m);
-	while (!partie_terminee (m)) {
-		choisir_coup (m, &lig, &col, joueur);
-		jouer_coup (m, lig, col, joueur);
-		afficher_matrice (m);
-		if (peut_jouer(m, joueur_suivant(joueur)))
-			joueur = joueur_suivant (joueur);
-		else
-		 printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
-		calculer_score(m,&score1,&score2);
-		printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
-	}
-}
-
-int main(){
+int jeux_reseaux(t_matrice m,int lig,int col,int joueur,int score1,int score2){
 	int ma_socket;
 	int client_socket;
 	int sock_err;
@@ -104,9 +58,9 @@ int main(){
 	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	char *hostname = "localhost";
-  char ip[100];
+  	char ip[100];
 
-  hostname_to_ip(hostname , ip);
+  	hostname_to_ip(hostname , ip);
 	fprintf(stderr, "%s resolved to %s\n" , hostname , ip);
 	view_ip();
 
@@ -147,28 +101,41 @@ int main(){
 	//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
 	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
-	int tab_jeux[20];
+	
 	int i=0;
 	int quitter=0;
-	t_matrice m;
 
   while(!quitter || i < 20)
 	{
-		afficher_matrice(m);
-		while(!partie_terminee(m)){
+		afficher_matrice (m);
+		while (!partie_terminee (m)) {
 			choisir_coup (m, &lig, &col, joueur);
 			jouer_coup (m, lig, col, joueur);
+			afficher_matrice (m);
+			if (peut_jouer(m, joueur_suivant(joueur)))
+				joueur = joueur_suivant (joueur);
+			else
+			printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+			calculer_score(m,&score1,&score2);
+			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 		}
-		read(client_socket,&tab_jeux,sizeof(int)*20);
-		//recv(client_socket,tab_jeux,sizeof(int)*20,0);
-		i++;
-		envoyer_entier(client_socket,tab_jeux,i++);
-		printf("tab[%d]=%d\n",i-1,tab_jeux[i-1]);
 	}
 
 	shutdown(client_socket,2);
 	close(client_socket);
 	shutdown(ma_socket,2);
-	close(ma_socket);
-	return 0;
+	if(close(ma_socket)==0){
+		return 0;	
+	}
+	else{
+		return -1;
+	}
+	
+}
+
+void main (void){
+	int lig, col, joueur = 1 ,score1=0,score2=0;
+	t_matrice m;
+	
+	jeux_reseaux(m,lig,col,joueur,score1,score2);
 }
