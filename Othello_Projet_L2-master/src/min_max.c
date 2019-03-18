@@ -293,9 +293,13 @@ int partie_termineebis(t_matrice mat){
 void afficher_liste(t_list_coord *t,char c)
 {
 	t_list_coord *temp=t;
-	while(temp=temp->next)
-		printf("x: %d y %d\n  %c  QUI JOUE MON GAAAARS ",temp->x,temp->y,c);
+	while(temp){
+		printf("x: %d y %d  %c  QUI JOUE MON GAAAARS \n",temp->x,temp->y,c);
+		temp=temp->next;
+
+	}
 }
+/*
 void ajouter_liste(t_list_coord* dest,int x, int y){
 	t_list_coord* ec = dest;
 	t_list_coord* temp = malloc(sizeof(t_list_coord*));
@@ -305,10 +309,23 @@ void ajouter_liste(t_list_coord* dest,int x, int y){
 	while(ec->next ) ec=ec->next;
 	ec->next=temp;
 }
+*/
+void ajouter_liste(t_liste *dest,int x, int y){
+	if(liste_vide(dest))
+		
+
+}
+/*
+t_liste * creer_liste(void)
+{
+		new->ec=new;
+	new->drapeau=new;
+	new->ec->x=
+}*/
 
 t_list_coord* liste_coup(t_matrice mat,int joueur){
 	int i, j;
-	t_list_coord* res = malloc(sizeof(t_list_coord*));
+	t_list_coord* res = t_liste * new=malloc(sizeof(t_liste *));
 	for(i=0;i<N;i++){
 		for(j=0;j<N;j++){
 			//printf(" \n Liste : %d %d \n ",i,j);
@@ -333,16 +350,30 @@ void supprimer_liste(t_list_coord* l){
 
 
 
-
+//MON GARRS L ORDI C UN JNOIR
 
 t_coord tour_ordi(t_matrice mat, int alpha, int beta){
-	t_list_coord* list_coord = liste_coup(mat,JBLANC), *ec;
+	t_list_coord* list_coord = liste_coup(mat,NOIR), *ec;
 	ec = list_coord;	
 	t_coord pos;
 	int v, max=-MAX_SCORE;
-
+	t_matrice temp;
 	while(ec->next != NULL){
-		v = alphabeta(mat,DEPTH,-MAX_SCORE,MAX_SCORE,MIN);
+		
+		// ICI temp = mat;
+			for(int tt=0;tt<N;tt++)
+				for(int ttt=0;ttt<N;ttt++)
+					temp[tt][ttt]=mat[tt][ttt];
+
+			jouer_coup(temp, list_coord->x, list_coord->y, NOIR);
+        	
+			v = alphabeta(temp,DEPTH,-MAX_SCORE,MAX_SCORE,MIN);
+			// ICI mat = temp;
+			for(int tt=0;tt<N;tt++)
+				for(int ttt=0;ttt<N;ttt++)
+					mat[tt][ttt]=temp[tt][ttt];
+		
+		
 		if(v > max){
 			max=v;
 			pos.x=ec->x;
@@ -370,27 +401,35 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 {
 	t_list_coord *en_tete,*list_coord;
 	t_matrice temp;
+	afficher_matrice(mat);
 
 	if (partie_termineebis(mat) || depth <= 0){
 		if(noeud == MAX) return eval(mat,BLANC);
 		return eval(mat,NOIR);
 	}
 	if(noeud == MAX){ //Programme
-		en_tete = list_coord = liste_coup(mat,JNOIR);
-			afficher_liste(en_tete,NOIR);
+		en_tete = list_coord = liste_coup(mat,NOIR);
+		printf("liste NOIR\n");
+		afficher_liste(en_tete,NOIR);
 
-		jouer_coup(mat,bestMove.x, bestMove.y, JBLANC);
-    	while(list_coord->next != NULL){
-        	jouer_coup(temp, list_coord->x, list_coord->y, JNOIR);
-        	int score = alphabeta(temp, depth - 1, alpha, beta, MIN);
+		//jouer_coup(mat,bestMove.x, bestMove.y, BLANC);
+    	while(list_coord->next != NULL){ //pour tous les coups possibles
+        	
         	// ICI temp = mat;
 			for(int tt=0;tt<N;tt++)
 				for(int ttt=0;ttt<N;ttt++)
 					temp[tt][ttt]=mat[tt][ttt];
+
+			jouer_coup(temp, list_coord->x, list_coord->y, NOIR);
+        	int score = alphabeta(temp, depth - 1, alpha, beta, MIN);
+			
+			// ICI mat = temp;
+			for(int tt=0;tt<N;tt++)
+				for(int ttt=0;ttt<N;ttt++)
+					mat[tt][ttt]=temp[tt][ttt];
+
         	if (score > alpha) {
             	alpha = score;
-            	bestMove.x = list_coord->x;
-				bestMove.y = list_coord->y;
             	if (alpha >= beta)
             	   break;
         	}
@@ -400,21 +439,28 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 		return alpha;
     } 
     else { //type MIN = adversaire
-		en_tete = list_coord = liste_coup(mat,JBLANC);
-		jouer_coup(mat,bestMove.x, bestMove.y, JNOIR);
-			afficher_liste(en_tete,BLANC);
-
+		en_tete = list_coord = liste_coup(mat,BLANC);
+		printf("liste BLANC\n");
+		afficher_liste(en_tete,BLANC);
+		//jouer_coup(mat,bestMove.x, bestMove.y, NOIR);
+		
 		while(list_coord->next != NULL){
-			jouer_coup(temp, list_coord->x, list_coord->y, JBLANC);
-			int score = alphabeta(temp, depth - 1, alpha, beta, MAX);
+			
 			// ICI temp = mat;
 			for(int tt=0;tt<N;tt++)
 				for(int ttt=0;ttt<N;ttt++)
 					temp[tt][ttt]=mat[tt][ttt];
+
+			jouer_coup(temp, list_coord->x, list_coord->y, BLANC);
+			int score = alphabeta(temp, depth - 1, alpha, beta, MAX);
+			
+			// ICI mat = temp;
+			for(int tt=0;tt<N;tt++)
+				for(int ttt=0;ttt<N;ttt++)
+					mat[tt][ttt]=temp[tt][ttt];
+
 			if (score < beta) {
 				beta = score;
-				bestMove.x = list_coord->x;
-				bestMove.y = list_coord->y;
 				if (alpha >= beta)
 					break;
 			}
@@ -428,8 +474,9 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 void main(void)
 {	t_matrice i;
 	init_matrice(i);
+
 	t_coord c = tour_ordi(i,MAX_SCORE,-MAX_SCORE);
 	//fprintf(stderr,"test min max \n");
-	printf(" FINALE %d %d \n ", c.x,c.y);
+	fprintf(stderr," FINALE %d %d \n ", c.x,c.y);
 	
 }

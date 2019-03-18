@@ -75,17 +75,17 @@ int case_existe (int lig, int col) {
 /* Fonction qui verifie si le coup est valide */
 int coup_valide (t_matrice m, int lig, int col, int joueur) {
     int i, j, ok;
-    char cj, ca;
+    char cj, ca;//cj=couleur joueur, ca=couleur autre
 
     /** Definition des couleurs pour les 2 joueurs **/
-    if (joueur == 1) {
+    if (joueur == NOIR) {
         cj = NOIR;
         ca = BLANC;
     } else {
         cj = BLANC;
         ca = NOIR;
     }
-    if (!case_existe(lig, col) || m[lig][col] != VIDE) return 0;
+    if (!case_existe( lig, col) || m[lig][col] != VIDE) return 0;
 
     /** Vers le haut **/
     i = lig - 1;
