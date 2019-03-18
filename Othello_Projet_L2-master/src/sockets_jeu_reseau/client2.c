@@ -8,6 +8,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include "fonc_boite_outils/outils.h"
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 #include<strings.h>
@@ -47,12 +48,7 @@ void quitter(int to_server_socket){
 	send(to_server_socket,QUITTER,7,0);
 }
 
-void afficher_tableau(int *tab_jeux, int nbval){
-	int i;
-	for(i=0;i<nbval;i++){
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-	}
-}
+
 
 void envoyer_entier(int to_server_socket,int *tab_jeux,int i){
 	int entier;

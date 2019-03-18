@@ -8,6 +8,8 @@
 #include <netdb.h>
 #include <signal.h>
 #include <string.h>
+#include "fonc_boite_outils/outils.h"
+
 
 #define SOCKET_ERROR -1
 char buffer[512];
@@ -53,12 +55,7 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-void afficher_tableau(int *tab_jeux){
-	int i;
-	for(i=0;i<20;i++){
-		printf("tab[%d]=%d\n",i,tab_jeux[i]);
-	}
-}
+
 
 /*void envoyer_entier(int client_socket,int *tab_jeux,int i){
 	int entier;
