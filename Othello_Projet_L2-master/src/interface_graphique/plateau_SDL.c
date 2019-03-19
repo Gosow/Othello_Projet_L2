@@ -93,7 +93,7 @@ int lancement_jeu(int modeJeu){
     if(rand()%2) joueur=NOIR;
     else joueur=BLANC;
 
-    //int joueur_sauv=joueur;
+    int joueur_sauv=joueur;
     init_jeuSDL(renderer);
     int arret=NON;
     if( pWindow )
@@ -108,11 +108,11 @@ int lancement_jeu(int modeJeu){
                     case SDL_MOUSEBUTTONDOWN:
                         SDL_GetMouseState(&x,&y);
                         //fprintf(stderr,"Mouse Button down \n");
-                        // 82 px taille d'une case
+                        //REPLAY
                         if(x>= rectTEST[7].x && x<= (rectTEST[7].x+rectTEST[7].w) && y>=rectTEST[7].y &&y<=(rectTEST[7].y+rectTEST[7].h)){
                             init_matrice(mat);
                             arret=NON;
-                            //joueur=joueur_sauv;
+                            joueur=joueur_sauv;
                         }
                         if(x>= rectTEST[8].x && x<= (rectTEST[8].x+rectTEST[8].w) && y>=rectTEST[8].y &&y<=(rectTEST[8].y+rectTEST[8].h)){
                             running=0;
@@ -120,6 +120,7 @@ int lancement_jeu(int modeJeu){
                             init_matrice(mat);
                             menu_SDL();
                         }
+                        // 82 px taille d'une case
                         if(!arret){
                             if(x<=656 && y<=656){
                                 x=x/82;
@@ -127,8 +128,10 @@ int lancement_jeu(int modeJeu){
                                 if(coup_valide(mat,y,x,joueur)){
                                     jouer_coup(mat,y,x,joueur);
                                     joueur=joueur_suivant(joueur);
-                                    if(!peut_jouer(mat,joueur)&&peut_jouer(mat,joueur%2+1)){
-                                        joueur=joueur_suivant(joueur);
+                                    if(!peut_jouer(mat,joueur)){
+                                        if((joueur == BLANC && peut_jouer(mat,NOIR))||(joueur == NOIR && peut_jouer(mat,BLANC))){
+                                            joueur=joueur_suivant(joueur);
+                                        }
                                     }
                                 }
                                 

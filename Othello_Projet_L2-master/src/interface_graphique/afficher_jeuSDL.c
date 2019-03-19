@@ -81,7 +81,7 @@ int partie_termineeSDL(void){
     nb_blanc = 0;
     for (i=0; i<N; i++) {
         for (j=0; j<N; j++) {
-            if (mat[i][j] == VIDE && ((peut_jouer(mat, 1) || peut_jouer(mat, 2)))) {
+            if (mat[i][j] == VIDE && ((peut_jouer(mat, NOIR) || peut_jouer(mat, BLANC)))) {
                 return 0; /* La partie n'est pas finie */
             } else {
                 if (mat[i][j] == NOIR) nb_noir++;
