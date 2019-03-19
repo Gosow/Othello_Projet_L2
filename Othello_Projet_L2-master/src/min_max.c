@@ -120,9 +120,11 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 	}
 	if(noeud == MAX){ //Programme
 		l = liste_coup(mat,NOIR);
+		fprintf(stderr,"liste NOIR\n");
+		afficher_liste(l,NOIR);
 		en_tete_ec(l);
-		printf("liste NOIR\n");
-		//afficher_liste(en_tete,NOIR);
+		
+		
 
 		//jouer_coup(mat,bestMove.x, bestMove.y, BLANC);
     	while(liste_vide(l)){ //pour tous les coups possibles
@@ -150,8 +152,10 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
     } 
     else { //type MIN = adversaire
 		l = liste_coup(mat,BLANC);
+		fprintf(stderr,"liste BLANC\n");
+		afficher_liste(l,NOIR);
 		en_tete_ec(l);
-		printf("liste BLANC\n");
+		
 		//jouer_coup(mat,bestMove.x, bestMove.y, NOIR);
 		
 		while(liste_vide(l)){

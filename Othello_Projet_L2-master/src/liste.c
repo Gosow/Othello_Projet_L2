@@ -6,11 +6,13 @@
 t_liste* init_liste(void){
 	t_liste *p = malloc(sizeof(t_liste*));
     p->drapeau = malloc(sizeof(t_elem_coord));
+    p->drapeau->x = p->drapeau->y = -1;
     //ON EST POSITIONNÉ SUR LE DRAPEAU qui est la seule valeur
     p->ec = p->drapeau->next = p->drapeau;
 	return p;
 }
 int liste_vide(t_liste* l){
+    fprintf(stderr,"liste vide:%d\n",l->drapeau->next==l->drapeau && l->ec==l->drapeau);
     return l->drapeau->next==l->drapeau && l->ec==l->drapeau;
 }
 
@@ -25,10 +27,12 @@ void en_tete_ec(t_liste* l){
 t_elem_coord* en_queue(t_liste* l){
     t_elem_coord *temp;
     temp = en_tete(l);
-    if(liste_vide(l)) return NULL;
+    if(liste_vide(l)) return l->drapeau;
     while(temp->next != l->drapeau){
+        fprintf(stderr,"x:%d, y:y%d\n",temp->x,temp->y);
         temp=temp->next;
     };
+    
     return temp;
 }
 
@@ -47,8 +51,8 @@ void ajout_liste(t_liste* l, int x, int y){
     temp->x=x;
     temp->y=y;
     temp->next=l->drapeau;
-
-    ec->next=temp;
+    fprintf(stderr,"x:%d, y:y%d\n",ec->x,ec->y);
+    //ec->next=temp;
 }
 
 void oter_ec(t_liste* l){
@@ -93,6 +97,11 @@ t_liste* liste_coup(t_matrice mat,int joueur){
 
 void afficher_liste(t_liste *l,char c)
 {
+    en_tete_ec(l);
+    while(l->ec->next != l->drapeau){
+        fprintf(stderr,"%c joue: x:%d y:%d",c,elem_x(l),elem_y(l));
+        suivant(l);
+    }
 	/*t_list_coord *temp=t;
 	while(temp){
 		printf("x: %d y %d  %c  QUI JOUE MON GAAAARS \n",temp->x,temp->y,c);
