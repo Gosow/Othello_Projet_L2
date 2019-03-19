@@ -88,9 +88,12 @@ int lancement_jeu(int modeJeu){
     for(i=0;i<6;i++){
         SDL_QueryTexture(texteJoueur_tex[i], NULL, NULL, &(rectTEST[i].w), &(rectTEST[i].h));
     }
-    
-    int joueur=rand()%2+1;
-    int joueur_sauv=joueur;
+    char joueur;
+
+    if(rand()%2) joueur=NOIR;
+    else joueur=BLANC;
+
+    //int joueur_sauv=joueur;
     init_jeuSDL(renderer);
     int arret=NON;
     if( pWindow )
@@ -104,12 +107,12 @@ int lancement_jeu(int modeJeu){
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         SDL_GetMouseState(&x,&y);
-                            fprintf(stderr,"Mouse Buton down \n");
+                        //fprintf(stderr,"Mouse Button down \n");
                         // 82 px taille d'une case
                         if(x>= rectTEST[7].x && x<= (rectTEST[7].x+rectTEST[7].w) && y>=rectTEST[7].y &&y<=(rectTEST[7].y+rectTEST[7].h)){
                             init_matrice(mat);
                             arret=NON;
-                            joueur=joueur_sauv;
+                            //joueur=joueur_sauv;
                         }
                         if(x>= rectTEST[8].x && x<= (rectTEST[8].x+rectTEST[8].w) && y>=rectTEST[8].y &&y<=(rectTEST[8].y+rectTEST[8].h)){
                             running=0;
@@ -154,14 +157,14 @@ int lancement_jeu(int modeJeu){
                             arret=OUI;
                             afficher_gagnant();
                         }
-                        else afficher_matriceSDL(&joueur);
+                        else afficher_matriceSDL(joueur);
 
                         //printf("%c\n",afficher_gagnant(mat,renderer));
                         pion.x=680;
                         pion.y=10;
                         rectTEST[2].y=150;
                         if(!partie_termineeSDL()){
-                            if(joueur==1){
+                            if(joueur==NOIR){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);

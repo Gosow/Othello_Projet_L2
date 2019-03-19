@@ -6,7 +6,6 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
-#include "../gest_aff.h"
 #include "../gest_matrice.h"
 #include "../define.h"
 #include <string.h>
@@ -26,7 +25,7 @@ SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Rendere
 void init_jeuSDL(SDL_Renderer* renderer);
 
 //AFFICHAGE MATRICE / JEU
-void afficher_matriceSDL(int* joueur);
+void afficher_matriceSDL(char joueur);
 int partie_termineeSDL(void);
 char afficher_gagnant(void);
 

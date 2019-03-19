@@ -7,7 +7,7 @@ SDLLIB_DIR=./../lib/
 SDLINC_DIR=${SDL_DIR}/include
 INT_SDL=./interface_graphique/
 
-FICHIER_O=plateau_SDL.o menu_SDL.o main_SDL.o ToTexture.o gest_matrice.o gest_aff.o afficher_jeuSDL.o
+FICHIER_O=plateau_SDL.o menu_SDL.o main_SDL.o ToTexture.o gest_matrice.o afficher_jeuSDL.o
 LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer
 INCLUDES=-I${SDLINC_DIR}
 
@@ -36,9 +36,6 @@ afficher_jeuSDL.o : ${INT_SDL}afficher_jeuSDL.c ${INT_SDL}SDL_jeu.h
 
 gest_matrice.o: gest_matrice.c gest_matrice.h
 	${CC} ${OPTS} gest_matrice.o -c gest_matrice.c ${CFLAGS}
-
-gest_aff.o: gest_aff.c gest_aff.h
-	${CC} ${OPTS} gest_aff.o -c gest_aff.c ${CFLAGS}
 
 
 

@@ -42,7 +42,7 @@ void init_jeuSDL(SDL_Renderer* renderer){
  * \param int* joueur : renderer de la page.
  * \return void
  */
-void afficher_matriceSDL(int* joueur){
+void afficher_matriceSDL(char joueur){
     SDL_Texture *temp;
     int i=0,j=0;
 
@@ -50,7 +50,7 @@ void afficher_matriceSDL(int* joueur){
         imgBtnRect.y = i*82;
         imgBtnRect.x = 0;
         for(j=0;j<N;j++){
-            if(coup_valide(mat,i,j,*joueur)){
+            if(coup_valide(mat,i,j,joueur)){
                 temp = image_casePoss_tex;
             }else{
                 temp = image_caseNorm_tex;
