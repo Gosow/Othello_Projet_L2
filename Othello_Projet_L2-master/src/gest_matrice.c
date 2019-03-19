@@ -400,3 +400,12 @@ void calculer_score(t_matrice m,int *score1 , int *score2){
     }
   }
 }
+
+void copie_mat(t_matrice src, t_matrice dest){
+    int i,j;
+    for(i=0;i<N;i++){
+        for(j=0;j<0;j++){
+            dest[i][j]=src[i][j];
+        }
+    }
+}
