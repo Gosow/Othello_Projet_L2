@@ -12,7 +12,6 @@ t_liste* init_liste(void){
 	return p;
 }
 int liste_vide(t_liste* l){
-    fprintf(stderr,"liste vide:%d\n",(l->drapeau->next==l->drapeau) && (l->ec==l->drapeau));
     return (l->drapeau->next==l->drapeau) && (l->ec==l->drapeau);
 }
 
@@ -29,7 +28,6 @@ t_elem_coord* en_queue(t_liste* l){
     temp = en_tete(l);
     if(liste_vide(l)) return l->drapeau;
     while(temp != l->drapeau){
-        fprintf(stderr,"x:%d, y:y%d\n",temp->x,temp->y);
         temp=temp->next;
     };
     
@@ -108,7 +106,6 @@ void afficher_liste(t_liste *l,char c)
 {
     en_tete_ec(l);
     while(l->ec != l->drapeau){
-        fprintf(stderr,"%c joue: x:%d y:%d\n",c,elem_x(l),elem_y(l));
         suivant(l);
     }
 	/*t_list_coord *temp=t;

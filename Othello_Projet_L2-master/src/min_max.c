@@ -53,26 +53,27 @@ void supprimer_liste(t_list_coord* l){
 }
 */
 
-void tour_ordi(t_matrice mat, int* x, int* y){
-	t_liste* l = liste_coup(mat,NOIR);
+void tour_ordi(t_matrice m, int* x, int* y){
+	t_liste* l = liste_coup(m,NOIR);
 	afficher_liste(l,NOIR);
 	en_tete_ec(l);
 	//ec = l;	
 	//t_coord pos;
 	int v, max=-MAX_SCORE;
-	t_matrice temp;
+	t_matrice temp,mat;
+	copie_mat(m,mat);
 	while(!liste_vide(l)){
-		afficher_matrice(mat);
+		//afficher_matrice(mat);
 		// ICI temp = mat;
 		copie_mat(mat,temp);
-		afficher_matrice(temp);
+		//afficher_matrice(temp);
 		jouer_coup(temp, elem_x(l), elem_y(l), NOIR);
 		
 		v = alphabeta(temp,DEPTH,-MAX_SCORE,MAX_SCORE,MIN);
 		// ICI mat = temp;
-		copie_mat(temp,mat);
+		//copie_mat(temp,mat);
 	
-		fprintf(stderr,"SCORE : %d\n",v);
+		//fprintf(stderr,"SCORE : %d\n",v);
 		if(v > max){
 			max=v;
 			*x=elem_x(l);
@@ -98,33 +99,29 @@ int eval(t_matrice m, char c){
 	return cmpt;
 };
 
-int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
+int alphabeta(t_matrice m, int depth, int alpha, int beta, char noeud)
 {
 	t_liste *l;
-	t_matrice temp;
+	t_matrice temp,mat;
+	copie_mat(m,mat);
 	//afficher_matrice(mat);
 
 	if (partie_termineebis(mat) || depth <= 0){
-		fprintf(stderr,"FINI : ter:%d | prof:%d",partie_termineebis(mat),depth <= 0);
+		//fprintf(stderr,"FINI : ter:%d | prof:%d",partie_termineebis(mat),depth <= 0);
 		if(noeud == MAX) return eval(mat,BLANC);
 		return eval(mat,NOIR);
 	}
 	if(noeud == MAX){ //Programme
 		l = liste_coup(mat,NOIR);
-		fprintf(stderr,"liste NOIR\n");
+		//fprintf(stderr,"liste NOIR\n");
 		afficher_liste(l,NOIR);
 		en_tete_ec(l);
-		
-		//jouer_coup(mat,bestMove.x, bestMove.y, BLANC);
     	while(!liste_vide(l)){ //pour tous les coups possibles
-        	
-        	// ICI temp = mat;
 			copie_mat(mat,temp);
 
 			jouer_coup(temp, elem_x(l), elem_y(l), NOIR);
         	int score = alphabeta(temp, depth - 1, alpha, beta, MIN);
-			
-			// ICI mat = temp;
+
 			copie_mat(temp,mat);
 
         	if (score > alpha) {
@@ -143,7 +140,7 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
     } 
     else { //type MIN = adversaire
 		l = liste_coup(mat,BLANC);
-		fprintf(stderr,"liste BLANC\n");
+		//fprintf(stderr,"liste BLANC\n");
 		afficher_liste(l,NOIR);
 		en_tete_ec(l);
 		
@@ -177,15 +174,31 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 
 int main(void)
 {
-	t_matrice i;
-	init_matrice(i);
-	int x, y;
-	x=y=0;
-	tour_ordi(i,&x,&y);
-	//fprintf(stderr,"test min max \n");
-	fprintf(stderr," FINALE %d %d \n ", x,y);
-	afficher_matrice(i);
-	return 0;
+	t_matrice m;
+	init_matrice(m);
+    int lig, col;
+	char joueur = NOIR;
+    int choix;
+    int score1=0,score2=0;
+
+	afficher_matrice (m);
+	while (!partie_terminee (m)) {
+		if(joueur == BLANC){
+			choisir_coup (m, &lig, &col, joueur);
+		}else{
+			tour_ordi(m,&lig,&col);
+		}
+		jouer_coup (m, lig, col, joueur);
+		afficher_matrice (m);
+		if (peut_jouer(m, joueur_suivant(joueur))){
+		joueur = joueur_suivant (joueur);
+		}
+		else{ 
+		printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+		calculer_score(m,&score1,&score2);
+		printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+		}
+	}
 }
 
 
