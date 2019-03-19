@@ -12,8 +12,8 @@ t_liste* init_liste(void){
 	return p;
 }
 int liste_vide(t_liste* l){
-    fprintf(stderr,"liste vide:%d\n",l->drapeau->next==l->drapeau && l->ec==l->drapeau);
-    return l->drapeau->next==l->drapeau && l->ec==l->drapeau;
+    fprintf(stderr,"liste vide:%d\n",(l->drapeau->next==l->drapeau) && (l->ec==l->drapeau));
+    return (l->drapeau->next==l->drapeau) && (l->ec==l->drapeau);
 }
 
 t_elem_coord* en_tete(t_liste* l){
@@ -28,7 +28,7 @@ t_elem_coord* en_queue(t_liste* l){
     t_elem_coord *temp;
     temp = en_tete(l);
     if(liste_vide(l)) return l->drapeau;
-    while(temp->next != l->drapeau){
+    while(temp != l->drapeau){
         fprintf(stderr,"x:%d, y:y%d\n",temp->x,temp->y);
         temp=temp->next;
     };
@@ -38,21 +38,30 @@ t_elem_coord* en_queue(t_liste* l){
 
 void suivant(t_liste* l){
     l->ec=l->ec->next;
-}
+} 
 
 void coord_elem(int* x, int* y, t_elem_coord* ec){
     *x=ec->x;
     *y=ec->y;
 }
 void ajout_liste(t_liste* l, int x, int y){
-    t_elem_coord *ec, *temp = malloc(sizeof(t_elem_coord));
-    ec=en_queue(l);
-    
+    t_elem_coord *temp, *nv= malloc(sizeof(t_elem_coord));
+    temp=l->drapeau->next;
+
+    nv->x=x;
+    nv->y=y;
+    nv->next=temp;
+
+    l->drapeau->next=nv;
+
+    /*
+    t_elem_coord *temp = malloc(sizeof(t_elem_coord));
+
     temp->x=x;
     temp->y=y;
     temp->next=l->drapeau;
-    fprintf(stderr,"x:%d, y:y%d\n",ec->x,ec->y);
-    //ec->next=temp;
+    fprintf(stderr,"x:%d, y:y%d\n",en_queue(l)->x,en_queue(l)->y);
+    en_queue(l)->next=temp;*/
 }
 
 void oter_ec(t_liste* l){
@@ -80,7 +89,7 @@ int elem_y(t_liste* l){
     return l->ec->y;
 }
 
-t_liste* liste_coup(t_matrice mat,int joueur){
+t_liste* liste_coup(t_matrice mat,char joueur){
 	int i, j;
 	t_liste* res = init_liste();
 	for(i=0;i<N;i++){
@@ -98,8 +107,8 @@ t_liste* liste_coup(t_matrice mat,int joueur){
 void afficher_liste(t_liste *l,char c)
 {
     en_tete_ec(l);
-    while(l->ec->next != l->drapeau){
-        fprintf(stderr,"%c joue: x:%d y:%d",c,elem_x(l),elem_y(l));
+    while(l->ec != l->drapeau){
+        fprintf(stderr,"%c joue: x:%d y:%d\n",c,elem_x(l),elem_y(l));
         suivant(l);
     }
 	/*t_list_coord *temp=t;

@@ -62,27 +62,24 @@ void supprimer_liste(t_list_coord* l){
 
 void tour_ordi(t_matrice mat, int* x, int* y){
 	t_liste* l = liste_coup(mat,NOIR);
+	afficher_liste(l,NOIR);
 	en_tete_ec(l);
 	//ec = l;	
 	//t_coord pos;
 	int v, max=-MAX_SCORE;
 	t_matrice temp;
-	while(liste_vide(l)){
+	while(!liste_vide(l)){
 		
 		// ICI temp = mat;
-			for(int tt=0;tt<N;tt++)
-				for(int ttt=0;ttt<N;ttt++)
-					temp[tt][ttt]=mat[tt][ttt];
+		copie_mat(mat,temp);
 
-			jouer_coup(temp, elem_x(l), elem_y(l), NOIR);
-        	
-			v = alphabeta(temp,DEPTH,-MAX_SCORE,MAX_SCORE,MIN);
-			// ICI mat = temp;
-			for(int tt=0;tt<N;tt++)
-				for(int ttt=0;ttt<N;ttt++)
-					mat[tt][ttt]=temp[tt][ttt];
+		jouer_coup(temp, elem_x(l), elem_y(l), NOIR);
 		
-		
+		v = alphabeta(temp,DEPTH,-MAX_SCORE,MAX_SCORE,MIN);
+		// ICI mat = temp;
+		copie_mat(temp,mat);
+	
+		fprintf(stderr,"SCORE : %d\n",v);
 		if(v > max){
 			max=v;
 			*x=elem_x(l);
@@ -127,7 +124,7 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 		
 
 		//jouer_coup(mat,bestMove.x, bestMove.y, BLANC);
-    	while(liste_vide(l)){ //pour tous les coups possibles
+    	while(!liste_vide(l)){ //pour tous les coups possibles
         	
         	// ICI temp = mat;
 			copie_mat(mat,temp);
@@ -148,6 +145,8 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 			
       	}
 		//supprimer_liste(en_tete);
+		free(temp);
+		free(mat);
 		return alpha;
     } 
     else { //type MIN = adversaire
@@ -158,11 +157,11 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 		
 		//jouer_coup(mat,bestMove.x, bestMove.y, NOIR);
 		
-		while(liste_vide(l)){
+		while(!liste_vide(l)){
 			
 			// ICI temp = mat;
 			copie_mat(mat,temp);
-
+			fprintf(stderr," AHAHAHAHA %d %d \n ", elem_x(l), elem_y(l));
 			jouer_coup(temp, elem_x(l), elem_y(l), BLANC);
 			int score = alphabeta(temp, depth - 1, alpha, beta, MAX);
 			
@@ -179,6 +178,8 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 			//list_coord = list_coord->next;
 		}
 		//supprimer_liste(en_tete);
+		free(temp);
+		free(mat);
     	return beta;
     }
 }
@@ -186,10 +187,11 @@ int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud)
 int main(void)
 {	t_matrice i;
 	init_matrice(i);
-	int *x, *y;
-	tour_ordi(i,x,y);
+	int x, y;
+	x=y=0;
+	tour_ordi(i,&x,&y);
 	//fprintf(stderr,"test min max \n");
-	fprintf(stderr," FINALE %d %d \n ", *x,*y);
+	fprintf(stderr," FINALE %d %d \n ", x,y);
 	return 0;
 }
 

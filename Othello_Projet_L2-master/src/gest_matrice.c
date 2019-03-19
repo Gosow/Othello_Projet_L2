@@ -169,7 +169,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
 
 /**
  *\brief Fonction qui indique si le joueur peut encore jouer */
-int peut_jouer (t_matrice m, int joueur) {
+int peut_jouer (t_matrice m, char joueur) {
     int i, j;
     for (i=0; i<N; i++)
         for (j=0; j<N; j++)
