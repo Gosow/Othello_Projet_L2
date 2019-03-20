@@ -72,12 +72,13 @@ void init_client(){
 }
 
 void quit_client (int to_server_socket){
-shutdown(to_server_socket,2);
-if(close(to_server_socket)==0){
-	return 0;
-}
-else {
-	return -1;
+	shutdown(to_server_socket,2);
+	if(close(to_server_socket)==0){
+		return 0;
+	}
+	else {
+		return -1;
+	}
 }
 
 int jeux_reseaux_c(t_matrice m,int lig,int col,char joueur,int score1,int score2){
