@@ -2,6 +2,7 @@
 #define __SDL_JEU_H__
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
@@ -27,8 +28,10 @@ void init_jeuSDL(SDL_Renderer* renderer);
 
 //AFFICHAGE MATRICE / JEU
 void afficher_matriceSDL(char joueur);
+void afficher_cibleSDL(int x,int y);
 int partie_termineeSDL(void);
 char afficher_gagnant(void);
+
 
 //JEU : INTERFACE GRAPHIQUE
 int lancement_jeu(int modeJeu);

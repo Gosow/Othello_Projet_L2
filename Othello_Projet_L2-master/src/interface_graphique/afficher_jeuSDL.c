@@ -12,6 +12,7 @@ static SDL_Texture *image_caseNorm_tex;
 static SDL_Texture *image_casePoss_tex;
 static SDL_Texture *image_noir_tex;
 static SDL_Texture *image_blanc_tex;
+static SDL_Texture *image_cible_tex;
 static SDL_Rect imgBtnRect;
 static SDL_Renderer *renderer_temp;
 
@@ -28,6 +29,7 @@ void init_jeuSDL(SDL_Renderer* renderer){
     image_noir_tex = tex_img_png("./img/noir.png",renderer);
     //PION BLANC
     image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
+    image_cible_tex = tex_img_png("./img/cible.png",renderer);
     //POSITION ET TAILLE CASE
     imgBtnRect.x = 0;
     imgBtnRect.y = 0;
@@ -122,3 +124,30 @@ char afficher_gagnant(void){
     else if (nb_blanc > nb_noir) return BLANC;
     else return EGALITE;
 };
+
+void afficher_cibleSDL(int x,int y){
+    SDL_Texture *temp;
+    int i=0,j=0;
+
+    for(i=0;i<N;i++){
+        imgBtnRect.y = i*82;
+        imgBtnRect.x = 0;
+        for(j=0;j<N;j++){
+            if(i==x && j==y){
+                temp = image_cible_tex;
+            }else{
+                temp = image_caseNorm_tex;
+            }
+            SDL_RenderCopy(renderer_temp, temp, NULL, &imgBtnRect);
+            if(mat[i][j] == NOIR){
+                SDL_RenderCopy(renderer_temp, image_noir_tex, NULL, &imgBtnRect);
+            }
+            else if(mat[i][j] == BLANC){
+                SDL_RenderCopy(renderer_temp, image_blanc_tex, NULL, &imgBtnRect);
+            }
+            imgBtnRect.x += 82;
+        }
+    }
+    SDL_RenderPresent(renderer_temp);
+    sleep(1);
+}
