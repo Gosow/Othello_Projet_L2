@@ -55,7 +55,7 @@ void supprimer_liste(t_list_coord* l){
 
 void tour_ordi(t_matrice m, int* x, int* y){
 	t_liste* l = liste_coup(m,BLANC);
-	afficher_liste(l,BLANC);
+	afficher_liste(l);
 	en_tete_ec(l);
 	//ec = l;	
 	//t_coord pos;
@@ -114,7 +114,7 @@ int alphabeta(t_matrice m, int depth, int alpha, int beta, char noeud)
 	if(noeud == MAX){ //Programme
 		l = liste_coup(mat,BLANC);
 		//fprintf(stderr,"liste BLANC\n");
-		afficher_liste(l,BLANC);
+		afficher_liste(l);
 		en_tete_ec(l);
     	while(!liste_vide(l)){ //pour tous les coups possibles
 			copie_mat(mat,temp);
@@ -141,7 +141,7 @@ int alphabeta(t_matrice m, int depth, int alpha, int beta, char noeud)
     else { //type MIN = adversaire
 		l = liste_coup(mat,NOIR);
 		//fprintf(stderr,"liste NOIR\n");
-		afficher_liste(l,BLANC);
+		afficher_liste(l);
 		en_tete_ec(l);
 		
 		//jouer_coup(mat,bestMove.x, bestMove.y, BLANC);
