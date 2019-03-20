@@ -8,9 +8,9 @@
 
 #include "define.h"
 #include "gest_matrice.h"
-#include "gest_aff.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /**
  *\brief la Fonction init_matrice initialisation de la grille
@@ -30,6 +30,39 @@ void init_matrice (t_matrice m) {
     m[N/2][N/2] = NOIR;
 }
 
+/**
+ *\brief LaFonction afficher_matrice est la fonction qui  affiche la grille de jeu
+**/
+void afficher_matrice (t_matrice m) {
+    int i, j;
+    char a = 'A';
+
+    /** Lettres **/
+    printf ("\n");
+    for (i=0; i<N; i++) {
+        printf ("  %c ", a);
+        a++;
+    }
+
+    /** Grille **/
+    printf ("\n+");
+    for (i=0; i<N; i++)
+        printf ("---+");
+    printf ("\n");
+    for (i=0; i<N; i++) {
+        printf ("|");
+        for (j=0; j<N; j++)
+            if (m[i][j] == BLANC)
+                printf ("\033[31m %c \033[0m|", m[i][j]); /** Les blancs en rouge **/
+            else
+                printf ("\033[34m %c \033[0m|", m[i][j]); /** Les noirs en bleu **/
+        printf (" %d\n+", i+1);
+        for (j=0; j<N; j++)
+            printf ("---+");
+        printf ("\n");
+    }
+}
+
 
 
 /**
@@ -42,17 +75,17 @@ int case_existe (int lig, int col) {
 /* Fonction qui verifie si le coup est valide */
 int coup_valide (t_matrice m, int lig, int col, int joueur) {
     int i, j, ok;
-    char cj, ca;
+    char cj, ca;//cj=couleur joueur, ca=couleur autre
 
     /** Definition des couleurs pour les 2 joueurs **/
-    if (joueur == 1) {
+    if (joueur == NOIR) {
         cj = NOIR;
         ca = BLANC;
     } else {
         cj = BLANC;
         ca = NOIR;
     }
-    if (!case_existe(lig, col) || m[lig][col] != VIDE) return 0;
+    if (!case_existe( lig, col) || m[lig][col] != VIDE) return 0;
 
     /** Vers le haut **/
     i = lig - 1;
@@ -137,7 +170,7 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
 
 /**
  *\brief Fonction qui indique si le joueur peut encore jouer */
-int peut_jouer (t_matrice m, int joueur) {
+int peut_jouer (t_matrice m, char joueur) {
     int i, j;
     for (i=0; i<N; i++)
         for (j=0; j<N; j++)
@@ -148,14 +181,21 @@ int peut_jouer (t_matrice m, int joueur) {
 }
 
 /* Retourne le joueur suivant */
-int joueur_suivant (int joueur) {
-    return (joueur %2 + 1);
+int joueur_suivant (char joueur) {
+    if(joueur == NOIR){
+        joueur = BLANC;
+    }
+    else{
+        joueur = NOIR;
+    }
+    printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
+    return (joueur);
 }
 
 /* Demander le coup du joueur */
 void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
     char c;
-    printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
+    printf ("\nJoueur %d a vous de jouer\n", joueur);
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
     /* On transforme les minuscules en majuscules */
@@ -164,7 +204,6 @@ void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
     (*col) = c - 'A';
     scanf ("%d", lig);
     (*lig)--;
-
     /* On redemande tant que le coup n'est pas valide */
     while (!coup_valide (m, *lig, *col, joueur)) {
         printf ("\nCe coup n'est pas valide\n");
@@ -225,8 +264,7 @@ void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     int i, j;
     char cj, ca;
 
-
-    if (joueur != 1) {
+    if (joueur == BLANC) {
         cj = BLANC;
         ca = NOIR;
     } else {
@@ -361,4 +399,13 @@ void calculer_score(t_matrice m,int *score1 , int *score2){
         *score2 += 1 ;
     }
   }
+}
+
+void copie_mat(t_matrice src, t_matrice dest){
+    int i,j;
+    for(i=0;i<N;i++){
+        for(j=0;j<N;j++){
+            dest[i][j]=src[i][j];
+        }
+    }
 }

@@ -11,7 +11,7 @@ PROG=othello
 all: projet
 
 projet: main.c
-	${CC} -o ${PROG} main.c gest_matrice.c gest_aff.c gest_aff.h gest_matrice.h define.h ${LIBS} ${INCLUDES}
+	${CC} -o ${PROG} main.c gest_matrice.c gest_matrice.h define.h ${LIBS} ${INCLUDES}
 
 clean: 
 	rm -f ${PROG}

@@ -1,3 +1,4 @@
 *.o
 main_SDL
 .DS_STORE
+*.h.gch

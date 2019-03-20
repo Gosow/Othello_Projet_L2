@@ -88,8 +88,11 @@ int lancement_jeu(int modeJeu){
     for(i=0;i<6;i++){
         SDL_QueryTexture(texteJoueur_tex[i], NULL, NULL, &(rectTEST[i].w), &(rectTEST[i].h));
     }
-    
-    int joueur=rand()%2+1;
+    char joueur;
+
+    if(rand()%2 || modeJeu==DUO) joueur=NOIR;
+    else joueur=BLANC;
+
     int joueur_sauv=joueur;
     init_jeuSDL(renderer);
     int arret=NON;
@@ -104,8 +107,8 @@ int lancement_jeu(int modeJeu){
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         SDL_GetMouseState(&x,&y);
-                            fprintf(stderr,"Mouse Buton down \n");
-                        // 82 px taille d'une case
+                        //fprintf(stderr,"Mouse Button down \n");
+                        //REPLAY
                         if(x>= rectTEST[7].x && x<= (rectTEST[7].x+rectTEST[7].w) && y>=rectTEST[7].y &&y<=(rectTEST[7].y+rectTEST[7].h)){
                             init_matrice(mat);
                             arret=NON;
@@ -117,6 +120,7 @@ int lancement_jeu(int modeJeu){
                             init_matrice(mat);
                             menu_SDL();
                         }
+                        // 82 px taille d'une case
                         if(!arret){
                             if(x<=656 && y<=656){
                                 x=x/82;
@@ -124,8 +128,20 @@ int lancement_jeu(int modeJeu){
                                 if(coup_valide(mat,y,x,joueur)){
                                     jouer_coup(mat,y,x,joueur);
                                     joueur=joueur_suivant(joueur);
-                                    if(!peut_jouer(mat,joueur)&&peut_jouer(mat,joueur%2+1)){
+                                    if(modeJeu == DUO && joueur == BLANC && peut_jouer(mat,BLANC)){
+                                        tour_ordi(mat,&x,&y);
+                                        jouer_coup(mat,x,y,BLANC);
                                         joueur=joueur_suivant(joueur);
+                                    }
+                                    if(!peut_jouer(mat,joueur)){
+                                        if((joueur == BLANC && peut_jouer(mat,NOIR))||(joueur == NOIR && peut_jouer(mat,BLANC))){
+                                            joueur=joueur_suivant(joueur);
+                                            if(modeJeu == DUO && joueur == BLANC && peut_jouer(mat,BLANC)){
+                                                tour_ordi(mat,&x,&y);
+                                                jouer_coup(mat,x,y,BLANC);
+                                                joueur=joueur_suivant(joueur);
+                                            }
+                                        }
                                     }
                                 }
                                 
@@ -154,14 +170,14 @@ int lancement_jeu(int modeJeu){
                             arret=OUI;
                             afficher_gagnant();
                         }
-                        else afficher_matriceSDL(&joueur);
+                        else afficher_matriceSDL(joueur);
 
                         //printf("%c\n",afficher_gagnant(mat,renderer));
                         pion.x=680;
                         pion.y=10;
                         rectTEST[2].y=150;
                         if(!partie_termineeSDL()){
-                            if(joueur==1){
+                            if(joueur==NOIR){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);
