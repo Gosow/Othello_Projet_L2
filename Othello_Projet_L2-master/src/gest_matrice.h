@@ -7,7 +7,7 @@ void afficher_matrice (t_matrice m) ;
 int case_existe (int lig, int col);
 int coup_valide (t_matrice m, int lig, int col, char joueur) ;
 int peut_jouer (t_matrice m, char joueur) ;
-int joueur_suivant (char joueur) ;
+char joueur_suivant (char joueur) ;
 void choisir_coup (t_matrice m, int *lig, int *col, char joueur) ;
 int partie_terminee (t_matrice m) ;
 void jouer_coup (t_matrice m, int lig, int col, char joueur) ;

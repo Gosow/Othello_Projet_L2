@@ -181,21 +181,21 @@ int peut_jouer (t_matrice m, char joueur) {
 }
 
 /* Retourne le joueur suivant */
-int joueur_suivant (char joueur) {
+char joueur_suivant (char joueur) {
     if(joueur == NOIR){
         joueur = BLANC;
     }
     else{
         joueur = NOIR;
     }
-    printf ("\nC'est au tour du joueur %d de jouer\n", joueur);
+    printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
     return (joueur);
 }
 
 /* Demander le coup du joueur */
 void choisir_coup (t_matrice m, int *lig, int *col, char joueur) {
     char c;
-    printf ("\nJoueur %d a vous de jouer\n", joueur);
+    printf ("\nJoueur %c a vous de jouer\n", joueur);
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
     /* On transforme les minuscules en majuscules */
