@@ -29,8 +29,7 @@ void quitter(int to_server_socket){
 	send(to_server_socket,QUITTER,7,0);
 }
 
-
-int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2){ 
+void init_client(){
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in serveur_addr;
 	struct hostent *serveur_info;
@@ -64,19 +63,30 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 	/* requete de connexion */
 	//int connect(int socket, struct sockaddr* addr, socklen_t addrlen);
 	//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage comme le fonction accept() cote serveur
-	if(connect( to_server_socket, (struct sockaddr *)&serveur_addr, sizeof(serveur_addr)) < 0 ) {
+	if(connect(to_server_socket, (struct sockaddr *)&serveur_addr, sizeof(serveur_addr)) < 0 ) {
 		printf("Impossible de se connecter au serveur\n");
 	  	exit(0);
 	}
 	/* envoie de données et reception */
 	printf("Connexion avec le serveur reussi!\n");
+}
 
+void quit_client (int to_server_socket){
+shutdown(to_server_socket,2);
+if(close(to_server_socket)==0){
+	return 0;
+}
+else {
+	return -1;
+}
 
+int jeux_reseaux_c(t_matrice m,int lig,int col,char joueur,int score1,int score2){
+
+		init_client();
 
 //Initialisation du jeux
-    init_matrice (m);
+    init_matrice(m);
 
-	
 	while (!partie_terminee (m)) {
 		afficher_matrice (m);
 		choisir_coup (m, &lig, &col, joueur);
@@ -84,7 +94,7 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 		afficher_matrice (m);
 		if (peut_jouer(m, joueur_suivant(joueur))){
 				send(to_server_socket,m,sizeof(t_matrice),0);
-				read(to_server_socket,joueur,sizeof(int));
+				read(to_server_socket,joueur,sizeof(char));
 				joueur = joueur_suivant (joueur);
 		}
 		else {
@@ -93,26 +103,20 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 		}
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 			recv(to_server_socket,m,sizeof(t_matrice),0);
-			write(to_server_socket,joueur,sizeof(int));
+			write(to_server_socket,joueur,sizeof(char));
 
 	}
 	/* fermeture de la connexion */
-	shutdown(to_server_socket,2);
+	quit_client (to_server_socket);
 
-	if(close(to_server_socket)==0){
-		return 0;	
-	}
-	else {
-		return -1;
-	}
-	
 }
 
 
 int main(void){
-	int lig, col, joueur = 1,score1=0,score2=0;
+	int lig, col,score1=0,score2=0;
+	char joueur = BLANC ;
 	t_matrice m;
-	
+
 	jeux_reseaux_c(m,lig,col,joueur,score1,score2);
 
 

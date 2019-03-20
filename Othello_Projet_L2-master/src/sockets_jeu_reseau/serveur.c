@@ -42,8 +42,7 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-
-int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2){
+void init_serveur(){
 	int ma_socket;
 	int client_socket;
 	int sock_err;
@@ -58,9 +57,9 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	char *hostname = "localhost";
-  	char ip[100];
+		char ip[100];
 
-  	hostname_to_ip(hostname , ip);
+		hostname_to_ip(hostname , ip);
 	fprintf(stderr, "%s resolved to %s\n" , hostname , ip);
 	view_ip();
 
@@ -81,8 +80,8 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 		if(sock_err != SOCKET_ERROR){
 			/* accept la connexion */
 			mon_address_longueur = sizeof(client_address);
-		    /* on attend que le client se connecte */
-		    //int accept(int socket, struct sockaddr* addr, socklen_t* addrlen);
+				/* on attend que le client se connecte */
+				//int accept(int socket, struct sockaddr* addr, socklen_t* addrlen);
 				//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage
 				/*int read(numsoc, tampon, nboctets));
 				int numsoc : numero de socket
@@ -95,23 +94,36 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 			client_socket = accept(ma_socket,(struct sockaddr *)&client_address,&mon_address_longueur);
 			printf("Connexion avec le client réussi!\n");
 		}
-
 	}
-	//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
-	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
-	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
-	
-	int i=0;
+}
+
+void quit_serveur(int client,int ma_socket){
+	shutdown(client_socket,2);
+	close(client_socket);
+	shutdown(ma_socket,2);
+	if(close(ma_socket)==0){
+		return 0;
+	}
+	else{
+		return -1;
+	}
+}
+
+int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2){
+
+	init_serveur();
+
 	int quitter=0;
 
-
 //Initialisation du jeux
+//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
+//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
+//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
     init_matrice (m);
 
-  while(!quitter || i < 20)
-	{	
+  while(!quitter){
 		recv(client_socket,m,sizeof(t_matrice),0); //recv placé en debut car on attend que le client joue avant d'afficher
-		write(client_socket,joueur,sizeof(int));
+		write(client_socket,joueur,sizeof(char));
 		afficher_matrice (m);
 		while (!partie_terminee (m)) {
 			choisir_coup (m, &lig, &col, joueur);
@@ -119,7 +131,7 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 			afficher_matrice (m);
 			if (peut_jouer(m, joueur_suivant(joueur))){
 				send(client_socket,m,sizeof(t_matrice),0);
-				read(client_socket,joueur,sizeof(int));
+				read(client_socket,joueur,sizeof(char));
 				joueur = joueur_suivant (joueur);
 			}
 			else {
@@ -129,23 +141,14 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,int joueur,int score1,int score2)
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 		}
 	}
-
-	shutdown(client_socket,2);
-	close(client_socket);
-	shutdown(ma_socket,2);
-	if(close(ma_socket)==0){
-		return 0;	
-	}
-	else{
-		return -1;
-	}
-	
+	quit_serveur(client_socket);
 }
 
 int main (void){
-	int lig, col, joueur =  2 ,score1=0,score2=0;
+	int lig, col,score1=0,score2=0;
+	char joueur = NOIR ;
 	t_matrice m;
-	
+
 	jeux_reseaux_s(m,lig,col,joueur,score1,score2);
 
 
