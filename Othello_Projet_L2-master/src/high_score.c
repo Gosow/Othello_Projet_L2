@@ -1,28 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-int max(int a, int b){
-    if (a > b)
-        return a;
-    else
-        return b;
-}
-
-void fct_tridecroitableau(int tableau[], int tailletableau){
-     int valeurtemporaire, i, j;
-
-     for (i=0; i<tailletableau; i++){
-        for(j=i; j<tailletableau; j++){
-            if(tableau[j]>tableau[i]){
-                valeurtemporaire = tableau[i];
-                tableau[i] = tableau[j];
-                tableau[j] = valeurtemporaire;
-            }
-        }
-      }
-}
-
+#include "fonc_boite_outils/outils.h"
+#include "define.h"
+#include "gest_matrice.h"
 
 int high_score(t_matrice m) {
   if(!partie_terminee(m)) {

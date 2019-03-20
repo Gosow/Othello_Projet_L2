@@ -15,4 +15,4 @@ void supprimer_liste(t_liste* l);
 int elem_x(t_liste* l);
 int elem_y(t_liste* l);
 t_liste* liste_coup(t_matrice mat,char joueur);
-void afficher_liste(t_liste *l,char c);
+void afficher_liste(t_liste *l);

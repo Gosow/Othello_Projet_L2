@@ -59,3 +59,9 @@ void fct_tridecroitableau(int tableau[], int tailletableau){
         }
       }
 }
+void afficher_tableau(int *tab_jeux, int nbval){
+	int i;
+	for(i=0;i<nbval;i++){
+		printf("tab[%d]=%d\n",i,tab_jeux[i]);
+	}
+}
