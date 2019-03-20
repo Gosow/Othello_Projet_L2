@@ -112,18 +112,16 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in mon_address, client_address;
 	unsigned int mon_address_longueur, lg;
+	joueur=BLANC;
 
 	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
-
-	int quitter=0;
 
 //Initialisation du jeux
 //int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
 //int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 //buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
-    init_matrice (m);
 
-  while(!quitter){
+  while(!partie_terminee (m)){
 		recv(client_socket,m,sizeof(t_matrice),0); //recv placé en debut car on attend que le client joue avant d'afficher
 		write(client_socket,joueur,sizeof(char));
 		afficher_matrice (m);
@@ -146,13 +144,13 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2
 	quit_serveur(client_socket,ma_socket);
 }
 
-int main (void){
-	int lig, col,score1=0,score2=0;
-	char joueur = NOIR ;
+/*main temp*/
+int main(void){
 	t_matrice m;
+	int lig, col,choix ,score1=0,score2=0;
+	char joueur;
 
 	jeux_reseaux_s(m,lig,col,joueur,score1,score2);
-
 
 	return 0;
 }

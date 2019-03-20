@@ -37,11 +37,11 @@ void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info ,
 		bcopy(&hostAddr,&serveur_addr.sin_addr,sizeof(hostAddr));
 	} else {
 		serveur_info = gethostbyname(SERVEURNAME);
-	  	if (serveur_info == NULL) {
+		if (serveur_info == NULL) {
 			printf("Impossible de récupérer les infos du serveur\n");
 			exit(0);
-	  	}
-	  	bcopy(serveur_info->h_addr,&serveur_addr.sin_addr,serveur_info->h_length);
+		}
+		bcopy(serveur_info->h_addr,&serveur_addr.sin_addr,serveur_info->h_length);
 	}
 	//sin_port sera égal à la valeur retournée par la fonction htons, avec comme paramètre le port utilisé
 	serveur_addr.sin_port = htons(30000);
@@ -82,44 +82,40 @@ int jeux_reseaux_c(t_matrice m,int lig,int col,char joueur,int score1,int score2
 	long hostAddr;
 	//char buffer[512];
 	int to_server_socket;
+	joueur=NOIR;
 
 	init_client(serveur_addr,serveur_info ,hostAddr,to_server_socket);
-
+	init_matrice(m);
 //Initialisation du jeux
-  init_matrice(m);
+	afficher_matrice (m);
 
 	while (!partie_terminee (m)) {
-		afficher_matrice (m);
 		choisir_coup (m, &lig, &col, joueur);
 		jouer_coup (m, lig, col, joueur);
 		afficher_matrice (m);
 		if (peut_jouer(m, joueur_suivant(joueur))){
 				send(to_server_socket,m,sizeof(t_matrice),0);
+				joueur = joueur_suivant(joueur);
 				read(to_server_socket,joueur,sizeof(char));
-				joueur = joueur_suivant (joueur);
 		}
 		else {
-			printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+			printf ("\nLe joueur %c passe son tour\n", joueur_suivant(joueur));
 			calculer_score(m,&score1,&score2);
 		}
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 			recv(to_server_socket,m,sizeof(t_matrice),0);
 			write(to_server_socket,joueur,sizeof(char));
-
+			afficher_matrice(m);
 	}
 	/* fermeture de la connexion */
 	quit_client (to_server_socket);
-
 }
 
-
 int main(void){
-	int lig, col,score1=0,score2=0;
-	char joueur = BLANC ;
 	t_matrice m;
+	int lig, col,choix ,score1=0,score2=0;
+	char joueur;
 
 	jeux_reseaux_c(m,lig,col,joueur,score1,score2);
-
-
 	return 0;
 }
