@@ -181,7 +181,6 @@ int main(void)
 	char joueur = BLANC;
     int choix;
     int score1=0,score2=0;
-
 	afficher_matrice (m);
 	while (!partie_terminee (m)) {
 		if(joueur == NOIR){
@@ -221,20 +220,14 @@ int point(t_matrice m , char couleur)
 			{
 				cpt+=2;
 			}
-
 		}
 	}
-
 	//la difference de nombre entre les pions rapporte aussi des points
-
 		calc+=//fonction qui compte le nombre de pions d une couleur donnée;
 		calc-=//meme fonction avec une operation ternaire ppour prendre l inverse , ou un if
-
 		cpt+= calc;
-
 		//le fait d'avoir certaines cases rapporte plus de points que d autres
 		//exemple les coins
-
 	if(m[N-1][N-1] == couleur){
 		b_d = 1;
 		cpt += pt_coins;
@@ -254,9 +247,7 @@ int point(t_matrice m , char couleur)
 		cpt += pt_coins;
 	}
 	
-
 	//points des cotés de plateau
-
 	if(h_g != 1){
 		i = 1;
 		j = 1;
@@ -286,7 +277,6 @@ int point(t_matrice m , char couleur)
 			j++;
 		}
 		
-
 	}
 	if(1 == b_d){
 		i = N-2;
@@ -323,7 +313,6 @@ int point(t_matrice m , char couleur)
 	if(1==h_d){
 		j = N-2;
 		i = 1;
-
 		while(m[i][N-1] == couleur && i < N-1){
 			cpt += pt_ctr_1;
 			i++;
@@ -360,7 +349,6 @@ int point(t_matrice m , char couleur)
 			cpt += pt_ctr_1;
 			i--;
 		}	
-
 		while(m[N-1][j] == couleur && j < N-1){
 			cpt += pt_ctr_1;
 			j++;
@@ -384,10 +372,7 @@ int point(t_matrice m , char couleur)
 			j++;
 		}
 	}
-
 		// ET ici le centre du plateau(moins de points)
-
-
 	if(m[N/2][(N/2)-1] == couleur)
 		cpt += pt_centre_plt;
 	if(m[(N/2)-1][N/2] == couleur)
