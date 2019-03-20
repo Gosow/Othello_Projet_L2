@@ -73,7 +73,7 @@ int case_existe (int lig, int col) {
 }
 
 /* Fonction qui verifie si le coup est valide */
-int coup_valide (t_matrice m, int lig, int col, int joueur) {
+int coup_valide (t_matrice m, int lig, int col, char joueur) {
     int i, j, ok;
     char cj, ca;//cj=couleur joueur, ca=couleur autre
 
@@ -193,7 +193,7 @@ int joueur_suivant (char joueur) {
 }
 
 /* Demander le coup du joueur */
-void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
+void choisir_coup (t_matrice m, int *lig, int *col, char joueur) {
     char c;
     printf ("\nJoueur %d a vous de jouer\n", joueur);
     printf ("Choisissez une case (ex: A1) :\n");
@@ -260,7 +260,7 @@ int partie_terminee (t_matrice m) {
 }
 
 /* Fonction qui permet de jouer un coup */
-void jouer_coup (t_matrice m, int lig, int col, int joueur) {
+void jouer_coup (t_matrice m, int lig, int col, char joueur) {
     int i, j;
     char cj, ca;
 
