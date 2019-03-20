@@ -9,5 +9,6 @@
 int eval(t_matrice m, char c);
 void tour_ordi(t_matrice mat, int* x, int* y);
 int alphabeta(t_matrice mat, int depth, int alpha, int beta, char noeud);
+int point(t_matrice m , char couleur);
 
 #endif

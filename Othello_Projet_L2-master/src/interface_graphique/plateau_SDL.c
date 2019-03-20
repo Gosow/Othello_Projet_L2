@@ -90,7 +90,7 @@ int lancement_jeu(int modeJeu){
     }
     char joueur;
 
-    if(rand()%2) joueur=NOIR;
+    if(rand()%2 || modeJeu==DUO) joueur=NOIR;
     else joueur=BLANC;
 
     int joueur_sauv=joueur;
@@ -128,9 +128,19 @@ int lancement_jeu(int modeJeu){
                                 if(coup_valide(mat,y,x,joueur)){
                                     jouer_coup(mat,y,x,joueur);
                                     joueur=joueur_suivant(joueur);
+                                    if(modeJeu == DUO && joueur == BLANC && peut_jouer(mat,BLANC)){
+                                        tour_ordi(mat,&x,&y);
+                                        jouer_coup(mat,x,y,BLANC);
+                                        joueur=joueur_suivant(joueur);
+                                    }
                                     if(!peut_jouer(mat,joueur)){
                                         if((joueur == BLANC && peut_jouer(mat,NOIR))||(joueur == NOIR && peut_jouer(mat,BLANC))){
                                             joueur=joueur_suivant(joueur);
+                                            if(modeJeu == DUO && joueur == BLANC && peut_jouer(mat,BLANC)){
+                                                tour_ordi(mat,&x,&y);
+                                                jouer_coup(mat,x,y,BLANC);
+                                                joueur=joueur_suivant(joueur);
+                                            }
                                         }
                                     }
                                 }

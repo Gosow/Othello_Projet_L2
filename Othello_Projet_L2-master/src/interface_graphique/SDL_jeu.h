@@ -8,6 +8,7 @@
 #include <SDL2/SDL_mixer.h>
 #include "../gest_matrice.h"
 #include "../define.h"
+#include "../min_max.h"
 #include <string.h>
 #include <time.h>
 #define SOLO 0
