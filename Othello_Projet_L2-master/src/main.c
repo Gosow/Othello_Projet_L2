@@ -38,8 +38,8 @@ int main (int argc,char **argv) {
               if (peut_jouer(m, joueur_suivant(joueur))){
                 joueur = joueur_suivant (joueur);
               }
-              else{ 
-                printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
+              else{
+                printf ("\nLe joueur %s passe son tour\n", joueur_suivant(joueur));
                 calculer_score(m,&score1,&score2);
                 printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
               }
@@ -47,7 +47,7 @@ int main (int argc,char **argv) {
             break;
         case 2: // min max ordi avec fonction
         break;
-        case 3: 
+        case 3:
                 system(serveur2.c);
                 system(client2.c);
         break;
