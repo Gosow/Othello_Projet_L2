@@ -42,13 +42,8 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-void init_serveur(){
-	int ma_socket;
-	int client_socket;
-	int sock_err;
-	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
-	struct sockaddr_in mon_address, client_address;
-	unsigned int mon_address_longueur, lg;
+void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_in mon_address ,struct sockaddr_in client_address ,unsigned int mon_address_longueur,unsigned int lg){
+
 	bzero(&mon_address,sizeof(mon_address));
 	//sin_port sera égal à la valeur retournée par la fonction htons, avec comme paramètre le port utilisé
 	mon_address.sin_port = htons(30000);
@@ -57,9 +52,9 @@ void init_serveur(){
 	mon_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	char *hostname = "localhost";
-		char ip[100];
+	char ip[100];
 
-		hostname_to_ip(hostname , ip);
+	hostname_to_ip(hostname , ip);
 	fprintf(stderr, "%s resolved to %s\n" , hostname , ip);
 	view_ip();
 
@@ -97,7 +92,7 @@ void init_serveur(){
 	}
 }
 
-void quit_serveur(int client,int ma_socket){
+void quit_serveur(int client_socket,int ma_socket){
 	shutdown(client_socket,2);
 	close(client_socket);
 	shutdown(ma_socket,2);
@@ -111,7 +106,14 @@ void quit_serveur(int client,int ma_socket){
 
 int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2){
 
-	init_serveur();
+	int ma_socket;
+	int client_socket;
+	int sock_err;
+	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
+	struct sockaddr_in mon_address, client_address;
+	unsigned int mon_address_longueur, lg;
+
+	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 
 	int quitter=0;
 
@@ -141,7 +143,7 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 		}
 	}
-	quit_serveur(client_socket);
+	quit_serveur(client_socket,ma_socket);
 }
 
 int main (void){

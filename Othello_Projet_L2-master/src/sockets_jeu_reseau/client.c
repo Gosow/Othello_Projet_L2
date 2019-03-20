@@ -29,13 +29,7 @@ void quitter(int to_server_socket){
 	send(to_server_socket,QUITTER,7,0);
 }
 
-void init_client(){
-	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
-	struct sockaddr_in serveur_addr;
-	struct hostent *serveur_info;
-	long hostAddr;
-	//char buffer[512];
-	int to_server_socket;
+void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info , long hostAddr,int to_server_socket){
 
 	bzero(&serveur_addr,sizeof(serveur_addr));
 	hostAddr = inet_addr(SERVEURNAME);
@@ -72,20 +66,27 @@ void init_client(){
 }
 
 void quit_client (int to_server_socket){
-shutdown(to_server_socket,2);
-if(close(to_server_socket)==0){
-	return 0;
-}
-else {
-	return -1;
+	shutdown(to_server_socket,2);
+	if(close(to_server_socket)==0){
+		return 0;
+	}
+	else {
+		return -1;
+	}
 }
 
 int jeux_reseaux_c(t_matrice m,int lig,int col,char joueur,int score1,int score2){
+	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
+	struct sockaddr_in serveur_addr;
+	struct hostent *serveur_info;
+	long hostAddr;
+	//char buffer[512];
+	int to_server_socket;
 
-		init_client();
+	init_client(serveur_addr,serveur_info ,hostAddr,to_server_socket);
 
 //Initialisation du jeux
-    init_matrice(m);
+  init_matrice(m);
 
 	while (!partie_terminee (m)) {
 		afficher_matrice (m);
