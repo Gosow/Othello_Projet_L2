@@ -92,7 +92,7 @@ void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_i
 	}
 }
 
-void quit_serveur(int client_socket,int ma_socket){
+int quit_serveur(int client_socket,int ma_socket){
 	shutdown(client_socket,2);
 	close(client_socket);
 	shutdown(ma_socket,2);
