@@ -102,7 +102,7 @@ t_liste* liste_coup(t_matrice mat,char joueur){
 	return res;
 }
 
-void afficher_liste(t_liste *l,char c)
+void afficher_liste(t_liste *l)
 {
     en_tete_ec(l);
     while(l->ec != l->drapeau){
