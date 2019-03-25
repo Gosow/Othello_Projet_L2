@@ -58,19 +58,25 @@ int quit_client (int to_server_socket){
 	}
 }
 
+/* envoyer_crd() & recep_crd fonction commune a client & serveur */
 int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2){
 	char *crd;
 
 	choisir_coup(m,&lig,&col,&joueur);
 	*crd=jouer_coup(m,lig,col,&joueur);
 	if (peut_jouer(m, joueur_suivant(&joueur))){
-		send(to_server_socket,*crd,sizeof(char*),0);
-		read(to_server_socket,*joueur,sizeof(char*));
+		send(to_server_socket,crd,2,0);
+		if(*joueur==NOIR){
+			read(to_server_socket,joueur,sizeof("NOIR"));
+		}
+		else{
+			read(to_server_socket,joueur,sizeof("BLANC"));
+		}
 		//joueur = joueur_suivant (joueur);
 		return 0;
 	}
 	else {
-		printf ("\nLe joueur %d passe son tour\n", joueur_suivant(&joueur));
+		printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
 		calculer_score(m,&score1,&score2);
 		return 1;
 	}
@@ -79,14 +85,14 @@ int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur
 t_matrice recep_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur){
 	char *crd;
 
-	recv(to_server_socket,*crd,sizeof(char*),0); //recv placé en debut car on attend que le client joue avant d'afficher
-	write(to_server_socket,*joueur,sizeof(char*));
+	recv(to_server_socket,crd,sizeof(char*),0); //recv placé en debut car on attend que le client joue avant d'afficher
+	write(to_server_socket,joueur,sizeof(char*));
 
-	if(*joueur==NOIR){
-		m[*crd]=NOIR;
+	if(*joueur == NOIR){
+		m[*crd] = NOIR;
 	}
 	else{
-		m[*crd]=BLANC;
+		m[*crd] = BLANC;
 	}
 	return m;
 }
@@ -106,11 +112,11 @@ void jeux_reseaux_c(t_matrice m,int lig,int col,char *joueur,int score1,int scor
 	afficher_matrice (m);
 
 	while (!partie_terminee (m)) {
-		envoyer_crd(to_server_socket,m,lig,col,&joueur,score1,score2);
+		envoyer_crd(to_server_socket,m,lig,col,joueur,score1,score2);
 		afficher_matrice(m);
 		printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 		while (!partie_terminee (m)) {
-			m=recep_crd(to_server_socket,m,lig,col,&joueur);
+			m=recep_crd(to_server_socket,m,lig,col,joueur);
 			afficher_matrice(m);
 		}
 	}

@@ -17,7 +17,6 @@ int hostname_to_ip(char * hostname , char* ip)
         herror("gethostbyname");
         return 1;
     }
-
     addr_list = (struct in_addr **) he->h_addr_list;
 
     for(i = 0; addr_list[i] != NULL; i++)
@@ -78,7 +77,8 @@ void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_i
 				/* on attend que le client se connecte */
 				//int accept(int socket, struct sockaddr* addr, socklen_t* addrlen);
 				//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage
-				/*int read(numsoc, tampon, nboctets));
+				/*read=envoyer ; write=reception ;
+				/*int read(numsoc, tampon, nboctets)); 
 				int numsoc : numero de socket
 				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
 				int nboctets : nb octets du tampon*/
