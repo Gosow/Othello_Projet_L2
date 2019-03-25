@@ -104,7 +104,40 @@ int quit_serveur(int client_socket,int ma_socket){
 	}
 }
 
-int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2){
+int envoyer_crd(int client_socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2){
+	char *crd;
+
+	choisir_coup(m,&lig,&col,&joueur);
+	crd=jouer_coup(m,lig,col,&joueur);
+	if (peut_jouer(m, joueur_suivant(&joueur))){
+		send(client_socket,*crd,sizeof(char*),0);
+		read(client_socket,*joueur,sizeof(char*));
+		//joueur = joueur_suivant (joueur);
+		return 0;
+	}
+	else {
+		printf ("\nLe joueur %d passe son tour\n", joueur_suivant(&joueur));
+		calculer_score(m,&score1,&score2);
+		return 1;
+	}
+}
+
+t_matrice recep_crd(int client_socket,t_matrice m, int lig, int col, char *joueur){
+	char *crd;
+
+	recv(client_socket,*crd,sizeof(char*),0); //recv placé en debut car on attend que le client joue avant d'afficher
+	write(client_socket,*joueur,sizeof(char*));
+
+	if(*joueur==NOIR){
+		m[*crd]=NOIR;
+	}
+	else{
+		m[*crd]=BLANC;
+	}
+	return m;
+}
+
+void jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2){
 
 	int ma_socket;
 	int client_socket;
@@ -112,7 +145,7 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in mon_address, client_address;
 	unsigned int mon_address_longueur, lg;
-	joueur=BLANC;
+	*joueur=BLANC;
 
 	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 
@@ -121,23 +154,12 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2
 //int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 //buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
 
-  while(!partie_terminee (m)){
-		recv(client_socket,m,sizeof(t_matrice),0); //recv placé en debut car on attend que le client joue avant d'afficher
-		write(client_socket,joueur,sizeof(char));
+	while(!partie_terminee (m)){
+		m=recep_crd(client_socket,m,lig,col,&joueur);
 		afficher_matrice (m);
 		while (!partie_terminee (m)) {
-			choisir_coup (m, &lig, &col, joueur);
-			jouer_coup (m, lig, col, joueur);
+			envoyer_crd(client_socket,m,lig,col,&joueur,score1,score2);
 			afficher_matrice (m);
-			if (peut_jouer(m, joueur_suivant(joueur))){
-				send(client_socket,m,sizeof(t_matrice),0);
-				read(client_socket,joueur,sizeof(char));
-				joueur = joueur_suivant (joueur);
-			}
-			else {
-				printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
-				calculer_score(m,&score1,&score2);
-			}
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 		}
 	}
@@ -148,9 +170,9 @@ int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2
 int main(void){
 	t_matrice m;
 	int lig, col,choix ,score1=0,score2=0;
-	char joueur;
+	char *joueur;
 
-	jeux_reseaux_s(m,lig,col,joueur,score1,score2);
+	jeux_reseaux_s(m,lig,col,&joueur,score1,score2);
 
 	return 0;
 }

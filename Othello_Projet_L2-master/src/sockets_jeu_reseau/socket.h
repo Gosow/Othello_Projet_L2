@@ -30,17 +30,19 @@
 
 /*client*/
 char menu();
-void envoyer_crd(int to_server_socket);
-void quitter(int to_server_socket);
-int jeux_reseaux_c(t_matrice m,int lig,int col,char joueur,int score1,int score2);
-int quit_serveur(int client_socket,int ma_socket);
 void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info , long hostAddr,int to_server_socket);
+int quit_client(int to_server_socket);
+void jeux_reseaux_c(t_matrice m,int lig,int col,char *joueur,int score1,int score2);
 
+/*commun*/
+int envoyer_crd(int socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2);
+t_matrice recep_crd(int socket,t_matrice m, int lig, int col, char *joueur);
 
 /*serveur*/
 void fin();
 int hostname_to_ip(char * hostname , char* ip);
 void view_ip();
-int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2);
-int quit_serveur(int client_socket,int ma_socket);
 void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_in mon_address ,struct sockaddr_in client_address ,unsigned int mon_address_longueur,unsigned int lg);
+int quit_serveur(int client_socket,int ma_socket);
+void jeux_reseaux_s(t_matrice m,int lig,int col,char *joueur,int score1,int score2);
+
