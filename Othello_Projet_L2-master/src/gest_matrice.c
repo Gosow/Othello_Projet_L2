@@ -170,7 +170,7 @@ int coup_valide (t_matrice m, int lig, int col, char joueur) {
 
 /**
  *\brief Fonction qui indique si le joueur peut encore jouer */
-int peut_jouer (t_matrice m, char joueur) {
+int peut_jouer (t_matrice m, char *joueur) {
     int i, j;
     for (i=0; i<N; i++)
         for (j=0; j<N; j++)
@@ -205,7 +205,7 @@ char choisir_coup (t_matrice m, int *lig, int *col, char *joueur) {
     scanf ("%d", lig);
     (*lig)--;
     /* On redemande tant que le coup n'est pas valide */
-    while (!coup_valide (m, *lig, *col, &joueur)) {
+    while (!coup_valide (m, *lig, *col, joueur)) {
         printf ("\nCe coup n'est pas valide\n");
         printf ("Choisissez une autre case (ex: A1) :\n");
         scanf ("\n%c", &c);
