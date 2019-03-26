@@ -59,11 +59,11 @@ int quit_client (int to_server_socket){
 }
 
 /* envoyer_crd() & recep_crd fonction commune a client & serveur */
-int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2){
+int envoyer_crd(int to_server_socket,t_matrice m, int *lig, int *col, char *joueur,int score1,int score2){
 
 
 	choisir_coup(m,&lig,&col,&joueur);
-	*crd=jouer_coup(m,lig,col,&joueur);
+	jouer_coup(m,lig,col,&joueur);
 	if (peut_jouer(m, joueur_suivant(&joueur))){
 		send(to_server_socket,lig,1,0);
 		send(to_server_socket,col,1,0);
@@ -83,11 +83,10 @@ int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur
 	}
 }
 
-t_matrice recep_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur){
+t_matrice recep_crd(int to_server_socket,t_matrice m, int *lig, int *col, char *joueur){
 
-
-	recv(to_server_socket,x,1,0); //recv placé en debut car on attend que le client joue avant d'afficher
-	recv(to_server_socket,y,1,0);
+	recv(to_server_socket,lig,1,0); //recv placé en debut car on attend que le client joue avant d'afficher
+	recv(to_server_socket,col,1,0);
 	write(to_server_socket,joueur,sizeof(char*));
 
 	if(*joueur == NOIR){
@@ -99,7 +98,7 @@ t_matrice recep_crd(int to_server_socket,t_matrice m, int lig, int col, char *jo
 	return m;
 }
 
-void jeux_reseaux_c(t_matrice m,int lig,int col,char *joueur,int score1,int score2){
+void jeux_reseaux_c(t_matrice m,int *lig,int *col,char *joueur,int score1,int score2){
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in serveur_addr;
 	struct hostent *serveur_info;
@@ -128,8 +127,8 @@ void jeux_reseaux_c(t_matrice m,int lig,int col,char *joueur,int score1,int scor
 
 int main(int argc, char** argv){
 	t_matrice m;
-	int lig,col,score1=0,score2=0;
-	char *joueur;
+	int score1=0,score2=0;
+	char *joueur,*lig,*col;
 
 	jeux_reseaux_c(m,lig,col,&joueur,score1,score2);
 	return 0;

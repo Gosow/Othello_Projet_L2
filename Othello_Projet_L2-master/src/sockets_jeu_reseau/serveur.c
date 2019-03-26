@@ -104,7 +104,7 @@ int quit_serveur(int client_socket,int ma_socket){
 	}
 }
 
-int envoyer_crd(int client_socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2){
+int envoyer_crd(int client_socket,t_matrice m, int *lig, int *col, char *joueur,int score1,int score2){
 	char *crd;
 
 	choisir_coup(m,&lig,&col,&joueur);
@@ -138,7 +138,7 @@ t_matrice recep_crd(int client_socket,t_matrice m, int *lig, int *col, char *jou
 	return m;
 }
 
-void jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2){
+void jeux_reseaux_s(t_matrice m,int *lig,int *col,char joueur,int score1,int score2){
 
 	int ma_socket;
 	int client_socket;
@@ -170,8 +170,9 @@ void jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score
 /*main temp*/
 int main(void){
 	t_matrice m;
-	int lig, col,choix ,score1=0,score2=0;
+	int choix ,score1=0,score2=0;
 	char *joueur;
+	int *lig,*col;
 
 	jeux_reseaux_s(m,lig,col,&joueur,score1,score2);
 

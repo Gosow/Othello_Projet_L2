@@ -188,24 +188,20 @@ char joueur_suivant (char *joueur) {
     else{
         *joueur = NOIR;
     }
-    printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
     printf ("\nC'est au tour du joueur %c de jouer\n", *joueur);
     return (joueur);
 }
 
 /* Demander le coup du joueur */
-void choisir_coup (t_matrice m, int *lig, int *col, char *joueur,char *x, int *y) {
-
+void choisir_coup (t_matrice m, int *lig, int *col, char *joueur) {
+    char c;
     printf ("\nJoueur %c a vous de jouer\n", *joueur);
     printf ("Choisissez une case (ex: A1) :\n");
-    printf("ligne : ");
-    scanf ("\n%c", &x);
-    printf("colonne : ");
-    scanf ("\n%d", &y);
+    scanf ("\n%c", &c);
     /* On transforme les minuscules en majuscules */
-    if ((x >= 'a') && (x < 'a'+N))
-        x = x + 'A' - 'a';
-    (*col) = x - 'A';
+    if ((c >= 'a') && (c < 'a'+N))
+        c = c + 'A' - 'a';
+    (*col) = c - 'A';
     scanf ("%d", lig);
     (*lig)--;
     /* On redemande tant que le coup n'est pas valide */
@@ -214,12 +210,13 @@ void choisir_coup (t_matrice m, int *lig, int *col, char *joueur,char *x, int *y
         printf ("Choisissez une autre case (ex: A1) :\n");
         scanf ("\n%c", &c);
         /* On transforme les minuscules en majuscules */
-        if ((x >= 'a') && (x < 'a'+N))
-            x = x + 'A' - 'a';
-        (*col) = x - 'A';
+        if ((c >= 'a') && (c < 'a'+N))
+            c = c + 'A' - 'a';
+        (*col) = c - 'A';
         scanf ("%d", lig);
         (*lig)--;
     }
+    //return c;
 }
 
 /* Verifie si la partie est terminee */
