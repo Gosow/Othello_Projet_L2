@@ -8,7 +8,7 @@ int case_existe (int lig, int col);
 int coup_valide (t_matrice m, int lig, int col, char *joueur) ;
 int peut_jouer (t_matrice m, char *joueur) ;
 char joueur_suivant (char *joueur) ;
-void choisir_coup (t_matrice m, int *lig, int *col, char *joueur) ;
+void choisir_coup (t_matrice m, int *lig, int *col, char *joueur,char *x, int *y);
 int partie_terminee (t_matrice m) ;
 char jouer_coup (t_matrice m, int lig, int col, char *joueur) ;
 void calculer_score(t_matrice m,int *score1 , int *score2);

@@ -193,15 +193,18 @@ char joueur_suivant (char *joueur) {
 }
 
 /* Demander le coup du joueur */
-char choisir_coup (t_matrice m, int *lig, int *col, char *joueur) {
-    char c;
+void choisir_coup (t_matrice m, int *lig, int *col, char *joueur,char *x, int *y) {
+
     printf ("\nJoueur %c a vous de jouer\n", *joueur);
     printf ("Choisissez une case (ex: A1) :\n");
-    scanf ("\n%c", &c);
+    printf("ligne : ");
+    scanf ("\n%c", &x);
+    printf("ligne : ");
+    scanf ("\n%d", &y);
     /* On transforme les minuscules en majuscules */
-    if ((c >= 'a') && (c < 'a'+N))
-        c = c + 'A' - 'a';
-    (*col) = c - 'A';
+    if ((x >= 'a') && (x < 'a'+N))
+        x = x + 'A' - 'a';
+    (*col) = x - 'A';
     scanf ("%d", lig);
     (*lig)--;
     /* On redemande tant que le coup n'est pas valide */
@@ -216,7 +219,6 @@ char choisir_coup (t_matrice m, int *lig, int *col, char *joueur) {
         scanf ("%d", lig);
         (*lig)--;
     }
-    return c;
 }
 
 /* Verifie si la partie est terminee */
