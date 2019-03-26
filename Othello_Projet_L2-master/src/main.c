@@ -37,11 +37,10 @@ int main (int argc,char **argv) {
                 joueur = joueur_suivant (joueur);
               }
               else{
-<<<<<<< HEAD
+
                 printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
-=======
+
                 printf ("\nLe joueur %c passe son tour\n", joueur_suivant(joueur));
->>>>>>> 05243232d58d9c6b9057ae3e32fde8527806f52a
                 calculer_score(m,&score1,&score2);
                 printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
               }
@@ -50,13 +49,11 @@ int main (int argc,char **argv) {
         case 2: // min max ordi avec fonction
         break;
         case 3:
-<<<<<<< HEAD
+
                 system(serveur2.c);
                 system(client2.c);
-=======
                 /*jeux_reseaux_s(m,lig,col,joueur,score1,score2);
                 jeux_reseaux_c(m,lig,col,joueur,score1,score2);*/
->>>>>>> 05243232d58d9c6b9057ae3e32fde8527806f52a
         break;
         case 4:break;
         default:
