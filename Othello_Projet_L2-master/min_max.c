@@ -1,3 +1,4 @@
+//Version ALPHA 
 #include "define.h"
 #include "min_max.h"
 #include "gest_matrice.h"

@@ -170,7 +170,7 @@ int coup_valide (t_matrice m, int lig, int col, char joueur) {
 
 /**
  *\brief Fonction qui indique si le joueur peut encore jouer */
-int peut_jouer (t_matrice m, char joueur) {
+int peut_jouer (t_matrice m, char *joueur) {
     int i, j;
     for (i=0; i<N; i++)
         for (j=0; j<N; j++)
@@ -181,21 +181,29 @@ int peut_jouer (t_matrice m, char joueur) {
 }
 
 /* Retourne le joueur suivant */
-int joueur_suivant (char joueur) {
-    if(joueur == NOIR){
-        joueur = BLANC;
+char joueur_suivant (char *joueur) {
+    if(*joueur == NOIR){
+        *joueur = BLANC;
     }
     else{
-        joueur = NOIR;
+        *joueur = NOIR;
     }
+<<<<<<< HEAD
     printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
+=======
+    printf ("\nC'est au tour du joueur %c de jouer\n", *joueur);
+>>>>>>> 05243232d58d9c6b9057ae3e32fde8527806f52a
     return (joueur);
 }
 
 /* Demander le coup du joueur */
-void choisir_coup (t_matrice m, int *lig, int *col, char joueur) {
+char choisir_coup (t_matrice m, int *lig, int *col, char *joueur) {
     char c;
+<<<<<<< HEAD
     printf ("\nJoueur %c a vous de jouer\n", joueur);
+=======
+    printf ("\nJoueur %c a vous de jouer\n", *joueur);
+>>>>>>> 05243232d58d9c6b9057ae3e32fde8527806f52a
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
     /* On transforme les minuscules en majuscules */
@@ -216,6 +224,7 @@ void choisir_coup (t_matrice m, int *lig, int *col, char joueur) {
         scanf ("%d", lig);
         (*lig)--;
     }
+    return c;
 }
 
 /* Verifie si la partie est terminee */
@@ -260,11 +269,11 @@ int partie_terminee (t_matrice m) {
 }
 
 /* Fonction qui permet de jouer un coup */
-void jouer_coup (t_matrice m, int lig, int col, char joueur) {
+void jouer_coup (t_matrice m, int lig, int col, char *joueur) {
     int i, j;
     char cj, ca;
 
-    if (joueur == BLANC) {
+    if (*joueur == BLANC) {
         cj = BLANC;
         ca = NOIR;
     } else {
