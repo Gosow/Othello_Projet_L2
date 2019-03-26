@@ -50,8 +50,8 @@ int main (int argc,char **argv) {
         break;
         case 3:
 
-                system(serveur2.c);
-                system(client2.c);
+                /*system(serveur2.c);
+                system(client2.c);*/
                 /*jeux_reseaux_s(m,lig,col,joueur,score1,score2);
                 jeux_reseaux_c(m,lig,col,joueur,score1,score2);*/
         break;

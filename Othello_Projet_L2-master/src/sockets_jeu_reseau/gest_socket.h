@@ -1,15 +1,12 @@
 /* prototypes*/
-#include "define.h"
+#include "../define.h"
+#include "../gest_matrice.h"
 
 
-void init_matrice (t_matrice m);
-void afficher_matrice (t_matrice m) ;
-int case_existe (int lig, int col);
-int coup_valide (t_matrice m, int lig, int col, char *joueur) ;
-int peut_jouer (t_matrice m, char *joueur) ;
-char joueur_suivant (char *joueur) ;
-void choisir_coup (t_matrice m, int *lig, int *col, char *joueur) ;
-int partie_terminee (t_matrice m) ;
-void jouer_coup (t_matrice m, int lig, int col, char *joueur) ;
-void calculer_score(t_matrice m,int *score1 , int *score2);
-void copie_mat(t_matrice src, t_matrice dest);
+int coup_valide_sock (t_matrice m, int lig, int col, char *joueur) ;
+int peut_jouer_sock (t_matrice m, char *joueur);
+char joueur_suivant_sock (char *joueur) ;
+void choisir_coup_sock(t_matrice m, int *lig, int *col, char *joueur) ;
+void jouer_coup_sock (t_matrice m, int lig, int col, char *joueur) ;
+int envoyer_crd(int socket,t_matrice m, int *lig, int *col, char *joueur,int *score1,int *score2);
+int recep_crd(int socket,t_matrice m, int *lig, int *col, char *joueur);
