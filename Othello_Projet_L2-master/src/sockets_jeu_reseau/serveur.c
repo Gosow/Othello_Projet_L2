@@ -78,7 +78,7 @@ void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_i
 				//int accept(int socket, struct sockaddr* addr, socklen_t* addrlen);
 				//avec sockaddr* :  pointeur sur le contexte d'adressage du client et socklen : taille du contexte d'adressage
 				/*read=envoyer ; write=reception ;
-				/*int read(numsoc, tampon, nboctets)); 
+				/*int read(numsoc, tampon, nboctets));
 				int numsoc : numero de socket
 				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
 				int nboctets : nb octets du tampon*/
@@ -110,8 +110,8 @@ int envoyer_crd(int client_socket,t_matrice m, int lig, int col, char *joueur,in
 	choisir_coup(m,&lig,&col,&joueur);
 	crd=jouer_coup(m,lig,col,&joueur);
 	if (peut_jouer(m, joueur_suivant(&joueur))){
-		send(client_socket,*crd,sizeof(char*),0);
-		read(client_socket,*joueur,sizeof(char*));
+		send(to_server_socket,lig,1,0);
+		send(to_server_socket,col,1,0);
 		//joueur = joueur_suivant (joueur);
 		return 0;
 	}
@@ -122,10 +122,11 @@ int envoyer_crd(int client_socket,t_matrice m, int lig, int col, char *joueur,in
 	}
 }
 
-t_matrice recep_crd(int client_socket,t_matrice m, int lig, int col, char *joueur){
+t_matrice recep_crd(int client_socket,t_matrice m, int *lig, int *col, char *joueur){
 	char *crd;
 
-	recv(client_socket,*crd,sizeof(char*),0); //recv placé en debut car on attend que le client joue avant d'afficher
+	recv(to_server_socket,lig,1,0); //recv placé en debut car on attend que le client joue avant d'afficher
+  recv(to_server_socket,col,1,0);
 	write(client_socket,*joueur,sizeof(char*));
 
 	if(*joueur==NOIR){

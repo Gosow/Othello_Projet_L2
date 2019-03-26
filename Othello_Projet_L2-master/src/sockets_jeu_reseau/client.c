@@ -59,7 +59,7 @@ int quit_client (int to_server_socket){
 }
 
 /* envoyer_crd() & recep_crd fonction commune a client & serveur */
-int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2,char * x,int * y){
+int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2){
 
 
 	choisir_coup(m,&lig,&col,&joueur);
