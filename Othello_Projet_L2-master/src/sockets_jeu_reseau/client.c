@@ -18,7 +18,8 @@ void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info ,
 	hostAddr = inet_addr(SERVEURNAME);
 	if ( (long)hostAddr != (long)-1 ){
 		bcopy(&hostAddr,&serveur_addr.sin_addr,sizeof(hostAddr));
-	} else {
+	}
+	else {
 		serveur_info = gethostbyname(SERVEURNAME);
 		if (serveur_info == NULL) {
 			printf("Impossible de récupérer les infos du serveur\n");
@@ -60,13 +61,12 @@ int quit_client (int to_server_socket){
 
 /* envoyer_crd() & recep_crd fonction commune a client & serveur */
 int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur,int score1,int score2){
-
+	char *crd;
 
 	choisir_coup(m,&lig,&col,&joueur);
 	*crd=jouer_coup(m,lig,col,&joueur);
 	if (peut_jouer(m, joueur_suivant(&joueur))){
-		send(to_server_socket,lig,1,0);
-		send(to_server_socket,col,1,0);
+		send(to_server_socket,crd,2,0);
 		if(*joueur==NOIR){
 			read(to_server_socket,joueur,sizeof("NOIR"));
 		}
@@ -84,17 +84,16 @@ int envoyer_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur
 }
 
 t_matrice recep_crd(int to_server_socket,t_matrice m, int lig, int col, char *joueur){
+	char *crd;
 
-
-	recv(to_server_socket,x,1,0); //recv placé en debut car on attend que le client joue avant d'afficher
-	recv(to_server_socket,y,1,0);
+	recv(to_server_socket,crd,sizeof(char*),0); //recv placé en debut car on attend que le client joue avant d'afficher
 	write(to_server_socket,joueur,sizeof(char*));
 
 	if(*joueur == NOIR){
-		m[lig][col] = NOIR;
+		m[*crd] = NOIR;
 	}
 	else{
-		m[lig][col] = BLANC;
+		m[*crd] = BLANC;
 	}
 	return m;
 }
@@ -126,7 +125,7 @@ void jeux_reseaux_c(t_matrice m,int lig,int col,char *joueur,int score1,int scor
 	quit_client (to_server_socket);
 }
 
-int main(int argc, char** argv){
+int main(void){
 	t_matrice m;
 	int lig,col,score1=0,score2=0;
 	char *joueur;
