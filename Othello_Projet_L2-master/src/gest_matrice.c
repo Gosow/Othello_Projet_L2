@@ -188,14 +188,27 @@ char joueur_suivant (char *joueur) {
     else{
         *joueur = NOIR;
     }
+<<<<<<< HEAD
+    printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
+=======
     printf ("\nC'est au tour du joueur %c de jouer\n", *joueur);
+>>>>>>> 05243232d58d9c6b9057ae3e32fde8527806f52a
     return (joueur);
 }
 
 /* Demander le coup du joueur */
+<<<<<<< HEAD
 void choisir_coup (t_matrice m, int *lig, int *col, char *joueur,char *x, int *y) {
 
+=======
+char choisir_coup (t_matrice m, int *lig, int *col, char *joueur) {
+    char c;
+<<<<<<< HEAD
+    printf ("\nJoueur %c a vous de jouer\n", joueur);
+=======
+>>>>>>> 484d34b9961ae8e3da87c8886da3399c221722ea
     printf ("\nJoueur %c a vous de jouer\n", *joueur);
+>>>>>>> 05243232d58d9c6b9057ae3e32fde8527806f52a
     printf ("Choisissez une case (ex: A1) :\n");
     printf("ligne : ");
     scanf ("\n%c", &x);
