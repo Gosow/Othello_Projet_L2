@@ -13,7 +13,7 @@
 
 /*Module cummun a client et serveur*/
 #include "../define.h"
-#include "../gest_matrice.h"
+#include "gest_socket.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <netdb.h>
@@ -30,23 +30,15 @@
 
 /*client*/
 char menu();
-void envoyer_crd(int to_server_socket);
-void quitter(int to_server_socket);
-int jeux_reseaux_c(t_matrice m,int lig,int col,char joueur,int score1,int score2);
-<<<<<<< HEAD
-int quit_serveur(int client_socket,int ma_socket);
 void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info , long hostAddr,int to_server_socket);
+int quit_client(int to_server_socket);
+void jeux_reseaux_c();
 
-=======
->>>>>>> 84f5893d3ca755d15f5b9aca278b00ff12f891cf
 
 /*serveur*/
 void fin();
 int hostname_to_ip(char * hostname , char* ip);
 void view_ip();
-int jeux_reseaux_s(t_matrice m,int lig,int col,char joueur,int score1,int score2);
-<<<<<<< HEAD
-int quit_serveur(int client_socket,int ma_socket);
 void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_in mon_address ,struct sockaddr_in client_address ,unsigned int mon_address_longueur,unsigned int lg);
-=======
->>>>>>> 84f5893d3ca755d15f5b9aca278b00ff12f891cf
+int quit_serveur(int client_socket,int ma_socket);
+void jeux_reseaux_s();
