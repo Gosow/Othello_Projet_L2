@@ -107,8 +107,8 @@ int quit_serveur(int client_socket,int ma_socket){
 
 void jeux_reseaux_s(){
 	t_matrice m;
-	int *lig,*col,choix ,score1=0,score2=0;
-	char *joueur;
+	int *lig=NULL,*col=NULL,choix ,score1=0,score2=0;
+	char *joueur=NULL;
 
 
 	int ma_socket;
@@ -117,7 +117,7 @@ void jeux_reseaux_s(){
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in mon_address, client_address;
 	unsigned int mon_address_longueur, lg;
-	*joueur=BLANC;
+	joueur=BLANC;
 
 	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 
@@ -127,10 +127,10 @@ void jeux_reseaux_s(){
 //buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
 
 	while(!partie_terminee (m)){
-		recep_crd(client_socket,m,lig,col,&joueur);
+		recep_crd(client_socket,m,lig,col,joueur);
 		afficher_matrice (m);
 		while (!partie_terminee (m)) {
-			envoyer_crd(client_socket,m,lig,col,&joueur,score1,score2);
+			envoyer_crd(client_socket,m,lig,col,joueur,&score1,&score2);
 			afficher_matrice (m);
 			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
 		}

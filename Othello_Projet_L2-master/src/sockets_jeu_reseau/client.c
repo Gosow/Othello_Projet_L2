@@ -70,7 +70,7 @@ void jeux_reseaux_c(){
 	long hostAddr=0;
 	//char buffer[512];
 	int to_server_socket=0;
-	*joueur=NOIR;
+	joueur=NOIR;
 
 	init_client(serveur_addr,serveur_info ,hostAddr,to_server_socket);
 	init_matrice(m);

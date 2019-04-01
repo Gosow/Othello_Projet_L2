@@ -6,8 +6,7 @@
  * \date 10 mars 2019
  **/
 
-#include "../define.h"
-#include "gest_socket.h"
+#include "socket.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -23,7 +22,7 @@ int coup_valide_sock (t_matrice m, int lig, int col, char *joueur) {
     char cj, ca;//cj=couleur joueur, ca=couleur autre
 
     /** Definition des couleurs pour les 2 joueurs **/
-    if (*joueur == NOIR) {
+    if (joueur == NOIR) {
         cj = NOIR;
         ca = BLANC;
     } else {
@@ -127,39 +126,39 @@ int peut_jouer_sock (t_matrice m, char *joueur) {
 
 /* Retourne le joueur suivant */
 char joueur_suivant_sock (char *joueur) {
-    if(*joueur == NOIR){
-        *joueur = BLANC;
+    if(joueur == NOIR){
+        joueur = BLANC;
     }
     else{
-        *joueur = NOIR;
+        joueur = NOIR;
     }
-    printf ("\nC'est au tour du joueur %c de jouer\n", *joueur);
-    return (*joueur);
+    printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
+    return (joueur);
 }
 
 /* Demander le coup du joueur */
 void choisir_coup_sock (t_matrice m, int *lig, int *col, char *joueur) {
     char c;
-    printf ("\nJoueur %c a vous de jouer\n", *joueur);
+    printf ("\nJoueur %c a vous de jouer\n", joueur);
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
     /* On transforme les minuscules en majuscules */
     if ((c >= 'a') && (c < 'a'+N))
         c = c + 'A' - 'a';
-    (*col) = c - 'A';
+    col = c - 'A';
     scanf ("%d", lig);
-    (*lig)--;
+    lig--;
     /* On redemande tant que le coup n'est pas valide */
-    while (!coup_valide (m, *lig, *col, *joueur)) {
+    while (!coup_valide (m, lig, col, joueur)) {
         printf ("\nCe coup n'est pas valide\n");
         printf ("Choisissez une autre case (ex: A1) :\n");
         scanf ("\n%c", &c);
         /* On transforme les minuscules en majuscules */
         if ((c >= 'a') && (c < 'a'+N))
             c = c + 'A' - 'a';
-        (*col) = c - 'A';
+        col = c - 'A';
         scanf ("%d", lig);
-        (*lig)--;
+        lig--;
     }
     //return c;
 }
@@ -169,7 +168,7 @@ void jouer_coup_sock (t_matrice m, int lig, int col, char *joueur) {
     int i, j;
     char cj, ca;
 
-    if (*joueur == BLANC) {
+    if (joueur == BLANC) {
         cj = BLANC;
         ca = NOIR;
     } else {
@@ -295,18 +294,19 @@ void jouer_coup_sock (t_matrice m, int lig, int col, char *joueur) {
 /* envoyer_crd() & recep_crd fonction commune a client & serveur */
 int envoyer_crd(int socket,t_matrice m, int *lig, int *col, char *joueur,int *score1,int *score2){
   char temp = joueur_suivant_sock(joueur);
+
 	choisir_coup_sock(m,lig,col,joueur);
-	jouer_coup_sock(m,*lig,*col,joueur);
+	jouer_coup_sock(m,&lig,&col,joueur);
 	if (peut_jouer_sock(m,&temp)){
 		send(socket,lig,1,0);
-    send(socket,col,1,0);
-		if(*joueur==NOIR){
+        send(socket,col,1,0);
+		if(joueur==NOIR){
 			read(socket,joueur,sizeof("NOIR"));
 		}
 		else{
 			read(socket,joueur,sizeof("BLANC"));
 		}
-		//joueur = joueur_suivant (joueur);
+		joueur = joueur_suivant (joueur);
 		return 0;
 	}
 	else {
@@ -322,7 +322,7 @@ int recep_crd(int socket,t_matrice m, int *lig, int *col, char *joueur){
 	recv(socket,col,1,0);
 	write(socket,joueur,sizeof(char*));
 
-	if(*joueur == NOIR){
+	if(joueur == NOIR){
 		m[*lig][*col] = NOIR;
 	}
 	else{
