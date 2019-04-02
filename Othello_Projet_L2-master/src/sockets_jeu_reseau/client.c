@@ -60,17 +60,18 @@ int quit_client (int to_server_socket){
 }
 
 
+
 void jeux_reseaux_c(){
 	t_matrice m;
-	int *lig=NULL,*col=NULL,score1=0,score2=0;
-	char *joueur=NULL;
+	int *lig=malloc(sizeof(int)),*col=malloc(sizeof(int)),score1=0,score2=0;
+	char *joueur=malloc(sizeof(char));
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in serveur_addr;
-	struct hostent *serveur_info=NULL;
+	struct hostent *serveur_info=malloc(sizeof(struct hostent));
 	long hostAddr=0;
 	//char buffer[512];
 	int to_server_socket=0;
-	joueur=NOIR;
+	*joueur=BLANC;
 
 	init_client(serveur_addr,serveur_info ,hostAddr,to_server_socket);
 	init_matrice(m);
@@ -78,13 +79,11 @@ void jeux_reseaux_c(){
 	afficher_matrice (m);
 
 	while (!partie_terminee (m)) {
+
 		envoyer_crd(to_server_socket,m,lig,col,joueur,&score1,&score2);
 		afficher_matrice(m);
-		printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
-		while (!partie_terminee (m)) {
-			recep_crd(to_server_socket,m,lig,col,joueur);
-			afficher_matrice(m);
-		}
+		recep_crd(to_server_socket,m,lig,col,joueur);
+		afficher_matrice(m);
 	}
 	/* fermeture de la connexion */
 	quit_client (to_server_socket);

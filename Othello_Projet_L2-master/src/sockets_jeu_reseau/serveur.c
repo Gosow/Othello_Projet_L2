@@ -107,8 +107,8 @@ int quit_serveur(int client_socket,int ma_socket){
 
 void jeux_reseaux_s(){
 	t_matrice m;
-	int *lig=NULL,*col=NULL,choix ,score1=0,score2=0;
-	char *joueur=NULL;
+	int *lig=malloc(sizeof(int)),*col=malloc(sizeof(int)),score1=0,score2=0;
+	char *joueur=malloc(sizeof(char));
 
 
 	int ma_socket;
@@ -117,7 +117,7 @@ void jeux_reseaux_s(){
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in mon_address, client_address;
 	unsigned int mon_address_longueur, lg;
-	joueur=BLANC;
+	*joueur=NOIR;
 
 	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 
@@ -125,17 +125,15 @@ void jeux_reseaux_s(){
 //int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
 //int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 //buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
-
-	while(!partie_terminee (m)){
+	init_matrice(m);
+	while (!partie_terminee (m)) {
 		recep_crd(client_socket,m,lig,col,joueur);
-		afficher_matrice (m);
-		while (!partie_terminee (m)) {
-			envoyer_crd(client_socket,m,lig,col,joueur,&score1,&score2);
-			afficher_matrice (m);
-			printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
-		}
+		afficher_matrice(m);
+		envoyer_crd(client_socket,m,lig,col,joueur,&score1,&score2);
+		afficher_matrice(m);
 	}
 	quit_serveur(client_socket,ma_socket);
+	fprintf(stderr, "FERME NORMALLEMENT\n");
 }
 
 /*main temp*/
