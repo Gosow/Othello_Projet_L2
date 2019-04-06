@@ -104,6 +104,7 @@ int force(t_matrice m, char couleur){
     total += (m[3][4] == couleur ? 16 : 0);
     total += (m[4][3] == couleur ? 16 : 0);
     total += (m[4][4] == couleur ? 16 : 0);
+	return total;
 }
 int eval(t_matrice mat, char couleur,int *etat){
 
