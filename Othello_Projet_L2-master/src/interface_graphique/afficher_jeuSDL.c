@@ -127,7 +127,7 @@ char afficher_gagnant(t_matrice mat){
 void afficher_cibleSDL(t_matrice mat, int x,int y){
     SDL_Texture *temp;
     int i=0,j=0;
-
+    SDL_RenderClear(renderer_temp);
     for(i=0;i<N;i++){
         imgBtnRect.y = i*82;
         imgBtnRect.x = 0;
