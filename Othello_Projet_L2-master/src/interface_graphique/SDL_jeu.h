@@ -27,10 +27,10 @@ SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Rendere
 void init_jeuSDL(SDL_Renderer* renderer);
 
 //AFFICHAGE MATRICE / JEU
-void afficher_matriceSDL(char joueur);
-void afficher_cibleSDL(int x,int y);
-int partie_termineeSDL(void);
-char afficher_gagnant(void);
+void afficher_matriceSDL(t_matrice mat, char joueur);
+void afficher_cibleSDL(t_matrice mat, int x,int y);
+int partie_termineeSDL(t_matrice mat);
+char afficher_gagnant(t_matrice mat);
 
 
 //JEU : INTERFACE GRAPHIQUE

@@ -166,7 +166,7 @@ int eval(t_matrice mat, char couleur){
     cpt_final += pt_force * (1.0-avancement) * (etat <= 20 ? 200 : 1);
     cpt_final -= nb_coup_adv * (1.0 - avancement);
     cpt_final += materiel * 200 * avancement;
-	fprintf(stderr,"pt %c: %d",couleur,(int)cpt_final);
+	//fprintf(stderr,"pt %c: %d",couleur,(int)cpt_final);
     return (int)cpt_final;
 }
 

@@ -15,7 +15,6 @@ static SDL_Texture *image_blanc_tex;
 static SDL_Texture *image_cible_tex;
 static SDL_Rect imgBtnRect;
 static SDL_Renderer *renderer_temp;
-
 /**
  * \fn void init_jeuSDL(SDL_Renderer* renderer)
  * \brief Initialise tout les données nécessaire pour l'affichage du plateau
@@ -34,7 +33,7 @@ void init_jeuSDL(SDL_Renderer* renderer){
     imgBtnRect.x = 0;
     imgBtnRect.y = 0;
     SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
-    //
+
     renderer_temp=renderer;
 }
 
@@ -44,7 +43,7 @@ void init_jeuSDL(SDL_Renderer* renderer){
  * \param int* joueur : renderer de la page.
  * \return void
  */
-void afficher_matriceSDL(char joueur){
+void afficher_matriceSDL(t_matrice mat, char joueur){
     SDL_Texture *temp;
     int i=0,j=0;
 
@@ -75,7 +74,7 @@ void afficher_matriceSDL(char joueur){
  * \param void
  * \return entier
  */
-int partie_termineeSDL(void){
+int partie_termineeSDL(t_matrice mat){
         int i, j, nb_noir, nb_blanc, cpt;
 
     /* On compte les pions noirs et les blancs */
@@ -116,7 +115,7 @@ int partie_termineeSDL(void){
  * \param void
  * \return char soit NOIR, BLANC ou EGALITE qui sont des constantes contenant un caractère.
  */
-char afficher_gagnant(void){
+char afficher_gagnant(t_matrice mat){
     int nb_noir, nb_blanc;
     calculer_score(mat,&nb_noir,&nb_blanc);
     /* Fin de partie, on affiche le gagnant */
@@ -125,7 +124,7 @@ char afficher_gagnant(void){
     else return EGALITE;
 };
 
-void afficher_cibleSDL(int x,int y){
+void afficher_cibleSDL(t_matrice mat, int x,int y){
     SDL_Texture *temp;
     int i=0,j=0;
 

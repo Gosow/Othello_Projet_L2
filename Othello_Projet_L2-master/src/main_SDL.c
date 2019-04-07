@@ -4,7 +4,7 @@ int main(void)
 {
     /* Initialisation simple */
     
-    init_matrice(mat);
+    //init_matrice(mat);
     if (SDL_Init(SDL_INIT_VIDEO) != 0 ) {
         fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
         return -1;
