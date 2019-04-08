@@ -1,32 +1,17 @@
-/**
- * \file client.c
- * \brief Fichier qui sert au client 
- * \author Fatnassi Mendy
- * \version 2
- * \date 02 avril 2019
- * */
-
-
 #include "socket.h"
 
-#include <unistd.h>
-#include <errno.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
+char menu(){
+	char choix;
+	printf("Que voulez-vous faire ?\n");
+	printf("m: envoyer un entier au serveur\n");
+	printf("q: quitter\n");
+	printf("a: afficher tableau\n");
+	printf("Que voulez-vous faire ?\n");
+	scanf(" %c", &choix);
+	return choix;
+}
 
-#include "../define.h"
-#include "../gest_matrice.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <netdb.h>
-#include <string.h>
-#include <signal.h>
 
-/*
-* \brief Permet de se connecter au serveur
-* \fn init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info , long hostAddr,int to_server_socket)  
-*/
 void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info , long hostAddr,int to_server_socket){
 
 	bzero(&serveur_addr,sizeof(serveur_addr));
@@ -64,10 +49,6 @@ void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info ,
 	printf("Connexion avec le serveur reussi!\n");
 }
 
-/*
-* \fn int quit_client (int to_server_socket)
-*/
-
 int quit_client (int to_server_socket){
 	shutdown(to_server_socket,2);
 	if(close(to_server_socket)==0){
@@ -90,38 +71,19 @@ void jeux_reseaux_c(){
 	long hostAddr=0;
 	//char buffer[512];
 	int to_server_socket=0;
-	*joueur=NOIR;
+	*joueur=BLANC;
 
-//Initialisation du jeux
 	init_client(serveur_addr,serveur_info ,hostAddr,to_server_socket);
 	init_matrice(m);
-	while(!partie_terminee (m)){ 
-		while (!partie_terminee (m)) {
-			afficher_matrice (m);
-			choisir_coup(m,lig,col,*joueur);
-			jouer_coup(m,*lig,*col,*joueur);
-			afficher_matrice (m);
-	        
-		    if (peut_jouer(m,joueur_suivant(*joueur))){
-		    	send(to_server_socket,lig,sizeof(*lig),0);
-			    send(to_server_socket,col,sizeof(*col),0);
-			    read(to_server_socket,joueur,sizeof(char));
-			    send(to_server_socket,&score1,sizeof(int),0);
-			    send(to_server_socket,&score2,sizeof(int),0);
-		    	*joueur = joueur_suivant(*joueur);
-			}
-			else {
-				printf ("\nLe joueur %c passe son tour\n", *joueur);
-				calculer_score(m,&score1,&score2);
-				printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
+//Initialisation du jeux
+	afficher_matrice (m);
 
-		   	}
-		    recv(to_server_socket,lig,sizeof(*lig),0);
-		    recv(to_server_socket,col,sizeof(*col),0);
-			write(to_server_socket,joueur,sizeof(char));
-		    recv(to_server_socket,&score1,sizeof(int),0);
-		    recv(to_server_socket,&score2,sizeof(int),0);
-		}
+	while (!partie_terminee (m)) {
+
+		envoyer_crd(to_server_socket,m,lig,col,joueur,&score1,&score2);
+		afficher_matrice(m);
+		recep_crd(to_server_socket,m,lig,col,joueur);
+		afficher_matrice(m);
 	}
 	/* fermeture de la connexion */
 	quit_client (to_server_socket);

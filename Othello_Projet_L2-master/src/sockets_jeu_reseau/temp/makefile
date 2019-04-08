@@ -4,7 +4,7 @@ FLAGS=-Wall -g
 OBJS=gest_matrice.o gest_socket.o
 
 all: client serveur
-	gcc client.c socket.h ../gest_matrice.c ../gest_matrice.h ../define.h gest_socket.c -o client
+	gcc client.c serveur.c socket.h ../gest_matrice.c ../gest_matrice.h ../define.h gest_socket.c gest_socket.h -o client
 
 %.o: %.c socket.h
 	$(CC) -c $< $(FLAGS) -o $@
