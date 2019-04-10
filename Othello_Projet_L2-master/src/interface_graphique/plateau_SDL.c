@@ -1,7 +1,7 @@
 /*
 remplacer arret par tpartie terminee
 ajouter un enum pour que les tableaux soient plus clair
-
+creer structure
 
 */
 
@@ -86,7 +86,7 @@ int lancement_jeu(int modeJeu){
     pion.x=800;
     pion.y=10;
 
-    SDL_Texture *image_noir_tex = tex_img_png("./img/noir.png",renderer);
+    SDL_Texture * image_noir_tex = tex_img_png("./img/noir.png",renderer);
     SDL_Texture *image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
     SDL_Texture *image_noirTour_tex = tex_img_png("./img/noirTour.png",renderer);
     SDL_Texture *image_blancTour_tex = tex_img_png("./img/blancTour.png",renderer);
@@ -209,20 +209,13 @@ int lancement_jeu(int modeJeu){
                         pion.y=10;
                         rectText[A_VOUS].y=150;
                         if(!partie_termineeSDL(mat)){
-                            if(joueur==NOIR){
-                                SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
-                                pion.x+=270;
-                                SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);
-                                rectText[A_VOUS].x=rectText[J1].x;
-
-                            }else{
-                                SDL_RenderCopy(renderer, image_noir_tex, NULL, &pion);
-                                pion.x+=270;
-                                SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                                rectText[A_VOUS].x=rectText[J2].x;
-                            }
+                            SDL_RenderCopy(renderer, joueur == NOIR ? image_noirTour_tex : image_noir_tex, NULL, &pion);
+                            pion.x+=270;
+                            SDL_RenderCopy(renderer, joueur == BLANC ? image_blancTour_tex : image_blanc_tex, NULL, &pion);
+                            rectText[A_VOUS].x=rectText[joueur == NOIR ? J1 : J2].x;
                             SDL_RenderCopy(renderer, texteJoueur_tex[A_VOUS], NULL, &(rectText[A_VOUS]));
                         }else{
+                            //A FACTORISER
                             gagnant=afficher_gagnant(mat);
                             if(gagnant==NOIR){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
@@ -245,7 +238,7 @@ int lancement_jeu(int modeJeu){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                                rectText[EGALITE].x=rectText[J2].x;
+                                rectText[EGALITE].x=rectText[J1].x;
                                 SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
                                 rectText[EGALITE].x=rectText[J2].x;
                                 SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
