@@ -1,0 +1,89 @@
+\hypertarget{socket_8h}{}\section{socket.\+h File Reference}
+\label{socket_8h}\index{socket.\+h@{socket.\+h}}
+
+
+Fichier header pour le client et le serveur.  
+
+
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../define.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../gest\+\_\+matrice.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+Include dependency graph for socket.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{socket_8h_a033911072e9fcd0c9f5f4e583669c3af}\label{socket_8h_a033911072e9fcd0c9f5f4e583669c3af}} 
+\#define {\bfseries S\+E\+R\+V\+E\+U\+R\+N\+A\+ME}~\char`\"{}127.\+0.\+0.\+1\char`\"{}
+\item 
+\mbox{\Hypertarget{socket_8h_a4e5ef7569c6109539833dc3f3558d55e}\label{socket_8h_a4e5ef7569c6109539833dc3f3558d55e}} 
+\#define {\bfseries Q\+U\+I\+T\+T\+ER}~\char`\"{}Q\+U\+I\+T\+T\+ER\char`\"{}
+\item 
+\mbox{\Hypertarget{socket_8h_a633b0396ff93d336a088412a190a5072}\label{socket_8h_a633b0396ff93d336a088412a190a5072}} 
+\#define {\bfseries S\+O\+C\+K\+E\+T\+\_\+\+E\+R\+R\+OR}~-\/1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{socket_8h_a6ba0075fa588e1e916fae184c13aedb2}\label{socket_8h_a6ba0075fa588e1e916fae184c13aedb2}} 
+char {\bfseries menu} ()
+\item 
+\mbox{\Hypertarget{socket_8h_aa2f8246c7f4081934f437aa3a5751ca5}\label{socket_8h_aa2f8246c7f4081934f437aa3a5751ca5}} 
+void {\bfseries init\+\_\+client} (struct sockaddr\+\_\+in serveur\+\_\+addr, struct hostent $\ast$serveur\+\_\+info, long host\+Addr, int to\+\_\+server\+\_\+socket)
+\item 
+\mbox{\Hypertarget{socket_8h_a61f0d91a3be4607efbbe84131f8340cb}\label{socket_8h_a61f0d91a3be4607efbbe84131f8340cb}} 
+int {\bfseries quit\+\_\+client} (int to\+\_\+server\+\_\+socket)
+\item 
+\mbox{\Hypertarget{socket_8h_a379cec4eb7add5e1a8d45004795abf36}\label{socket_8h_a379cec4eb7add5e1a8d45004795abf36}} 
+void {\bfseries jeux\+\_\+reseaux\+\_\+c} ()
+\item 
+\mbox{\Hypertarget{socket_8h_ac6983c58f044fcbcab59910b5b5dbd7d}\label{socket_8h_ac6983c58f044fcbcab59910b5b5dbd7d}} 
+void {\bfseries fin} ()
+\item 
+\mbox{\Hypertarget{socket_8h_a0d5e428ead5875e99663a6bb673fa0a8}\label{socket_8h_a0d5e428ead5875e99663a6bb673fa0a8}} 
+int {\bfseries hostname\+\_\+to\+\_\+ip} (char $\ast$hostname, char $\ast$ip)
+\item 
+\mbox{\Hypertarget{socket_8h_a077a8f2753012be48135d87764bdc0ee}\label{socket_8h_a077a8f2753012be48135d87764bdc0ee}} 
+void {\bfseries view\+\_\+ip} ()
+\item 
+\mbox{\Hypertarget{socket_8h_a3e6d75965ff290fb6f10756bc715cccc}\label{socket_8h_a3e6d75965ff290fb6f10756bc715cccc}} 
+void {\bfseries init\+\_\+serveur} (int ma\+\_\+socket, int client\+\_\+socket, int sock\+\_\+err, struct sockaddr\+\_\+in mon\+\_\+address, struct sockaddr\+\_\+in client\+\_\+address, unsigned int mon\+\_\+address\+\_\+longueur, unsigned int lg)
+\item 
+\mbox{\Hypertarget{socket_8h_a9a9b05afeb57367e7de56ead550cffd1}\label{socket_8h_a9a9b05afeb57367e7de56ead550cffd1}} 
+int {\bfseries quit\+\_\+serveur} (int client\+\_\+socket, int ma\+\_\+socket)
+\item 
+\mbox{\Hypertarget{socket_8h_a45f1bd1788335a8230b6588f6dd41735}\label{socket_8h_a45f1bd1788335a8230b6588f6dd41735}} 
+void {\bfseries jeux\+\_\+reseaux\+\_\+s} ()
+\item 
+\mbox{\Hypertarget{socket_8h_acab36d5c2c724d577365d92726da00e5}\label{socket_8h_acab36d5c2c724d577365d92726da00e5}} 
+int {\bfseries envoyer\+\_\+crd} (int socket, t\+\_\+matrice m, int $\ast$lig, int $\ast$col, char $\ast$joueur, int $\ast$score1, int $\ast$score2)
+\item 
+\mbox{\Hypertarget{socket_8h_ab030a1287ac1eeb70327a260634361ed}\label{socket_8h_ab030a1287ac1eeb70327a260634361ed}} 
+int {\bfseries recep\+\_\+crd} (int socket, t\+\_\+matrice m, int $\ast$lig, int $\ast$col, char $\ast$joueur)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fichier header pour le client et le serveur. 
+
+\begin{DoxyAuthor}{Author}
+Fatnassi Mendy 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+02 avril 2019 
+\end{DoxyDate}

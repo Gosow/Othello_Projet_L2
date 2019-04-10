@@ -108,10 +108,8 @@ int quit_serveur(int client_socket,int ma_socket){
 
 void jeux_reseaux_s(){
 	t_matrice m;
-	int *lig=malloc(sizeof(int)),*col=malloc(sizeof(int)),score1=0,score2=0;
+	int score1=0,score2=0;
 	char *joueur=malloc(sizeof(char));
-
-
 	int ma_socket;
 	int client_socket;
 	int sock_err;
@@ -125,16 +123,15 @@ void jeux_reseaux_s(){
 	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
 	
-	
-
-	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 	init_matrice(m);
 
+	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
+
+
 	while (!partie_terminee (m)) {
-		recep_crd(client_socket,m,lig,col,joueur,buffer);
-		//afficher_matrice(m);
-		printf("%s\n", buffer);
-		envoyer_crd(client_socket,m,lig,col,joueur,&score1,&score2,buffer);
+		recep_crd(client_socket,m,buffer,joueur);
+		afficher_matrice(m);
+		envoyer_crd(client_socket,m,buffer,joueur,&score1,&score2);
 		afficher_matrice(m);
 	}
 	quit_serveur(client_socket,ma_socket);

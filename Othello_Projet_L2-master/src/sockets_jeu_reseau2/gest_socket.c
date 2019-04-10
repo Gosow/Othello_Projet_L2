@@ -11,15 +11,13 @@
 #include <stdio.h>
 #include <string.h>
 
-
-
-
-
-
 /* Fonction qui verifie si le coup est valide */
-int coup_valide_sock (t_matrice m, int lig, int col, char *joueur) {
+int coup_valide_sock (t_matrice m, char *buffer, char *joueur) {
     int i, j, ok;
     char cj, ca;//cj=couleur joueur, ca=couleur autre
+    int lig,col;
+
+    fscanf(buffer,"%d %d",&lig,&col);
 
     /** Definition des couleurs pour les 2 joueurs **/
     if (*joueur == NOIR) {
@@ -136,8 +134,12 @@ char joueur_suivant_sock (char *joueur) {
 }
 
 /* Demander le coup du joueur */
-void choisir_coup_sock (t_matrice m, int *lig, int *col, char *joueur) {
+void choisir_coup_sock (t_matrice m, char *buffer, char *joueur) {
     char c;
+    int lig,col;
+
+    fscanf(buffer,"%d %d",&lig,&col);
+
     printf ("\nJoueur %c a vous de jouer\n", *joueur);
     printf ("Choisissez une case (ex: A1) :\n");
     scanf ("\n%c", &c);
@@ -148,7 +150,7 @@ void choisir_coup_sock (t_matrice m, int *lig, int *col, char *joueur) {
     scanf ("%d", lig);
     *lig=*lig-1;
     /* On redemande tant que le coup n'est pas valide */
-    while (!coup_valide(m, *lig, *col, *joueur)) {
+    while (!coup_valide_sock(m, buffer, *joueur)) {
         printf ("\nCe coup n'est pas valide\n");
         printf ("Choisissez une autre case (ex: A1) :\n");
         scanf ("\n%c", &c);
@@ -158,14 +160,18 @@ void choisir_coup_sock (t_matrice m, int *lig, int *col, char *joueur) {
         *col = c - 'A';
         scanf ("%d", lig);
         (*lig)--;
+        fprintf(stderr, "lig:%d   col:%d\n", *lig,*col );
     }
     //return c;
 }
 
 /* Fonction qui permet de jouer un coup */
-void jouer_coup_sock (t_matrice m, int lig, int col, char *joueur) {
+void jouer_coup_sock (t_matrice m, char *buffer, char *joueur) {
     int i, j;
     char cj, ca;
+    int lig,col;
+
+    fscanf(buffer,"%d %d",&lig,&col);
 
     if (*joueur == BLANC) {
         cj = BLANC;
@@ -283,50 +289,37 @@ void jouer_coup_sock (t_matrice m, int lig, int col, char *joueur) {
     }
 }
 
+char remplir_buffer(int socket,t_matrice m, char x, char y, char *joueur,int *score1,int *score2,char *buffer){
+    printf("Entrez les cordonnée :");
+    scanf("%d %d",buffer);
+}
+
 /* envoyer_crd() & recep_crd fonction commune a client & serveur */
-int envoyer_crd(int socket,t_matrice m, int *lig, int *col, char *joueur,int *score1,int *score2,char *buffer){
-  char temp = joueur_suivant(*joueur);
+int envoyer_crd(char *buffer){
+    char temp = joueur_suivant(*joueur);
 
-	choisir_coup_sock(m,lig,col,joueur);
+    choisir_coup_sock(m,buffer,joueur);
 
-  if (peut_jouer(m,temp)){
-      jouer_coup(m,*lig,*col,*joueur);
-     
-      sprintf(buffer,"%d;%d",&lig,&col);
+    if (peut_jouer(m,temp)){
+      jouer_coup_sock(m,buffer,*joueur);
 
-	  send(socket,buffer,sizeof(buffer)+1,0);
+      send(socket,buffer,256,0);
       read(socket,joueur,sizeof(char));
       *joueur = temp;
-		  return 0;
-	}
-	else {
-		printf ("\nLe joueur %c passe son tour\n", temp);
-		calculer_score(m,score1,score2);
-		return 1;
-	}
+    	  return 0;
+    }
+    else {
+    	printf ("\nLe joueur %c passe son tour\n", temp);
+    	calculer_score(m,score1,score2);
+    	return 1;
+    }
 }
 
-int recep_crd(int socket,t_matrice m, int *lig, int *col, char *joueur,char *buffer){
-    
-    while(recv(socket,buffer,sizeof(buffer)+1,0)!=NULL);
+int recep_crd(int socket,t_matrice m, char *buffer ,char *joueur){
+   // memset(buffer, 0, sizeof(buffer));
+    recv(socket,buffer,256,0);
+	write(socket,joueur,sizeof(char));
 
-	while(write(socket,joueur,sizeof(char))!=NULL);
-
-    sscanf(buffer,"%d;%d",&lig,&col);
-    //memset(buffer, 0, sizeof(buffer));
-
-	jouer_coup(m,*lig,*col,*joueur);
+	jouer_coup(m,buffer,*joueur);
 	return 0;
-}
-
-void envoyer_message(int socket){
-    char msg[200], buffer[512];
-    printf("quel est votre message : ");
-    scanf(" %[^\n]s", buffer);
-    sprintf(msg, "MSG %s", buffer);
-    send(socket, msg, strlen(msg), 0); //on augmente la taille de 4 pour l'entête
-    // lecture de la réponse
-    memset(buffer, 0, sizeof(buffer));
-    recv(socket,buffer,512,0);
-    printf("[client] reponse du serveur : %s\n", buffer);
 }

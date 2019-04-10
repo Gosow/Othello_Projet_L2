@@ -1,4 +1,11 @@
-/* prototypes*/
+/**
+ * \file client.c
+ * \brief  Prototype de fonction
+ * \author Fatnassi Mendy
+ * \version 2
+ * \date 02 avril 2019
+ * */
+
 #include "define.h"
 
 

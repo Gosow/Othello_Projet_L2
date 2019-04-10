@@ -130,12 +130,17 @@ void jeux_reseaux_s(){
 	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 	init_matrice(m);
 
-	while (!partie_terminee (m)) {
-		recep_crd(client_socket,m,lig,col,joueur,buffer);
-		//afficher_matrice(m);
-		printf("%s\n", buffer);
-		envoyer_crd(client_socket,m,lig,col,joueur,&score1,&score2,buffer);
-		afficher_matrice(m);
+	
+	while (1) {
+		/*printf("Entrez x et y : ");
+		scanf("%s",buffer);
+		printf("Envoie\n");
+		send (client_socket,buffer,sizeof(buffer),0);
+		printf("Reception\n");
+		recv(client_socket,buffer,sizeof(buffer),0);
+		printf("%s\n",buffer);*/
+		envoyer_message(client_socket);
+
 	}
 	quit_serveur(client_socket,ma_socket);
 	fprintf(stderr, "FERME NORMALLEMENT\n");

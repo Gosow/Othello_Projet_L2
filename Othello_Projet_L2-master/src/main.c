@@ -1,3 +1,11 @@
+/**
+ * \file main.c
+ * \brief Programme Principale en console terminale 
+ * \author Fatnassi Mendy
+ * \version 1
+ * \date 02 avril 2019
+ * */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -20,7 +28,7 @@ int main (int argc,char **argv) {
 		printf(" 1 - Jouer contre Un ami sur le mÃªme ordi\n");
 		printf(" 2 - Jouer contre l'ordinateur\n");
 		printf(" 3 - Jouer en reseaux contre un ami\n");
-    printf(" 4 - Quitter\n");
+        printf(" 4 - Quitter\n");
 
         scanf("%i",&choix);
 
@@ -50,10 +58,6 @@ int main (int argc,char **argv) {
         break;
         case 3:
 
-                /*system(serveur2.c);
-                system(client2.c);*/
-                /*jeux_reseaux_s(m,lig,col,joueur,score1,score2);
-                jeux_reseaux_c(m,lig,col,joueur,score1,score2);*/
         break;
         case 4:break;
         default:
