@@ -15,6 +15,7 @@ static SDL_Texture *image_blanc_tex;
 static SDL_Texture *image_cible_tex;
 static SDL_Rect imgBtnRect;
 static SDL_Renderer *renderer_temp;
+
 /**
  * \fn void init_jeuSDL(SDL_Renderer* renderer)
  * \brief Initialise tout les données nécessaire pour l'affichage du plateau
@@ -149,4 +150,14 @@ void afficher_cibleSDL(t_matrice mat, int x,int y){
     }
     SDL_RenderPresent(renderer_temp);
     sleep(1);
+}
+
+int pointe(SDL_Rect r, int x, int y){
+    return x>= r.x && x<= (r.x+r.w) && y>=r.y &&y<=(r.y+r.h);
+}
+
+int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y){
+    r->x = x;
+    r->y = y;
+    SDL_QueryTexture(t, NULL, NULL, &(r->w), &(r->h));
 }

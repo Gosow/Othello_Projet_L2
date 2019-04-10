@@ -14,13 +14,13 @@
  * \return entier
  */
 int menu_SDL(void){
-    int x,y;
+    int x,y, i=0, j=0;
     char bvn[80] ="Bienvenue ";
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
     //Le pointeur vers la surface incluse dans la fenetre
     SDL_Renderer *renderer=NULL;
-    SDL_Rect txtDestRect, txtBvnRect, txtMenuRect[4], imgBtnRect, imgBGRect;
+    SDL_Rect txtDestRect, txtBvnRect, txtMenuRect[4], imgBtnRect, imgBGRect, musicRect;
     
     // Une variable de couleur noire
     SDL_Color couleurNoire = {0, 0, 0, 0};
@@ -48,6 +48,25 @@ int menu_SDL(void){
     }
     SDL_Texture *texte_tex = tex_text("./ttf/PoliceTitre.ttf",100,"Othello",couleurNoire,renderer);
     SDL_Texture *user_tex = tex_text("./ttf/PoliceMenu.ttf",30,bvn,couleurNoire,renderer);
+    
+
+
+    SDL_Rect rect_highscore[6];
+    SDL_Texture *hs[6];
+    hs[0] = tex_text("./ttf/PoliceMenu.ttf",30,"Highscore :",couleurNoire,renderer);
+    hs[1] = tex_text("./ttf/PoliceMenu.ttf",17,"1. 64 - mario",couleurNoire,renderer);
+    hs[2] = tex_text("./ttf/PoliceMenu.ttf",17,"2. 64 - mario",couleurNoire,renderer);
+    hs[3] = tex_text("./ttf/PoliceMenu.ttf",17,"3. 64 - mario",couleurNoire,renderer);
+    hs[4] = tex_text("./ttf/PoliceMenu.ttf",17,"4. 64 - mario",couleurNoire,renderer);
+    hs[5] = tex_text("./ttf/PoliceMenu.ttf",17,"5. 64 - mario",couleurNoire,renderer);
+    //HIGHSCORE
+    config_obj(&rect_highscore[0], hs[0], 900, 10);
+    
+    for(i=1; i<6; i++){
+        config_obj(&rect_highscore[i], hs[i], 940, 17*(i+1));
+    }
+
+    
     SDL_Texture *texteMenu_tex[4];
     texteMenu_tex[0] = tex_text("./ttf/PoliceMenu.ttf",40,"Solo",couleurNoire,renderer);
     texteMenu_tex[1] = tex_text("./ttf/PoliceMenu.ttf",40,"Duo",couleurNoire,renderer);
@@ -56,17 +75,15 @@ int menu_SDL(void){
     
     //Position ou sera mis le texte dans la fenêtre
     //TITRE
-    txtDestRect.x = 300;
-    txtDestRect.y = 10;
-    SDL_QueryTexture(texte_tex, NULL, NULL, &(txtDestRect.w), &(txtDestRect.h));
+    config_obj(&txtDestRect, texte_tex, 300, 10);
     
     //BIENVENUE USERNAME
-    txtBvnRect.x = txtBvnRect.y = 10;
-    SDL_QueryTexture(user_tex, NULL, NULL, &(txtBvnRect.w), &(txtBvnRect.h));
+    config_obj(&txtBvnRect, user_tex, 10, 10);
     
     //MENU
-    for(int j=0;j<4;j++){
-        
+    for(j=0;j<4;j++){
+        config_obj(&txtMenuRect[j], texteMenu_tex[j], j==2 || j==3 ? 480 : 500, 165+90*j);
+        /*
         if(j==2 || j==3){
             txtMenuRect[j].x = 480;
         }else{
@@ -74,6 +91,7 @@ int menu_SDL(void){
         }
         txtMenuRect[j].y = 165+90*j;
         SDL_QueryTexture(texteMenu_tex[j], NULL, NULL, &(txtMenuRect[j].w), &(txtMenuRect[j].h));
+        */
     }
     
     
@@ -89,9 +107,10 @@ int menu_SDL(void){
     SDL_Texture *image_pause_tex = tex_img_png("./img/pause.png",renderer);
 
     SDL_Texture *temp;
-    SDL_Texture *temp_music;
-    int i=0;
-    
+    SDL_Texture *temp_music = image_play_tex;
+    //Musique
+    config_obj(&musicRect, temp_music, 1000, 570);
+
     if( pWindow )
     {
         int running = 1;
@@ -105,7 +124,7 @@ int menu_SDL(void){
                 switch(e.type) {
                     case SDL_QUIT: running = 0;break;
                     case SDL_MOUSEBUTTONDOWN:
-                        if(x>1000 && x<1000+82 && y>570 && y<570+82){
+                        if(pointe(musicRect, x, y)){
                             song = !(song);
                         }
                     case SDL_WINDOWEVENT:
@@ -133,10 +152,11 @@ int menu_SDL(void){
                         imgBtnRect.y = 150;
                         SDL_QueryTexture(image_btnHover_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
                         for(i=0;i<4;i++){
-                            if(x<620 && 440<x && y<imgBtnRect.y+77 && imgBtnRect.y<y){
+                            if(pointe(imgBtnRect,x,y)){
                                 temp = image_btnHover_tex;
                                 if(e.type == SDL_MOUSEBUTTONDOWN){
                                     SDL_DestroyWindow(pWindow);
+                                    Mix_PauseMusic();
                                     lancement_jeu(i);
                                     return 0;
                                 }
@@ -148,8 +168,6 @@ int menu_SDL(void){
                             imgBtnRect.y += 90;
                         }
 
-                        imgBtnRect.x = 1000;
-                        imgBtnRect.y = 570;
                         if(song==PLAY){
                             temp_music = image_pause_tex;
                             Mix_ResumeMusic();
@@ -157,9 +175,11 @@ int menu_SDL(void){
                             temp_music = image_play_tex;
                             Mix_PauseMusic();
                         }
-                        SDL_QueryTexture(temp_music, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
-                        SDL_RenderCopy(renderer, temp_music, NULL, &imgBtnRect);
+                        SDL_RenderCopy(renderer, temp_music, NULL, &musicRect);
 
+                        for(i=0;i<6;i++){
+                            SDL_RenderCopy(renderer, hs[i], NULL, &rect_highscore[i]);
+                        }
                         /* On fait le rendu ! */
                         SDL_RenderPresent(renderer);
                         break;

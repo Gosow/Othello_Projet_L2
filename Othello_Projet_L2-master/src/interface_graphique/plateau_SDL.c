@@ -1,3 +1,13 @@
+/*
+remplacer arret par tpartie terminee
+ajouter un enum pour que les tableaux soient plus clair
+
+
+*/
+
+
+
+
 /**
  * \file plateau_SDL.c
  * \brief Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l'interface graphique pour pouvoir jouer.
@@ -9,6 +19,9 @@
 #define OUI 1
 #define NON 0
 
+enum texte {J1, J2, A_VOUS, GAGNEE, PERDU, EGALITE, SCORE};
+enum image {PION = 0, REPLAY= 0, HOME, VOIR};
+
 /**
  * \fn int lancement_jeu(int modeJeu,t_matrice mat)
  * \brief Lance le jeu en fonction du mode choisie
@@ -18,7 +31,7 @@
 int lancement_jeu(int modeJeu){
     srand(time(NULL));
     if(modeJeu==QUITTER) return 0;
-    t_matrice mat;
+    t_matrice mat, mat_final;
     init_matrice(mat);
     int x,y,score_j1=0,score_j2=0,i;
     char gagnant;
@@ -51,22 +64,24 @@ int lancement_jeu(int modeJeu){
         fprintf(stderr, "Erreur à la création du renderer\n");
         exit(EXIT_FAILURE);
     }
-    SDL_Rect rectTEST[9];
+    SDL_Rect rectText[7];
+    SDL_Rect rectImg[7];
     SDL_Texture *texteJoueur_tex[7];
     
 
-    rectTEST[7].x=rectTEST[0].x=670;
-    rectTEST[1].x=930;
+    rectImg[0].x=rectText[J1].x=670;
+    rectText[J2].x=930;
     
-    rectTEST[0].y=rectTEST[1].y=110;
+    rectText[J1].y=rectText[J2].y=110;
     
-    rectTEST[3].y = rectTEST[4].y = rectTEST[5].y = 150;
+    rectText[GAGNEE].y = rectText[PERDU].y = rectText[EGALITE].y = 150;
     
-    rectTEST[6].x=800;
-    rectTEST[6].y=10;
+    rectText[SCORE].x=800;
+    rectText[SCORE].y=10;
     
-    rectTEST[7].y=rectTEST[8].y=560;
-    rectTEST[8].x=980;
+    rectImg[0].y = rectImg[1].y = rectImg[2].y = 560;
+    rectImg[1].x=980;
+    rectImg[2].x = 820;
     SDL_Rect pion;
     pion.x=800;
     pion.y=10;
@@ -77,18 +92,21 @@ int lancement_jeu(int modeJeu){
     SDL_Texture *image_blancTour_tex = tex_img_png("./img/blancTour.png",renderer);
     SDL_Texture *image_replay_tex = tex_img_png("./img/replay.png",renderer);
     SDL_Texture *image_home_tex = tex_img_png("./img/home.png",renderer);
+    SDL_Texture *image_voir_tex = tex_img_png("./img/voir.png",renderer);
     SDL_QueryTexture(image_noir_tex, NULL, NULL, &(pion.w), &(pion.h));
-    SDL_QueryTexture(image_replay_tex, NULL, NULL, &(rectTEST[7].w), &(rectTEST[7].h));
-    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectTEST[8].w), &(rectTEST[8].h));
+    SDL_QueryTexture(image_replay_tex, NULL, NULL, &(rectImg[0].w), &(rectImg[0].h));
+    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectImg[1].w), &(rectImg[1].h));
+    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectImg[2].w), &(rectImg[2].h));
 
-    texteJoueur_tex[0] = tex_text("./ttf/PoliceMenu.ttf",40,pseudo,couleurNoire,renderer);
-    texteJoueur_tex[1] = tex_text("./ttf/PoliceMenu.ttf",40,"Joueur 2",couleurNoire,renderer);
-    texteJoueur_tex[2] = tex_text("./ttf/PoliceMenu.ttf",40,"(à vous)",couleurNoire,renderer);
-    texteJoueur_tex[3] = tex_text("./ttf/PoliceMenu.ttf",40,"GAGNÉ !!",couleurNoire,renderer);
-    texteJoueur_tex[4] = tex_text("./ttf/PoliceMenu.ttf",40,"PERDU...",couleurNoire,renderer);
-    texteJoueur_tex[5] = tex_text("./ttf/PoliceMenu.ttf",40,"ÉGALITÉ :)",couleurNoire,renderer);
+
+    texteJoueur_tex[J1] = tex_text("./ttf/PoliceMenu.ttf",40,pseudo,couleurNoire,renderer);
+    texteJoueur_tex[J2] = tex_text("./ttf/PoliceMenu.ttf",40,"Joueur 2",couleurNoire,renderer);
+    texteJoueur_tex[A_VOUS] = tex_text("./ttf/PoliceMenu.ttf",40,"(à vous)",couleurNoire,renderer);
+    texteJoueur_tex[GAGNEE] = tex_text("./ttf/PoliceMenu.ttf",40,"GAGNÉ !!",couleurNoire,renderer);
+    texteJoueur_tex[PERDU] = tex_text("./ttf/PoliceMenu.ttf",40,"PERDU...",couleurNoire,renderer);
+    texteJoueur_tex[EGALITE] = tex_text("./ttf/PoliceMenu.ttf",40,"ÉGALITÉ :)",couleurNoire,renderer);
     for(i=0;i<6;i++){
-        SDL_QueryTexture(texteJoueur_tex[i], NULL, NULL, &(rectTEST[i].w), &(rectTEST[i].h));
+        SDL_QueryTexture(texteJoueur_tex[i], NULL, NULL, &(rectText[i].w), &(rectText[i].h));
     }
     char joueur;
 
@@ -102,6 +120,8 @@ int lancement_jeu(int modeJeu){
     {
         int running = 1;
         while(running) {
+            //SDL_GetMouseState(&x,&y);
+            //fprintf(stderr,"x : %d | y : %d\n",x,y);
             SDL_Event e;           
             while(SDL_PollEvent(&e)) {
                 switch(e.type) {
@@ -111,12 +131,12 @@ int lancement_jeu(int modeJeu){
                         SDL_GetMouseState(&x,&y);
                         //fprintf(stderr,"Mouse Button down \n");
                         //REPLAY
-                        if(x>= rectTEST[7].x && x<= (rectTEST[7].x+rectTEST[7].w) && y>=rectTEST[7].y &&y<=(rectTEST[7].y+rectTEST[7].h)){
+                        if(pointe(rectImg[0],x,y)){
                             init_matrice(mat);
                             arret=NON;
                             joueur=joueur_sauv;
                         }
-                        if(x>= rectTEST[8].x && x<= (rectTEST[8].x+rectTEST[8].w) && y>=rectTEST[8].y &&y<=(rectTEST[8].y+rectTEST[8].h)){
+                        if(pointe(rectImg[1],x,y)){
                             running=0;
                             if(pWindow != NULL) SDL_DestroyWindow(pWindow);
                             init_matrice(mat);
@@ -140,22 +160,36 @@ int lancement_jeu(int modeJeu){
                                 }
                                 
                             }
+                        }else if(pointe(rectImg[2],x,y)){
+                                SDL_RenderClear(renderer);
+
+                                afficher_matriceSDL(mat_final,NULL);
+
+                                SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[2]));
+
+                                SDL_RenderPresent(renderer);
+                                sleep(4);
+                            
                         }
+                        
+
                     case SDL_WINDOWEVENT:
                         SDL_RenderClear(renderer);
                         /* Le fond de la fenêtre sera vert */
+                        
+                        
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
 
-                        SDL_RenderCopy(renderer, texteJoueur_tex[0], NULL, &(rectTEST[0]));
-                        SDL_RenderCopy(renderer, texteJoueur_tex[1], NULL, &(rectTEST[1]));
+                        SDL_RenderCopy(renderer, texteJoueur_tex[J1], NULL, &(rectText[J1]));
+                        SDL_RenderCopy(renderer, texteJoueur_tex[J2], NULL, &(rectText[J2]));
                         
                         calculer_score(mat,&score_j1,&score_j2);
-                        afficher_matrice(mat);
+                        //afficher_matrice(mat);
                         sprintf(score_aff, "%d - %d", score_j1,score_j2);
                         
-                        texteJoueur_tex[6] = tex_text("./ttf/PoliceMenu.ttf",55,score_aff,couleurNoire,renderer);
+                        texteJoueur_tex[SCORE] = tex_text("./ttf/PoliceMenu.ttf",55,score_aff,couleurNoire,renderer);
 
-                        SDL_QueryTexture(texteJoueur_tex[6], NULL, NULL, &(rectTEST[6].w), &(rectTEST[6].h));
+                        SDL_QueryTexture(texteJoueur_tex[SCORE], NULL, NULL, &(rectText[SCORE].w), &(rectText[SCORE].h));
                         
                         /* Le fond de la fenêtre sera vert */
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
@@ -163,6 +197,9 @@ int lancement_jeu(int modeJeu){
                         /* On fait le rendu ! */
                         if (partie_termineeSDL(mat)){
                             arret=OUI;
+                            copie_mat(mat,mat_final);
+                            //VOIR
+                            SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[2]));
                             afficher_gagnant(mat);
                         }
                         else afficher_matriceSDL(mat, joueur);
@@ -170,54 +207,54 @@ int lancement_jeu(int modeJeu){
                         //printf("%c\n",afficher_gagnant(mat,renderer));
                         pion.x=680;
                         pion.y=10;
-                        rectTEST[2].y=150;
+                        rectText[A_VOUS].y=150;
                         if(!partie_termineeSDL(mat)){
                             if(joueur==NOIR){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);
-                                rectTEST[2].x=rectTEST[0].x;
+                                rectText[A_VOUS].x=rectText[J1].x;
 
                             }else{
                                 SDL_RenderCopy(renderer, image_noir_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                                rectTEST[2].x=rectTEST[1].x;
+                                rectText[A_VOUS].x=rectText[J2].x;
                             }
-                            SDL_RenderCopy(renderer, texteJoueur_tex[2], NULL, &(rectTEST[2]));
+                            SDL_RenderCopy(renderer, texteJoueur_tex[A_VOUS], NULL, &(rectText[A_VOUS]));
                         }else{
                             gagnant=afficher_gagnant(mat);
                             if(gagnant==NOIR){
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);
-                                rectTEST[3].x=rectTEST[0].x;
-                                rectTEST[4].x=rectTEST[1].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[3], NULL, &(rectTEST[3]));
-                                SDL_RenderCopy(renderer, texteJoueur_tex[4], NULL, &(rectTEST[4]));
+                                rectText[GAGNEE].x=rectText[J1].x;
+                                rectText[PERDU].x=rectText[J2].x;
+                                SDL_RenderCopy(renderer, texteJoueur_tex[GAGNEE], NULL, &(rectText[GAGNEE]));
+                                SDL_RenderCopy(renderer, texteJoueur_tex[PERDU], NULL, &(rectText[PERDU]));
 
                             }else if(gagnant==BLANC){
                                 SDL_RenderCopy(renderer, image_noir_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                                rectTEST[3].x=rectTEST[1].x;
-                                rectTEST[4].x=rectTEST[0].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[3], NULL, &(rectTEST[3]));
-                                SDL_RenderCopy(renderer, texteJoueur_tex[4], NULL, &(rectTEST[4]));
+                                rectText[GAGNEE].x=rectText[J2].x;
+                                rectText[PERDU].x=rectText[J1].x;
+                                SDL_RenderCopy(renderer, texteJoueur_tex[GAGNEE], NULL, &(rectText[GAGNEE]));
+                                SDL_RenderCopy(renderer, texteJoueur_tex[PERDU], NULL, &(rectText[PERDU]));
                             }else{
                                 SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
                                 pion.x+=270;
                                 SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                                rectTEST[5].x=rectTEST[1].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[5], NULL, &(rectTEST[5]));
-                                rectTEST[5].x=rectTEST[0].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[5], NULL, &(rectTEST[5]));
+                                rectText[EGALITE].x=rectText[J2].x;
+                                SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
+                                rectText[EGALITE].x=rectText[J2].x;
+                                SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
                             }
                         }
 
-                        SDL_RenderCopy(renderer, texteJoueur_tex[6], NULL, &(rectTEST[6]));
-                        SDL_RenderCopy(renderer, image_replay_tex, NULL, &(rectTEST[7]));
-                        SDL_RenderCopy(renderer, image_home_tex, NULL, &(rectTEST[8]));
+                        SDL_RenderCopy(renderer, texteJoueur_tex[SCORE], NULL, &(rectText[SCORE]));
+                        SDL_RenderCopy(renderer, image_replay_tex, NULL, &(rectImg[0]));
+                        SDL_RenderCopy(renderer, image_home_tex, NULL, &(rectImg[1]));
 
                         SDL_RenderPresent(renderer);
                         break;

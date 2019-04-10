@@ -36,5 +36,7 @@ char afficher_gagnant(t_matrice mat);
 //JEU : INTERFACE GRAPHIQUE
 int lancement_jeu(int modeJeu);
 int menu_SDL(void);
+int pointe(SDL_Rect r, int x, int y);
+int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y);
 
 #endif

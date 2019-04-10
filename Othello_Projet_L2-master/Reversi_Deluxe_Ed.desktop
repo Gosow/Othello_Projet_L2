@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Reversi
-Type=Application
-Exec=/home/yac/Documents/L2_info/Othello_L2/Othello_Projet_L2-master/Reversi_Deluxe_Ed.sh UBUNTU_MENUPROXY=0 
-Terminal=false
-Icon=Reversi_Delux_Ed
-Comment=Project Game Development
-Categories=Game
