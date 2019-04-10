@@ -1,11 +1,3 @@
-/**
- * \file socket.h
- * \brief Fichier header pour le client et le serveur
- * \author Fatnassi Mendy
- * \version 2
- * \date 02 avril 2019
- * */
-
 /*client*/
 #include <unistd.h>
 #include <errno.h>
@@ -21,19 +13,13 @@
 
 /*Module cummun a client et serveur*/
 #include "../define.h"
-#include "../gest_matrice.h"
+#include "gest_socket.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <netdb.h>
 #include <string.h>
 #include <signal.h>
 
-/*
-* \brief Constante et Macros
-* \def SERVERNAME "127.0.0.1"
-* \def QUITTER "QUITTER"
-* \def SOCKET_ERROR -1
-*/
 //#define SERVEURNAME "192.168.1.106" // adresse IP de mon serveur
 #define SERVEURNAME "127.0.0.1" // adresse IP de mon serveur
 //#define SERVEURNAME "172.18.41.139" // adresse IP de mon serveur
@@ -56,7 +42,3 @@ void view_ip();
 void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_in mon_address ,struct sockaddr_in client_address ,unsigned int mon_address_longueur,unsigned int lg);
 int quit_serveur(int client_socket,int ma_socket);
 void jeux_reseaux_s();
-
-/*client&serveur*/
-int envoyer_crd(int socket,t_matrice m, int *lig, int *col, char *joueur,int *score1,int *score2);
-int recep_crd(int socket,t_matrice m, int *lig, int *col, char *joueur,int *score1,int *score2);
