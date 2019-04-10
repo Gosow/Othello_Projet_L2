@@ -41,7 +41,7 @@ void init_jeuSDL(SDL_Renderer* renderer){
 /**
  * \fn afficher_matriceSDL(int* joueur)
  * \brief Affiche le plateau de jeu avec les pions et affiche les coup possible en fonctions du tour du joueur
- * \param int* joueur : renderer de la page.
+ * \param t_matrice mat, char joueur.
  * \return void
  */
 void afficher_matriceSDL(t_matrice mat, char joueur){
@@ -72,7 +72,7 @@ void afficher_matriceSDL(t_matrice mat, char joueur){
 /**
  * \fn afficher_matriceSDL(int* joueur)
  * \brief La fonction permet de savoir si le jeu est terminé ou non.
- * \param void
+ * \param t_matrice
  * \return entier
  */
 int partie_termineeSDL(t_matrice mat){
@@ -113,7 +113,7 @@ int partie_termineeSDL(t_matrice mat){
 /**
  * \fn afficher_matriceSDL(int* joueur)
  * \brief La fonction permet de savoir qui a gagné, et aussi si on a match nul.
- * \param void
+ * \param t_matrice
  * \return char soit NOIR, BLANC ou EGALITE qui sont des constantes contenant un caractère.
  */
 char afficher_gagnant(t_matrice mat){
@@ -124,6 +124,8 @@ char afficher_gagnant(t_matrice mat){
     else if (nb_blanc > nb_noir) return BLANC;
     else return EGALITE;
 };
+
+
 
 void afficher_cibleSDL(t_matrice mat, int x,int y){
     SDL_Texture *temp;
