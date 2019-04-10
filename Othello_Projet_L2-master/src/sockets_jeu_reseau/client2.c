@@ -77,16 +77,13 @@ void jeux_reseaux_c(){
 	init_client(serveur_addr,serveur_info ,hostAddr,to_server_socket);
 	init_matrice(m);
 
-	
 	while (1) {
-		/*printf("Entrez x  : ");
-		scanf("%s",buffer);
-		printf("Envoie\n");
-		send (to_server_socket,buffer,sizeof(buffer),0);
-		printf("Reception\n");
+		printf("Entrer message : ");
+		scanf("%s\n",buffer);
+		send(to_server_socket,buffer,sizeof(buffer),0);
+		memset(buffer,0,sizeof(buffer));
 		recv(to_server_socket,buffer,sizeof(buffer),0);
-		printf("%s\n",buffer);*/
-		envoyer_message(to_server_socket);
+		printf("Message recu : %s",buffer);
 	}
 	/* fermeture de la connexion */
 	quit_client (to_server_socket);

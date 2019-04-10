@@ -124,23 +124,20 @@ void jeux_reseaux_s(){
 	//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
 	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
 	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
-	
-	
+
+
 
 	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 	init_matrice(m);
 
-	
-	while (1) {
-		/*printf("Entrez x et y : ");
-		scanf("%s",buffer);
-		printf("Envoie\n");
-		send (client_socket,buffer,sizeof(buffer),0);
-		printf("Reception\n");
-		recv(client_socket,buffer,sizeof(buffer),0);
-		printf("%s\n",buffer);*/
-		envoyer_message(client_socket);
 
+	while (1) {
+		memset(buffer,0,sizeof(buffer));
+		recv(client_socket,buffer,sizeof(buffer),0);
+		printf("Message recu : %s",buffer);
+		printf("Entrer message : ");
+		scanf("%s\n",buffer);
+		send(client_socket,buffer,sizeof(buffer),0);
 	}
 	quit_serveur(client_socket,ma_socket);
 	fprintf(stderr, "FERME NORMALLEMENT\n");
