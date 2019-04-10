@@ -19,6 +19,9 @@ creer structure
 #define OUI 1
 #define NON 0
 
+#define CLIENT 0
+#define SERVEUR 1
+
 enum texte {J1, J2, A_VOUS, GAGNEE, PERDU, EGALITE, SCORE};
 enum image {PION = 0, REPLAY= 0, HOME, VOIR};
 
@@ -33,7 +36,7 @@ int lancement_jeu(int modeJeu){
     if(modeJeu==QUITTER) return 0;
     t_matrice mat, mat_final;
     init_matrice(mat);
-    int x,y,score_j1=0,score_j2=0,i;
+    int x,y,score_j1=0,score_j2=0,type=0,i;
     char gagnant;
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
@@ -116,6 +119,77 @@ int lancement_jeu(int modeJeu){
     int joueur_sauv=joueur;
     init_jeuSDL(renderer);
     int arret=NON;
+
+
+
+
+
+    const SDL_MessageBoxButtonData buttons[] = {
+        { /* .flags, .buttonid, .text */        0, 0, "rejoindre une partie" },
+        { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "héberger une partie" },
+        { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 2, "cancel" },
+    };
+    const SDL_MessageBoxColorScheme colorScheme = {
+        { /* .colors (.r, .g, .b) */
+            /* [SDL_MESSAGEBOX_COLOR_BACKGROUND] */
+            { 255,   0,   0 },
+            /* [SDL_MESSAGEBOX_COLOR_TEXT] */
+            {   0, 255,   0 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_BORDER] */
+            { 255, 255,   0 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND] */
+            {   0,   0, 255 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED] */
+            { 255,   0, 255 }
+        }
+    };
+    const SDL_MessageBoxData messageboxdata = {
+        SDL_MESSAGEBOX_INFORMATION, /* .flags */
+        NULL, /* .window */
+        "À vous de voir ;)", /* .title */
+        "Voulez vous créer une partie ou rejoindre une partie déjà crée ?", /* .message */
+        SDL_arraysize(buttons), /* .numbuttons */
+        buttons, /* .buttons */
+        &colorScheme /* .colorScheme */
+    };
+    int buttonid;
+
+
+    if(modeJeu == ONLINE && type == 0 ){
+        if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {
+            SDL_Log("Erreur de l'affichage de la box");
+            return 1;
+        }
+        fprintf(stderr,"btn : %d\n",buttonid);
+        if (buttonid == -1) {
+            SDL_Log("no selection");
+        }
+        if (buttonid == 2){
+            if(pWindow != NULL) SDL_DestroyWindow(pWindow);
+            return 0;
+        } else {
+            SDL_Log("selection was %s", buttons[buttonid].text);
+        }
+    }
+    type = buttonid;
+
+    fprintf(stderr,"test : %d",type);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if( pWindow )
     {
         int running = 1;
@@ -193,7 +267,7 @@ int lancement_jeu(int modeJeu){
                         
                         /* Le fond de la fenêtre sera vert */
                         SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
-
+                        
                         /* On fait le rendu ! */
                         if (partie_termineeSDL(mat)){
                             arret=OUI;
