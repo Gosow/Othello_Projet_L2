@@ -1,27 +1,6 @@
-/**
- * \file serveur.c
- * \brief Fichier qui sert au serveur 
- * \author Fatnassi Mendy
- * \version 2
- * \date 02 avril 2019
- * */
-
-
 #include "socket.h"
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-
-
-#include "../define.h"
-#include "../gest_matrice.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <netdb.h>
-#include <string.h>
-#include <signal.h>
+char buffer[512];
 
 void fin(){//int sig (parametre)
 	printf("fin du serveur");
@@ -63,11 +42,6 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-
-/*
-* \brief Permet d'accepter la connexion avec les client
-* \fn void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_in mon_address ,struct sockaddr_in client_address ,unsigned int mon_address_longueur,unsigned int lg) 
-*/
 void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_in mon_address ,struct sockaddr_in client_address ,unsigned int mon_address_longueur,unsigned int lg){
 
 	bzero(&mon_address,sizeof(mon_address));
@@ -111,7 +85,7 @@ void init_serveur(int ma_socket,int client_socket,int sock_err,struct sockaddr_i
 				int nboctets : nb octets du tampon*/
 				/*int write(numsoc, tampon, nboctets)
 				int numsoc : numero de socket
-				char *tampon : pointeur sur les donn ́ees recues par le processus
+				char *tampon : pointeur sur les donn ́ees re ̧cues par le processus
 				int nboctets : nb octets du tampon*/
 			client_socket = accept(ma_socket,(struct sockaddr *)&client_address,&mon_address_longueur);
 			printf("Connexion avec le client réussi!\n");
@@ -144,53 +118,24 @@ void jeux_reseaux_s(){
 	//struct socka_addr permet de configurer la connexion (contexte d'addressage)
 	struct sockaddr_in mon_address, client_address;
 	unsigned int mon_address_longueur, lg;
-	*joueur=BLANC;
+	*joueur=NOIR;
+
+	//Initialisation du jeux
+	//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
+	//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
+	//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
+	
+	init_matrice(m);
 
 	init_serveur(ma_socket,client_socket,sock_err,mon_address ,client_address ,mon_address_longueur,lg);
 
-//Initialisation du jeux
-//int send(int socket, void* buffer, size_t len, int flags); fonction pour envoyée des informations
-//int recv(int socket, void* buffer, size_t len, int flags); fonction qui recoit des informations
-//buffer : représente un pointeur (tableau) dans lequel résideront les informations à recevoir ou transmettre.
-	init_matrice(m);
-	
 
-	afficher_matrice(m);
-
-	while(!partie_terminee(m)){
-
-		recv(client_socket,lig,sizeof(*lig),0);
-	    recv(client_socket,col,sizeof(*col),0);
-		write(client_socket,joueur,sizeof(char));
-	    recv(client_socket,&score1,sizeof(int),0);
-	    recv(client_socket,&score2,sizeof(int),0);
-    	afficher_matrice(m);
-
-		while (!partie_terminee (m)) {			
-
-			choisir_coup(m,lig,col,*joueur);
-			jouer_coup(m,*lig,*col,*joueur);
-	      	afficher_matrice(m);
-
-		    if (peut_jouer(m,joueur_suivant(*joueur))){
-		        send(client_socket,lig,sizeof(*lig),0);
-		        send(client_socket,col,sizeof(*col),0);
-		        read(client_socket,joueur,sizeof(char));
-		        send(client_socket,&score1,sizeof(int),0);
-		        send(client_socket,&score2,sizeof(int),0);
-		        *joueur = joueur_suivant(*joueur);
-
-			}
-			else {
-				printf ("\nLe joueur %c passe son tour\n", *joueur);
-				calculer_score(m,&score1,&score2);
-				printf("il y a %d pions du joueur 1 \n et %d du joueur 2 \n",score1,score2);
-
-		   }
-
-		}
+	while (!partie_terminee (m)) {
+		recep_crd(client_socket,m,lig,col,joueur,buffer);
+		afficher_matrice(m);
+		envoyer_crd(client_socket,m,lig,col,joueur,&score1,&score2,buffer);
+		afficher_matrice(m);
 	}
-	
 	quit_serveur(client_socket,ma_socket);
 	fprintf(stderr, "FERME NORMALLEMENT\n");
 }
