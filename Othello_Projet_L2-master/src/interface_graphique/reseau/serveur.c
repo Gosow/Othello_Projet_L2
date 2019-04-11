@@ -97,7 +97,19 @@ int init_serv ( void )
 
 int fin_jeu_serv(void){
 	return !((strncmp("j", buffer, 1)==0));
+}
 
+unsigned int recv_from_serv(char* msg){
+	unsigned int lg;
+	memset(buffer, 0, sizeof(buffer));
+	lg = recv(client_socket, buffer, 512,0);
+	strcpy(msg,buffer);
+}
+
+int send_from_serv(char* msg){
+	strcpy(buffer,msg);
+	sprintf(msg, "%s", buffer);
+	send(client_socket, msg, strlen(msg), 0); //on augmente la taille de 4 pour l'entête
 }
 /*
 int main(void){
