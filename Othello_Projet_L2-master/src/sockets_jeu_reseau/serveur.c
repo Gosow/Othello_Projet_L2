@@ -132,8 +132,8 @@ void jeux_reseaux_s(){
 
 	while (!partie_terminee (m)) {
 		recep_crd(client_socket,m,lig,col,joueur,buffer);
-		//afficher_matrice(m);
-		printf("%s\n", buffer);
+		afficher_matrice(m);
+		//printf("%s\n", buffer);
 		envoyer_crd(client_socket,m,lig,col,joueur,&score1,&score2,buffer);
 		afficher_matrice(m);
 	}
