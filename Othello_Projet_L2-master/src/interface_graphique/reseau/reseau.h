@@ -9,7 +9,8 @@ void view_ip(void);
 int fermer_serv(void);
 int init_serv(void);
 int fin_jeu_serv(void);
-
+unsigned int recv_from_serv(char* msg);
+int send_from_serv(char* msg);
 
 //CLIENT
 

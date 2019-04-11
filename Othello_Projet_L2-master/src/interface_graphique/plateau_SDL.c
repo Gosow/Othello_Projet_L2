@@ -33,6 +33,7 @@ enum image {PION = 0, REPLAY= 0, HOME, VOIR};
  * \return entier
  */
 int lancement_jeu(int modeJeu, int type){
+    char* msg[512];
     srand(time(NULL));
     if(modeJeu==QUITTER) return 0;
     t_matrice mat, mat_final;
@@ -124,11 +125,13 @@ int lancement_jeu(int modeJeu, int type){
     if(modeJeu == ONLINE){
         if(type == SERVEUR){
             init_serv();
+            recv();
         }
         else if(type == CLIENT){
             init_client();
         }
     }
+
 
 
 
