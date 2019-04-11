@@ -11,18 +11,6 @@ char menu(){
 	return choix;
 }
 
-void envoyer_message(int to_server_socket){
-	char msg[200], buffer[512];
-	printf("quel est votre message : ");
-	scanf(" %[^\n]s", buffer);
-	sprintf(msg, "MSG %s", buffer);
-	send(to_server_socket, msg, strlen(msg), 0); //on augmente la taille de 4 pour l'entête
-	// lecture de la réponse
-	memset(buffer, 0, sizeof(buffer));
-	recv(to_server_socket,buffer,512,0);
-	printf("[client] reponse du serveur : '%s'\n", buffer);
-}
-
 void init_client(struct sockaddr_in serveur_addr,struct hostent * serveur_info , long hostAddr,int to_server_socket){
 
 	bzero(&serveur_addr,sizeof(serveur_addr));
@@ -89,14 +77,13 @@ void jeux_reseaux_c(){
 	init_client(serveur_addr,serveur_info ,hostAddr,to_server_socket);
 	init_matrice(m);
 
-	afficher_matrice(m);
-
-	while (!partie_terminee (m)) {
-
-		envoyer_crd(to_server_socket,m,lig,col,joueur,&score1,&score2,buffer);
-		afficher_matrice(m);
-		recep_crd(to_server_socket,m,lig,col,joueur,buffer);
-		afficher_matrice(m);
+	while (1) {
+		printf("Entrer message : ");
+		scanf("%s\n",buffer);
+		send(to_server_socket,buffer,sizeof(buffer),0);
+		memset(buffer,0,sizeof(buffer));
+		recv(to_server_socket,buffer,sizeof(buffer),0);
+		printf("Message recu : %s",buffer);
 	}
 	/* fermeture de la connexion */
 	quit_client (to_server_socket);
