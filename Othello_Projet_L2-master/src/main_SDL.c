@@ -1,5 +1,8 @@
 #include "./interface_graphique/SDL_jeu.h"
 
+SDL_Window* pWindow = NULL;
+SDL_Renderer *renderer=NULL;
+
 int main(void)
 {
     /* Initialisation simple */
@@ -31,6 +34,24 @@ int main(void)
     song=1;
     Mix_VolumeMusic(MIX_MAX_VOLUME/4);
     Mix_PlayMusic(music,-1);
+
+
+    /* Création de la fenêtre */
+    pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
+                               SDL_WINDOWPOS_UNDEFINED,
+                               1080,
+                               650,
+                               SDL_WINDOW_SHOWN);
+    
+    if(!pWindow){
+        fprintf(stderr, "Erreur à la création de la fenetre : %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+    renderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
+    if(renderer == NULL){
+        fprintf(stderr, "Erreur à la création du renderer\n");
+        exit(EXIT_FAILURE);
+    }
 
     menu_SDL();
     

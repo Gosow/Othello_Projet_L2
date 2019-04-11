@@ -18,6 +18,8 @@
 #define ONLINE 2
 #define QUITTER 3
 
+extern SDL_Window* pWindow;
+extern SDL_Renderer *renderer;
 Mix_Music *music;
 t_matrice mat;
 
@@ -25,7 +27,7 @@ int song;
 //TEXTURE
 SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer);
 SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer);
-void init_jeuSDL(SDL_Renderer* renderer);
+void init_jeuSDL(void);
 
 //AFFICHAGE MATRICE / JEU
 void afficher_matriceSDL(t_matrice mat, char joueur);

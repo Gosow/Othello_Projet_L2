@@ -14,7 +14,6 @@ static SDL_Texture *image_noir_tex;
 static SDL_Texture *image_blanc_tex;
 static SDL_Texture *image_cible_tex;
 static SDL_Rect imgBtnRect;
-static SDL_Renderer *renderer_temp;
 
 /**
  * \fn void init_jeuSDL(SDL_Renderer* renderer)
@@ -22,7 +21,7 @@ static SDL_Renderer *renderer_temp;
  * \param SDL_Renderer* renderer : renderer de la page.
  * \return void
  */
-void init_jeuSDL(SDL_Renderer* renderer){
+void init_jeuSDL(void){
     image_caseNorm_tex = tex_img_png("./img/caseNorm.png",renderer);
     image_casePoss_tex = tex_img_png("./img/casePoss.png",renderer);
     //PION NOIR
@@ -34,8 +33,6 @@ void init_jeuSDL(SDL_Renderer* renderer){
     imgBtnRect.x = 0;
     imgBtnRect.y = 0;
     SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
-
-    renderer_temp=renderer;
 }
 
 /**
@@ -57,12 +54,12 @@ void afficher_matriceSDL(t_matrice mat, char joueur){
             }else{
                 temp = image_caseNorm_tex;
             }
-            SDL_RenderCopy(renderer_temp, temp, NULL, &imgBtnRect);
+            SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
             if(mat[i][j] == NOIR){
-                SDL_RenderCopy(renderer_temp, image_noir_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer, image_noir_tex, NULL, &imgBtnRect);
             }
             else if(mat[i][j] == BLANC){
-                SDL_RenderCopy(renderer_temp, image_blanc_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer, image_blanc_tex, NULL, &imgBtnRect);
             }
             imgBtnRect.x += 82;
         }
@@ -98,11 +95,11 @@ int partie_termineeSDL(t_matrice mat){
         imgBtnRect.y = i*82;
         imgBtnRect.x = 0;
         for (j=0; j<N; j++) {
-            SDL_RenderCopy(renderer_temp, image_caseNorm_tex, NULL, &imgBtnRect);
+            SDL_RenderCopy(renderer, image_caseNorm_tex, NULL, &imgBtnRect);
             if (cpt < nb_noir)
-                SDL_RenderCopy(renderer_temp, image_noir_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer, image_noir_tex, NULL, &imgBtnRect);
             else if ((cpt >= nb_noir) && (cpt < nb_noir + nb_blanc))
-                SDL_RenderCopy(renderer_temp, image_blanc_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer, image_blanc_tex, NULL, &imgBtnRect);
             cpt++;
             imgBtnRect.x += 82;
         }
@@ -130,7 +127,7 @@ char afficher_gagnant(t_matrice mat){
 void afficher_cibleSDL(t_matrice mat, int x,int y){
     SDL_Texture *temp;
     int i=0,j=0;
-    SDL_RenderClear(renderer_temp);
+    SDL_RenderClear(renderer);
     for(i=0;i<N;i++){
         imgBtnRect.y = i*82;
         imgBtnRect.x = 0;
@@ -140,17 +137,17 @@ void afficher_cibleSDL(t_matrice mat, int x,int y){
             }else{
                 temp = image_caseNorm_tex;
             }
-            SDL_RenderCopy(renderer_temp, temp, NULL, &imgBtnRect);
+            SDL_RenderCopy(renderer, temp, NULL, &imgBtnRect);
             if(mat[i][j] == NOIR){
-                SDL_RenderCopy(renderer_temp, image_noir_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer, image_noir_tex, NULL, &imgBtnRect);
             }
             else if(mat[i][j] == BLANC){
-                SDL_RenderCopy(renderer_temp, image_blanc_tex, NULL, &imgBtnRect);
+                SDL_RenderCopy(renderer, image_blanc_tex, NULL, &imgBtnRect);
             }
             imgBtnRect.x += 82;
         }
     }
-    SDL_RenderPresent(renderer_temp);
+    SDL_RenderPresent(renderer);
     sleep(1);
 }
 

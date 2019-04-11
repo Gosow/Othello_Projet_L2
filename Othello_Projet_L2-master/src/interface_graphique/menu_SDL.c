@@ -17,9 +17,9 @@ int menu_SDL(void){
     int x,y, i=0, j=0,choix;
     char bvn[80] ="Bienvenue ";
     //Le pointeur vers la fenetre
-    SDL_Window* pWindow = NULL;
+  //  SDL_Window* pWindow = NULL;
     //Le pointeur vers la surface incluse dans la fenetre
-    SDL_Renderer *renderer=NULL;
+    //SDL_Renderer *renderer=NULL;
     SDL_Rect txtDestRect, txtBvnRect, txtMenuRect[4], imgBtnRect, imgBGRect, musicRect;
     
     // Une variable de couleur noire
@@ -29,23 +29,9 @@ int menu_SDL(void){
     if(pseudo==NULL) return EXIT_FAILURE;
     strcat(bvn,pseudo);
     
-    /* Création de la fenêtre */
-    pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
-                               SDL_WINDOWPOS_UNDEFINED,
-                               1080,
-                               650,
-                               SDL_WINDOW_SHOWN);
+     
     
-    if(!pWindow){
-        fprintf(stderr, "Erreur à la création de la fenetre : %s\n", SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-
-    renderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
-    if(renderer == NULL){
-        fprintf(stderr, "Erreur à la création du renderer\n");
-        exit(EXIT_FAILURE);
-    }
+    
     SDL_Texture *texte_tex = tex_text("./ttf/PoliceTitre.ttf",100,"Othello",couleurNoire,renderer);
     SDL_Texture *user_tex = tex_text("./ttf/PoliceMenu.ttf",30,bvn,couleurNoire,renderer);
     
@@ -111,8 +97,7 @@ int menu_SDL(void){
     //Musique
     config_obj(&musicRect, temp_music, 1000, 570);
 
-    if( pWindow )
-    {
+    
         int running = 1;
         while(running) {
             SDL_Event e;
@@ -120,14 +105,14 @@ int menu_SDL(void){
             if(x<700 && 385<x && y<526 && 130<y) goto affichage;
             //printf("x:%i y:%i\n",x,y);
             
-            while(SDL_PollEvent(&e)) {
+            do{
                 switch(e.type) {
                     case SDL_QUIT: running = 0;break;
                     case SDL_MOUSEBUTTONDOWN:
                         if(pointe(musicRect, x, y)){
                             song = !(song);
                         }
-                    case SDL_WINDOWEVENT:
+                    default:
                     affichage:
                         /* Le fond de la fenêtre sera blanc */
                         //SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
@@ -159,13 +144,13 @@ int menu_SDL(void){
                                         choix = choix_type(pWindow);
                                         fprintf(stderr,"CHOIX : %d",choix);
                                         if(choix != 2){
-                                            SDL_DestroyWindow(pWindow);
+                                            //SDL_DestroyWindow(pWindow);
                                             Mix_PauseMusic();
                                             lancement_jeu(i,choix);
                                             return 0;
                                         }
                                     }else{
-                                        SDL_DestroyWindow(pWindow);
+                                        //SDL_DestroyWindow(pWindow);
                                         Mix_PauseMusic();
                                         lancement_jeu(i,-1);
                                         return 0;
@@ -195,14 +180,11 @@ int menu_SDL(void){
                         SDL_RenderPresent(renderer);
                         break;
                 }
-            }
+            }while(SDL_PollEvent(&e));
         }
-    } else {
-        fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());
-    }
     
     //Destruction de la fenetre
-    if(pWindow != NULL) SDL_DestroyWindow(pWindow);
+    //if(pWindow != NULL) SDL_DestroyWindow(pWindow);
     return 0;
 
 }

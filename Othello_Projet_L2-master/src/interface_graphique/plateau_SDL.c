@@ -40,9 +40,9 @@ int lancement_jeu(int modeJeu, int type){
     int x,y,score_j1=0,score_j2=0,i;
     char gagnant;
     //Le pointeur vers la fenetre
-    SDL_Window* pWindow = NULL;
+    //SDL_Window* pWindow = NULL;
     //Le pointeur vers la surface incluse dans la fenetre
-    SDL_Renderer *renderer=NULL;
+   // SDL_Renderer *renderer=NULL;
     char score_aff[20];
     // Une variable de couleur noire
     SDL_Color couleurNoire = {0, 0, 0, 0};
@@ -51,7 +51,7 @@ int lancement_jeu(int modeJeu, int type){
     if(pseudo==NULL) return EXIT_FAILURE;
     
     /* Création de la fenêtre */
-    pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
+    /*pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
                                SDL_WINDOWPOS_UNDEFINED,
                                1080,
                                655,
@@ -67,7 +67,7 @@ int lancement_jeu(int modeJeu, int type){
     if(renderer == NULL){
         fprintf(stderr, "Erreur à la création du renderer\n");
         exit(EXIT_FAILURE);
-    }
+    }*/
     SDL_Rect rectText[7];
     SDL_Rect rectImg[7];
     SDL_Texture *texteJoueur_tex[7];
@@ -118,7 +118,7 @@ int lancement_jeu(int modeJeu, int type){
     else joueur=BLANC;
 
     int joueur_sauv=joueur;
-    init_jeuSDL(renderer);
+    init_jeuSDL();
     int arret=NON;
 
     if(modeJeu == ONLINE){
@@ -132,14 +132,13 @@ int lancement_jeu(int modeJeu, int type){
 
 
 
-    if( pWindow )
-    {
+
         int running = 1;
         while(running) {
             //SDL_GetMouseState(&x,&y);
             //fprintf(stderr,"x : %d | y : %d\n",x,y);
             SDL_Event e;           
-            while(SDL_PollEvent(&e)) {
+            do {
                 switch(e.type) {
                     case SDL_QUIT: running = 0;
                         break;
@@ -152,10 +151,10 @@ int lancement_jeu(int modeJeu, int type){
                             arret=NON;
                             joueur=joueur_sauv;
                         }
-                        if(pointe(rectImg[1],x,y)){
+                       if(pointe(rectImg[1],x,y)){
                             running=0;
-                            if(pWindow != NULL) SDL_DestroyWindow(pWindow);
-                            init_matrice(mat);
+                            //if(pWindow != NULL) SDL_DestroyWindow(pWindow);
+                            //init_matrice(mat);
                             menu_SDL();
                         }
                         // 82 px taille d'une case
@@ -189,7 +188,7 @@ int lancement_jeu(int modeJeu, int type){
                         }
                         
 
-                    case SDL_WINDOWEVENT:
+                    default:
                         SDL_RenderClear(renderer);
                         /* Le fond de la fenêtre sera vert */
                         
@@ -268,14 +267,12 @@ int lancement_jeu(int modeJeu, int type){
                         SDL_RenderPresent(renderer);
                         break;
                 }
-            }
+            }while(SDL_PollEvent(&e));
         }
-    } else {
-        fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());
-    }
+
     
     //Destruction de la fenetre
-    if(pWindow != NULL) SDL_DestroyWindow(pWindow);
+    //if(pWindow != NULL) SDL_DestroyWindow(pWindow);
     return 0;
 }
 /*SI JOUEUR NOIR et JE SUIS SERVEUR
