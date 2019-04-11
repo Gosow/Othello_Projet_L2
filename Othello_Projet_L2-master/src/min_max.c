@@ -138,9 +138,9 @@ int nb_coup_poss(t_matrice mat ,char coul )
 int eval(t_matrice mat, char couleur){
 
 	int i, j, etat;
-	int haut_G = 0, haut_D = 0, bas_G = 0, bas_D = 0;
+	int nb_noir, nb_blanc;
 	char adv = couleur == NOIR ? BLANC : NOIR;
-    float cpt_final=0, nb_noir, nb_blanc, materiel, nb_coup_adv, nb_coup_jr, pt_force;
+    float cpt_final=0, materiel, nb_coup_adv, nb_coup_jr, pt_force;
 	calculer_score(mat, &nb_noir, &nb_blanc);
     etat = nb_noir + nb_blanc;
     

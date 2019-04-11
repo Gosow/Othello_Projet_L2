@@ -26,16 +26,12 @@ char* envoyer_message(char* msg, char* buffer){
 	//printf("[client] reponse du serveur : '%s'\n", buffer);
 }
 
-int recep_client(int to_server_socket){
-
-}
-
 void quitter(int to_server_socket){
 	printf("[client] envoi message QUITTER au serveur\n");
 	send(to_server_socket,QUITTER,7,0);
 }
 
-int fermer_reseau(void){
+int fermer_client(void){
 	shutdown(to_server_socket,2);
 	close(to_server_socket);
 	return 0;
@@ -76,7 +72,7 @@ int init_client(void)
 	return 0;
 }
 
-
+/*
 int main(void){
 	char msg[200], buffer[512];
 	init_client();
@@ -88,4 +84,4 @@ int main(void){
 		printf("msg : %s\n",buffer);
 	};
 	fermer_reseau();
-}
+}*/

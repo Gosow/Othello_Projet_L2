@@ -14,7 +14,7 @@
  * \return entier
  */
 int menu_SDL(void){
-    int x,y, i=0, j=0;
+    int x,y, i=0, j=0,choix;
     char bvn[80] ="Bienvenue ";
     //Le pointeur vers la fenetre
     SDL_Window* pWindow = NULL;
@@ -155,10 +155,21 @@ int menu_SDL(void){
                             if(pointe(imgBtnRect,x,y)){
                                 temp = image_btnHover_tex;
                                 if(e.type == SDL_MOUSEBUTTONDOWN){
-                                    SDL_DestroyWindow(pWindow);
-                                    Mix_PauseMusic();
-                                    lancement_jeu(i);
-                                    return 0;
+                                    if(i==2){
+                                        choix = choix_type(pWindow);
+                                        fprintf(stderr,"CHOIX : %d",choix);
+                                        if(choix != 2){
+                                            SDL_DestroyWindow(pWindow);
+                                            Mix_PauseMusic();
+                                            lancement_jeu(i,choix);
+                                            return 0;
+                                        }
+                                    }else{
+                                        SDL_DestroyWindow(pWindow);
+                                        Mix_PauseMusic();
+                                        lancement_jeu(i,-1);
+                                        return 0;
+                                    }                                    
                                 }
                             }else{
                                 temp = image_btn_tex;

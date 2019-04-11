@@ -52,7 +52,7 @@ void view_ip()
           printf("IP : %s\n", inet_ntoa(**adr));
 }
 
-int fermer_reseau(void){
+int fermer_serv(void){
 	shutdown(client_socket,2);
 	close(client_socket);
 	return 0;
@@ -99,6 +99,7 @@ int fin_jeu_serv(void){
 	return !((strncmp("j", buffer, 1)==0));
 
 }
+/*
 int main(void){
 	init_serv();
 	unsigned int lg;
@@ -117,6 +118,6 @@ int main(void){
 	
 	fermer_reseau();
 	return 0;
-}
+}*/
 
 

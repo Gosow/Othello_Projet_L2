@@ -10,6 +10,7 @@
 #include "../gest_matrice.h"
 #include "../define.h"
 #include "../min_max.h"
+#include "./reseau/reseau.h"
 #include <string.h>
 #include <time.h>
 #define SOLO 0
@@ -34,9 +35,10 @@ char afficher_gagnant(t_matrice mat);
 
 
 //JEU : INTERFACE GRAPHIQUE
-int lancement_jeu(int modeJeu);
+int lancement_jeu(int modeJeu, int type);
 int menu_SDL(void);
 int pointe(SDL_Rect r, int x, int y);
 int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y);
+int choix_type(SDL_Window* pWindow);
 
 #endif
