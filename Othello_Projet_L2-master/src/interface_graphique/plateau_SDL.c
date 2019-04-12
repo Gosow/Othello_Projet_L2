@@ -6,8 +6,6 @@ creer structure
 */
 
 
-
-
 /**
  * \file plateau_SDL.c
  * \brief Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l'interface graphique pour pouvoir jouer.
@@ -23,10 +21,10 @@ creer structure
 #define CLIENT 0
 #define SERVEUR 1
 
-enum texte {J1, J2, A_VOUS, GAGNEE, PERDU, EGALITE, SCORE};
+enum texte {J1, J2, A_VOUS, GAGNEE, PERDU, EGALITE, SCORE, ATTENTE};
 enum image {PION = 0, REPLAY= 0, HOME, VOIR};
 
-static SDL_Rect rectText[7], rectImg[7], pion;
+static SDL_Rect rectText[8], rectImg[7], pion;
 static int x ,y ,score_j1 = 0 , score_j2 = 0 ,i ,arret=NON, running = 1;
 static t_matrice mat_final, mat;
 static SDL_Color couleurNoire = {0, 0, 0, 0};
@@ -37,20 +35,21 @@ static SDL_Texture *image_noir_tex,
     *image_replay_tex,
     *image_home_tex,
     *image_voir_tex,
-    *texteJoueur_tex[7];
+    *texteJoueur_tex[8];
 static char joueur, joueur_sauv, gagnant, score_aff[20];;
 static char *joueur1, *joueur2, joueur_vous;
-
+int type;
 /**
  * \fn int lancement_jeu(int modeJeu,t_matrice mat)
  * \brief Lance le jeu en fonction du mode choisie
  * \param modeJeu : le mode jeu choisi selon SOLO, DUO ou ONLINE.
  * \return entier
  */
-int lancement_jeu(int modeJeu, int type){
+int lancement_jeu(int modeJeu, int type_online){
     char msg[1024];
     //char joueur1[20] ="J1", joueur2[20]="J2", *joueur_vous;
     //t_matrice mat;
+    type = type_online;
     
     
     joueur1 = malloc(sizeof(char)*50);
@@ -132,7 +131,10 @@ int lancement_jeu(int modeJeu, int type){
     rectImg[REPLAY].y = rectImg[HOME].y = rectImg[VOIR].y = 560;
     rectImg[HOME].x = 980;
     rectImg[VOIR].x = 820;
-    
+
+    rectImg[ATTENTE].x = 670;
+    rectImg[ATTENTE].y = 300;
+
     pion.x=800;
     pion.y=10;
 
@@ -143,6 +145,7 @@ int lancement_jeu(int modeJeu, int type){
     image_replay_tex = tex_img_png("./img/replay.png",renderer);
     image_home_tex = tex_img_png("./img/home.png",renderer);
     image_voir_tex = tex_img_png("./img/voir.png",renderer);
+
     SDL_QueryTexture(image_noir_tex, NULL, NULL, &(pion.w), &(pion.h));
     SDL_QueryTexture(image_replay_tex, NULL, NULL, &(rectImg[REPLAY].w), &(rectImg[REPLAY].h));
     SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectImg[HOME].w), &(rectImg[HOME].h));
@@ -155,6 +158,7 @@ int lancement_jeu(int modeJeu, int type){
     texteJoueur_tex[GAGNEE] = tex_text("./ttf/PoliceMenu.ttf",40,"GAGNÉ !!",couleurNoire,renderer);
     texteJoueur_tex[PERDU] = tex_text("./ttf/PoliceMenu.ttf",40,"PERDU...",couleurNoire,renderer);
     texteJoueur_tex[EGALITE] = tex_text("./ttf/PoliceMenu.ttf",40,"ÉGALITÉ :)",couleurNoire,renderer);
+    texteJoueur_tex[ATTENTE] = tex_text("./ttf/PoliceMenu.ttf",40,"En attente du tour \nde votre adversaire ..",couleurNoire,renderer);
     for(i=0;i<6;i++){
         SDL_QueryTexture(texteJoueur_tex[i], NULL, NULL, &(rectText[i].w), &(rectText[i].h));
     }
@@ -170,21 +174,18 @@ int lancement_jeu(int modeJeu, int type){
         joueur_vous = type == SERVEUR ? BLANC : NOIR;
     }
     joueur_sauv=joueur;
+    /*objet_SDL attente;
+    attente.tex = texteJoueur_tex[ATTENTE];
+    attente.rect = rectText[ATTENTE];*/
     init_jeuSDL();
     
     i=0;
     
     fprintf(stderr,"MACOULEUR : %c\n",joueur_vous);
-    /*
-    if(modeJeu == ONLINE && type == SERVEUR){
-        recevoir(msg,type == SERVEUR ? PORT_HOTE : PORT_EXT);
-        fprintf(stderr,"\n SERVEUR : '%s'",msg);
-        sscanf(msg,"%d;%d",&x,&y);
-        jouer_coup(mat,y,x,joueur_vous == BLANC ? NOIR : BLANC);
-        afficher_cibleSDL(mat,x,y);
-        joueur = joueur_suivant(joueur);
-    }*/
-        
+
+
+    
+
         while(running) {
             //SDL_GetMouseState(&x,&y);
             //fprintf(stderr,"x : %d | y : %d\n",x,y);
@@ -192,6 +193,7 @@ int lancement_jeu(int modeJeu, int type){
             do {
                 switch(e.type) {
                     case SDL_QUIT: running = 0;
+                        if(modeJeu == ONLINE) envoyer("-2;-2", PORT_HOTE);
                         break;
                     case SDL_MOUSEBUTTONDOWN:
                         SDL_GetMouseState(&x,&y);
@@ -225,44 +227,12 @@ int lancement_jeu(int modeJeu, int type){
                                         jouer_coup(mat,x,y,BLANC);
                                         if(peut_jouer(mat, NOIR)) joueur=joueur_suivant(joueur);
                                     }
-                                }/*else if( modeJeu == ONLINE && joueur_vous == joueur && coup_valide(mat,y,x,joueur_vous)){
-                                    jouer_coup(mat,y,x,joueur_vous);
-                                    memset(msg, '\0', sizeof(msg));
-                                    sprintf(msg,"%d;%d",x,y);
-                                    fprintf(stderr,"\n ENVOI : '%s'",msg);
-                                    if(type == CLIENT){
-                                        envoyer(msg, PORT_HOTE);
-                                        memset(msg, '\0', sizeof(msg));
-                                        //recevoir(msg, PORT_EXT);
-                                    }else{
-                                        memset(msg, '\0', sizeof(msg));
-                                        recevoir(msg, PORT_HOTE );
-                                        sscanf(msg,"%d;%d",&x,&y);
-                                        jouer_coup(mat,x,y,joueur);
-                                        //envoyer(msg, PORT_EXT);
-                                    }
-                                    type = !type;
-                                    joueur = joueur_suivant(joueur);
                                 }
-                                if(modeJeu == ONLINE){
-                                fprintf(stderr,"\n RECEP : '%s'",msg);
-                                    sscanf(msg,"%d;%d",&x,&y);
-                                    jouer_coup(mat,y,x,joueur_vous == BLANC ? NOIR : BLANC);
-                                    afficher_cibleSDL(mat,x,y);
-                                    joueur = joueur_suivant(joueur);
-                                }/*
-                                if(modeJeu == ONLINE){
-                                    if(type == CLIENT){    
-                                        if(joueur_vous == joueur && coup_valide(mat,x,y,joueur));
-                                    }else if(type == SERVEUR){
-                                        if(joueur_vous == joueur && coup_valide(mat,x,y,joueur));
-                                    }
-                                }*/
                             }
                         }else if(pointe(rectImg[VOIR],x,y)){
                                 SDL_RenderClear(renderer);
 
-                                afficher_matriceSDL(mat_final,NULL);
+                                afficher_matriceSDL(mat_final,' ',NON);
 
                                 SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[VOIR]));
 
@@ -279,7 +249,7 @@ int lancement_jeu(int modeJeu, int type){
                             //SDL_GetMouseState(&x,&y);
                             fprintf(stderr,"\n A ENVOYER : '%s' x: %d y: %d\n",msg,x,y);
                             fprintf(stderr,"%d %d %d %d %d %d\n", type == CLIENT, peut_jouer(mat,joueur), coup_valide(mat,y,x,joueur), e.type == SDL_MOUSEBUTTONDOWN, joueur_vous==joueur);
-                            if(type == CLIENT && e.type == SDL_MOUSEBUTTONDOWN && joueur_vous==joueur){
+                            if(type == CLIENT && joueur_vous==joueur){
                                 if(peut_jouer(mat,joueur) && coup_valide(mat,y,x,joueur)){
                                     jouer_coup(mat,y,x,joueur_vous);
                                     fprintf(stderr,"\n ENVOIE : '%s' x: %d y: %d\n",msg,x,y);
@@ -297,7 +267,9 @@ int lancement_jeu(int modeJeu, int type){
 
                     default:
                         //fprintf(stderr,"JE SUIS DANS LA BOUCLE");
-                        affichage_partie(mat,modeJeu);
+                        if(modeJeu == ONLINE && type ==SERVEUR) afficher_matriceSDL(mat,' ',OUI);
+                        else affichage_partie(mat,modeJeu);
+                        
                         if(modeJeu == ONLINE){
                             /*jouer_coup(mat,y,x,joueur_vous);
                             memset(msg, '\0', sizeof(msg));
@@ -310,10 +282,13 @@ int lancement_jeu(int modeJeu, int type){
                             */
                             if(type == SERVEUR){
                                 memset(msg, '\0', sizeof(msg));
+                                afficher_matriceSDL(mat,' ',OUI);
                                 recevoir(msg, PORT_HOTE );
                                 sscanf(msg,"%d;%d",&y,&x);
-                                if(x > 0 && y > 0) jouer_coup(mat,x,y,joueur);
-                                else if(x == -1){
+                                if(x > 0 && y > 0){
+                                    jouer_coup(mat,x,y,joueur);
+                                    afficher_cibleSDL(mat,x,y);
+                                }else if(x == -1){
                                     joueur = joueur_suivant(joueur);
                                     //alerter(que le joeur a quitté la partie)
                                 }else if(x == -2){
@@ -324,8 +299,6 @@ int lancement_jeu(int modeJeu, int type){
                                 joueur = joueur_suivant(joueur);
                             }
                         }
-                            
-                        //affichage_partie(mat,modeJeu);
                         
                         break;
                     }
@@ -385,7 +358,7 @@ int affichage_partie(t_matrice mat,int modeJeu){
         SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[VOIR]));
         afficher_gagnant(mat);
     }
-    else afficher_matriceSDL(mat, joueur);
+    else afficher_matriceSDL(mat, joueur, NON);
 
     //printf("%c\n",afficher_gagnant(mat,renderer));
     pion.x=680;

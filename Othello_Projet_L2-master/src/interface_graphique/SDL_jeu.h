@@ -17,7 +17,15 @@
 #define DUO 1
 #define ONLINE 2
 #define QUITTER 3
+#define NON 0
+#define OUI 1
 
+/*
+typedef struct objet_SDL{
+    SDL_Texture *tex;
+    SDL_Rect rect;
+}objet_SDL;
+*/
 extern SDL_Window* pWindow;
 extern SDL_Renderer *renderer;
 Mix_Music *music;
@@ -30,7 +38,7 @@ SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Rendere
 void init_jeuSDL(void);
 
 //AFFICHAGE MATRICE / JEU
-void afficher_matriceSDL(t_matrice mat, char joueur);
+void afficher_matriceSDL(t_matrice mat, char joueur, int afficher_seul);
 void afficher_cibleSDL(t_matrice mat, int x,int y);
 int partie_termineeSDL(t_matrice mat);
 char afficher_gagnant(t_matrice mat);

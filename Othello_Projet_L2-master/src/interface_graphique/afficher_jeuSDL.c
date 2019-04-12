@@ -41,7 +41,8 @@ void init_jeuSDL(void){
  * \param t_matrice mat, char joueur.
  * \return void
  */
-void afficher_matriceSDL(t_matrice mat, char joueur){
+void afficher_matriceSDL(t_matrice mat, char joueur, int afficher_seul){
+    if(afficher_seul) SDL_RenderClear(renderer);
     SDL_Texture *temp;
     int i=0,j=0;
 
@@ -49,7 +50,7 @@ void afficher_matriceSDL(t_matrice mat, char joueur){
         imgBtnRect.y = i*82;
         imgBtnRect.x = 0;
         for(j=0;j<N;j++){
-            if(coup_valide(mat,i,j,joueur)){
+            if(joueur != ' ' && coup_valide(mat,i,j,joueur)){
                 temp = image_casePoss_tex;
             }else{
                 temp = image_caseNorm_tex;
@@ -64,6 +65,7 @@ void afficher_matriceSDL(t_matrice mat, char joueur){
             imgBtnRect.x += 82;
         }
     }
+    if(afficher_seul) SDL_RenderPresent(renderer);
 }
 
 /**
