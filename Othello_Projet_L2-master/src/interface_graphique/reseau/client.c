@@ -12,7 +12,7 @@ void envoyer(char* msg,int port){
 	strcpy(buffer,msg);
   int sockfd;
   struct sockaddr_in serverAddr;
-  socklen_t addr_size;
+  //socklen_t addr_size;
 
   sockfd = socket(PF_INET, SOCK_DGRAM, 0);
   memset(&serverAddr, '\0', sizeof(serverAddr));

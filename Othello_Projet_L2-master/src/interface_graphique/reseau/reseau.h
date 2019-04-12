@@ -1,5 +1,7 @@
 #ifndef __RESEAU_H__
 #define __RESEAU_H__
+#include <fcntl.h> // open function
+#include <unistd.h> // close function
 #define PORT_HOTE 1234
 #define PORT_EXT 4321
 #define PORT 1234

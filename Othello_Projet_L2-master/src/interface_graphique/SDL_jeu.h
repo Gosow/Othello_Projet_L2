@@ -49,6 +49,6 @@ int lancement_jeu(int modeJeu, int type);
 int menu_SDL(void);
 int pointe(SDL_Rect r, int x, int y);
 int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y);
-int choix_type(SDL_Window* pWindow);
+int choix_type(void);
 
 #endif

@@ -141,7 +141,7 @@ int menu_SDL(void){
                                 temp = image_btnHover_tex;
                                 if(e.type == SDL_MOUSEBUTTONDOWN){
                                     if(i==2){
-                                        choix = choix_type(pWindow);
+                                        choix = choix_type();
                                         fprintf(stderr,"CHOIX : %d",choix);
                                         if(choix != 2){
                                             //SDL_DestroyWindow(pWindow);

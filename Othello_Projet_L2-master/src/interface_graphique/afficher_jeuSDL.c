@@ -161,10 +161,11 @@ int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y){
     r->x = x;
     r->y = y;
     SDL_QueryTexture(t, NULL, NULL, &(r->w), &(r->h));
+    return 0;
 }
 
 
-int choix_type(SDL_Window* pWindow){
+int choix_type(void){
     const SDL_MessageBoxButtonData buttons[] = {
         { /* .flags, .buttonid, .text */        0, 0, "rejoindre une partie" },
         { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "héberger une partie" },

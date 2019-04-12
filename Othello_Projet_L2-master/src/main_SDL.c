@@ -52,9 +52,10 @@ int main(void)
         fprintf(stderr, "Erreur à la création du renderer\n");
         exit(EXIT_FAILURE);
     }
-
+    
     menu_SDL();
     
+    if(pWindow != NULL) SDL_DestroyWindow(pWindow);
     Mix_FreeMusic(music);
     Mix_CloseAudio();
 	TTF_Quit();

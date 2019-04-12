@@ -188,7 +188,7 @@ int joueur_suivant (char joueur) {
     else{
         joueur = NOIR;
     }
-    printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
+    //printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
     return (joueur);
 }
 

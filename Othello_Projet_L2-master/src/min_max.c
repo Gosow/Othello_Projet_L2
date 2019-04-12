@@ -1,58 +1,7 @@
-//Version ALPHA
 #include "define.h"
 #include "min_max.h"
 #include "gest_matrice.h"
 #include "liste.h"
-
-
-
-
-
-
-
-// nombre de possibilité de l'adversaire apres que le joueur actuel ai joué un coup x y
-int nb_possibilites_adv(t_matrice mat , int x , int y , char coul )
-{
-    int nb=0;
-    t_matrice temp;
-    for(int i=0;i<N;i++){
-        for(int j=0;j<N;j++){
-            temp[i][j]=mat[i][j];
-
-        }
-    jouer_coup(temp,x,y,coul);
-    for(int i=0;i<N;i++){
-		for(int j=0;j<N;j++){
-			if(coup_valide(temp, coul=="NOIR"?"BLANC":"NOIR", i, j) == 1)
-            nb++;
-		}
-	}
-    return nb;
-
-    }
-}
-
-// nb possibilites jouables apres un coup par le joueur coul
-int nb_possibilite(t_matrice mat , int x , int y , char couleur){
-
-
-    int nb=0;
-    t_matrice temp;
-    for(int i=0;i<N;i++){
-        for(int j=0;j<N;j++){
-            temp[i][j]=mat[i][j];
-
-        }
-    jouer_coup(temp,x,y,couleur);
-    for(int i=0;i<N;i++){
-		for(int j=0;j<N;j++){
-			if(coup_valide(temp, couleur, i, j) == 1)
-            nb++;
-		}
-	}
-    return nb;
-    }
-}
 
 int force(t_matrice m, char couleur){
     int i, total=0;
@@ -74,14 +23,14 @@ int force(t_matrice m, char couleur){
             total -= (m[0][1] == couleur ? 150 : 0);
             total -= (m[1][0] == couleur ? 150 : 0);
         //coin haut-droite
-            total -= (m[0][N-1] == couleur ? 150 : 0);
-            total -= (m[N][1] == couleur ? 150 : 0);
+            total -= (m[0][N-2] == couleur ? 150 : 0);
+            total -= (m[N-1][1] == couleur ? 150 : 0);
         //coin bas-gauche
-            total -= (m[N-1][0] == couleur ? 150 : 0);
-            total -= (m[1][N] == couleur ? 150 : 0);
+            total -= (m[N-2][0] == couleur ? 150 : 0);
+            total -= (m[1][N-1] == couleur ? 150 : 0);
         //coin bas-droite
-            total -= (m[N][N-1] == couleur ? 150 : 0);
-            total -= (m[N-1][N] == couleur ? 150 : 0);
+            total -= (m[N-2][N-1] == couleur ? 150 : 0);
+            total -= (m[N-1][N-1] == couleur ? 150 : 0);
     
     for(i=0;i<N-1;i+=N-1){
         
@@ -136,9 +85,8 @@ int nb_coup_poss(t_matrice mat ,char coul )
 
 int eval(t_matrice mat, char couleur){
 
-	int i, j, etat;
-	int nb_noir, nb_blanc;
-	char adv = couleur == NOIR ? BLANC : NOIR;
+	int etat, nb_noir, nb_blanc;
+	//char adv = couleur == NOIR ? BLANC : NOIR;
     float cpt_final=0, materiel, nb_coup_adv, nb_coup_jr, pt_force;
 	calculer_score(mat, &nb_noir, &nb_blanc);
     etat = nb_noir + nb_blanc;

@@ -76,7 +76,7 @@ int lancement_jeu(int modeJeu, int type_online){
         }
     }else{
         joueur1=getenv("USER");
-        joueur2="Joueur 2";
+        joueur2= (modeJeu == SOLO ? "Super IA" : "Joueur 2");
     }
 
     
@@ -132,8 +132,8 @@ int lancement_jeu(int modeJeu, int type_online){
     rectImg[HOME].x = 980;
     rectImg[VOIR].x = 820;
 
-    rectImg[ATTENTE].x = 670;
-    rectImg[ATTENTE].y = 300;
+    rectText[ATTENTE].x = 670;
+    rectText[ATTENTE].y = 300;
 
     pion.x=800;
     pion.y=10;
@@ -247,8 +247,8 @@ int lancement_jeu(int modeJeu, int type_online){
                             y /= 82;
                             sprintf(msg,"%d;%d",x,y);
                             //SDL_GetMouseState(&x,&y);
-                            fprintf(stderr,"\n A ENVOYER : '%s' x: %d y: %d\n",msg,x,y);
-                            fprintf(stderr,"%d %d %d %d %d %d\n", type == CLIENT, peut_jouer(mat,joueur), coup_valide(mat,y,x,joueur), e.type == SDL_MOUSEBUTTONDOWN, joueur_vous==joueur);
+                            //fprintf(stderr,"\n A ENVOYER : '%s' x: %d y: %d\n",msg,x,y);
+                            //fprintf(stderr,"%d %d %d %d %d %d\n", type == CLIENT, peut_jouer(mat,joueur), coup_valide(mat,y,x,joueur), e.type == SDL_MOUSEBUTTONDOWN, joueur_vous==joueur);
                             if(type == CLIENT && joueur_vous==joueur){
                                 if(peut_jouer(mat,joueur) && coup_valide(mat,y,x,joueur)){
                                     jouer_coup(mat,y,x,joueur_vous);
@@ -406,4 +406,5 @@ int affichage_partie(t_matrice mat,int modeJeu){
     SDL_RenderCopy(renderer, image_home_tex, NULL, &(rectImg[HOME]));
 
     SDL_RenderPresent(renderer);
+    return 0;
 }
