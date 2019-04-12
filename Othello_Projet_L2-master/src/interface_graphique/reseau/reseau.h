@@ -1,23 +1,11 @@
 #ifndef __RESEAU_H__
 #define __RESEAU_H__
+#define PORT_HOTE 1234
+#define PORT_EXT 4321
+#define PORT 1234
+#define IP "127.0.0.1"
 
-//SERVEUR
-
-void fin(int sig);
-int hostname_to_ip(char * hostname , char* ip);
-void view_ip(void);
-int fermer_serv(void);
-int init_serv(void);
-int fin_jeu_serv(void);
-unsigned int recv_from_serv(char* msg);
-int send_from_serv(char* msg);
-
-//CLIENT
-
-char* envoyer_message(char* msg, char* buffer);
-void quitter(int to_server_socket);
-int fermer_client(void);
-int init_client(void);
-
+void recevoir(char* buffer, int port);
+void envoyer(char* buffer, int port);
 
 #endif

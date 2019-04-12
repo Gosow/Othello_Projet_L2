@@ -26,6 +26,21 @@ creer structure
 enum texte {J1, J2, A_VOUS, GAGNEE, PERDU, EGALITE, SCORE};
 enum image {PION = 0, REPLAY= 0, HOME, VOIR};
 
+static SDL_Rect rectText[7], rectImg[7], pion;
+static int x ,y ,score_j1 = 0 , score_j2 = 0 ,i ,arret=NON, running = 1;
+static t_matrice mat_final, mat;
+static SDL_Color couleurNoire = {0, 0, 0, 0};
+static SDL_Texture *image_noir_tex,
+    *image_blanc_tex,
+    *image_noirTour_tex,
+    *image_blancTour_tex,
+    *image_replay_tex,
+    *image_home_tex,
+    *image_voir_tex,
+    *texteJoueur_tex[7];
+static char joueur, joueur_sauv, gagnant, score_aff[20];;
+static char *joueur1, *joueur2, joueur_vous;
+
 /**
  * \fn int lancement_jeu(int modeJeu,t_matrice mat)
  * \brief Lance le jeu en fonction du mode choisie
@@ -33,23 +48,55 @@ enum image {PION = 0, REPLAY= 0, HOME, VOIR};
  * \return entier
  */
 int lancement_jeu(int modeJeu, int type){
-    char* msg[512];
+    char msg[1024];
+    //char joueur1[20] ="J1", joueur2[20]="J2", *joueur_vous;
+    //t_matrice mat;
+    
+    
+    joueur1 = malloc(sizeof(char)*50);
+    joueur2 = malloc(sizeof(char)*50);
+    if(modeJeu == ONLINE){
+        fprintf(stderr,"\n1\n");
+        if(type == SERVEUR){
+            joueur1=getenv("USER");
+            fprintf(stderr,"\n JOUEUR : %s\n",joueur1);
+            if(joueur1 == NULL) strcpy(joueur1,"Serveur");
+            fprintf(stderr,"\n2\n");
+            recevoir(joueur2,PORT_HOTE);
+            envoyer(joueur1,PORT_EXT);
+
+        }
+        else if(type == CLIENT){
+            joueur2=getenv("USER");
+            fprintf(stderr,"\n JOUEUR : %s\n",joueur2);
+            if(joueur1 == NULL) strcpy(joueur1,"Client");
+            fprintf(stderr,"\n6\n");
+            envoyer(joueur2,PORT_HOTE);
+            recevoir(joueur1,PORT_EXT);
+            fprintf(stderr,"\n7\n");
+        }
+    }else{
+        joueur1=getenv("USER");
+        joueur2="Joueur 2";
+    }
+
+    
     srand(time(NULL));
     if(modeJeu==QUITTER) return 0;
-    t_matrice mat, mat_final;
+    
     init_matrice(mat);
-    int x,y,score_j1=0,score_j2=0,i;
-    char gagnant;
+    
+    
     //Le pointeur vers la fenetre
     //SDL_Window* pWindow = NULL;
     //Le pointeur vers la surface incluse dans la fenetre
    // SDL_Renderer *renderer=NULL;
-    char score_aff[20];
+    
     // Une variable de couleur noire
-    SDL_Color couleurNoire = {0, 0, 0, 0};
+    
     //Initialisation du username
-    char *pseudo=getenv("USER");
-    if(pseudo==NULL) return EXIT_FAILURE;
+    //char *pseudo=getenv("USER");
+    //if(pseudo==NULL) return EXIT_FAILURE;
     
     /* Création de la fenêtre */
     /*pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
@@ -69,43 +116,41 @@ int lancement_jeu(int modeJeu, int type){
         fprintf(stderr, "Erreur à la création du renderer\n");
         exit(EXIT_FAILURE);
     }*/
-    SDL_Rect rectText[7];
-    SDL_Rect rectImg[7];
-    SDL_Texture *texteJoueur_tex[7];
+    
     
 
-    rectImg[0].x=rectText[J1].x=670;
+    rectImg[REPLAY].x=rectText[J1].x=670;
     rectText[J2].x=930;
     
     rectText[J1].y=rectText[J2].y=110;
     
     rectText[GAGNEE].y = rectText[PERDU].y = rectText[EGALITE].y = 150;
     
-    rectText[SCORE].x=800;
-    rectText[SCORE].y=10;
+    rectText[SCORE].x = 800;
+    rectText[SCORE].y = 10;
     
-    rectImg[0].y = rectImg[1].y = rectImg[2].y = 560;
-    rectImg[1].x=980;
-    rectImg[2].x = 820;
-    SDL_Rect pion;
+    rectImg[REPLAY].y = rectImg[HOME].y = rectImg[VOIR].y = 560;
+    rectImg[HOME].x = 980;
+    rectImg[VOIR].x = 820;
+    
     pion.x=800;
     pion.y=10;
 
-    SDL_Texture * image_noir_tex = tex_img_png("./img/noir.png",renderer);
-    SDL_Texture *image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
-    SDL_Texture *image_noirTour_tex = tex_img_png("./img/noirTour.png",renderer);
-    SDL_Texture *image_blancTour_tex = tex_img_png("./img/blancTour.png",renderer);
-    SDL_Texture *image_replay_tex = tex_img_png("./img/replay.png",renderer);
-    SDL_Texture *image_home_tex = tex_img_png("./img/home.png",renderer);
-    SDL_Texture *image_voir_tex = tex_img_png("./img/voir.png",renderer);
+    image_noir_tex = tex_img_png("./img/noir.png",renderer);
+    image_blanc_tex = tex_img_png("./img/blanc.png",renderer);
+    image_noirTour_tex = tex_img_png("./img/noirTour.png",renderer);
+    image_blancTour_tex = tex_img_png("./img/blancTour.png",renderer);
+    image_replay_tex = tex_img_png("./img/replay.png",renderer);
+    image_home_tex = tex_img_png("./img/home.png",renderer);
+    image_voir_tex = tex_img_png("./img/voir.png",renderer);
     SDL_QueryTexture(image_noir_tex, NULL, NULL, &(pion.w), &(pion.h));
-    SDL_QueryTexture(image_replay_tex, NULL, NULL, &(rectImg[0].w), &(rectImg[0].h));
-    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectImg[1].w), &(rectImg[1].h));
-    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectImg[2].w), &(rectImg[2].h));
+    SDL_QueryTexture(image_replay_tex, NULL, NULL, &(rectImg[REPLAY].w), &(rectImg[REPLAY].h));
+    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectImg[HOME].w), &(rectImg[HOME].h));
+    SDL_QueryTexture(image_home_tex, NULL, NULL, &(rectImg[VOIR].w), &(rectImg[VOIR].h));
 
 
-    texteJoueur_tex[J1] = tex_text("./ttf/PoliceMenu.ttf",40,pseudo,couleurNoire,renderer);
-    texteJoueur_tex[J2] = tex_text("./ttf/PoliceMenu.ttf",40,"Joueur 2",couleurNoire,renderer);
+    texteJoueur_tex[J1] = tex_text("./ttf/PoliceMenu.ttf",40,joueur1,couleurNoire,renderer);
+    texteJoueur_tex[J2] = tex_text("./ttf/PoliceMenu.ttf",40,joueur2,couleurNoire,renderer);
     texteJoueur_tex[A_VOUS] = tex_text("./ttf/PoliceMenu.ttf",40,"(à vous)",couleurNoire,renderer);
     texteJoueur_tex[GAGNEE] = tex_text("./ttf/PoliceMenu.ttf",40,"GAGNÉ !!",couleurNoire,renderer);
     texteJoueur_tex[PERDU] = tex_text("./ttf/PoliceMenu.ttf",40,"PERDU...",couleurNoire,renderer);
@@ -113,29 +158,33 @@ int lancement_jeu(int modeJeu, int type){
     for(i=0;i<6;i++){
         SDL_QueryTexture(texteJoueur_tex[i], NULL, NULL, &(rectText[i].w), &(rectText[i].h));
     }
-    char joueur;
 
-    if(rand()%2 || modeJeu==SOLO) joueur=NOIR;
-    else joueur=BLANC;
+    
 
-    int joueur_sauv=joueur;
-    init_jeuSDL();
-    int arret=NON;
-
+    //Couleur aléatoire si DUO, sinon noir commence
+    if(modeJeu==DUO) joueur = (rand()%2 ? NOIR : BLANC);
+    else joueur=NOIR;
+    
+    //Notre couleur si on joue en ligne
     if(modeJeu == ONLINE){
-        if(type == SERVEUR){
-            init_serv();
-            recv();
-        }
-        else if(type == CLIENT){
-            init_client();
-        }
+        joueur_vous = type == SERVEUR ? BLANC : NOIR;
     }
-
-
-
-
-        int running = 1;
+    joueur_sauv=joueur;
+    init_jeuSDL();
+    
+    i=0;
+    
+    fprintf(stderr,"MACOULEUR : %c\n",joueur_vous);
+    /*
+    if(modeJeu == ONLINE && type == SERVEUR){
+        recevoir(msg,type == SERVEUR ? PORT_HOTE : PORT_EXT);
+        fprintf(stderr,"\n SERVEUR : '%s'",msg);
+        sscanf(msg,"%d;%d",&x,&y);
+        jouer_coup(mat,y,x,joueur_vous == BLANC ? NOIR : BLANC);
+        afficher_cibleSDL(mat,x,y);
+        joueur = joueur_suivant(joueur);
+    }*/
+        
         while(running) {
             //SDL_GetMouseState(&x,&y);
             //fprintf(stderr,"x : %d | y : %d\n",x,y);
@@ -148,15 +197,16 @@ int lancement_jeu(int modeJeu, int type){
                         SDL_GetMouseState(&x,&y);
                         //fprintf(stderr,"Mouse Button down \n");
                         //REPLAY
-                        if(pointe(rectImg[0],x,y)){
+                        if(pointe(rectImg[REPLAY],x,y) && modeJeu != ONLINE){
                             init_matrice(mat);
                             arret=NON;
                             joueur=joueur_sauv;
                         }
-                       if(pointe(rectImg[1],x,y)){
+                       if(pointe(rectImg[HOME],x,y)){
                             running=0;
                             //if(pWindow != NULL) SDL_DestroyWindow(pWindow);
                             //init_matrice(mat);
+                            if(modeJeu == ONLINE) envoyer("-2;-2", PORT_HOTE);
                             menu_SDL();
                         }
                         // 82 px taille d'une case
@@ -164,7 +214,8 @@ int lancement_jeu(int modeJeu, int type){
                             if(x<=656 && y<=656){
                                 x=x/82;
                                 y=y/82;
-                                if(coup_valide(mat,y,x,joueur)){
+
+                                if(coup_valide(mat,y,x,joueur) && modeJeu != ONLINE){
                                     jouer_coup(mat,y,x,joueur);
                                     if(peut_jouer(mat,joueur_suivant(joueur))) joueur=joueur_suivant(joueur);
 
@@ -174,102 +225,112 @@ int lancement_jeu(int modeJeu, int type){
                                         jouer_coup(mat,x,y,BLANC);
                                         if(peut_jouer(mat, NOIR)) joueur=joueur_suivant(joueur);
                                     }
+                                }/*else if( modeJeu == ONLINE && joueur_vous == joueur && coup_valide(mat,y,x,joueur_vous)){
+                                    jouer_coup(mat,y,x,joueur_vous);
+                                    memset(msg, '\0', sizeof(msg));
+                                    sprintf(msg,"%d;%d",x,y);
+                                    fprintf(stderr,"\n ENVOI : '%s'",msg);
+                                    if(type == CLIENT){
+                                        envoyer(msg, PORT_HOTE);
+                                        memset(msg, '\0', sizeof(msg));
+                                        //recevoir(msg, PORT_EXT);
+                                    }else{
+                                        memset(msg, '\0', sizeof(msg));
+                                        recevoir(msg, PORT_HOTE );
+                                        sscanf(msg,"%d;%d",&x,&y);
+                                        jouer_coup(mat,x,y,joueur);
+                                        //envoyer(msg, PORT_EXT);
+                                    }
+                                    type = !type;
+                                    joueur = joueur_suivant(joueur);
                                 }
-                                
+                                if(modeJeu == ONLINE){
+                                fprintf(stderr,"\n RECEP : '%s'",msg);
+                                    sscanf(msg,"%d;%d",&x,&y);
+                                    jouer_coup(mat,y,x,joueur_vous == BLANC ? NOIR : BLANC);
+                                    afficher_cibleSDL(mat,x,y);
+                                    joueur = joueur_suivant(joueur);
+                                }/*
+                                if(modeJeu == ONLINE){
+                                    if(type == CLIENT){    
+                                        if(joueur_vous == joueur && coup_valide(mat,x,y,joueur));
+                                    }else if(type == SERVEUR){
+                                        if(joueur_vous == joueur && coup_valide(mat,x,y,joueur));
+                                    }
+                                }*/
                             }
-                        }else if(pointe(rectImg[2],x,y)){
+                        }else if(pointe(rectImg[VOIR],x,y)){
                                 SDL_RenderClear(renderer);
 
                                 afficher_matriceSDL(mat_final,NULL);
 
-                                SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[2]));
+                                SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[VOIR]));
 
                                 SDL_RenderPresent(renderer);
                                 sleep(4);
-                            
+                        }
+                        if(modeJeu == ONLINE){
+                            //jouer_coup(mat,y,x,joueur_vous);
+                            memset(msg, '\0', sizeof(msg));
+                            SDL_GetMouseState(&x,&y);
+                            x /= 82;
+                            y /= 82;
+                            sprintf(msg,"%d;%d",x,y);
+                            //SDL_GetMouseState(&x,&y);
+                            fprintf(stderr,"\n A ENVOYER : '%s' x: %d y: %d\n",msg,x,y);
+                            fprintf(stderr,"%d %d %d %d %d %d\n", type == CLIENT, peut_jouer(mat,joueur), coup_valide(mat,y,x,joueur), e.type == SDL_MOUSEBUTTONDOWN, joueur_vous==joueur);
+                            if(type == CLIENT && e.type == SDL_MOUSEBUTTONDOWN && joueur_vous==joueur){
+                                if(peut_jouer(mat,joueur) && coup_valide(mat,y,x,joueur)){
+                                    jouer_coup(mat,y,x,joueur_vous);
+                                    fprintf(stderr,"\n ENVOIE : '%s' x: %d y: %d\n",msg,x,y);
+                                    envoyer(msg, PORT_HOTE);
+                                    memset(msg, '\0', sizeof(msg));
+                                    type = !type;
+                                    joueur = joueur_suivant(joueur);
+                                    //recevoir(msg, PORT_EXT);
+                                }else if(!peut_jouer(mat,joueur)){
+                                    envoyer("-1;-1", PORT_HOTE);
+                                }
+                            }
                         }
                         
 
                     default:
-                        SDL_RenderClear(renderer);
-                        /* Le fond de la fenêtre sera vert */
-                        
-                        
-                        SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
-
-                        SDL_RenderCopy(renderer, texteJoueur_tex[J1], NULL, &(rectText[J1]));
-                        SDL_RenderCopy(renderer, texteJoueur_tex[J2], NULL, &(rectText[J2]));
-                        
-                        calculer_score(mat,&score_j1,&score_j2);
-                        //afficher_matrice(mat);
-                        sprintf(score_aff, "%d - %d", score_j1,score_j2);
-                        
-                        texteJoueur_tex[SCORE] = tex_text("./ttf/PoliceMenu.ttf",55,score_aff,couleurNoire,renderer);
-
-                        SDL_QueryTexture(texteJoueur_tex[SCORE], NULL, NULL, &(rectText[SCORE].w), &(rectText[SCORE].h));
-                        
-                        /* Le fond de la fenêtre sera vert */
-                        SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
-                        
-                        /* On fait le rendu ! */
-                        if (partie_termineeSDL(mat)){
-                            arret=OUI;
-                            copie_mat(mat,mat_final);
-                            //VOIR
-                            SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[2]));
-                            afficher_gagnant(mat);
-                        }
-                        else afficher_matriceSDL(mat, joueur);
-
-                        //printf("%c\n",afficher_gagnant(mat,renderer));
-                        pion.x=680;
-                        pion.y=10;
-                        rectText[A_VOUS].y=150;
-                        if(!partie_termineeSDL(mat)){
-                            SDL_RenderCopy(renderer, joueur == NOIR ? image_noirTour_tex : image_noir_tex, NULL, &pion);
-                            pion.x+=270;
-                            SDL_RenderCopy(renderer, joueur == BLANC ? image_blancTour_tex : image_blanc_tex, NULL, &pion);
-                            rectText[A_VOUS].x=rectText[joueur == NOIR ? J1 : J2].x;
-                            SDL_RenderCopy(renderer, texteJoueur_tex[A_VOUS], NULL, &(rectText[A_VOUS]));
-                        }else{
-                            //A FACTORISER
-                            gagnant=afficher_gagnant(mat);
-                            if(gagnant==NOIR){
-                                SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
-                                pion.x+=270;
-                                SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);
-                                rectText[GAGNEE].x=rectText[J1].x;
-                                rectText[PERDU].x=rectText[J2].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[GAGNEE], NULL, &(rectText[GAGNEE]));
-                                SDL_RenderCopy(renderer, texteJoueur_tex[PERDU], NULL, &(rectText[PERDU]));
-
-                            }else if(gagnant==BLANC){
-                                SDL_RenderCopy(renderer, image_noir_tex, NULL, &pion);
-                                pion.x+=270;
-                                SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                                rectText[GAGNEE].x=rectText[J2].x;
-                                rectText[PERDU].x=rectText[J1].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[GAGNEE], NULL, &(rectText[GAGNEE]));
-                                SDL_RenderCopy(renderer, texteJoueur_tex[PERDU], NULL, &(rectText[PERDU]));
-                            }else{
-                                SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
-                                pion.x+=270;
-                                SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
-                                rectText[EGALITE].x=rectText[J1].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
-                                rectText[EGALITE].x=rectText[J2].x;
-                                SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
+                        //fprintf(stderr,"JE SUIS DANS LA BOUCLE");
+                        affichage_partie(mat,modeJeu);
+                        if(modeJeu == ONLINE){
+                            /*jouer_coup(mat,y,x,joueur_vous);
+                            memset(msg, '\0', sizeof(msg));
+                            SDL_GetMouseState(&x,&y);
+                            x /= 82;
+                            y /= 82;
+                            sprintf(msg,"%d;%d",x,y);
+                            SDL_GetMouseState(&x,&y);
+                            fprintf(stderr,"\n A ENVOYER : '%s' x: %d y: %d\n",msg,x,y);
+                            */
+                            if(type == SERVEUR){
+                                memset(msg, '\0', sizeof(msg));
+                                recevoir(msg, PORT_HOTE );
+                                sscanf(msg,"%d;%d",&y,&x);
+                                if(x > 0 && y > 0) jouer_coup(mat,x,y,joueur);
+                                else if(x == -1){
+                                    joueur = joueur_suivant(joueur);
+                                    //alerter(que le joeur a quitté la partie)
+                                }else if(x == -2){
+                                    menu_SDL();
+                                }
+                                //envoyer(msg, PORT_EXT);
+                                type = !type;
+                                joueur = joueur_suivant(joueur);
                             }
                         }
-
-                        SDL_RenderCopy(renderer, texteJoueur_tex[SCORE], NULL, &(rectText[SCORE]));
-                        SDL_RenderCopy(renderer, image_replay_tex, NULL, &(rectImg[0]));
-                        SDL_RenderCopy(renderer, image_home_tex, NULL, &(rectImg[1]));
-
-                        SDL_RenderPresent(renderer);
+                            
+                        //affichage_partie(mat,modeJeu);
+                        
                         break;
+                    }
                 }
-            }while(SDL_PollEvent(&e));
+            while(SDL_PollEvent(&e));
         }
 
     
@@ -292,6 +353,84 @@ SINON JOEUR BLANC ET CLIENT
     JOUER LE COUP SI JE PEUX SINON RENVOYER COORD NEGATIVE
     ATTENDRE QUE LE SERVEUR JOUE
 
-
-
+APPEL RECURSSIF SI ON RECOMMENCE
     */
+
+int affichage_partie(t_matrice mat,int modeJeu){
+    SDL_RenderClear(renderer);
+    /* Le fond de la fenêtre sera vert */
+    
+    
+    SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
+
+    SDL_RenderCopy(renderer, texteJoueur_tex[J1], NULL, &(rectText[J1]));
+    SDL_RenderCopy(renderer, texteJoueur_tex[J2], NULL, &(rectText[J2]));
+    
+    calculer_score(mat,&score_j1,&score_j2);
+    //afficher_matrice(mat);
+    sprintf(score_aff, "%d - %d", score_j1,score_j2);
+    
+    texteJoueur_tex[SCORE] = tex_text("./ttf/PoliceMenu.ttf",55,score_aff,couleurNoire,renderer);
+
+    SDL_QueryTexture(texteJoueur_tex[SCORE], NULL, NULL, &(rectText[SCORE].w), &(rectText[SCORE].h));
+    
+    /* Le fond de la fenêtre sera vert */
+    SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
+    
+    /* On fait le rendu ! */
+    if (partie_termineeSDL(mat)){
+        arret=OUI;
+        copie_mat(mat,mat_final);
+        //VOIR
+        SDL_RenderCopy(renderer, image_voir_tex, NULL, &(rectImg[VOIR]));
+        afficher_gagnant(mat);
+    }
+    else afficher_matriceSDL(mat, joueur);
+
+    //printf("%c\n",afficher_gagnant(mat,renderer));
+    pion.x=680;
+    pion.y=10;
+    rectText[A_VOUS].y=150;
+    if(!partie_termineeSDL(mat)){
+        SDL_RenderCopy(renderer, joueur == NOIR ? image_noirTour_tex : image_noir_tex, NULL, &pion);
+        pion.x+=270;
+        SDL_RenderCopy(renderer, joueur == BLANC ? image_blancTour_tex : image_blanc_tex, NULL, &pion);
+        rectText[A_VOUS].x=rectText[joueur == NOIR ? J1 : J2].x;
+        if(!(modeJeu == ONLINE) || joueur == joueur_vous) SDL_RenderCopy(renderer, texteJoueur_tex[A_VOUS], NULL, &(rectText[A_VOUS]));
+    }else{
+        //A FACTORISER
+        gagnant=afficher_gagnant(mat);
+        if(gagnant==NOIR){
+            SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
+            pion.x+=270;
+            SDL_RenderCopy(renderer, image_blanc_tex, NULL, &pion);
+            rectText[GAGNEE].x=rectText[J1].x;
+            rectText[PERDU].x=rectText[J2].x;
+            SDL_RenderCopy(renderer, texteJoueur_tex[GAGNEE], NULL, &(rectText[GAGNEE]));
+            SDL_RenderCopy(renderer, texteJoueur_tex[PERDU], NULL, &(rectText[PERDU]));
+
+        }else if(gagnant==BLANC){
+            SDL_RenderCopy(renderer, image_noir_tex, NULL, &pion);
+            pion.x+=270;
+            SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
+            rectText[GAGNEE].x=rectText[J2].x;
+            rectText[PERDU].x=rectText[J1].x;
+            SDL_RenderCopy(renderer, texteJoueur_tex[GAGNEE], NULL, &(rectText[GAGNEE]));
+            SDL_RenderCopy(renderer, texteJoueur_tex[PERDU], NULL, &(rectText[PERDU]));
+        }else{
+            SDL_RenderCopy(renderer, image_noirTour_tex, NULL, &pion);
+            pion.x+=270;
+            SDL_RenderCopy(renderer, image_blancTour_tex, NULL, &pion);
+            rectText[EGALITE].x=rectText[J1].x;
+            SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
+            rectText[EGALITE].x=rectText[J2].x;
+            SDL_RenderCopy(renderer, texteJoueur_tex[EGALITE], NULL, &(rectText[EGALITE]));
+        }
+    }
+
+    SDL_RenderCopy(renderer, texteJoueur_tex[SCORE], NULL, &(rectText[SCORE]));
+    if(modeJeu != ONLINE) SDL_RenderCopy(renderer, image_replay_tex, NULL, &(rectImg[REPLAY]));
+    SDL_RenderCopy(renderer, image_home_tex, NULL, &(rectImg[HOME]));
+
+    SDL_RenderPresent(renderer);
+}

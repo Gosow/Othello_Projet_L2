@@ -21,7 +21,7 @@
 extern SDL_Window* pWindow;
 extern SDL_Renderer *renderer;
 Mix_Music *music;
-t_matrice mat;
+//t_matrice mat;
 
 int song;
 //TEXTURE
@@ -34,7 +34,7 @@ void afficher_matriceSDL(t_matrice mat, char joueur);
 void afficher_cibleSDL(t_matrice mat, int x,int y);
 int partie_termineeSDL(t_matrice mat);
 char afficher_gagnant(t_matrice mat);
-
+int affichage_partie(t_matrice mat,int modeJeu);
 
 //JEU : INTERFACE GRAPHIQUE
 int lancement_jeu(int modeJeu, int type);
