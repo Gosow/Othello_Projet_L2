@@ -157,6 +157,7 @@ void tour_ordi(t_matrice m, int* x, int* y){
 		//fprintf(stderr,"SCORE : %d\n",v);
 		if(v > max){
 			max=v;
+			fprintf(stderr," MAX : %d\n",max);
 			*x=elem_x(l);
 			*y=elem_y(l);
 

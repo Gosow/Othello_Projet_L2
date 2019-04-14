@@ -1,11 +1,3 @@
-/**
- * \file define.h
- * \brief Fichier qui sert au client 
- * \author Fatnassi Mendy
- * \version 2
- * \date 02 avril 2019
- * */
-
 /* Largeur de la grille */
 #ifndef __DEFINE_H__
 #define __DEFINE_H__
@@ -34,6 +26,8 @@ typedef struct s_liste{
 	t_elem_coord * drapeau;
 	t_elem_coord *ec ;
 }t_liste;
+
+
 
 #endif
 

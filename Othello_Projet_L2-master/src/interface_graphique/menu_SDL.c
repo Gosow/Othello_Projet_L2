@@ -16,10 +16,6 @@
 int menu_SDL(void){
     int x,y, i=0, j=0,choix;
     char bvn[80] ="Bienvenue ";
-    //Le pointeur vers la fenetre
-  //  SDL_Window* pWindow = NULL;
-    //Le pointeur vers la surface incluse dans la fenetre
-    //SDL_Renderer *renderer=NULL;
     SDL_Rect txtDestRect, txtBvnRect, txtMenuRect[4], imgBtnRect, imgBGRect, musicRect;
     
     // Une variable de couleur noire
@@ -29,13 +25,8 @@ int menu_SDL(void){
     if(pseudo==NULL) return EXIT_FAILURE;
     strcat(bvn,pseudo);
     
-     
-    
-    
     SDL_Texture *texte_tex = tex_text("./ttf/PoliceTitre.ttf",100,"Othello",couleurNoire,renderer);
     SDL_Texture *user_tex = tex_text("./ttf/PoliceMenu.ttf",30,bvn,couleurNoire,renderer);
-    
-
 
     SDL_Rect rect_highscore[6];
     SDL_Texture *hs[6];
@@ -51,7 +42,6 @@ int menu_SDL(void){
     for(i=1; i<6; i++){
         config_obj(&rect_highscore[i], hs[i], 940, 17*(i+1));
     }
-
     
     SDL_Texture *texteMenu_tex[4];
     texteMenu_tex[0] = tex_text("./ttf/PoliceMenu.ttf",40,"Solo",couleurNoire,renderer);
@@ -69,17 +59,7 @@ int menu_SDL(void){
     //MENU
     for(j=0;j<4;j++){
         config_obj(&txtMenuRect[j], texteMenu_tex[j], j==2 || j==3 ? 480 : 500, 165+90*j);
-        /*
-        if(j==2 || j==3){
-            txtMenuRect[j].x = 480;
-        }else{
-            txtMenuRect[j].x = 500;
-        }
-        txtMenuRect[j].y = 165+90*j;
-        SDL_QueryTexture(texteMenu_tex[j], NULL, NULL, &(txtMenuRect[j].w), &(txtMenuRect[j].h));
-        */
     }
-    
     
     //Chargement de l'image de fond
     SDL_Texture *image_BG_tex = tex_img_png("./img/OthelloBG.png",renderer);
@@ -99,13 +79,14 @@ int menu_SDL(void){
 
     
         int running = 1;
+        SDL_Event e;
         while(running) {
-            SDL_Event e;
+            
             SDL_GetMouseState(&x,&y);
             if(x<700 && 385<x && y<526 && 130<y) goto affichage;
             //printf("x:%i y:%i\n",x,y);
             
-            do{
+            while(SDL_PollEvent(&e)){
                 switch(e.type) {
                     case SDL_QUIT: running = 0;break;
                     case SDL_MOUSEBUTTONDOWN:
@@ -132,6 +113,19 @@ int menu_SDL(void){
                         
                         SDL_RenderDrawLine(renderer,0,130,1080,130);
                         
+                        if(song!=PLAY){
+                            temp_music = image_pause_tex;
+                            Mix_ResumeMusic();
+                        }else{
+                            temp_music = image_play_tex;
+                            Mix_PauseMusic();
+                        }
+                        SDL_RenderCopy(renderer, temp_music, NULL, &musicRect);
+
+                        for(i=0;i<6;i++){
+                            SDL_RenderCopy(renderer, hs[i], NULL, &rect_highscore[i]);
+                        }
+
                         //Positionnement du premier bouton
                         imgBtnRect.x = 440;
                         imgBtnRect.y = 150;
@@ -147,13 +141,15 @@ int menu_SDL(void){
                                             //SDL_DestroyWindow(pWindow);
                                             Mix_PauseMusic();
                                             lancement_jeu(i,choix);
-                                            return 0;
+                                            SDL_RenderClear(renderer);
+                                            break;
                                         }
                                     }else{
                                         //SDL_DestroyWindow(pWindow);
                                         Mix_PauseMusic();
                                         lancement_jeu(i,-1);
-                                        return 0;
+                                        SDL_RenderClear(renderer);
+                                        break;
                                     }                                    
                                 }
                             }else{
@@ -164,30 +160,15 @@ int menu_SDL(void){
                             imgBtnRect.y += 90;
                         }
 
-                        if(song==PLAY){
-                            temp_music = image_pause_tex;
-                            Mix_ResumeMusic();
-                        }else{
-                            temp_music = image_play_tex;
-                            Mix_PauseMusic();
-                        }
-                        SDL_RenderCopy(renderer, temp_music, NULL, &musicRect);
-
-                        for(i=0;i<6;i++){
-                            SDL_RenderCopy(renderer, hs[i], NULL, &rect_highscore[i]);
-                        }
                         /* On fait le rendu ! */
                         SDL_RenderPresent(renderer);
                         break;
                 }
-            }while(SDL_PollEvent(&e));
+            }
         }
-    
-    //Destruction de la fenetre
-    //if(pWindow != NULL) SDL_DestroyWindow(pWindow);
     return 0;
-
 }
 
-
-
+void bouton_menu(void){
+    
+}

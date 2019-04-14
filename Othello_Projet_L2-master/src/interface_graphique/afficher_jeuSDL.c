@@ -14,7 +14,7 @@ static SDL_Texture *image_noir_tex;
 static SDL_Texture *image_blanc_tex;
 static SDL_Texture *image_cible_tex;
 static SDL_Rect imgBtnRect;
-
+static SDL_Color couleurNoire = {0, 0, 0, 0};
 /**
  * \fn void init_jeuSDL(SDL_Renderer* renderer)
  * \brief Initialise tout les données nécessaire pour l'affichage du plateau
@@ -42,7 +42,11 @@ void init_jeuSDL(void){
  * \return void
  */
 void afficher_matriceSDL(t_matrice mat, char joueur, int afficher_seul){
-    if(afficher_seul) SDL_RenderClear(renderer);
+    if(afficher_seul){
+        //SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
+        SDL_RenderClear(renderer);
+    }
     SDL_Texture *temp;
     int i=0,j=0;
 
@@ -129,7 +133,9 @@ char afficher_gagnant(t_matrice mat){
 void afficher_cibleSDL(t_matrice mat, int x,int y){
     SDL_Texture *temp;
     int i=0,j=0;
+    SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
     SDL_RenderClear(renderer);
+    
     for(i=0;i<N;i++){
         imgBtnRect.y = i*82;
         imgBtnRect.x = 0;
@@ -163,7 +169,6 @@ int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y){
     SDL_QueryTexture(t, NULL, NULL, &(r->w), &(r->h));
     return 0;
 }
-
 
 int choix_type(void){
     const SDL_MessageBoxButtonData buttons[] = {
@@ -208,4 +213,42 @@ int choix_type(void){
         SDL_Log("selection was %s", buttons[buttonid].text);
     }
     return buttonid;
+}
+
+//OBJETS 
+obj obj_text(char* s,int size,int x,int y){
+    obj res;
+  
+    res.tex = tex_text("./ttf/PoliceMenu.ttf",size,s,couleurNoire,renderer);
+    res.rect.x = x;
+    res.rect.y = y;
+
+    SDL_QueryTexture(res.tex, NULL, NULL, &(res.rect.w), &(res.rect.h));
+
+    return res;
+}
+
+obj obj_img(char* lien,int x,int y){
+    obj res;
+
+    res.tex = tex_img_png(lien,renderer);
+    res.rect.x = x;
+    res.rect.y = y;
+    
+    SDL_QueryTexture(res.tex, NULL, NULL, &(res.rect.w), &(res.rect.h));
+
+    return res;
+}
+
+int cpy_render(obj pt){
+    SDL_RenderCopy(renderer, pt.tex, NULL, &(pt.rect));
+    return 0;
+}
+
+int x_obj(obj o){
+    return o.rect.x;
+}
+
+int y_obj(obj o){
+    return o.rect.y;
 }

@@ -20,12 +20,16 @@
 #define NON 0
 #define OUI 1
 
-/*
-typedef struct objet_SDL{
+#define afficher() (SDL_RenderPresent(renderer))
+#define clear() (SDL_RenderClear(renderer))
+
+
+
+typedef struct obj_s{
     SDL_Texture *tex;
     SDL_Rect rect;
-}objet_SDL;
-*/
+}obj;
+
 extern SDL_Window* pWindow;
 extern SDL_Renderer *renderer;
 Mix_Music *music;
@@ -43,6 +47,7 @@ void afficher_cibleSDL(t_matrice mat, int x,int y);
 int partie_termineeSDL(t_matrice mat);
 char afficher_gagnant(t_matrice mat);
 int affichage_partie(t_matrice mat,int modeJeu);
+void init_obj(void);
 
 //JEU : INTERFACE GRAPHIQUE
 int lancement_jeu(int modeJeu, int type);
@@ -50,5 +55,13 @@ int menu_SDL(void);
 int pointe(SDL_Rect r, int x, int y);
 int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y);
 int choix_type(void);
+
+
+//GESTION OBJET
+obj obj_text(char* s,int size,int x,int y);
+obj obj_img(char* lien,int x,int y);
+int cpy_render(obj pt);
+int x_obj(obj o);
+int y_obj(obj o);
 
 #endif

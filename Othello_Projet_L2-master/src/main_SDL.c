@@ -34,8 +34,9 @@ int main(void)
     song=1;
     Mix_VolumeMusic(MIX_MAX_VOLUME/4);
     Mix_PlayMusic(music,-1);
+    Mix_PauseMusic();
 
-
+    fprintf(stderr,"lancement de la partie");
     /* Création de la fenêtre */
     pWindow = SDL_CreateWindow("Othello : DELUXE EDITION",SDL_WINDOWPOS_UNDEFINED,
                                SDL_WINDOWPOS_UNDEFINED,
@@ -52,7 +53,8 @@ int main(void)
         fprintf(stderr, "Erreur à la création du renderer\n");
         exit(EXIT_FAILURE);
     }
-    
+    init_jeuSDL();
+    init_obj();
     menu_SDL();
     
     if(pWindow != NULL) SDL_DestroyWindow(pWindow);
