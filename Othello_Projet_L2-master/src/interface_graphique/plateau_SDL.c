@@ -52,7 +52,7 @@ void init_obj(void){
     text_tab[PERDU] = obj_text("PERDU...",40,-1,150);
     text_tab[EGALITE] = obj_text("ÉGALITÉ :)",40,-1,150);
     text_tab[SCORE] = obj_text("2 - 2",40,800,10);
-    text_tab[ATTENTE] = obj_text("En attente du tour \nde votre adversaire ..",40,-1,-1);
+    text_tab[ATTENTE] = obj_text("En attente du tour de votre adversaire ...",20,670,300);
 
     image_BG_tex = tex_img_png("./img/OthelloBG.png",renderer);
     SDL_QueryTexture(image_BG_tex, NULL, NULL, &(bg_rect.w), &(bg_rect.h));
@@ -198,6 +198,8 @@ int lancement_jeu(int modeJeu, int type){
                             if(type == SERVEUR){
                                 memset(msg, '\0', sizeof(msg));
                                 afficher_matriceSDL(mat,' ',OUI);
+                                cpy_render(text_tab[ATTENTE]);
+                                SDL_RenderPresent(renderer);
                                 recevoir(msg, PORT_HOTE );
                                 sscanf(msg,"%d;%d",&y,&x);
                                 if(x > 0 && y > 0){
@@ -207,6 +209,7 @@ int lancement_jeu(int modeJeu, int type){
                                     joueur = joueur_suivant(joueur);
                                     //alerter(que le joueur a quitté la partie)
                                 }else if(x == -2){
+                                    aff_joueur_parti();
                                     return 0;//menu_SDL();
                                 }
                                 //envoyer(msg, PORT_EXT);

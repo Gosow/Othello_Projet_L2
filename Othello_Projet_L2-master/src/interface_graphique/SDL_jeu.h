@@ -47,6 +47,7 @@ void afficher_cibleSDL(t_matrice mat, int x,int y);
 int partie_termineeSDL(t_matrice mat);
 char afficher_gagnant(t_matrice mat);
 int affichage_partie(t_matrice mat,int modeJeu);
+void aff_joueur_parti(void);
 void init_obj(void);
 
 //JEU : INTERFACE GRAPHIQUE

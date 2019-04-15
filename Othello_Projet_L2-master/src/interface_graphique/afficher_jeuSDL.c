@@ -215,6 +215,40 @@ int choix_type(void){
     return buttonid;
 }
 
+void aff_joueur_parti(void){
+    const SDL_MessageBoxButtonData buttons[] = {
+        { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 0, "OK" },
+    };
+    const SDL_MessageBoxColorScheme colorScheme = {
+        { /* .colors (.r, .g, .b) */
+            /* [SDL_MESSAGEBOX_COLOR_BACKGROUND] */
+            { 255,   0,   0 },
+            /* [SDL_MESSAGEBOX_COLOR_TEXT] */
+            {   0, 255,   0 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_BORDER] */
+            { 255, 255,   0 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND] */
+            {   0,   0, 255 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED] */
+            { 255,   0, 255 }
+        }
+    };
+    const SDL_MessageBoxData messageboxdata = {
+        SDL_MESSAGEBOX_INFORMATION, /* .flags */
+        NULL, /* .window */
+        "Oh non ! Votre adversaire vient de quitter la partie !", /* .title */
+        "Votre adversaire a quitté la partie, votre trop haut niveau étant la cause ;) Mais pas de panique vous pouvez jouer contre notre IA, au moins elle ne partira pas...", /* .message */
+        SDL_arraysize(buttons), /* .numbuttons */
+        buttons, /* .buttons */
+        &colorScheme /* .colorScheme */
+    };
+
+    if (SDL_ShowMessageBox(&messageboxdata, NULL) < 0) {
+        SDL_Log("Erreur de l'affichage de la box");
+    }
+}
+
+
 //OBJETS 
 obj obj_text(char* s,int size,int x,int y){
     obj res;
