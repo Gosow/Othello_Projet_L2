@@ -19,9 +19,9 @@ PROG=main_SDL
 all: javel othello
 
 othello: ${FICHIER_O}
-	#rm ./bin/output/*.o
+	#rm ./obj/*.o
 	${CC} ${OPTS} ${PROG} $(FICHIER_O) ${LIBS} ${INCLUDES} ${CFLAGS}
-	#mv *.o /bin/output/
+	#mv *.o obj/
 	#rm -f *.o
 	#./main_SDL
 
