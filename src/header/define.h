@@ -27,6 +27,10 @@ typedef struct s_liste{
 	t_elem_coord *ec ;
 }t_liste;
 
+typedef struct s_highscore{
+	char name[10];
+	int score =-1;
+}t_highscore;
 
 
 #endif
