@@ -29,7 +29,7 @@ typedef struct s_liste{
 
 typedef struct s_highscore{
 	char name[10];
-	int score =-1;
+	int score ;
 }t_highscore;
 
 
