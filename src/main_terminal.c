@@ -1,7 +1,7 @@
 /**
  * \file main.c
  * \brief Programme Principale en console terminale 
- * \author Fatnassi Mendy
+ * \author Alkassoum Yacine
  * \version 1
  * \date 02 avril 2019
  * */
