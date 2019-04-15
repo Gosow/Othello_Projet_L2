@@ -11,10 +11,9 @@
  * \fn SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer)
  * \brief Transforme une image PNG en format texture pour pouvoir l'afficher dans la fenêtre SDL
  * \param s : chemin d'accès vers l'image PNG
- * \param renderer : le renderer de la fenêtre.
  * \return Pointeur sur SDL_Texture
  */
-SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
+SDL_Texture* tex_img_png(char * s){
 
     SDL_RWops *rwop=SDL_RWFromFile(s, "rb");
 	SDL_Surface *image=IMG_LoadPNG_RW(rwop);
@@ -37,10 +36,9 @@ SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer){
  * \param size : taille de la police
  * \param s : texte
  * \param color : couleur pour le texte
- * \param renderer : le renderer de la fenêtre.
  * \return Pointeur sur SDL_Texture
  */
-SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer){
+SDL_Texture *tex_text(char* font,int size, char* s, SDL_Color color){
     TTF_Font *policeTitre = NULL;
 	if( (policeTitre = TTF_OpenFont(font, size)) == NULL){
         fprintf(stderr,"%s\n",font);

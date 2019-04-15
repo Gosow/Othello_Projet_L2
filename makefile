@@ -21,7 +21,7 @@ all: javel othello
 othello: ${FICHIER_O}
 	#rm ./bin/output/*.o
 	${CC} ${OPTS} ${PROG} $(FICHIER_O) ${LIBS} ${INCLUDES} ${CFLAGS}
-	mv *.o /bin/output/
+	#mv *.o /bin/output/
 	#rm -f *.o
 	#./main_SDL
 

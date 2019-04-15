@@ -4,9 +4,11 @@
  * \author Mario Hotaj
  * \date 2 mars 2019
  */
+
 #include "SDL_jeu.h"
 #define PLAY 1
 #define PAUSE 0
+
 /**
  * \fn int menu_SDL(void)
  * \brief Fonction qui va nous afficher le menu grâce à la SDL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu.
@@ -25,17 +27,17 @@ int menu_SDL(void){
     if(pseudo==NULL) return EXIT_FAILURE;
     strcat(bvn,pseudo);
     
-    SDL_Texture *texte_tex = tex_text("src/ttf/PoliceTitre.ttf",100,"Othello",couleurNoire,renderer);
-    SDL_Texture *user_tex = tex_text("src/ttf/PoliceMenu.ttf",30,bvn,couleurNoire,renderer);
+    SDL_Texture *texte_tex = tex_text("src/ttf/PoliceTitre.ttf",100,"Othello",couleurNoire);
+    SDL_Texture *user_tex = tex_text("src/ttf/PoliceMenu.ttf",30,bvn,couleurNoire);
 
     SDL_Rect rect_highscore[6];
     SDL_Texture *hs[6];
-    hs[0] = tex_text("src/ttf/PoliceMenu.ttf",30,"Highscore :",couleurNoire,renderer);
-    hs[1] = tex_text("src/ttf/PoliceMenu.ttf",17,"1. 64 - mario",couleurNoire,renderer);
-    hs[2] = tex_text("src/ttf/PoliceMenu.ttf",17,"2. 64 - mario",couleurNoire,renderer);
-    hs[3] = tex_text("src/ttf/PoliceMenu.ttf",17,"3. 64 - mario",couleurNoire,renderer);
-    hs[4] = tex_text("src/ttf/PoliceMenu.ttf",17,"4. 64 - mario",couleurNoire,renderer);
-    hs[5] = tex_text("src/ttf/PoliceMenu.ttf",17,"5. 64 - mario",couleurNoire,renderer);
+    hs[0] = tex_text("src/ttf/PoliceMenu.ttf",30,"Highscore :",couleurNoire);
+    hs[1] = tex_text("src/ttf/PoliceMenu.ttf",17,"1. 64 - mario",couleurNoire);
+    hs[2] = tex_text("src/ttf/PoliceMenu.ttf",17,"2. 64 - mario",couleurNoire);
+    hs[3] = tex_text("src/ttf/PoliceMenu.ttf",17,"3. 64 - mario",couleurNoire);
+    hs[4] = tex_text("src/ttf/PoliceMenu.ttf",17,"4. 64 - mario",couleurNoire);
+    hs[5] = tex_text("src/ttf/PoliceMenu.ttf",17,"5. 64 - mario",couleurNoire);
     //HIGHSCORE
     config_obj(&rect_highscore[0], hs[0], 900, 10);
     
@@ -44,10 +46,10 @@ int menu_SDL(void){
     }
     
     SDL_Texture *texteMenu_tex[4];
-    texteMenu_tex[0] = tex_text("src/ttf/PoliceMenu.ttf",40,"Solo",couleurNoire,renderer);
-    texteMenu_tex[1] = tex_text("src/ttf/PoliceMenu.ttf",40,"Duo",couleurNoire,renderer);
-    texteMenu_tex[2] = tex_text("src/ttf/PoliceMenu.ttf",40,"En ligne",couleurNoire,renderer);
-    texteMenu_tex[3] = tex_text("src/ttf/PoliceMenu.ttf",40,"Quitter",couleurNoire,renderer);
+    texteMenu_tex[0] = tex_text("src/ttf/PoliceMenu.ttf",40,"Solo",couleurNoire);
+    texteMenu_tex[1] = tex_text("src/ttf/PoliceMenu.ttf",40,"Duo",couleurNoire);
+    texteMenu_tex[2] = tex_text("src/ttf/PoliceMenu.ttf",40,"En ligne",couleurNoire);
+    texteMenu_tex[3] = tex_text("src/ttf/PoliceMenu.ttf",40,"Quitter",couleurNoire);
     
     //Position ou sera mis le texte dans la fenêtre
     //TITRE
@@ -62,21 +64,20 @@ int menu_SDL(void){
     }
     
     //Chargement de l'image de fond
-    SDL_Texture *image_BG_tex = tex_img_png("src/img/OthelloBG.png",renderer);
+    SDL_Texture *image_BG_tex = tex_img_png("src/img/OthelloBG.png");
     //Chargement de l'image bouton
-    SDL_Texture *image_btn_tex = tex_img_png("src/img/btn.png",renderer);
+    SDL_Texture *image_btn_tex = tex_img_png("src/img/btn.png");
     //Chargement de l'image bouton (utilisé quand la souris passe sur l'image)
-    SDL_Texture *image_btnHover_tex = tex_img_png("src/img/btnHover.png",renderer);
+    SDL_Texture *image_btnHover_tex = tex_img_png("src/img/btnHover.png");
     //IMAGE PLAY
-    SDL_Texture *image_play_tex = tex_img_png("src/img/play.png",renderer);
+    SDL_Texture *image_play_tex = tex_img_png("src/img/play.png");
     //IMAGE PAUSE
-    SDL_Texture *image_pause_tex = tex_img_png("src/img/pause.png",renderer);
+    SDL_Texture *image_pause_tex = tex_img_png("src/img/pause.png");
 
     SDL_Texture *temp;
     SDL_Texture *temp_music = image_play_tex;
     //Musique
     config_obj(&musicRect, temp_music, 1000, 570);
-
     
         int running = 1;
         SDL_Event e;
@@ -133,7 +134,6 @@ int menu_SDL(void){
                                 if(e.type == SDL_MOUSEBUTTONDOWN){
                                     if(i==2){
                                         choix = choix_type();
-                                        fprintf(stderr,"CHOIX : %d",choix);
                                         if(choix != 2){
                                             Mix_PauseMusic();
                                             lancement_jeu(i,choix);
@@ -157,7 +157,7 @@ int menu_SDL(void){
                         }
 
                         /* On fait le rendu ! */
-                        SDL_RenderPresent(renderer);
+                        afficher();
                         break;
                 }
             }

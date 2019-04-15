@@ -1,0 +1,2308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: Référence du fichier /Users/mario/Desktop/Othello_Projet_L2/src/fonc_boite_outils/sort_utils.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_512cbf444180abd58ed150f75e9cf3af.html">fonc_boite_outils</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier sort_utils.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Sort Utils module definitions.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+</div>
+<p><a href="sort__utils_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:a9cf5dbf2659d97b36bb0065d92103647"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>) (const void *const a, const void *const b)</td></tr>
+<tr class="memdesc:a9cf5dbf2659d97b36bb0065d92103647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare function signature.  <a href="#a9cf5dbf2659d97b36bb0065d92103647">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9cf5dbf2659d97b36bb0065d92103647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805d88c7403cec80ecfb39b594b68575"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a805d88c7403cec80ecfb39b594b68575">sort_utils_sort_function</a>) (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="memdesc:a805d88c7403cec80ecfb39b594b68575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer type for sorting arrays.  <a href="#a805d88c7403cec80ecfb39b594b68575">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a805d88c7403cec80ecfb39b594b68575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:af100ac555fe1eddbdae769b8cc6ebc94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af100ac555fe1eddbdae769b8cc6ebc94">sort_utils_double_cmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:af100ac555fe1eddbdae769b8cc6ebc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db2ce93677513ca27a3c6fdd2bdb186"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a9db2ce93677513ca27a3c6fdd2bdb186">sort_utils_double_icmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:a9db2ce93677513ca27a3c6fdd2bdb186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9388529f1f920d931a5569d4918d4139"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a9388529f1f920d931a5569d4918d4139">sort_utils_int_cmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:a9388529f1f920d931a5569d4918d4139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af11f4be18a9c78f3192ea44d22bbad5a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af11f4be18a9c78f3192ea44d22bbad5a">sort_utils_int_icmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:af11f4be18a9c78f3192ea44d22bbad5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef4e8c46c2fc2a14631ea719d8b5b3e9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#aef4e8c46c2fc2a14631ea719d8b5b3e9">sort_utils_uint64_t_cmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:aef4e8c46c2fc2a14631ea719d8b5b3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7d9dfe0cf8ef70874ad5b4ea81f46ee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af7d9dfe0cf8ef70874ad5b4ea81f46ee">sort_utils_uint64_t_icmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:af7d9dfe0cf8ef70874ad5b4ea81f46ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201fcaa9f03e73fa5254e7f440f08c05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a201fcaa9f03e73fa5254e7f440f08c05">sort_utils_int64_t_cmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:a201fcaa9f03e73fa5254e7f440f08c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b80cd6eda1828516e1d551bfdd6a822"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a8b80cd6eda1828516e1d551bfdd6a822">sort_utils_int64_t_icmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:a8b80cd6eda1828516e1d551bfdd6a822"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd32147b9c388389cfca8a0c2f483f73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#afd32147b9c388389cfca8a0c2f483f73">sort_utils_pointer_cmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:afd32147b9c388389cfca8a0c2f483f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af070378f0916f5f7eb767e40edb97310"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af070378f0916f5f7eb767e40edb97310">sort_utils_pointer_icmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:af070378f0916f5f7eb767e40edb97310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1916d1367a93c6c0666e98ccf8fe574"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#ae1916d1367a93c6c0666e98ccf8fe574">sort_utils_string_cmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:ae1916d1367a93c6c0666e98ccf8fe574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af34b4c81b4803d7e89dc28519f831c74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af34b4c81b4803d7e89dc28519f831c74">sort_utils_string_icmp</a> (const void *const a, const void *const b)</td></tr>
+<tr class="separator:af34b4c81b4803d7e89dc28519f831c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70cb09d2bf29d460175a3b57e662f2b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a70cb09d2bf29d460175a3b57e662f2b6">sort_utils_insertionsort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:a70cb09d2bf29d460175a3b57e662f2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeadb0598cc181185cabeebf7a671d08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#adeadb0598cc181185cabeebf7a671d08">sort_utils_insertionsort_asc_d</a> (double *const a, const int n)</td></tr>
+<tr class="separator:adeadb0598cc181185cabeebf7a671d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a023a44655a207cdb291a879723e46512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a023a44655a207cdb291a879723e46512">sort_utils_insertionsort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a023a44655a207cdb291a879723e46512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56df0c81d22357df3a8fdb0073f1d8a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a56df0c81d22357df3a8fdb0073f1d8a5">sort_utils_insertionsort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a56df0c81d22357df3a8fdb0073f1d8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fc9a4ab4ec0217bf80e46b38f53201b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a2fc9a4ab4ec0217bf80e46b38f53201b">sort_utils_insertionsort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a2fc9a4ab4ec0217bf80e46b38f53201b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30e457a3a2e9c0b2baaa471e1b9f029a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a30e457a3a2e9c0b2baaa471e1b9f029a">sort_utils_insertionsort_asc_u64</a> (uint64_t *const a, const int count)</td></tr>
+<tr class="separator:a30e457a3a2e9c0b2baaa471e1b9f029a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1e7d1c2b504976df2b973b208b976f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a1f1e7d1c2b504976df2b973b208b976f">sort_utils_insertionsort_dsc_u64</a> (uint64_t *const a, const int count)</td></tr>
+<tr class="separator:a1f1e7d1c2b504976df2b973b208b976f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cadecf527dc55c201d125c6627df110"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a1cadecf527dc55c201d125c6627df110">sort_utils_insertionsort_asc_i64</a> (int64_t *const a, const int count)</td></tr>
+<tr class="separator:a1cadecf527dc55c201d125c6627df110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d92d0a6de45d1379c2049b3b05f207b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a4d92d0a6de45d1379c2049b3b05f207b">sort_utils_insertionsort_dsc_i64</a> (int64_t *const a, const int count)</td></tr>
+<tr class="separator:a4d92d0a6de45d1379c2049b3b05f207b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd1e805508adfd1659eff52b6cd673c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a4cd1e805508adfd1659eff52b6cd673c">sort_utils_insertionsort_asc_p</a> (void **const a, const size_t count)</td></tr>
+<tr class="separator:a4cd1e805508adfd1659eff52b6cd673c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea1cdfcc53c653b71098c24f1ba18ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a3ea1cdfcc53c653b71098c24f1ba18ac">sort_utils_insertionsort_asc_string</a> (char **const a, const int count)</td></tr>
+<tr class="separator:a3ea1cdfcc53c653b71098c24f1ba18ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53a2797f2191bd947eba82751e0fe93b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a53a2797f2191bd947eba82751e0fe93b">sort_utils_binarysort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:a53a2797f2191bd947eba82751e0fe93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47dfda2076576674aca8cac19cc1793f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a47dfda2076576674aca8cac19cc1793f">sort_utils_binarysort_asc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a47dfda2076576674aca8cac19cc1793f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2f9e5a3eff300ad3986af17041539cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#ae2f9e5a3eff300ad3986af17041539cd">sort_utils_binarysort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:ae2f9e5a3eff300ad3986af17041539cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a66358da3457bb81708a211726e07a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a1a66358da3457bb81708a211726e07a4">sort_utils_binarysort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a1a66358da3457bb81708a211726e07a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76bef85c2dbed32bb9e28dd869c68d81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a76bef85c2dbed32bb9e28dd869c68d81">sort_utils_binarysort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a76bef85c2dbed32bb9e28dd869c68d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a9e5e52aebda2a6138902adf9dd221"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a25a9e5e52aebda2a6138902adf9dd221">sort_utils_heapsort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:a25a9e5e52aebda2a6138902adf9dd221"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbe5f7faf155e58fe7c8228f4b04040e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#afbe5f7faf155e58fe7c8228f4b04040e">sort_utils_heapsort_asc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:afbe5f7faf155e58fe7c8228f4b04040e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a36139e6e6f7d930804d8def4414a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#ab1a36139e6e6f7d930804d8def4414a8">sort_utils_heapsort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:ab1a36139e6e6f7d930804d8def4414a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af047b5a540264d80d96ce27d3c04e378"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af047b5a540264d80d96ce27d3c04e378">sort_utils_heapsort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:af047b5a540264d80d96ce27d3c04e378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02335320ead4f4b403288ba1c6f96d10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a02335320ead4f4b403288ba1c6f96d10">sort_utils_heapsort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a02335320ead4f4b403288ba1c6f96d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f188b2daeb7f202233f029d7898a56f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a7f188b2daeb7f202233f029d7898a56f">sort_utils_smoothsort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:a7f188b2daeb7f202233f029d7898a56f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8638370b70e4b6aef0825f1854ba6648"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a8638370b70e4b6aef0825f1854ba6648">sort_utils_smoothsort_asc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a8638370b70e4b6aef0825f1854ba6648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f3bc83fd237d4c5b70a4fe7014be773"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a1f3bc83fd237d4c5b70a4fe7014be773">sort_utils_smoothsort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a1f3bc83fd237d4c5b70a4fe7014be773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6b821489b1d46357d605b10259dfa52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#ac6b821489b1d46357d605b10259dfa52">sort_utils_smoothsort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:ac6b821489b1d46357d605b10259dfa52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75350e6de9c96ed3153a695702dc74bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a75350e6de9c96ed3153a695702dc74bd">sort_utils_smoothsort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a75350e6de9c96ed3153a695702dc74bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adac1c34aba54623457e17f684e6d0072"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#adac1c34aba54623457e17f684e6d0072">sort_utils_quicksort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:adac1c34aba54623457e17f684e6d0072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e896e5ac21ad8c3470bde12a28dae1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a1e896e5ac21ad8c3470bde12a28dae1d">sort_utils_quicksort_asc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a1e896e5ac21ad8c3470bde12a28dae1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa0e9f18d4406eaf39d6af564e009341"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#afa0e9f18d4406eaf39d6af564e009341">sort_utils_quicksort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:afa0e9f18d4406eaf39d6af564e009341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a044e375b86c3acb198e7bdedc56cc1bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a044e375b86c3acb198e7bdedc56cc1bf">sort_utils_quicksort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a044e375b86c3acb198e7bdedc56cc1bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d10b6bc33c715c9fc2253cc7b8832ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a4d10b6bc33c715c9fc2253cc7b8832ea">sort_utils_quicksort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a4d10b6bc33c715c9fc2253cc7b8832ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bca39216e65eb40cad5c659780a5458"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a2bca39216e65eb40cad5c659780a5458">sort_utils_shellsort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:a2bca39216e65eb40cad5c659780a5458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aaa9550b91d66abb5d246f7481677d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a3aaa9550b91d66abb5d246f7481677d1">sort_utils_shellsort_asc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a3aaa9550b91d66abb5d246f7481677d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac848f31ab93a8a3eeda1c7ecfa840a3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#ac848f31ab93a8a3eeda1c7ecfa840a3d">sort_utils_shellsort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:ac848f31ab93a8a3eeda1c7ecfa840a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4e9948eeb4707ba292cb02cc786913d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af4e9948eeb4707ba292cb02cc786913d">sort_utils_shellsort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:af4e9948eeb4707ba292cb02cc786913d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f5ea4a80a5dcb84e0ae2aac0b4386b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a9f5ea4a80a5dcb84e0ae2aac0b4386b4">sort_utils_shellsort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a9f5ea4a80a5dcb84e0ae2aac0b4386b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6cda73e5b98f02d55fb057ad2ab91e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#af6cda73e5b98f02d55fb057ad2ab91e5">sort_utils_mergesort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:af6cda73e5b98f02d55fb057ad2ab91e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a10be5dffc367a1f9bf3cb8ff819eca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a1a10be5dffc367a1f9bf3cb8ff819eca">sort_utils_mergesort_a</a> (void *const a, const size_t count, const size_t es, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp, void *const aux)</td></tr>
+<tr class="separator:a1a10be5dffc367a1f9bf3cb8ff819eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a21b8db03125bf17536931af30fdff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#aa2a21b8db03125bf17536931af30fdff">sort_utils_mergesort_asc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:aa2a21b8db03125bf17536931af30fdff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8683d5e18ebd3bd311bff58c39b9b04b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a8683d5e18ebd3bd311bff58c39b9b04b">sort_utils_mergesort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a8683d5e18ebd3bd311bff58c39b9b04b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f07d5302590966387a4b53a24422038"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a5f07d5302590966387a4b53a24422038">sort_utils_mergesort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a5f07d5302590966387a4b53a24422038"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceaf45736d66a51e7fda07c727aaea8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#aceaf45736d66a51e7fda07c727aaea8c">sort_utils_mergesort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:aceaf45736d66a51e7fda07c727aaea8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab581dc46c9be609bcdcbabb20e5761b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#aab581dc46c9be609bcdcbabb20e5761b">sort_utils_timsort</a> (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td></tr>
+<tr class="separator:aab581dc46c9be609bcdcbabb20e5761b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaabd182fe69291fd6138e52fdf037d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#adaabd182fe69291fd6138e52fdf037d9">sort_utils_timsort_asc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:adaabd182fe69291fd6138e52fdf037d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69daeefee0bbdb703d3f856b830bba35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a69daeefee0bbdb703d3f856b830bba35">sort_utils_timsort_dsc_d</a> (double *const a, const int count)</td></tr>
+<tr class="separator:a69daeefee0bbdb703d3f856b830bba35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae0546fd3061f151a8fd4d50c8987062"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#aae0546fd3061f151a8fd4d50c8987062">sort_utils_timsort_asc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:aae0546fd3061f151a8fd4d50c8987062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c839b7ad26d19f3da76fe31a365817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sort__utils_8h.html#a20c839b7ad26d19f3da76fe31a365817">sort_utils_timsort_dsc_i</a> (int *const a, const int count)</td></tr>
+<tr class="separator:a20c839b7ad26d19f3da76fe31a365817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Sort Utils module definitions. </p>
+<p>This module provides sorting functions.</p>
+<dl class="section user"><dt>sort_utils.h</dt><dd><code> This file is part of the reversi program <a href="http://github.com/rcrr/reversi">http://github.com/rcrr/reversi</a> </code> </dd></dl>
+<dl class="section author"><dt>Auteur</dt><dd>Roberto Corradini <a href="#" onclick="location.href='mai'+'lto:'+'rob'+'_c'+'orr'+'ad'+'ini'+'@y'+'aho'+'o.'+'it'; return false;">rob_c<span style="display: none;">.nosp@m.</span>orra<span style="display: none;">.nosp@m.</span>dini@<span style="display: none;">.nosp@m.</span>yaho<span style="display: none;">.nosp@m.</span>o.it</a> </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>2014, 2015 Roberto Corradini. All rights reserved.</dd></dl>
+<dl class="section user"><dt>License</dt><dd><code> This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3, or (at your option) any later version. <br />
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. <br />
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA or visit the site <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </code> </dd></dl>
+</div><h2 class="groupheader">Documentation des définitions de type</h2>
+<a id="a9cf5dbf2659d97b36bb0065d92103647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cf5dbf2659d97b36bb0065d92103647">&#9670;&nbsp;</a></span>sort_utils_compare_function</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* sort_utils_compare_function) (const void *const a, const void *const b)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare function signature. </p>
+<p>The implementer has to ensure that when the value refernced by <code>a</code> is equal to the one addressed by <code>b</code>, than zero is returned. When the value identified by <code>a</code> is greater than the one pointed by <code>b</code>, than the return value has to be a positive integer, and otherwise a negative one.</p>
+<p>Pseudocode: </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (*a &gt; *b) <span class="keywordflow">return</span> +1;</div><div class="line"><span class="keywordflow">else</span> <span class="keywordflow">if</span> (*a == *b) <span class="keywordflow">return</span> 0;</div><div class="line"><span class="keywordflow">else</span> <span class="keywordflow">return</span> -1;</div></div><!-- fragment --><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>a pointer to the first value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>a pointer to the second value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>result of comparing the values pointed by <code>a</code> and <code>b</code> </dd></dl>
+
+</div>
+</div>
+<a id="a805d88c7403cec80ecfb39b594b68575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a805d88c7403cec80ecfb39b594b68575">&#9670;&nbsp;</a></span>sort_utils_sort_function</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* sort_utils_sort_function) (void *const a, const size_t count, const size_t element_size, const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a> cmp)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function pointer type for sorting arrays. </p>
+<p>This prototype is equal to the qsort definition in the standard library.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">a</td><td>the array to be sorted </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>the number of element in array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">element_size</td><td>the number of bytes used by one element </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cmp</td><td>the compare function applied by the algorithm </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a53a2797f2191bd947eba82751e0fe93b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53a2797f2191bd947eba82751e0fe93b">&#9670;&nbsp;</a></span>sort_utils_binarysort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_binarysort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>endcond Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code>, collecting elements of size <code>element_size</code>, having length equal to <code>count</code>, is sorted in place applying the binary-sort algorithm. The compare function <code>cmp</code> has to comply with the signature of <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647" title="Compare function signature.">sort_utils_compare_function</a>.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="a47dfda2076576674aca8cac19cc1793f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47dfda2076576674aca8cac19cc1793f">&#9670;&nbsp;</a></span>sort_utils_binarysort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_binarysort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the binary-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a1a66358da3457bb81708a211726e07a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a66358da3457bb81708a211726e07a4">&#9670;&nbsp;</a></span>sort_utils_binarysort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_binarysort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the binary-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="ae2f9e5a3eff300ad3986af17041539cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f9e5a3eff300ad3986af17041539cd">&#9670;&nbsp;</a></span>sort_utils_binarysort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_binarysort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the binary-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a76bef85c2dbed32bb9e28dd869c68d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76bef85c2dbed32bb9e28dd869c68d81">&#9670;&nbsp;</a></span>sort_utils_binarysort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_binarysort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the binary-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="af100ac555fe1eddbdae769b8cc6ebc94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af100ac555fe1eddbdae769b8cc6ebc94">&#9670;&nbsp;</a></span>sort_utils_double_cmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_double_cmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares double values pointed by <code>a</code> and <code>b</code>.</p>
+<p>Compare function that returns:</p><ul>
+<li><code>+1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>-1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first double param b a pointer to the second double return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="a9db2ce93677513ca27a3c6fdd2bdb186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db2ce93677513ca27a3c6fdd2bdb186">&#9670;&nbsp;</a></span>sort_utils_double_icmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_double_icmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares double values pointed by <code>a</code> and <code>b</code>.</p>
+<p>Compare function that returns:</p><ul>
+<li><code>-1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>+1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first double param b a pointer to the second double return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="a25a9e5e52aebda2a6138902adf9dd221"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25a9e5e52aebda2a6138902adf9dd221">&#9670;&nbsp;</a></span>sort_utils_heapsort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_heapsort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>endcond Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code> having length equal to <code>count</code> is sorted in place applying the heap-sort algorithm. The compare function is a predicate and must return <code>true</code> or <code>false</code>.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="afbe5f7faf155e58fe7c8228f4b04040e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbe5f7faf155e58fe7c8228f4b04040e">&#9670;&nbsp;</a></span>sort_utils_heapsort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_heapsort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the heap-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a02335320ead4f4b403288ba1c6f96d10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02335320ead4f4b403288ba1c6f96d10">&#9670;&nbsp;</a></span>sort_utils_heapsort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_heapsort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the heap-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="ab1a36139e6e6f7d930804d8def4414a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1a36139e6e6f7d930804d8def4414a8">&#9670;&nbsp;</a></span>sort_utils_heapsort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_heapsort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the heap-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="af047b5a540264d80d96ce27d3c04e378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af047b5a540264d80d96ce27d3c04e378">&#9670;&nbsp;</a></span>sort_utils_heapsort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_heapsort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the heap-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a70cb09d2bf29d460175a3b57e662f2b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70cb09d2bf29d460175a3b57e662f2b6">&#9670;&nbsp;</a></span>sort_utils_insertionsort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code>, collecting elements of size <code>element_size</code>, having length equal to <code>count</code>, is sorted in place applying the insertion-sort algorithm. The compare function <code>cmp</code> has to comply with the signature of <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647" title="Compare function signature.">sort_utils_compare_function</a>.</p>
+<p>Insertion-sort is a naive algorithm with asymptotic time complexity of O(n^2), so quick-sort or heap-sort should be preferred even for small arrays. Nevertheless sometimes its simplicity makes it a valid choice. The given implementation is between two or three percent slower compared to a bare metal version, sorting doubles values, like the one here transcribed: code void sort_utils_insertionsort_asc_d (double *const a, const int count) for (int i = 1; i &lt; count; i++) { for (int j = i; j &gt; 0 &amp;&amp; a[j - 1] &gt; a[j]; j&ndash;) { double t = a[j]; a[j] = a[j - 1]; a[j - 1] = t; } } endcode</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="adeadb0598cc181185cabeebf7a671d08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeadb0598cc181185cabeebf7a671d08">&#9670;&nbsp;</a></span>sort_utils_insertionsort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a56df0c81d22357df3a8fdb0073f1d8a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56df0c81d22357df3a8fdb0073f1d8a5">&#9670;&nbsp;</a></span>sort_utils_insertionsort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a1cadecf527dc55c201d125c6627df110"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cadecf527dc55c201d125c6627df110">&#9670;&nbsp;</a></span>sort_utils_insertionsort_asc_i64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_asc_i64 </td>
+          <td>(</td>
+          <td class="paramtype">int64_t *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of signed sixtyfour bit integers.</p>
+<p>details The vector of signed sixtyfour bit integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a4cd1e805508adfd1659eff52b6cd673c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd1e805508adfd1659eff52b6cd673c">&#9670;&nbsp;</a></span>sort_utils_insertionsort_asc_p()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_asc_p </td>
+          <td>(</td>
+          <td class="paramtype">void **const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of pointers.</p>
+<p>details The vector of pointers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a3ea1cdfcc53c653b71098c24f1ba18ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ea1cdfcc53c653b71098c24f1ba18ac">&#9670;&nbsp;</a></span>sort_utils_insertionsort_asc_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_asc_string </td>
+          <td>(</td>
+          <td class="paramtype">char **const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of pointers to strings.</p>
+<p>details The vector of pointersto strings <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a30e457a3a2e9c0b2baaa471e1b9f029a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30e457a3a2e9c0b2baaa471e1b9f029a">&#9670;&nbsp;</a></span>sort_utils_insertionsort_asc_u64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_asc_u64 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of unsigned sixtyfour bit integers.</p>
+<p>details The vector of unsigned sixtyfour bit integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a023a44655a207cdb291a879723e46512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a023a44655a207cdb291a879723e46512">&#9670;&nbsp;</a></span>sort_utils_insertionsort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a2fc9a4ab4ec0217bf80e46b38f53201b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fc9a4ab4ec0217bf80e46b38f53201b">&#9670;&nbsp;</a></span>sort_utils_insertionsort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a4d92d0a6de45d1379c2049b3b05f207b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d92d0a6de45d1379c2049b3b05f207b">&#9670;&nbsp;</a></span>sort_utils_insertionsort_dsc_i64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_dsc_i64 </td>
+          <td>(</td>
+          <td class="paramtype">int64_t *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of signed sixtyfour bit integers.</p>
+<p>details The vector of signed sixtyfour bit integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a1f1e7d1c2b504976df2b973b208b976f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1e7d1c2b504976df2b973b208b976f">&#9670;&nbsp;</a></span>sort_utils_insertionsort_dsc_u64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_insertionsort_dsc_u64 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of unsigned sixtyfour bit integers.</p>
+<p>details The vector of unsigned sixtyfour bit integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the insertion-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a201fcaa9f03e73fa5254e7f440f08c05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201fcaa9f03e73fa5254e7f440f08c05">&#9670;&nbsp;</a></span>sort_utils_int64_t_cmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_int64_t_cmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares <code>int64_t</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>+1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>-1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>int64_t</code> value param b a pointer to the second <code>int64_t</code> value return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="a8b80cd6eda1828516e1d551bfdd6a822"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b80cd6eda1828516e1d551bfdd6a822">&#9670;&nbsp;</a></span>sort_utils_int64_t_icmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_int64_t_icmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares <code>int64_t</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>-1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>+1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>int64_t</code> value param b a pointer to the second <code>int64_t</code> value return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="a9388529f1f920d931a5569d4918d4139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9388529f1f920d931a5569d4918d4139">&#9670;&nbsp;</a></span>sort_utils_int_cmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_int_cmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares int values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>+1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>-1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first integer param b a pointer to the second integer return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="af11f4be18a9c78f3192ea44d22bbad5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af11f4be18a9c78f3192ea44d22bbad5a">&#9670;&nbsp;</a></span>sort_utils_int_icmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_int_icmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares int values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>-1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>+1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first integer param b a pointer to the second integer return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="af6cda73e5b98f02d55fb057ad2ab91e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6cda73e5b98f02d55fb057ad2ab91e5">&#9670;&nbsp;</a></span>sort_utils_mergesort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_mergesort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code> having length equal to <code>count</code> is sorted using auxiliary space applying the merge-sort algorithm. The compare function is a predicate and must return <code>true</code> or <code>false</code>.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="a1a10be5dffc367a1f9bf3cb8ff819eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a10be5dffc367a1f9bf3cb8ff819eca">&#9670;&nbsp;</a></span>sort_utils_mergesort_a()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_mergesort_a </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>es</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>aux</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code> having length equal to <code>count</code> is sorted using auxiliary space applying the merge-sort algorithm. The compare function is a predicate and must return <code>true</code> or <code>false</code>. The auxiliary space must have the same size of the <code>a</code> array or larger, the content of it when the function returns is garbage.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] es the number of bytes used by one element param [in] cmp the compare function applied by the algorithm param [in] aux an auxiliary array </p>
+
+</div>
+</div>
+<a id="aa2a21b8db03125bf17536931af30fdff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2a21b8db03125bf17536931af30fdff">&#9670;&nbsp;</a></span>sort_utils_mergesort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_mergesort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the merge-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a5f07d5302590966387a4b53a24422038"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f07d5302590966387a4b53a24422038">&#9670;&nbsp;</a></span>sort_utils_mergesort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_mergesort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the merge-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a8683d5e18ebd3bd311bff58c39b9b04b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8683d5e18ebd3bd311bff58c39b9b04b">&#9670;&nbsp;</a></span>sort_utils_mergesort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_mergesort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the merge-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="aceaf45736d66a51e7fda07c727aaea8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceaf45736d66a51e7fda07c727aaea8c">&#9670;&nbsp;</a></span>sort_utils_mergesort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_mergesort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the merge-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="afd32147b9c388389cfca8a0c2f483f73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd32147b9c388389cfca8a0c2f483f73">&#9670;&nbsp;</a></span>sort_utils_pointer_cmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_pointer_cmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares <code>(void *)</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>+1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>-1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>(void *)</code> value param b a pointer to the second <code>(void *)</code> value return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="af070378f0916f5f7eb767e40edb97310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af070378f0916f5f7eb767e40edb97310">&#9670;&nbsp;</a></span>sort_utils_pointer_icmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_pointer_icmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares <code>(void *)</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>-1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>+1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>(void *)</code> value param b a pointer to the second <code>(void *)</code> value return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="adac1c34aba54623457e17f684e6d0072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adac1c34aba54623457e17f684e6d0072">&#9670;&nbsp;</a></span>sort_utils_quicksort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_quicksort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>endcond Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code> having length equal to <code>count</code> is sorted in place applying the quick-sort algorithm. The compare function is a comparator and must return <code>-1</code>, <code>0</code>, or <code>+1</code> constrained by the sorting order of the two elements.</p>
+<p>Adapted from the paper "Engineering a Sort Function" by Jon L. Bentley and M. Douglas McIlroy See: <a href="http://www.skidmore.edu/~meckmann/2009Spring/cs206/papers/spe862jb.pdf">http://www.skidmore.edu/~meckmann/2009Spring/cs206/papers/spe862jb.pdf</a> See also: <a href="http://en.wikipedia.org/wiki/Quicksort">http://en.wikipedia.org/wiki/Quicksort</a></p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="a1e896e5ac21ad8c3470bde12a28dae1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e896e5ac21ad8c3470bde12a28dae1d">&#9670;&nbsp;</a></span>sort_utils_quicksort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_quicksort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the quick-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a044e375b86c3acb198e7bdedc56cc1bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a044e375b86c3acb198e7bdedc56cc1bf">&#9670;&nbsp;</a></span>sort_utils_quicksort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_quicksort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the quick-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="afa0e9f18d4406eaf39d6af564e009341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa0e9f18d4406eaf39d6af564e009341">&#9670;&nbsp;</a></span>sort_utils_quicksort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_quicksort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the quick-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a4d10b6bc33c715c9fc2253cc7b8832ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d10b6bc33c715c9fc2253cc7b8832ea">&#9670;&nbsp;</a></span>sort_utils_quicksort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_quicksort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the quick-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a2bca39216e65eb40cad5c659780a5458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bca39216e65eb40cad5c659780a5458">&#9670;&nbsp;</a></span>sort_utils_shellsort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_shellsort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code> having length equal to <code>count</code> is sorted in place applying the shell-sort algorithm. The compare function is a predicate and must return <code>true</code> or <code>false</code>.</p>
+<p>See:</p>
+<ul>
+<li>The Wikipedia page: <a href="http://en.wikipedia.org/wiki/Shellsort" target="_blank">Shellsort</a>.</li>
+<li>Donald E. Knuth (1998), Sorting and Searching (par. 5.2.1 - pp. 83-95). The Art of Computer Programming, Vol. 3 (2nd ed.). Boston: Addison–Wesley.</li>
+<li>N. Tokuda, An Improved Shellsort, IFIP Transactions, A-12 (1992) 449-457.</li>
+<li>Marcin Ciura, Best Increments for the Average Case of Shellsort, 13th International Symposium on Fundamentals of Computation Theory, Riga, Latvia, Aug 22 2001; Lecture Notes in Computer Science 2001; 2138: 106-117. <a href="http://sun.aei.polsl.pl/~mciura/publikacje/shellsort.pdf" target="_blank">Download PDF</a>.</li>
+</ul>
+<p>A few sequences has been tested:</p><ol type="1">
+<li><code>h(0) = 1, h[s+1] = 3 * h[s] + 1</code>, and stop with <code>h[t-1] when h[t+1] &gt; count</code>.<br />
+ The beginning of the sequence is: <code>1, 4, 13, 40, 121, 364, 1093, 3280, 9841, 29524, 88573, 265720, 797161, 2391484, 7174453, 21523360</code>.<br />
+ The web site "The On-Line Encyclopedia of Integer  Sequences" has registered it as: <a href="https://oeis.org/A003462" target="_blank">A003462</a>.</li>
+<li><code>h(0) = 1, h[s+1] = 2.25 * h[s] + 1</code>, and stop with <code>h[t-1] when h[t+1] &gt; count</code>.<br />
+ The beginning of the sequence is: <code>1, 4, 10, 24, 55, 125, 283, 638, 1437, 3235, 7280, 16381, 36859, 82934, 186603, 419858, 944682, 2125536, 4782457, 10760530, 24211194</code>.<br />
+ It is not registered at "The On-Line Encyclopedia of Integer  Sequences".</li>
+<li><code>h(k) = ceil((pow(9, k) - pow(4, k)) / (5 * pow(4, k - 1)))</code>.<br />
+ The beginning of the sequence is: <code>1, 4, 9, 20, 46, 103, 233, 525, 1182, 2660, 5985, 13467, 30301, 68178, 153401, 345152</code>.<br />
+ It is known as the "Tokuda's good set of increments for Shell sort" and it is registered as: <a href="https://oeis.org/A108870" target="_blank">A108870</a>.</li>
+<li><code>1, 4, 10, 23, 57, 132, 301, 701</code>.<br />
+ No other number is known after <code>701</code>, the sequence has been discovered by Marcin Ciura by empirical evidence, and is the best known sequence of increments for shell sort.<br />
+ It is registered at OEIS as: <a href="https://oeis.org/A102549" target="_blank">A102549</a>.</li>
+</ol>
+<p>The first sequence is described by Knuth and works quite well, the second one is a sensible improvement, Knuth himself reports that it has been suggested by Tokuda. The sequence number three, the Tokuda sequence, is slightly better than the second one, and it has been selected and applied here. The last one is too short to be adopted.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="a3aaa9550b91d66abb5d246f7481677d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aaa9550b91d66abb5d246f7481677d1">&#9670;&nbsp;</a></span>sort_utils_shellsort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_shellsort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the shell-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="af4e9948eeb4707ba292cb02cc786913d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4e9948eeb4707ba292cb02cc786913d">&#9670;&nbsp;</a></span>sort_utils_shellsort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_shellsort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the shell-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="ac848f31ab93a8a3eeda1c7ecfa840a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac848f31ab93a8a3eeda1c7ecfa840a3d">&#9670;&nbsp;</a></span>sort_utils_shellsort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_shellsort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the shell-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a9f5ea4a80a5dcb84e0ae2aac0b4386b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f5ea4a80a5dcb84e0ae2aac0b4386b4">&#9670;&nbsp;</a></span>sort_utils_shellsort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_shellsort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the shell-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a7f188b2daeb7f202233f029d7898a56f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f188b2daeb7f202233f029d7898a56f">&#9670;&nbsp;</a></span>sort_utils_smoothsort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_smoothsort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>endcond Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code> having length equal to <code>count</code> is sorted in place applying the smooth-sort algorithm. The compare function is a predicate and must return <code>true</code> or <code>false</code>.</p>
+<p>Adapted from Dijkstra's paper: <a href="http://www.enterag.ch/hartwig/order/smoothsort.pdf">http://www.enterag.ch/hartwig/order/smoothsort.pdf</a> See also: <a href="http://en.wikipedia.org/wiki/Smoothsort">http://en.wikipedia.org/wiki/Smoothsort</a></p>
+<p>Quoting Dijkstra himself:<br />
+ <em>"Like Heapsort —which inspired it— smoothsort is an algorithm for sorting in situ. It is of order <code>N·log N</code> in the worst case, but of order <code>N</code> in the best case, with a smooth transition between the two. (Hence its name.)"</em></p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="a8638370b70e4b6aef0825f1854ba6648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8638370b70e4b6aef0825f1854ba6648">&#9670;&nbsp;</a></span>sort_utils_smoothsort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_smoothsort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the smooth-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="ac6b821489b1d46357d605b10259dfa52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6b821489b1d46357d605b10259dfa52">&#9670;&nbsp;</a></span>sort_utils_smoothsort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_smoothsort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the smooth-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a1f3bc83fd237d4c5b70a4fe7014be773"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3bc83fd237d4c5b70a4fe7014be773">&#9670;&nbsp;</a></span>sort_utils_smoothsort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_smoothsort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the smooth-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a75350e6de9c96ed3153a695702dc74bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75350e6de9c96ed3153a695702dc74bd">&#9670;&nbsp;</a></span>sort_utils_smoothsort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_smoothsort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the smooth-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="ae1916d1367a93c6c0666e98ccf8fe574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1916d1367a93c6c0666e98ccf8fe574">&#9670;&nbsp;</a></span>sort_utils_string_cmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_string_cmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares lexicographically <code>(char **)</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>greater then 0</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>equal to 0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>less than 0</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>(char *)</code> value param b a pointer to the second <code>(char *)</code> value return an integer value based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="af34b4c81b4803d7e89dc28519f831c74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af34b4c81b4803d7e89dc28519f831c74">&#9670;&nbsp;</a></span>sort_utils_string_icmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_string_icmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares lexicographically <code>(char **)</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>less then 0</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>equal to 0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>greater than 0</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>(char *)</code> value param b a pointer to the second <code>(char *)</code> value return an integer value based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="aab581dc46c9be609bcdcbabb20e5761b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab581dc46c9be609bcdcbabb20e5761b">&#9670;&nbsp;</a></span>sort_utils_timsort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_timsort </td>
+          <td>(</td>
+          <td class="paramtype">void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>element_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="sort__utils_8h.html#a9cf5dbf2659d97b36bb0065d92103647">sort_utils_compare_function</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>endcond Sorts the <code>a</code> array.</p>
+<p>details The vector <code>a</code> having length equal to <code>count</code> is sorted in place applying the tim-sort algorithm. The compare function is a comparator and must return <code>-1</code>, <code>0</code>, or <code>+1</code> constrained by the sorting order of the two elements.</p>
+<p>Tim-sort is a stable, adaptive, iterative merge-sort that requires far fewer than n lg(n) comparisons when running on partially sorted arrays, while offering performance comparable to a traditional merge-sort when run on random arrays.</p>
+<p>This work is heavily inspired by the code written by Josh Bloch in Java and released to the public as part of the OpneJDK library.</p>
+<p>The original implementation is found in Tim Peters's list sort for Python, which is described in detail here:</p>
+<p><a href="http://svn.python.org/projects/python/trunk/Objects/listsort.txt">http://svn.python.org/projects/python/trunk/Objects/listsort.txt</a></p>
+<p>Tim's C code may be found here:</p>
+<p><a href="http://svn.python.org/projects/python/trunk/Objects/listobject.c">http://svn.python.org/projects/python/trunk/Objects/listobject.c</a></p>
+<p>The underlying techniques are described in this paper (and may have even earlier origins):</p>
+<p>"Optimistic Sorting and Information Theoretic Complexity" Peter McIlroy SODA (Fourth Annual ACM-SIAM Symposium on Discrete Algorithms), pp 467-474, Austin, Texas, 25-27 January 1993.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element in array param [in] element_size the number of bytes used by one element param [in] cmp the compare function applied by the algorithm </p>
+
+</div>
+</div>
+<a id="adaabd182fe69291fd6138e52fdf037d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaabd182fe69291fd6138e52fdf037d9">&#9670;&nbsp;</a></span>sort_utils_timsort_asc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_timsort_asc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the tim-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="aae0546fd3061f151a8fd4d50c8987062"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae0546fd3061f151a8fd4d50c8987062">&#9670;&nbsp;</a></span>sort_utils_timsort_asc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_timsort_asc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in ascending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in ascending order applying the tim-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a69daeefee0bbdb703d3f856b830bba35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69daeefee0bbdb703d3f856b830bba35">&#9670;&nbsp;</a></span>sort_utils_timsort_dsc_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_timsort_dsc_d </td>
+          <td>(</td>
+          <td class="paramtype">double *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of doubles.</p>
+<p>details The vector of doubles <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the tim-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="a20c839b7ad26d19f3da76fe31a365817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20c839b7ad26d19f3da76fe31a365817">&#9670;&nbsp;</a></span>sort_utils_timsort_dsc_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_utils_timsort_dsc_i </td>
+          <td>(</td>
+          <td class="paramtype">int *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sorts in descending order the <code>a</code> array of integers.</p>
+<p>details The vector of integers <code>a</code> having length equal to <code>count</code> is sorted in place in descending order applying the tim-sort algorithm.</p>
+<p>param [in,out] a the array to be sorted param [in] count the number of element of array a </p>
+
+</div>
+</div>
+<a id="aef4e8c46c2fc2a14631ea719d8b5b3e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef4e8c46c2fc2a14631ea719d8b5b3e9">&#9670;&nbsp;</a></span>sort_utils_uint64_t_cmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_uint64_t_cmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares <code>uint64_t</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>+1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>-1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>uint64_t</code> value param b a pointer to the second <code>uint64_t</code> value return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+<a id="af7d9dfe0cf8ef70874ad5b4ea81f46ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7d9dfe0cf8ef70874ad5b4ea81f46ee">&#9670;&nbsp;</a></span>sort_utils_uint64_t_icmp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sort_utils_uint64_t_icmp </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares <code>uint64_t</code> values pointed by <code>a</code> and <code>b</code>.</p>
+<p>details Compare function that returns:</p><ul>
+<li><code>-1</code> when <code>a</code> is greater than <code>b</code></li>
+<li><code>0</code> when <code>a</code> is equal to <code>b</code></li>
+<li><code>+1</code> when <code>a</code> is less then <code>b</code></li>
+</ul>
+<p>param a a pointer to the first <code>uint64_t</code> value param b a pointer to the second <code>uint64_t</code> value return a value in <code>{-1, 0, +1}</code> based on the comparison of <code>a</code> and <code>b</code> </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
+</body>
+</html>

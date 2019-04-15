@@ -1,0 +1,102 @@
+\hypertarget{struct_tim_sort}{}\section{Référence de la structure Tim\+Sort}
+\label{struct_tim_sort}\index{TimSort@{TimSort}}
+\subsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{struct_tim_sort_ae06e936999af8a0b9e865016ea5cdc5e}{a}}
+\item 
+size\+\_\+t \mbox{\hyperlink{struct_tim_sort_ae858cf5f25b0a6efaebaac1b307ab1d9}{count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{struct_tim_sort_a153513d2ef446b6ccd7080f6d1ba7072}{element\+\_\+size}}
+\item 
+\mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} \mbox{\hyperlink{struct_tim_sort_a695f16b718861286692c213382c246f1}{cmp}}
+\item 
+long long int \mbox{\hyperlink{struct_tim_sort_af4e7fef2199d2679c953b8bd3565d191}{min\+\_\+gallop}}
+\item 
+void $\ast$ \mbox{\hyperlink{struct_tim_sort_a8443b25e49565bc8ca3fc5132edaede4}{tmp}}
+\item 
+size\+\_\+t \mbox{\hyperlink{struct_tim_sort_a9a3335f5cebd86067029fac7514c3ebc}{tmp\+\_\+count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{struct_tim_sort_aeafc74038940336d5e72f707ecff09b8}{stack\+\_\+size}}
+\item 
+size\+\_\+t $\ast$ \mbox{\hyperlink{struct_tim_sort_ae0dad096ec6dd11f7d37eca1a9a8886b}{run\+\_\+base}}
+\item 
+size\+\_\+t $\ast$ \mbox{\hyperlink{struct_tim_sort_aaf3301ea993020bb46b98309fca6fa73}{run\+\_\+len}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+A team sort structure holds internal data for the algorithm.
+
+details Variables {\ttfamily stack\+\_\+size}, {\ttfamily run\+\_\+base}, and {\ttfamily run\+\_\+len} define a stack of pending runs yet to be merged. Run i starts at address base\mbox{[}i\mbox{]} and extends for len\mbox{[}i\mbox{]} elements. It\textquotesingle{}s always true (so long as the indices are in bounds) that\+:
+
+run\+\_\+base\mbox{[}i\mbox{]} + run\+\_\+len\mbox{[}i\mbox{]} == run\+\_\+base\mbox{[}i + 1\mbox{]}
+
+so we could cut the storage for this, but it\textquotesingle{}s a minor amount, and keeping all the info explicit simplifies the code. 
+
+\subsection{Documentation des données membres}
+\mbox{\Hypertarget{struct_tim_sort_ae06e936999af8a0b9e865016ea5cdc5e}\label{struct_tim_sort_ae06e936999af8a0b9e865016ea5cdc5e}} 
+\index{TimSort@{TimSort}!a@{a}}
+\index{a@{a}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily void$\ast$ Tim\+Sort\+::a}
+
+The array to be sorted. \mbox{\Hypertarget{struct_tim_sort_a695f16b718861286692c213382c246f1}\label{struct_tim_sort_a695f16b718861286692c213382c246f1}} 
+\index{TimSort@{TimSort}!cmp@{cmp}}
+\index{cmp@{cmp}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{cmp}{cmp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} Tim\+Sort\+::cmp}
+
+The compare function applied by the algorithm. \mbox{\Hypertarget{struct_tim_sort_ae858cf5f25b0a6efaebaac1b307ab1d9}\label{struct_tim_sort_ae858cf5f25b0a6efaebaac1b307ab1d9}} 
+\index{TimSort@{TimSort}!count@{count}}
+\index{count@{count}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily size\+\_\+t Tim\+Sort\+::count}
+
+The number of elements in array. \mbox{\Hypertarget{struct_tim_sort_a153513d2ef446b6ccd7080f6d1ba7072}\label{struct_tim_sort_a153513d2ef446b6ccd7080f6d1ba7072}} 
+\index{TimSort@{TimSort}!element\_size@{element\_size}}
+\index{element\_size@{element\_size}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{element\_size}{element\_size}}
+{\footnotesize\ttfamily size\+\_\+t Tim\+Sort\+::element\+\_\+size}
+
+The number of bytes used by one element. \mbox{\Hypertarget{struct_tim_sort_af4e7fef2199d2679c953b8bd3565d191}\label{struct_tim_sort_af4e7fef2199d2679c953b8bd3565d191}} 
+\index{TimSort@{TimSort}!min\_gallop@{min\_gallop}}
+\index{min\_gallop@{min\_gallop}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{min\_gallop}{min\_gallop}}
+{\footnotesize\ttfamily long long int Tim\+Sort\+::min\+\_\+gallop}
+
+This controls when we get {\itshape into} galloping mode. It is initialized to tms\+\_\+min\+\_\+gallop. The tms\+\_\+merge\+\_\+lo and tms\+\_\+merge\+\_\+hi methods nudge it higher for random data, and lower for highly structured data. \mbox{\Hypertarget{struct_tim_sort_ae0dad096ec6dd11f7d37eca1a9a8886b}\label{struct_tim_sort_ae0dad096ec6dd11f7d37eca1a9a8886b}} 
+\index{TimSort@{TimSort}!run\_base@{run\_base}}
+\index{run\_base@{run\_base}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{run\_base}{run\_base}}
+{\footnotesize\ttfamily size\+\_\+t$\ast$ Tim\+Sort\+::run\+\_\+base}
+
+Index of first element for the ith run. \mbox{\Hypertarget{struct_tim_sort_aaf3301ea993020bb46b98309fca6fa73}\label{struct_tim_sort_aaf3301ea993020bb46b98309fca6fa73}} 
+\index{TimSort@{TimSort}!run\_len@{run\_len}}
+\index{run\_len@{run\_len}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{run\_len}{run\_len}}
+{\footnotesize\ttfamily size\+\_\+t$\ast$ Tim\+Sort\+::run\+\_\+len}
+
+Run Lenght. \mbox{\Hypertarget{struct_tim_sort_aeafc74038940336d5e72f707ecff09b8}\label{struct_tim_sort_aeafc74038940336d5e72f707ecff09b8}} 
+\index{TimSort@{TimSort}!stack\_size@{stack\_size}}
+\index{stack\_size@{stack\_size}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{stack\_size}{stack\_size}}
+{\footnotesize\ttfamily size\+\_\+t Tim\+Sort\+::stack\+\_\+size}
+
+Number of pending runs on stack. \mbox{\Hypertarget{struct_tim_sort_a8443b25e49565bc8ca3fc5132edaede4}\label{struct_tim_sort_a8443b25e49565bc8ca3fc5132edaede4}} 
+\index{TimSort@{TimSort}!tmp@{tmp}}
+\index{tmp@{tmp}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{tmp}{tmp}}
+{\footnotesize\ttfamily void$\ast$ Tim\+Sort\+::tmp}
+
+Temp storage for merges. \mbox{\Hypertarget{struct_tim_sort_a9a3335f5cebd86067029fac7514c3ebc}\label{struct_tim_sort_a9a3335f5cebd86067029fac7514c3ebc}} 
+\index{TimSort@{TimSort}!tmp\_count@{tmp\_count}}
+\index{tmp\_count@{tmp\_count}!TimSort@{TimSort}}
+\subsubsection{\texorpdfstring{tmp\_count}{tmp\_count}}
+{\footnotesize\ttfamily size\+\_\+t Tim\+Sort\+::tmp\+\_\+count}
+
+The max number of elements contained by temp storage. 
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/fonc\+\_\+boite\+\_\+outils/sort\+\_\+utils.\+c\end{DoxyCompactItemize}

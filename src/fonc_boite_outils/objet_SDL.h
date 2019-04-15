@@ -11,6 +11,7 @@ extern SDL_Window* pWindow;
 extern SDL_Renderer *renderer;
 
 //GESTION OBJET
+int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y);
 obj obj_text(char* s,int size,int x,int y);
 obj obj_img(char* lien,int x,int y);
 int cpy_render(obj pt);

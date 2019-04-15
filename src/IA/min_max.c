@@ -1,5 +1,18 @@
+/**
+ * \file min_max.c
+ * \brief Fichier qui contient toutes les fonctions qui permettent à l'ordinateur de jouer
+ * \author Alkassoum Yacine, Hotaj Mario
+ * \date 15 avril 2019
+ */
+
+
 #include "min_max.h"
 
+/**
+ * \brief Nous indique si la partie est terminée
+ * \param t_matrice m : plateau de jeu
+ * \return VRAI ou FAUX (1 ou 0)
+ */
 int partie_termineebis(t_matrice mat){
     int i, j;
     for (i=0; i<N; i++) {
@@ -14,6 +27,13 @@ int partie_termineebis(t_matrice mat){
 
 
 
+
+/**
+ * \brief Tour le plus intéressant que l'IA va jouer
+ * \param t_matrice m : plateau de jeu
+ * \param int* x : adresse de la position x que l'on va modifier
+ * \param int* y : adresse de la position y que l'on va modifier
+ */
 void tour_ordi(t_matrice m, int* x, int* y){
 	t_liste* l = liste_coup(m,BLANC);
 	afficher_liste(l);
@@ -37,6 +57,16 @@ void tour_ordi(t_matrice m, int* x, int* y){
 	}
 }
 
+
+
+
+/**
+ * \brief Score MIN ou MAX avec la méthode alpha-beta
+ * \param t_matrice m : plateau de jeu
+ * \param int depth : profondeur de recherche
+ * \param int alpha, int beta
+ * \param char noeud : MIN ou MAX
+ */
 int alphabeta(t_matrice m, int depth, int alpha, int beta, char noeud)
 {
 	t_liste *l;

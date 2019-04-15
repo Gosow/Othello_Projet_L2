@@ -15,31 +15,37 @@ static SDL_Texture *image_blanc_tex;
 static SDL_Texture *image_cible_tex;
 static SDL_Rect imgBtnRect;
 
+
+
+
 /**
- * \fn void init_jeuSDL(SDL_Renderer* renderer)
  * \brief Initialise tout les données nécessaire pour l'affichage du plateau
- * \param SDL_Renderer* renderer : renderer de la page.
- * \return void
+ * \param aucun
+ * \return rien
  */
 void init_jeuSDL(void){
-    image_caseNorm_tex = tex_img_png("/src/img/caseNorm.png",renderer);
-    image_casePoss_tex = tex_img_png("/src/img/casePoss.png",renderer);
+    image_caseNorm_tex = tex_img_png("/src/img/caseNorm.png");
+    image_casePoss_tex = tex_img_png("/src/img/casePoss.png");
     //PION NOIR
-    image_noir_tex = tex_img_png("/src/img/noir.png",renderer);
+    image_noir_tex = tex_img_png("/src/img/noir.png");
     //PION BLANC
-    image_blanc_tex = tex_img_png("/src/img/blanc.png",renderer);
-    image_cible_tex = tex_img_png("/src/img/cible.png",renderer);
+    image_blanc_tex = tex_img_png("/src/img/blanc.png");
+    image_cible_tex = tex_img_png("/src/img/cible.png");
     //POSITION ET TAILLE CASE
     imgBtnRect.x = 0;
     imgBtnRect.y = 0;
     SDL_QueryTexture(image_caseNorm_tex, NULL, NULL, &(imgBtnRect.w), &(imgBtnRect.h));
 }
 
+
+
+
 /**
- * \fn afficher_matriceSDL(int* joueur)
  * \brief Affiche le plateau de jeu avec les pions et affiche les coup possible en fonctions du tour du joueur
- * \param t_matrice mat, char joueur.
- * \return void
+ * \param t_matrice mat : matrice du jeu à analyser
+ * \param char joueur : BLANC, NOIR ou ' ', qui va permettre d'afficher les coup possible ou jouer
+ * \param int afficher_seul : OUI ou NON, si on veux afficher la matrice seulement
+ * \return rien
  */
 void afficher_matriceSDL(t_matrice mat, char joueur, int afficher_seul){
     if(afficher_seul){
@@ -72,10 +78,12 @@ void afficher_matriceSDL(t_matrice mat, char joueur, int afficher_seul){
     if(afficher_seul) SDL_RenderPresent(renderer);
 }
 
+
+
+
 /**
- * \fn afficher_matriceSDL(int* joueur)
  * \brief La fonction permet de savoir si le jeu est terminé ou non.
- * \param t_matrice
+ * \param t_matrice mat : matrice du jeu à analyser
  * \return entier
  */
 int partie_termineeSDL(t_matrice mat){
@@ -113,11 +121,13 @@ int partie_termineeSDL(t_matrice mat){
     return 1;
 }
 
+
+
+
 /**
- * \fn afficher_matriceSDL(int* joueur)
  * \brief La fonction permet de savoir qui a gagné, et aussi si on a match nul.
  * \param t_matrice
- * \return char soit NOIR, BLANC ou EGALITE qui sont des constantes contenant un caractère.
+ * \return rien
  */
 char afficher_gagnant(t_matrice mat){
     int nb_noir, nb_blanc;
@@ -130,11 +140,19 @@ char afficher_gagnant(t_matrice mat){
 
 
 
+
+/**
+ * \brief Affichage du coup joué par l'adversaire
+ * \param t_matrice mat : matrice qui va nous servir de support pour l'affichage
+ * \param int x : coordonnée x où pointe la souris
+ * \param int y : coordonnée y où pointe la souris
+ * \return rien
+ */
 void afficher_cibleSDL(t_matrice mat, int x,int y){
     SDL_Texture *temp;
     int i=0,j=0;
     SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
-    SDL_RenderClear(renderer);
+    clear();
     
     for(i=0;i<N;i++){
         imgBtnRect.y = i*82;
@@ -155,21 +173,31 @@ void afficher_cibleSDL(t_matrice mat, int x,int y){
             imgBtnRect.x += 82;
         }
     }
-    SDL_RenderPresent(renderer);
+    afficher();
     sleep(1);
 }
 
+
+
+
+/**
+ * \brief Permet de savoir si la souris pointe dans la zone selectionné
+ * \param SDL_Rect r : zone selectionné
+ * \param int x : coordonnée x où pointe la souris
+ * \param int y : coordonnée y où pointe la souris
+ * \return entier True ou False (1 ou 0)
+ */
 int pointe(SDL_Rect r, int x, int y){
     return x>= r.x && x<= (r.x+r.w) && y>=r.y &&y<=(r.y+r.h);
 }
 
-int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y){
-    r->x = x;
-    r->y = y;
-    SDL_QueryTexture(t, NULL, NULL, &(r->w), &(r->h));
-    return 0;
-}
 
+
+
+
+/**
+ * \brief Fenetre qui demande à l'utilisateur de choisir si il veut héberger ou rejoindre une partie pour bien annuler son choix
+ */
 int choix_type(void){
     const SDL_MessageBoxButtonData buttons[] = {
         { /* .flags, .buttonid, .text */        0, 0, "rejoindre une partie" },
@@ -215,6 +243,13 @@ int choix_type(void){
     return buttonid;
 }
 
+
+
+
+
+/**
+ * \brief Notifier l'utilisateur qui son adversaire a quitté la partie
+ */
 void aff_joueur_parti(void){
     const SDL_MessageBoxButtonData buttons[] = {
         { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 0, "OK" },

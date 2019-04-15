@@ -1,0 +1,89 @@
+\hypertarget{min__max_8c}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/\+I\+A/min\+\_\+max.c}
+\label{min__max_8c}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/IA/min\_max.c@{/Users/mario/Desktop/Othello\_Projet\_L2/src/IA/min\_max.c}}
+
+
+Fichier qui contient toutes les fonctions qui permettent à l\textquotesingle{}ordinateur de jouer.  
+
+
+{\ttfamily \#include \char`\"{}min\+\_\+max.\+h\char`\"{}}\newline
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{min__max_8c_a31ae49dda872d9629114a12fdba3be80}{partie\+\_\+termineebis}} (t\+\_\+matrice mat)
+\begin{DoxyCompactList}\small\item\em Nous indique si la partie est terminée. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{min__max_8c_abf7d8763851ca8b43e1f2bf3e9bae7cb}{tour\+\_\+ordi}} (t\+\_\+matrice m, int $\ast$x, int $\ast$y)
+\begin{DoxyCompactList}\small\item\em Tour le plus intéressant que l\textquotesingle{}IA va jouer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{min__max_8c_a91cab7a7866ef02ca5df7ae3c1e0eca1}{alphabeta}} (t\+\_\+matrice m, int depth, int alpha, int beta, char noeud)
+\begin{DoxyCompactList}\small\item\em Score M\+IN ou M\+AX avec la méthode alpha-\/beta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fichier qui contient toutes les fonctions qui permettent à l\textquotesingle{}ordinateur de jouer. 
+
+\begin{DoxyAuthor}{Auteur}
+Alkassoum Yacine, Hotaj Mario 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+15 avril 2019 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\mbox{\Hypertarget{min__max_8c_a91cab7a7866ef02ca5df7ae3c1e0eca1}\label{min__max_8c_a91cab7a7866ef02ca5df7ae3c1e0eca1}} 
+\index{min\_max.c@{min\_max.c}!alphabeta@{alphabeta}}
+\index{alphabeta@{alphabeta}!min\_max.c@{min\_max.c}}
+\subsubsection{\texorpdfstring{alphabeta()}{alphabeta()}}
+{\footnotesize\ttfamily int alphabeta (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{m,  }\item[{int}]{depth,  }\item[{int}]{alpha,  }\item[{int}]{beta,  }\item[{char}]{noeud }\end{DoxyParamCaption})}
+
+
+
+Score M\+IN ou M\+AX avec la méthode alpha-\/beta. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & m \+: plateau de jeu \\
+\hline
+{\em int} & depth \+: profondeur de recherche \\
+\hline
+{\em int} & alpha, int beta \\
+\hline
+{\em char} & noeud \+: M\+IN ou M\+AX \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{min__max_8c_a31ae49dda872d9629114a12fdba3be80}\label{min__max_8c_a31ae49dda872d9629114a12fdba3be80}} 
+\index{min\_max.c@{min\_max.c}!partie\_termineebis@{partie\_termineebis}}
+\index{partie\_termineebis@{partie\_termineebis}!min\_max.c@{min\_max.c}}
+\subsubsection{\texorpdfstring{partie\_termineebis()}{partie\_termineebis()}}
+{\footnotesize\ttfamily int partie\+\_\+termineebis (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat }\end{DoxyParamCaption})}
+
+
+
+Nous indique si la partie est terminée. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & m \+: plateau de jeu \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+V\+R\+AI ou F\+A\+UX (1 ou 0) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{min__max_8c_abf7d8763851ca8b43e1f2bf3e9bae7cb}\label{min__max_8c_abf7d8763851ca8b43e1f2bf3e9bae7cb}} 
+\index{min\_max.c@{min\_max.c}!tour\_ordi@{tour\_ordi}}
+\index{tour\_ordi@{tour\_ordi}!min\_max.c@{min\_max.c}}
+\subsubsection{\texorpdfstring{tour\_ordi()}{tour\_ordi()}}
+{\footnotesize\ttfamily void tour\+\_\+ordi (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{m,  }\item[{int $\ast$}]{x,  }\item[{int $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Tour le plus intéressant que l\textquotesingle{}IA va jouer. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & m \+: plateau de jeu \\
+\hline
+{\em int$\ast$} & x \+: adresse de la position x que l\textquotesingle{}on va modifier \\
+\hline
+{\em int$\ast$} & y \+: adresse de la position y que l\textquotesingle{}on va modifier \\
+\hline
+\end{DoxyParams}

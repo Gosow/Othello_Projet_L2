@@ -1,6 +1,18 @@
-#include "eval.h"
-//nombre de possibilites du joueur adverse apres que le joueur en cours ai joué un coup
+/**
+ * \file eval.c
+ * \brief Fichier qui contient toutes les fonctions qui permettent les évaluations
+ * \author Alkassoum Yacine, Hotaj Mario
+ * \date 15 avril 2019
+ */
 
+#include "eval.h"
+
+/**
+ * \brief Calcul de la force d'une position
+ * \param t_matrice m : plateau de jeu
+ * \param char couleur : NOIR ou BLANC, couleur du joueur choisi
+ * \return Entier représentant la force de la position
+ */
 int force(t_matrice m, char couleur){
     int i, total=0;
     //Les coins + diagonale
@@ -62,6 +74,15 @@ int force(t_matrice m, char couleur){
     return total;
 }
 
+
+
+
+/**
+ * \brief Compte le nombre de coup possible
+ * \param t_matrice m : plateau de jeu
+ * \param char couleur : NOIR ou BLANC, couleur du joueur choisi
+ * \return Nombre de coup possible
+ */
 int nb_coup_poss(t_matrice mat ,char coul )
 {
     int nb=0;
@@ -81,6 +102,15 @@ int nb_coup_poss(t_matrice mat ,char coul )
     return nb;
 }
 
+
+
+
+/**
+ * \brief Evaluation de la position
+ * \param t_matrice m : plateau de jeu
+ * \param char couleur : NOIR ou BLANC, couleur du joueur choisi
+ * \return Score de la position
+ */
 int eval(t_matrice mat, char couleur){
     
     int etat, nb_noir, nb_blanc;

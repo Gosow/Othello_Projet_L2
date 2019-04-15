@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Project: Référence du fichier /Users/mario/Desktop/Othello_Projet_L2/src/interface_graphique/plateau_SDL.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">My Project
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b9178b94e98612b7b200051207ddb7ed.html">interface_graphique</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Énumérations</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier plateau_SDL.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l'interface graphique pour pouvoir jouer.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;SDL_jeu.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a18d80a12a704eaba1c5fd96fe53515d8"><td class="memItemLeft" align="right" valign="top"><a id="a18d80a12a704eaba1c5fd96fe53515d8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>OUI</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a18d80a12a704eaba1c5fd96fe53515d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a5ad49e88e526078694fa3287d6ec0d"><td class="memItemLeft" align="right" valign="top"><a id="a1a5ad49e88e526078694fa3287d6ec0d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>NON</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a1a5ad49e88e526078694fa3287d6ec0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3758dd5d300a594312c95bc393378df0"><td class="memItemLeft" align="right" valign="top"><a id="a3758dd5d300a594312c95bc393378df0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LOCAL</b>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:a3758dd5d300a594312c95bc393378df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af19f26460d89cfb3f212f4b0a44882e8"><td class="memItemLeft" align="right" valign="top"><a id="af19f26460d89cfb3f212f4b0a44882e8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLIENT</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:af19f26460d89cfb3f212f4b0a44882e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeef0e3ba41fec73b731de55058a0e9a6"><td class="memItemLeft" align="right" valign="top"><a id="aeef0e3ba41fec73b731de55058a0e9a6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SERVEUR</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aeef0e3ba41fec73b731de55058a0e9a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:acdf4398721077a355d45f805b9735781"><td class="memItemLeft" align="right" valign="top"><a id="acdf4398721077a355d45f805b9735781"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>texte</b> { <br />
+&#160;&#160;<b>J1</b>, 
+<b>J2</b>, 
+<b>A_VOUS</b>, 
+<b>GAGNEE</b>, 
+<br />
+&#160;&#160;<b>PERDU</b>, 
+<b>EGALITE</b>, 
+<b>SCORE</b>, 
+<b>ATTENTE</b>
+<br />
+ }</td></tr>
+<tr class="separator:acdf4398721077a355d45f805b9735781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42cb5f5737262947250c709931232c69"><td class="memItemLeft" align="right" valign="top"><a id="a42cb5f5737262947250c709931232c69"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>image</b> { <b>PION</b> = 0, 
+<b>REPLAY</b> = 0, 
+<b>HOME</b>, 
+<b>VOIR</b>
+ }</td></tr>
+<tr class="separator:a42cb5f5737262947250c709931232c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a1647ebd8926d9018548a8f5ba5e18339"><td class="memItemLeft" align="right" valign="top"><a id="a1647ebd8926d9018548a8f5ba5e18339"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>init_obj</b> (void)</td></tr>
+<tr class="separator:a1647ebd8926d9018548a8f5ba5e18339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c83ea455df2405bbed0ae16be916ccb"><td class="memItemLeft" align="right" valign="top"><a id="a4c83ea455df2405bbed0ae16be916ccb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lancement_jeu</b> (int modeJeu, int type)</td></tr>
+<tr class="separator:a4c83ea455df2405bbed0ae16be916ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a7d104a74daa6a4b512d60b5cbcabf4"><td class="memItemLeft" align="right" valign="top"><a id="a8a7d104a74daa6a4b512d60b5cbcabf4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>affichage_partie</b> (t_matrice mat, int modeJeu)</td></tr>
+<tr class="separator:a8a7d104a74daa6a4b512d60b5cbcabf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a6150e0515f7202e2fb518f7206ed97dc"><td class="memItemLeft" align="right" valign="top"><a id="a6150e0515f7202e2fb518f7206ed97dc"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
+<tr class="separator:a6150e0515f7202e2fb518f7206ed97dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2f84ed7838f07779ae24c5a9086d33"><td class="memItemLeft" align="right" valign="top"><a id="a0a2f84ed7838f07779ae24c5a9086d33"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
+<tr class="separator:a0a2f84ed7838f07779ae24c5a9086d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6520a24f89867ed264ccb1e3c77c239e"><td class="memItemLeft" align="right" valign="top"><a id="a6520a24f89867ed264ccb1e3c77c239e"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>score_j1</b> = 0</td></tr>
+<tr class="separator:a6520a24f89867ed264ccb1e3c77c239e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7de09eb82a59818c388c686d56a12090"><td class="memItemLeft" align="right" valign="top"><a id="a7de09eb82a59818c388c686d56a12090"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>score_j2</b> = 0</td></tr>
+<tr class="separator:a7de09eb82a59818c388c686d56a12090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb559820d9ca11295b4500f179ef6392"><td class="memItemLeft" align="right" valign="top"><a id="acb559820d9ca11295b4500f179ef6392"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>i</b></td></tr>
+<tr class="separator:acb559820d9ca11295b4500f179ef6392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a188b77156094781cebe31c88436293"><td class="memItemLeft" align="right" valign="top"><a id="a1a188b77156094781cebe31c88436293"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>arret</b> =NON</td></tr>
+<tr class="separator:a1a188b77156094781cebe31c88436293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d74931269155513d30bb399324e0bb0"><td class="memItemLeft" align="right" valign="top"><a id="a4d74931269155513d30bb399324e0bb0"></a>
+static t_matrice&#160;</td><td class="memItemRight" valign="bottom"><b>mat_final</b></td></tr>
+<tr class="separator:a4d74931269155513d30bb399324e0bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0787f81e60e0afa54aab2ab9aeeacf7b"><td class="memItemLeft" align="right" valign="top"><a id="a0787f81e60e0afa54aab2ab9aeeacf7b"></a>
+static t_matrice&#160;</td><td class="memItemRight" valign="bottom"><b>mat</b></td></tr>
+<tr class="separator:a0787f81e60e0afa54aab2ab9aeeacf7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd6402741727040da48a8f6381052f1d"><td class="memItemLeft" align="right" valign="top"><a id="afd6402741727040da48a8f6381052f1d"></a>
+static char&#160;</td><td class="memItemRight" valign="bottom"><b>joueur</b></td></tr>
+<tr class="separator:afd6402741727040da48a8f6381052f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f996ff8d5ff85044e3d75682107dabe"><td class="memItemLeft" align="right" valign="top"><a id="a0f996ff8d5ff85044e3d75682107dabe"></a>
+static char&#160;</td><td class="memItemRight" valign="bottom"><b>joueur_sauv</b></td></tr>
+<tr class="separator:a0f996ff8d5ff85044e3d75682107dabe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff5efa1f2ee0bd354fd7389f5c70f8fe"><td class="memItemLeft" align="right" valign="top"><a id="aff5efa1f2ee0bd354fd7389f5c70f8fe"></a>
+static char&#160;</td><td class="memItemRight" valign="bottom"><b>gagnant</b></td></tr>
+<tr class="separator:aff5efa1f2ee0bd354fd7389f5c70f8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ef8adcb20929f243e84bd039eb786a"><td class="memItemLeft" align="right" valign="top"><a id="a04ef8adcb20929f243e84bd039eb786a"></a>
+static char&#160;</td><td class="memItemRight" valign="bottom"><b>score_aff</b> [20]</td></tr>
+<tr class="separator:a04ef8adcb20929f243e84bd039eb786a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ddb2722141f1441ca91338fe7b9db63"><td class="memItemLeft" align="right" valign="top"><a id="a8ddb2722141f1441ca91338fe7b9db63"></a>
+static char *&#160;</td><td class="memItemRight" valign="bottom"><b>joueur1</b></td></tr>
+<tr class="separator:a8ddb2722141f1441ca91338fe7b9db63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af097a606bf5fcad92e84f38a07eeebe7"><td class="memItemLeft" align="right" valign="top"><a id="af097a606bf5fcad92e84f38a07eeebe7"></a>
+static char *&#160;</td><td class="memItemRight" valign="bottom"><b>joueur2</b></td></tr>
+<tr class="separator:af097a606bf5fcad92e84f38a07eeebe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9830965e78e2548eb1f37b065a1268de"><td class="memItemLeft" align="right" valign="top"><a id="a9830965e78e2548eb1f37b065a1268de"></a>
+static char&#160;</td><td class="memItemRight" valign="bottom"><b>joueur_vous</b></td></tr>
+<tr class="separator:a9830965e78e2548eb1f37b065a1268de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6d465823bff7b2f9d1291e2378a4496"><td class="memItemLeft" align="right" valign="top"><a id="ad6d465823bff7b2f9d1291e2378a4496"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>text_tab</b> [8]</td></tr>
+<tr class="separator:ad6d465823bff7b2f9d1291e2378a4496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8900e061f36947b0f025b27b43b8693"><td class="memItemLeft" align="right" valign="top"><a id="ac8900e061f36947b0f025b27b43b8693"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>img_noir</b></td></tr>
+<tr class="separator:ac8900e061f36947b0f025b27b43b8693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54529f97f9f6c1a189e13ff168cd76f9"><td class="memItemLeft" align="right" valign="top"><a id="a54529f97f9f6c1a189e13ff168cd76f9"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>img_noirTour</b></td></tr>
+<tr class="separator:a54529f97f9f6c1a189e13ff168cd76f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0564d78fb5477f2981439fd67e5132"><td class="memItemLeft" align="right" valign="top"><a id="a3e0564d78fb5477f2981439fd67e5132"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>img_blanc</b></td></tr>
+<tr class="separator:a3e0564d78fb5477f2981439fd67e5132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a453f22a9c7b482973d88aee9ff2caf6a"><td class="memItemLeft" align="right" valign="top"><a id="a453f22a9c7b482973d88aee9ff2caf6a"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>img_blancTour</b></td></tr>
+<tr class="separator:a453f22a9c7b482973d88aee9ff2caf6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a6fee3bb8abf46a8e5994fa653871a5"><td class="memItemLeft" align="right" valign="top"><a id="a6a6fee3bb8abf46a8e5994fa653871a5"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>img_replay</b></td></tr>
+<tr class="separator:a6a6fee3bb8abf46a8e5994fa653871a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ffba55959c4f8abedd31e7c0fa9bc4"><td class="memItemLeft" align="right" valign="top"><a id="aa4ffba55959c4f8abedd31e7c0fa9bc4"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>img_home</b></td></tr>
+<tr class="separator:aa4ffba55959c4f8abedd31e7c0fa9bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfcd34ed506d18911ecc301d1b178c44"><td class="memItemLeft" align="right" valign="top"><a id="acfcd34ed506d18911ecc301d1b178c44"></a>
+static <a class="el" href="structobj__s.html">obj</a>&#160;</td><td class="memItemRight" valign="bottom"><b>img_voir</b></td></tr>
+<tr class="separator:acfcd34ed506d18911ecc301d1b178c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ebced4d3d60e8716c7b41946ccd9ab"><td class="memItemLeft" align="right" valign="top"><a id="a76ebced4d3d60e8716c7b41946ccd9ab"></a>
+SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><b>image_BG_tex</b></td></tr>
+<tr class="separator:a76ebced4d3d60e8716c7b41946ccd9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e6b82ee5d69abba069ce357b2ea3be"><td class="memItemLeft" align="right" valign="top"><a id="a89e6b82ee5d69abba069ce357b2ea3be"></a>
+SDL_Rect&#160;</td><td class="memItemRight" valign="bottom"><b>bg_rect</b> ={0,0,0,0}</td></tr>
+<tr class="separator:a89e6b82ee5d69abba069ce357b2ea3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l'interface graphique pour pouvoir jouer. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mario Hotaj </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>10 mars 2019 (dernière modif.) </dd></dl>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
+</body>
+</html>

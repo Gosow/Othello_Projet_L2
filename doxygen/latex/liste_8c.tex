@@ -1,0 +1,286 @@
+\hypertarget{liste_8c}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/fonc\+\_\+boite\+\_\+outils/liste.c}
+\label{liste_8c}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/liste.c@{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/liste.c}}
+
+
+Fichier qui contient toutes les fonctions de gestion de liste.  
+
+
+{\ttfamily \#include \char`\"{}liste.\+h\char`\"{}}\newline
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$ \mbox{\hyperlink{liste_8c_aab4816e95f41549dcf942e29d0ac5e02}{init\+\_\+liste}} (void)
+\begin{DoxyCompactList}\small\item\em Initialisation de la liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{liste_8c_adacaeda25716d6afcd72396aca9c16e6}{liste\+\_\+vide}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Verifie si la liste est vide. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs__elem__coord}{t\+\_\+elem\+\_\+coord}} $\ast$ \mbox{\hyperlink{liste_8c_a85f03d90f375e16c85f3c29bc8e5806e}{en\+\_\+tete}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Renvoi l\textquotesingle{}en-\/tête des coordonnées de la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8c_ae2510b4d087c88f2f833772de8e59854}{en\+\_\+tete\+\_\+ec}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Renvoi l\textquotesingle{}adresse de l\textquotesingle{}en-\/tête de la liste. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs__elem__coord}{t\+\_\+elem\+\_\+coord}} $\ast$ \mbox{\hyperlink{liste_8c_a81248b608748d9b97d3997d3b43e8898}{en\+\_\+queue}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Renvoi les coordonnées de la queue de liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8c_a0c65679dc18a2ba54aa3989b85c44ca0}{suivant}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Renvoi l\textquotesingle{}élément suivant de la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8c_ab108a4ed35a177d21c5e1eb5b73b916e}{coord\+\_\+elem}} (int $\ast$x, int $\ast$y, \mbox{\hyperlink{structs__elem__coord}{t\+\_\+elem\+\_\+coord}} $\ast$ec)
+\begin{DoxyCompactList}\small\item\em Renvoi les coordonnées de liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8c_a746a3b35b8be6f1d2c6f24f87d4b9ebb}{ajout\+\_\+liste}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l, int x, int y)
+\begin{DoxyCompactList}\small\item\em Ajouter de coordonées dans la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8c_aa753e3c9b465c553d2f8b30229c12d44}{oter\+\_\+ec}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Oter l\textquotesingle{}élément courant de la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8c_a5d3a1f837cbe3fab9485657f7dc77e38}{supprimer\+\_\+liste}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Supprimer la liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{liste_8c_a9fcded13ecc01d1dc3cf7433dcf2f238}{elem\+\_\+x}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Renvoi la coordonnée x de la liste. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{liste_8c_a8c705baf5535eea046d59bb21fbf05cd}{elem\+\_\+y}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Renvoi la coordonnée y de la liste. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$ \mbox{\hyperlink{liste_8c_ac25995d5096bbce1d7852e269a69e678}{liste\+\_\+coup}} (t\+\_\+matrice mat, char joueur)
+\begin{DoxyCompactList}\small\item\em Renvoi les coordonnées de la queue de liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8c_a7981cdfd161d3210deb90eae9ad3bdff}{afficher\+\_\+liste}} (\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Parcours de la liste. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fichier qui contient toutes les fonctions de gestion de liste. 
+
+\begin{DoxyAuthor}{Auteur}
+Hotaj Mario 
+\end{DoxyAuthor}
+
+
+\subsection{Documentation des fonctions}
+\mbox{\Hypertarget{liste_8c_a7981cdfd161d3210deb90eae9ad3bdff}\label{liste_8c_a7981cdfd161d3210deb90eae9ad3bdff}} 
+\index{liste.c@{liste.c}!afficher\_liste@{afficher\_liste}}
+\index{afficher\_liste@{afficher\_liste}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{afficher\_liste()}{afficher\_liste()}}
+{\footnotesize\ttfamily void afficher\+\_\+liste (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Parcours de la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{liste_8c_a746a3b35b8be6f1d2c6f24f87d4b9ebb}\label{liste_8c_a746a3b35b8be6f1d2c6f24f87d4b9ebb}} 
+\index{liste.c@{liste.c}!ajout\_liste@{ajout\_liste}}
+\index{ajout\_liste@{ajout\_liste}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{ajout\_liste()}{ajout\_liste()}}
+{\footnotesize\ttfamily void ajout\+\_\+liste (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Ajouter de coordonées dans la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+{\em int} & x \+: coordonnée x \\
+\hline
+{\em int} & y \+: coordonnée y \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{liste_8c_ab108a4ed35a177d21c5e1eb5b73b916e}\label{liste_8c_ab108a4ed35a177d21c5e1eb5b73b916e}} 
+\index{liste.c@{liste.c}!coord\_elem@{coord\_elem}}
+\index{coord\_elem@{coord\_elem}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{coord\_elem()}{coord\_elem()}}
+{\footnotesize\ttfamily void coord\+\_\+elem (\begin{DoxyParamCaption}\item[{int $\ast$}]{x,  }\item[{int $\ast$}]{y,  }\item[{\mbox{\hyperlink{structs__elem__coord}{t\+\_\+elem\+\_\+coord}} $\ast$}]{ec }\end{DoxyParamCaption})}
+
+
+
+Renvoi les coordonnées de liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em int$\ast$} & x \+: adresse de l\textquotesingle{}entier x à modifier \\
+\hline
+{\em int$\ast$} & y \+: adresse de l\textquotesingle{}\textquotesingle{}entier y à modifier \\
+\hline
+{\em t\+\_\+elem\+\_\+coord$\ast$} & ec \+: adresse de l\textquotesingle{}élément courant de la liste\textquotesingle{} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{liste_8c_a9fcded13ecc01d1dc3cf7433dcf2f238}\label{liste_8c_a9fcded13ecc01d1dc3cf7433dcf2f238}} 
+\index{liste.c@{liste.c}!elem\_x@{elem\_x}}
+\index{elem\_x@{elem\_x}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{elem\_x()}{elem\_x()}}
+{\footnotesize\ttfamily int elem\+\_\+x (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Renvoi la coordonnée x de la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+coordonée x 
+\end{DoxyReturn}
+\mbox{\Hypertarget{liste_8c_a8c705baf5535eea046d59bb21fbf05cd}\label{liste_8c_a8c705baf5535eea046d59bb21fbf05cd}} 
+\index{liste.c@{liste.c}!elem\_y@{elem\_y}}
+\index{elem\_y@{elem\_y}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{elem\_y()}{elem\_y()}}
+{\footnotesize\ttfamily int elem\+\_\+y (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Renvoi la coordonnée y de la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+coordonée y 
+\end{DoxyReturn}
+\mbox{\Hypertarget{liste_8c_a81248b608748d9b97d3997d3b43e8898}\label{liste_8c_a81248b608748d9b97d3997d3b43e8898}} 
+\index{liste.c@{liste.c}!en\_queue@{en\_queue}}
+\index{en\_queue@{en\_queue}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{en\_queue()}{en\_queue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs__elem__coord}{t\+\_\+elem\+\_\+coord}}$\ast$ en\+\_\+queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Renvoi les coordonnées de la queue de liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+l\textquotesingle{}adresse des coordonnées de la queue de liste 
+\end{DoxyReturn}
+\mbox{\Hypertarget{liste_8c_a85f03d90f375e16c85f3c29bc8e5806e}\label{liste_8c_a85f03d90f375e16c85f3c29bc8e5806e}} 
+\index{liste.c@{liste.c}!en\_tete@{en\_tete}}
+\index{en\_tete@{en\_tete}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{en\_tete()}{en\_tete()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs__elem__coord}{t\+\_\+elem\+\_\+coord}}$\ast$ en\+\_\+tete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Renvoi l\textquotesingle{}en-\/tête des coordonnées de la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+l\textquotesingle{}adresse des coordonnées de l\textquotesingle{}en-\/tête de la liste pointées 
+\end{DoxyReturn}
+\mbox{\Hypertarget{liste_8c_ae2510b4d087c88f2f833772de8e59854}\label{liste_8c_ae2510b4d087c88f2f833772de8e59854}} 
+\index{liste.c@{liste.c}!en\_tete\_ec@{en\_tete\_ec}}
+\index{en\_tete\_ec@{en\_tete\_ec}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{en\_tete\_ec()}{en\_tete\_ec()}}
+{\footnotesize\ttfamily void en\+\_\+tete\+\_\+ec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Renvoi l\textquotesingle{}adresse de l\textquotesingle{}en-\/tête de la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{liste_8c_aab4816e95f41549dcf942e29d0ac5e02}\label{liste_8c_aab4816e95f41549dcf942e29d0ac5e02}} 
+\index{liste.c@{liste.c}!init\_liste@{init\_liste}}
+\index{init\_liste@{init\_liste}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{init\_liste()}{init\_liste()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs__liste}{t\+\_\+liste}}$\ast$ init\+\_\+liste (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialisation de la liste. 
+
+\begin{DoxyReturn}{Renvoie}
+L\textquotesingle{}adresse de la liste nouvellement crée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{liste_8c_ac25995d5096bbce1d7852e269a69e678}\label{liste_8c_ac25995d5096bbce1d7852e269a69e678}} 
+\index{liste.c@{liste.c}!liste\_coup@{liste\_coup}}
+\index{liste\_coup@{liste\_coup}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{liste\_coup()}{liste\_coup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structs__liste}{t\+\_\+liste}}$\ast$ liste\+\_\+coup (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat,  }\item[{char}]{joueur }\end{DoxyParamCaption})}
+
+
+
+Renvoi les coordonnées de la queue de liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & mat \+: plateau de jeu \\
+\hline
+{\em char} & joueur \+: N\+O\+IR ou B\+L\+A\+NC, joueur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+adresse de la liste 
+\end{DoxyReturn}
+\mbox{\Hypertarget{liste_8c_adacaeda25716d6afcd72396aca9c16e6}\label{liste_8c_adacaeda25716d6afcd72396aca9c16e6}} 
+\index{liste.c@{liste.c}!liste\_vide@{liste\_vide}}
+\index{liste\_vide@{liste\_vide}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{liste\_vide()}{liste\_vide()}}
+{\footnotesize\ttfamily int liste\+\_\+vide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Verifie si la liste est vide. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste a vérifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+entier vrai ou faux (1 ou 0) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{liste_8c_aa753e3c9b465c553d2f8b30229c12d44}\label{liste_8c_aa753e3c9b465c553d2f8b30229c12d44}} 
+\index{liste.c@{liste.c}!oter\_ec@{oter\_ec}}
+\index{oter\_ec@{oter\_ec}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{oter\_ec()}{oter\_ec()}}
+{\footnotesize\ttfamily void oter\+\_\+ec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Oter l\textquotesingle{}élément courant de la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{liste_8c_a0c65679dc18a2ba54aa3989b85c44ca0}\label{liste_8c_a0c65679dc18a2ba54aa3989b85c44ca0}} 
+\index{liste.c@{liste.c}!suivant@{suivant}}
+\index{suivant@{suivant}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{suivant()}{suivant()}}
+{\footnotesize\ttfamily void suivant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Renvoi l\textquotesingle{}élément suivant de la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{liste_8c_a5d3a1f837cbe3fab9485657f7dc77e38}\label{liste_8c_a5d3a1f837cbe3fab9485657f7dc77e38}} 
+\index{liste.c@{liste.c}!supprimer\_liste@{supprimer\_liste}}
+\index{supprimer\_liste@{supprimer\_liste}!liste.c@{liste.c}}
+\subsubsection{\texorpdfstring{supprimer\_liste()}{supprimer\_liste()}}
+{\footnotesize\ttfamily void supprimer\+\_\+liste (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__liste}{t\+\_\+liste}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Supprimer la liste. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+liste$\ast$} & l \+: adresse de la liste \\
+\hline
+\end{DoxyParams}

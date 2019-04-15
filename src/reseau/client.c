@@ -1,12 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+/**
+ * \file client.c
+ * \brief Fichier qui contient la fonction client du réseau.
+ * \author Fatnassi Mendy, Mario Hotaj
+ * \date 15 avril 2019 (dernière modif.)
+ */
+
 #include "reseau.h"
 
+/**
+ * \brief Mise en route du client pour envoi
+ * \param char* msg : message à envoyer
+ * \param int port : port de communication
+ */
 void envoyer(char* msg,int port){
 	char buffer[1024];
 	strcpy(buffer,msg);

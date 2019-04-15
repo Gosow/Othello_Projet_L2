@@ -1,0 +1,167 @@
+\hypertarget{objet___s_d_l_8c}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/fonc\+\_\+boite\+\_\+outils/objet\+\_\+\+S\+DL.c}
+\label{objet___s_d_l_8c}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/objet\_SDL.c@{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/objet\_SDL.c}}
+
+
+Regroupe les fonctions pour la mise en place des objets S\+DL.  
+
+
+{\ttfamily \#include \char`\"{}objet\+\_\+\+S\+D\+L.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{objet___s_d_l_8c_a7d36c6fee7cf0a086c2daa5f31a7a684}\label{objet___s_d_l_8c_a7d36c6fee7cf0a086c2daa5f31a7a684}} 
+\#define {\bfseries E\+G\+A\+L\+I\+TE}~\textquotesingle{}E\textquotesingle{}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structobj__s}{obj}} \mbox{\hyperlink{objet___s_d_l_8c_a8396d735e851641cc294423037782a05}{obj\+\_\+text}} (char $\ast$s, int size, int x, int y)
+\begin{DoxyCompactList}\small\item\em transforme et positionne l\textquotesingle{}objet texte afin de pouvoir être \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structobj__s}{obj}} \mbox{\hyperlink{objet___s_d_l_8c_a1a1acef39004410f9adfe6a01515537d}{obj\+\_\+img}} (char $\ast$lien, int x, int y)
+\begin{DoxyCompactList}\small\item\em Permet de savoir si la souris pointe dans la zone selectionné \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{objet___s_d_l_8c_a5ec5dae07098cec2afb9d8745a32b112}{cpy\+\_\+render}} (\mbox{\hyperlink{structobj__s}{obj}} pt)
+\begin{DoxyCompactList}\small\item\em Copier dans le renderer l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{objet___s_d_l_8c_ae7ca88e1747b330a80e405092faa67d6}{x\+\_\+obj}} (\mbox{\hyperlink{structobj__s}{obj}} o)
+\begin{DoxyCompactList}\small\item\em Renvoi la coordonné x de la postion de l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{objet___s_d_l_8c_aeab24aa042fd775bb8dfee2eee9c2698}{y\+\_\+obj}} (\mbox{\hyperlink{structobj__s}{obj}} o)
+\begin{DoxyCompactList}\small\item\em Renvoi la coordonné y de la postion de l\textquotesingle{}objet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{objet___s_d_l_8c_ab13b7f93f572721afe1980b8d6635a56}{config\+\_\+obj}} (S\+D\+L\+\_\+\+Rect $\ast$r, S\+D\+L\+\_\+\+Texture $\ast$t, int x, int y)
+\begin{DoxyCompactList}\small\item\em Configure S\+D\+L\+\_\+\+Rect et la position de l\textquotesingle{}objet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{objet___s_d_l_8c_a1c8c3102d21fd30e2488af144d5aea63}\label{objet___s_d_l_8c_a1c8c3102d21fd30e2488af144d5aea63}} 
+static S\+D\+L\+\_\+\+Color {\bfseries couleur\+Noire} = \{0, 0, 0, 0\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Regroupe les fonctions pour la mise en place des objets S\+DL. 
+
+\begin{DoxyAuthor}{Auteur}
+Mario Hotaj 
+\end{DoxyAuthor}
+
+
+\subsection{Documentation des fonctions}
+\mbox{\Hypertarget{objet___s_d_l_8c_ab13b7f93f572721afe1980b8d6635a56}\label{objet___s_d_l_8c_ab13b7f93f572721afe1980b8d6635a56}} 
+\index{objet\_SDL.c@{objet\_SDL.c}!config\_obj@{config\_obj}}
+\index{config\_obj@{config\_obj}!objet\_SDL.c@{objet\_SDL.c}}
+\subsubsection{\texorpdfstring{config\_obj()}{config\_obj()}}
+{\footnotesize\ttfamily int config\+\_\+obj (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Rect $\ast$}]{r,  }\item[{S\+D\+L\+\_\+\+Texture $\ast$}]{t,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Configure S\+D\+L\+\_\+\+Rect et la position de l\textquotesingle{}objet. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em S\+D\+L\+\_\+\+Rect} & r \+: zone selectionné \\
+\hline
+{\em S\+D\+L\+\_\+\+Texture$\ast$} & t \+: texture S\+DL \\
+\hline
+{\em int} & x \+: position x \\
+\hline
+{\em int} & y \+: position y \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{objet___s_d_l_8c_a5ec5dae07098cec2afb9d8745a32b112}\label{objet___s_d_l_8c_a5ec5dae07098cec2afb9d8745a32b112}} 
+\index{objet\_SDL.c@{objet\_SDL.c}!cpy\_render@{cpy\_render}}
+\index{cpy\_render@{cpy\_render}!objet\_SDL.c@{objet\_SDL.c}}
+\subsubsection{\texorpdfstring{cpy\_render()}{cpy\_render()}}
+{\footnotesize\ttfamily int cpy\+\_\+render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structobj__s}{obj}}}]{pt }\end{DoxyParamCaption})}
+
+
+
+Copier dans le renderer l\textquotesingle{}objet. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em obj} & pt \+: objet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+entier True ou False (1 ou 0) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{objet___s_d_l_8c_a1a1acef39004410f9adfe6a01515537d}\label{objet___s_d_l_8c_a1a1acef39004410f9adfe6a01515537d}} 
+\index{objet\_SDL.c@{objet\_SDL.c}!obj\_img@{obj\_img}}
+\index{obj\_img@{obj\_img}!objet\_SDL.c@{objet\_SDL.c}}
+\subsubsection{\texorpdfstring{obj\_img()}{obj\_img()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structobj__s}{obj}} obj\+\_\+img (\begin{DoxyParamCaption}\item[{char $\ast$}]{lien,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Permet de savoir si la souris pointe dans la zone selectionné 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em char$\ast$} & lien \+: chemin d\textquotesingle{}accès de l\textquotesingle{}image \\
+\hline
+{\em int} & x \+: coordonnée x où pointe la souris \\
+\hline
+{\em int} & y \+: coordonnée y où pointe la souris \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+obj \+: objet S\+DL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{objet___s_d_l_8c_a8396d735e851641cc294423037782a05}\label{objet___s_d_l_8c_a8396d735e851641cc294423037782a05}} 
+\index{objet\_SDL.c@{objet\_SDL.c}!obj\_text@{obj\_text}}
+\index{obj\_text@{obj\_text}!objet\_SDL.c@{objet\_SDL.c}}
+\subsubsection{\texorpdfstring{obj\_text()}{obj\_text()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structobj__s}{obj}} obj\+\_\+text (\begin{DoxyParamCaption}\item[{char $\ast$}]{s,  }\item[{int}]{size,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+transforme et positionne l\textquotesingle{}objet texte afin de pouvoir être 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em char$\ast$} & s \+: texte \\
+\hline
+{\em int} & size \+: police d\textquotesingle{}écriture \\
+\hline
+{\em int} & x \+: position x de l\textquotesingle{}objet texte \\
+\hline
+{\em int} & y \+: position y de l\textquotesingle{}objet texte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+obj \+: objet S\+DL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{objet___s_d_l_8c_ae7ca88e1747b330a80e405092faa67d6}\label{objet___s_d_l_8c_ae7ca88e1747b330a80e405092faa67d6}} 
+\index{objet\_SDL.c@{objet\_SDL.c}!x\_obj@{x\_obj}}
+\index{x\_obj@{x\_obj}!objet\_SDL.c@{objet\_SDL.c}}
+\subsubsection{\texorpdfstring{x\_obj()}{x\_obj()}}
+{\footnotesize\ttfamily int x\+\_\+obj (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structobj__s}{obj}}}]{o }\end{DoxyParamCaption})}
+
+
+
+Renvoi la coordonné x de la postion de l\textquotesingle{}objet. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em obj} & o \+: objet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+coordonné x de la postion de l\textquotesingle{}objet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{objet___s_d_l_8c_aeab24aa042fd775bb8dfee2eee9c2698}\label{objet___s_d_l_8c_aeab24aa042fd775bb8dfee2eee9c2698}} 
+\index{objet\_SDL.c@{objet\_SDL.c}!y\_obj@{y\_obj}}
+\index{y\_obj@{y\_obj}!objet\_SDL.c@{objet\_SDL.c}}
+\subsubsection{\texorpdfstring{y\_obj()}{y\_obj()}}
+{\footnotesize\ttfamily int y\+\_\+obj (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structobj__s}{obj}}}]{o }\end{DoxyParamCaption})}
+
+
+
+Renvoi la coordonné y de la postion de l\textquotesingle{}objet. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em obj} & o \+: objet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+coordonné y de la postion de l\textquotesingle{}objet 
+\end{DoxyReturn}

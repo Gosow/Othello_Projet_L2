@@ -1,7 +1,7 @@
 /**
- * \file gest_aff.C
- * \brief Fichier qui contient toutes les fonctions hors affichage de la matrice et SDL du jeu
- * \author Alkassoum Yacine
+ * \file gest_matrice.c
+ * \brief Fichier qui contient toutes les fonctions de gestion de matrice
+ * \author Alkassoum Yacine, Hotaj Mario
  * \version 2
  * \date 10 mars 2019
  **/
@@ -28,7 +28,7 @@ void init_matrice (t_matrice m) {
 }
 
 /**
- *\brief LaFonction afficher_matrice est la fonction qui  affiche la grille de jeu
+ *\brief LaFonction afficher_matrice est la fonction qui affiche la grille de jeu
 **/
 void afficher_matrice (t_matrice m) {
     int i, j;
@@ -185,7 +185,6 @@ int joueur_suivant (char joueur) {
     else{
         joueur = NOIR;
     }
-    //printf ("\nC'est au tour du joueur %c de jouer\n", joueur);
     return (joueur);
 }
 
@@ -384,6 +383,11 @@ void jouer_coup (t_matrice m, int lig, int col, char joueur) {
     }
 }
 
+/**
+ * \brief Fonction qui va nous afficher le menu grâce à la SDL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu.
+ * \param int *score1 : adresse du score du joueur noir
+ * \param int *score2 : adresse du score du joueur blanc
+ */
 void calculer_score(t_matrice m,int *score1 , int *score2){
   int i,j;
   *score1=0;
@@ -398,6 +402,11 @@ void calculer_score(t_matrice m,int *score1 , int *score2){
   }
 }
 
+/**
+ * \brief Fonction qui va nous afficher le menu grâce à la SDL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu.
+ * \param t_matrice src : source dans laquel va être copié la matrice
+ * \param t_matrice dest : destination dans laquel va être recopié la matrice 
+ */
 void copie_mat(t_matrice src, t_matrice dest){
     int i,j;
     for(i=0;i<N;i++){

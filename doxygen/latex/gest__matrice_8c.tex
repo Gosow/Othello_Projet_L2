@@ -1,0 +1,138 @@
+\hypertarget{gest__matrice_8c}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/fonc\+\_\+boite\+\_\+outils/gest\+\_\+matrice.c}
+\label{gest__matrice_8c}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/gest\_matrice.c@{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/gest\_matrice.c}}
+
+
+Fichier qui contient toutes les fonctions de gestion de matrice.  
+
+
+{\ttfamily \#include \char`\"{}gest\+\_\+matrice.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gest__matrice_8c_a15716631b32443b6fe18ea38ffc5dd7f}{init\+\_\+matrice}} (t\+\_\+matrice m)
+\begin{DoxyCompactList}\small\item\em la Fonction init\+\_\+matrice initialisation de la grille \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gest__matrice_8c_a2f9f19af6343553b1ac8aab86455e630}{afficher\+\_\+matrice}} (t\+\_\+matrice m)
+\begin{DoxyCompactList}\small\item\em La\+Fonction afficher\+\_\+matrice est la fonction qui affiche la grille de jeu. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gest__matrice_8c_ae32b3b19aaf74c2b21bb5df762dbeb5c}\label{gest__matrice_8c_ae32b3b19aaf74c2b21bb5df762dbeb5c}} 
+int \mbox{\hyperlink{gest__matrice_8c_ae32b3b19aaf74c2b21bb5df762dbeb5c}{case\+\_\+existe}} (int lig, int col)
+\begin{DoxyCompactList}\small\item\em La fonction case\+\_\+existe verifie si la case existe , voir si on est a l\textquotesingle{}interrieur de la matrice. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gest__matrice_8c_a55876f3c95577c996788e212bffb2874}{coup\+\_\+valide}} (t\+\_\+matrice m, int lig, int col, char joueur)
+\item 
+\mbox{\Hypertarget{gest__matrice_8c_a3fb1b52d15d6b47767cfc3fd66767c96}\label{gest__matrice_8c_a3fb1b52d15d6b47767cfc3fd66767c96}} 
+int \mbox{\hyperlink{gest__matrice_8c_a3fb1b52d15d6b47767cfc3fd66767c96}{peut\+\_\+jouer}} (t\+\_\+matrice m, char joueur)
+\begin{DoxyCompactList}\small\item\em Fonction qui indique si le joueur peut encore jouer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gest__matrice_8c_a9ff851f92696d9db3aead8cea77fd45d}\label{gest__matrice_8c_a9ff851f92696d9db3aead8cea77fd45d}} 
+int {\bfseries joueur\+\_\+suivant} (char joueur)
+\item 
+\mbox{\Hypertarget{gest__matrice_8c_a844527d5114c83718134d49fe0f84a72}\label{gest__matrice_8c_a844527d5114c83718134d49fe0f84a72}} 
+void {\bfseries choisir\+\_\+coup} (t\+\_\+matrice m, int $\ast$lig, int $\ast$col, char joueur)
+\item 
+\mbox{\Hypertarget{gest__matrice_8c_a9c0ef91d36afb73264fff33ae53307cb}\label{gest__matrice_8c_a9c0ef91d36afb73264fff33ae53307cb}} 
+int {\bfseries partie\+\_\+terminee} (t\+\_\+matrice m)
+\item 
+\mbox{\Hypertarget{gest__matrice_8c_aa1cff606270329b2722e2f2ae1f9e295}\label{gest__matrice_8c_aa1cff606270329b2722e2f2ae1f9e295}} 
+void {\bfseries jouer\+\_\+coup} (t\+\_\+matrice m, int lig, int col, char joueur)
+\item 
+void \mbox{\hyperlink{gest__matrice_8c_ac16907d896a2bf6e5736761a1484a7a1}{calculer\+\_\+score}} (t\+\_\+matrice m, int $\ast$score1, int $\ast$score2)
+\begin{DoxyCompactList}\small\item\em Fonction qui va nous afficher le menu grâce à la S\+DL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gest__matrice_8c_a6c58f53d08b9092e49b71ebe25fac929}{copie\+\_\+mat}} (t\+\_\+matrice src, t\+\_\+matrice dest)
+\begin{DoxyCompactList}\small\item\em Fonction qui va nous afficher le menu grâce à la S\+DL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fichier qui contient toutes les fonctions de gestion de matrice. 
+
+\begin{DoxyAuthor}{Auteur}
+Alkassoum Yacine, Hotaj Mario 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+10 mars 2019 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\mbox{\Hypertarget{gest__matrice_8c_a2f9f19af6343553b1ac8aab86455e630}\label{gest__matrice_8c_a2f9f19af6343553b1ac8aab86455e630}} 
+\index{gest\_matrice.c@{gest\_matrice.c}!afficher\_matrice@{afficher\_matrice}}
+\index{afficher\_matrice@{afficher\_matrice}!gest\_matrice.c@{gest\_matrice.c}}
+\subsubsection{\texorpdfstring{afficher\_matrice()}{afficher\_matrice()}}
+{\footnotesize\ttfamily void afficher\+\_\+matrice (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{m }\end{DoxyParamCaption})}
+
+
+
+La\+Fonction afficher\+\_\+matrice est la fonction qui affiche la grille de jeu. 
+
+Lettres
+
+Grille
+
+Les blancs en rouge
+
+Les noirs en bleu \mbox{\Hypertarget{gest__matrice_8c_ac16907d896a2bf6e5736761a1484a7a1}\label{gest__matrice_8c_ac16907d896a2bf6e5736761a1484a7a1}} 
+\index{gest\_matrice.c@{gest\_matrice.c}!calculer\_score@{calculer\_score}}
+\index{calculer\_score@{calculer\_score}!gest\_matrice.c@{gest\_matrice.c}}
+\subsubsection{\texorpdfstring{calculer\_score()}{calculer\_score()}}
+{\footnotesize\ttfamily void calculer\+\_\+score (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{m,  }\item[{int $\ast$}]{score1,  }\item[{int $\ast$}]{score2 }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va nous afficher le menu grâce à la S\+DL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em int} & $\ast$score1 \+: adresse du score du joueur noir \\
+\hline
+{\em int} & $\ast$score2 \+: adresse du score du joueur blanc \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gest__matrice_8c_a6c58f53d08b9092e49b71ebe25fac929}\label{gest__matrice_8c_a6c58f53d08b9092e49b71ebe25fac929}} 
+\index{gest\_matrice.c@{gest\_matrice.c}!copie\_mat@{copie\_mat}}
+\index{copie\_mat@{copie\_mat}!gest\_matrice.c@{gest\_matrice.c}}
+\subsubsection{\texorpdfstring{copie\_mat()}{copie\_mat()}}
+{\footnotesize\ttfamily void copie\+\_\+mat (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{src,  }\item[{t\+\_\+matrice}]{dest }\end{DoxyParamCaption})}
+
+
+
+Fonction qui va nous afficher le menu grâce à la S\+DL et afficher les différent mode de jeu, la lecture de la musique et quitter le jeu. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & src \+: source dans laquel va être copié la matrice \\
+\hline
+{\em t\+\_\+matrice} & dest \+: destination dans laquel va être recopié la matrice \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{gest__matrice_8c_a55876f3c95577c996788e212bffb2874}\label{gest__matrice_8c_a55876f3c95577c996788e212bffb2874}} 
+\index{gest\_matrice.c@{gest\_matrice.c}!coup\_valide@{coup\_valide}}
+\index{coup\_valide@{coup\_valide}!gest\_matrice.c@{gest\_matrice.c}}
+\subsubsection{\texorpdfstring{coup\_valide()}{coup\_valide()}}
+{\footnotesize\ttfamily int coup\+\_\+valide (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{m,  }\item[{int}]{lig,  }\item[{int}]{col,  }\item[{char}]{joueur }\end{DoxyParamCaption})}
+
+Definition des couleurs pour les 2 joueurs
+
+Vers le haut
+
+Vers le bas
+
+Vers la gauche
+
+Vers la droite
+
+Diagonal vers le haut
+
+Diagonal vers le bas \mbox{\Hypertarget{gest__matrice_8c_a15716631b32443b6fe18ea38ffc5dd7f}\label{gest__matrice_8c_a15716631b32443b6fe18ea38ffc5dd7f}} 
+\index{gest\_matrice.c@{gest\_matrice.c}!init\_matrice@{init\_matrice}}
+\index{init\_matrice@{init\_matrice}!gest\_matrice.c@{gest\_matrice.c}}
+\subsubsection{\texorpdfstring{init\_matrice()}{init\_matrice()}}
+{\footnotesize\ttfamily void init\+\_\+matrice (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{m }\end{DoxyParamCaption})}
+
+
+
+la Fonction init\+\_\+matrice initialisation de la grille 
+
+On initialise la matrice a vide
+
+Placement des 4 premiers pions 

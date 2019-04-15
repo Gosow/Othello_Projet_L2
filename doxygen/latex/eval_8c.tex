@@ -1,0 +1,97 @@
+\hypertarget{eval_8c}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/\+I\+A/eval.c}
+\label{eval_8c}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/IA/eval.c@{/Users/mario/Desktop/Othello\_Projet\_L2/src/IA/eval.c}}
+
+
+Fichier qui contient toutes les fonctions qui permettent les évaluations.  
+
+
+{\ttfamily \#include \char`\"{}eval.\+h\char`\"{}}\newline
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{eval_8c_a023355e3dc0fd294e9f8b659f6306a7e}{force}} (t\+\_\+matrice m, char couleur)
+\begin{DoxyCompactList}\small\item\em Calcul de la force d\textquotesingle{}une position. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eval_8c_a4249176051e657e4f5a1a1d4f94cac57}{nb\+\_\+coup\+\_\+poss}} (t\+\_\+matrice mat, char coul)
+\begin{DoxyCompactList}\small\item\em Compte le nombre de coup possible. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{eval_8c_a64ac1dbff88bcd1c07f58ba958b5e987}{eval}} (t\+\_\+matrice mat, char couleur)
+\begin{DoxyCompactList}\small\item\em Evaluation de la position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fichier qui contient toutes les fonctions qui permettent les évaluations. 
+
+\begin{DoxyAuthor}{Auteur}
+Alkassoum Yacine, Hotaj Mario 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+15 avril 2019 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\mbox{\Hypertarget{eval_8c_a64ac1dbff88bcd1c07f58ba958b5e987}\label{eval_8c_a64ac1dbff88bcd1c07f58ba958b5e987}} 
+\index{eval.c@{eval.c}!eval@{eval}}
+\index{eval@{eval}!eval.c@{eval.c}}
+\subsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily int eval (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat,  }\item[{char}]{couleur }\end{DoxyParamCaption})}
+
+
+
+Evaluation de la position. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & m \+: plateau de jeu \\
+\hline
+{\em char} & couleur \+: N\+O\+IR ou B\+L\+A\+NC, couleur du joueur choisi \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Score de la position 
+\end{DoxyReturn}
+Le matériel \+: la différence de pions rapporte des pts
+
+Verifier si la personne a peu de coup possible à faire
+
+La mobilité \+: chaque case jouable rapporte des pts
+
+La force \+: la possession de certaines cases rapporte des pts \mbox{\Hypertarget{eval_8c_a023355e3dc0fd294e9f8b659f6306a7e}\label{eval_8c_a023355e3dc0fd294e9f8b659f6306a7e}} 
+\index{eval.c@{eval.c}!force@{force}}
+\index{force@{force}!eval.c@{eval.c}}
+\subsubsection{\texorpdfstring{force()}{force()}}
+{\footnotesize\ttfamily int force (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{m,  }\item[{char}]{couleur }\end{DoxyParamCaption})}
+
+
+
+Calcul de la force d\textquotesingle{}une position. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & m \+: plateau de jeu \\
+\hline
+{\em char} & couleur \+: N\+O\+IR ou B\+L\+A\+NC, couleur du joueur choisi \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Entier représentant la force de la position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eval_8c_a4249176051e657e4f5a1a1d4f94cac57}\label{eval_8c_a4249176051e657e4f5a1a1d4f94cac57}} 
+\index{eval.c@{eval.c}!nb\_coup\_poss@{nb\_coup\_poss}}
+\index{nb\_coup\_poss@{nb\_coup\_poss}!eval.c@{eval.c}}
+\subsubsection{\texorpdfstring{nb\_coup\_poss()}{nb\_coup\_poss()}}
+{\footnotesize\ttfamily int nb\+\_\+coup\+\_\+poss (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat,  }\item[{char}]{coul }\end{DoxyParamCaption})}
+
+
+
+Compte le nombre de coup possible. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & m \+: plateau de jeu \\
+\hline
+{\em char} & couleur \+: N\+O\+IR ou B\+L\+A\+NC, couleur du joueur choisi \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nombre de coup possible 
+\end{DoxyReturn}

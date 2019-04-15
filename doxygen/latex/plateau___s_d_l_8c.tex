@@ -1,0 +1,150 @@
+\hypertarget{plateau___s_d_l_8c}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/interface\+\_\+graphique/plateau\+\_\+\+S\+DL.c}
+\label{plateau___s_d_l_8c}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/interface\_graphique/plateau\_SDL.c@{/Users/mario/Desktop/Othello\_Projet\_L2/src/interface\_graphique/plateau\_SDL.c}}
+
+
+Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l\textquotesingle{}interface graphique pour pouvoir jouer.  
+
+
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+jeu.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a18d80a12a704eaba1c5fd96fe53515d8}\label{plateau___s_d_l_8c_a18d80a12a704eaba1c5fd96fe53515d8}} 
+\#define {\bfseries O\+UI}~1
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a1a5ad49e88e526078694fa3287d6ec0d}\label{plateau___s_d_l_8c_a1a5ad49e88e526078694fa3287d6ec0d}} 
+\#define {\bfseries N\+ON}~0
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a3758dd5d300a594312c95bc393378df0}\label{plateau___s_d_l_8c_a3758dd5d300a594312c95bc393378df0}} 
+\#define {\bfseries L\+O\+C\+AL}~-\/1
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_af19f26460d89cfb3f212f4b0a44882e8}\label{plateau___s_d_l_8c_af19f26460d89cfb3f212f4b0a44882e8}} 
+\#define {\bfseries C\+L\+I\+E\+NT}~0
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_aeef0e3ba41fec73b731de55058a0e9a6}\label{plateau___s_d_l_8c_aeef0e3ba41fec73b731de55058a0e9a6}} 
+\#define {\bfseries S\+E\+R\+V\+E\+UR}~1
+\end{DoxyCompactItemize}
+\subsection*{Énumérations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_acdf4398721077a355d45f805b9735781}\label{plateau___s_d_l_8c_acdf4398721077a355d45f805b9735781}} 
+enum {\bfseries texte} \{ \newline
+{\bfseries J1}, 
+{\bfseries J2}, 
+{\bfseries A\+\_\+\+V\+O\+US}, 
+{\bfseries G\+A\+G\+N\+EE}, 
+\newline
+{\bfseries P\+E\+R\+DU}, 
+{\bfseries E\+G\+A\+L\+I\+TE}, 
+{\bfseries S\+C\+O\+RE}, 
+{\bfseries A\+T\+T\+E\+N\+TE}
+ \}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a42cb5f5737262947250c709931232c69}\label{plateau___s_d_l_8c_a42cb5f5737262947250c709931232c69}} 
+enum {\bfseries image} \{ {\bfseries P\+I\+ON} = 0, 
+{\bfseries R\+E\+P\+L\+AY} = 0, 
+{\bfseries H\+O\+ME}, 
+{\bfseries V\+O\+IR}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a1647ebd8926d9018548a8f5ba5e18339}\label{plateau___s_d_l_8c_a1647ebd8926d9018548a8f5ba5e18339}} 
+void {\bfseries init\+\_\+obj} (void)
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a4c83ea455df2405bbed0ae16be916ccb}\label{plateau___s_d_l_8c_a4c83ea455df2405bbed0ae16be916ccb}} 
+int {\bfseries lancement\+\_\+jeu} (int mode\+Jeu, int type)
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a8a7d104a74daa6a4b512d60b5cbcabf4}\label{plateau___s_d_l_8c_a8a7d104a74daa6a4b512d60b5cbcabf4}} 
+int {\bfseries affichage\+\_\+partie} (t\+\_\+matrice mat, int mode\+Jeu)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a6150e0515f7202e2fb518f7206ed97dc}\label{plateau___s_d_l_8c_a6150e0515f7202e2fb518f7206ed97dc}} 
+static int {\bfseries x}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a0a2f84ed7838f07779ae24c5a9086d33}\label{plateau___s_d_l_8c_a0a2f84ed7838f07779ae24c5a9086d33}} 
+static int {\bfseries y}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a6520a24f89867ed264ccb1e3c77c239e}\label{plateau___s_d_l_8c_a6520a24f89867ed264ccb1e3c77c239e}} 
+static int {\bfseries score\+\_\+j1} = 0
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a7de09eb82a59818c388c686d56a12090}\label{plateau___s_d_l_8c_a7de09eb82a59818c388c686d56a12090}} 
+static int {\bfseries score\+\_\+j2} = 0
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_acb559820d9ca11295b4500f179ef6392}\label{plateau___s_d_l_8c_acb559820d9ca11295b4500f179ef6392}} 
+static int {\bfseries i}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a1a188b77156094781cebe31c88436293}\label{plateau___s_d_l_8c_a1a188b77156094781cebe31c88436293}} 
+static int {\bfseries arret} =N\+ON
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a4d74931269155513d30bb399324e0bb0}\label{plateau___s_d_l_8c_a4d74931269155513d30bb399324e0bb0}} 
+static t\+\_\+matrice {\bfseries mat\+\_\+final}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a0787f81e60e0afa54aab2ab9aeeacf7b}\label{plateau___s_d_l_8c_a0787f81e60e0afa54aab2ab9aeeacf7b}} 
+static t\+\_\+matrice {\bfseries mat}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_afd6402741727040da48a8f6381052f1d}\label{plateau___s_d_l_8c_afd6402741727040da48a8f6381052f1d}} 
+static char {\bfseries joueur}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a0f996ff8d5ff85044e3d75682107dabe}\label{plateau___s_d_l_8c_a0f996ff8d5ff85044e3d75682107dabe}} 
+static char {\bfseries joueur\+\_\+sauv}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_aff5efa1f2ee0bd354fd7389f5c70f8fe}\label{plateau___s_d_l_8c_aff5efa1f2ee0bd354fd7389f5c70f8fe}} 
+static char {\bfseries gagnant}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a04ef8adcb20929f243e84bd039eb786a}\label{plateau___s_d_l_8c_a04ef8adcb20929f243e84bd039eb786a}} 
+static char {\bfseries score\+\_\+aff} \mbox{[}20\mbox{]}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a8ddb2722141f1441ca91338fe7b9db63}\label{plateau___s_d_l_8c_a8ddb2722141f1441ca91338fe7b9db63}} 
+static char $\ast$ {\bfseries joueur1}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_af097a606bf5fcad92e84f38a07eeebe7}\label{plateau___s_d_l_8c_af097a606bf5fcad92e84f38a07eeebe7}} 
+static char $\ast$ {\bfseries joueur2}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a9830965e78e2548eb1f37b065a1268de}\label{plateau___s_d_l_8c_a9830965e78e2548eb1f37b065a1268de}} 
+static char {\bfseries joueur\+\_\+vous}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_ad6d465823bff7b2f9d1291e2378a4496}\label{plateau___s_d_l_8c_ad6d465823bff7b2f9d1291e2378a4496}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries text\+\_\+tab} \mbox{[}8\mbox{]}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_ac8900e061f36947b0f025b27b43b8693}\label{plateau___s_d_l_8c_ac8900e061f36947b0f025b27b43b8693}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries img\+\_\+noir}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a54529f97f9f6c1a189e13ff168cd76f9}\label{plateau___s_d_l_8c_a54529f97f9f6c1a189e13ff168cd76f9}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries img\+\_\+noir\+Tour}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a3e0564d78fb5477f2981439fd67e5132}\label{plateau___s_d_l_8c_a3e0564d78fb5477f2981439fd67e5132}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries img\+\_\+blanc}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a453f22a9c7b482973d88aee9ff2caf6a}\label{plateau___s_d_l_8c_a453f22a9c7b482973d88aee9ff2caf6a}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries img\+\_\+blanc\+Tour}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a6a6fee3bb8abf46a8e5994fa653871a5}\label{plateau___s_d_l_8c_a6a6fee3bb8abf46a8e5994fa653871a5}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries img\+\_\+replay}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_aa4ffba55959c4f8abedd31e7c0fa9bc4}\label{plateau___s_d_l_8c_aa4ffba55959c4f8abedd31e7c0fa9bc4}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries img\+\_\+home}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_acfcd34ed506d18911ecc301d1b178c44}\label{plateau___s_d_l_8c_acfcd34ed506d18911ecc301d1b178c44}} 
+static \mbox{\hyperlink{structobj__s}{obj}} {\bfseries img\+\_\+voir}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a76ebced4d3d60e8716c7b41946ccd9ab}\label{plateau___s_d_l_8c_a76ebced4d3d60e8716c7b41946ccd9ab}} 
+S\+D\+L\+\_\+\+Texture $\ast$ {\bfseries image\+\_\+\+B\+G\+\_\+tex}
+\item 
+\mbox{\Hypertarget{plateau___s_d_l_8c_a89e6b82ee5d69abba069ce357b2ea3be}\label{plateau___s_d_l_8c_a89e6b82ee5d69abba069ce357b2ea3be}} 
+S\+D\+L\+\_\+\+Rect {\bfseries bg\+\_\+rect} =\{0,0,0,0\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l\textquotesingle{}interface graphique pour pouvoir jouer. 
+
+\begin{DoxyAuthor}{Auteur}
+Mario Hotaj 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+10 mars 2019 (dernière modif.) 
+\end{DoxyDate}

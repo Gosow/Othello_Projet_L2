@@ -4,7 +4,7 @@
 #include "fonc_boite_outils/outils.h"
 #include "define.h"
 #include "gest_matrice.h"
-
+/*
 int high_score(t_matrice m) {
   if(!partie_terminee(m)) {
     return 0;
@@ -52,3 +52,4 @@ int high_score(t_matrice m) {
 
   }
 }
+*/

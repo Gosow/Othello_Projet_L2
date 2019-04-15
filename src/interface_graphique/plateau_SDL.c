@@ -1,11 +1,3 @@
-/*
-remplacer arret par tpartie terminee
-ajouter un enum pour que les tableaux soient plus clair
-creer structure
-
-*/
-
-
 /**
  * \file plateau_SDL.c
  * \brief Fichier qui contient la fonction qui regroupe toutes les fonctions utilisé pour l'interface graphique pour pouvoir jouer.
@@ -16,8 +8,6 @@ creer structure
 #include "SDL_jeu.h"
 #define OUI 1
 #define NON 0
-
-
 
 #define LOCAL -1
 #define CLIENT 0
@@ -54,7 +44,7 @@ void init_obj(void){
     text_tab[SCORE] = obj_text("2 - 2",40,800,10);
     text_tab[ATTENTE] = obj_text("En attente du tour de votre adversaire ...",20,670,300);
 
-    image_BG_tex = tex_img_png("src/img/OthelloBG.png",renderer);
+    image_BG_tex = tex_img_png("src/img/OthelloBG.png");
     SDL_QueryTexture(image_BG_tex, NULL, NULL, &(bg_rect.w), &(bg_rect.h));
 }
 
@@ -62,7 +52,7 @@ void init_obj(void){
 /**
  * \fn int lancement_jeu(int modeJeu,t_matrice mat)
  * \brief Lance le jeu en fonction du mode choisie
- * \param modeJeu : le mode jeu choisi selon SOLO, DUO ou ONLINE.
+ * \param modeJeu : le mode de jeu choisi selon SOLO, DUO ou ONLINE.
  * \return entier
  */
 int lancement_jeu(int modeJeu, int type){ 
@@ -161,10 +151,10 @@ int lancement_jeu(int modeJeu, int type){
                                 }
                             }
                         }else if(pointe(img_voir.rect,x,y)){
-                                SDL_RenderClear(renderer);
+                                clear();
                                 afficher_matriceSDL(mat_final,' ',NON);
                                 cpy_render(img_voir);
-                                SDL_RenderPresent(renderer);
+                                afficher();
                                 sleep(4);
                         }
                         if(modeJeu == ONLINE){
@@ -198,7 +188,7 @@ int lancement_jeu(int modeJeu, int type){
                                 memset(msg, '\0', sizeof(msg));
                                 afficher_matriceSDL(mat,' ',OUI);
                                 cpy_render(text_tab[ATTENTE]);
-                                SDL_RenderPresent(renderer);
+                                afficher();
                                 recevoir(msg, PORT_HOTE );
                                 sscanf(msg,"%d;%d",&y,&x);
                                 if(x > 0 && y > 0){

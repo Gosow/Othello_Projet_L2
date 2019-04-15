@@ -1,0 +1,920 @@
+\hypertarget{sort__utils_8h}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/fonc\+\_\+boite\+\_\+outils/sort\+\_\+utils.h}
+\label{sort__utils_8h}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/sort\_utils.h@{/Users/mario/Desktop/Othello\_Projet\_L2/src/fonc\_boite\_outils/sort\_utils.h}}
+
+
+Sort Utils module definitions.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Définitions de type}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}) (const void $\ast$const a, const void $\ast$const b)
+\begin{DoxyCompactList}\small\item\em Compare function signature. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{sort__utils_8h_a805d88c7403cec80ecfb39b594b68575}{sort\+\_\+utils\+\_\+sort\+\_\+function}}) (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\begin{DoxyCompactList}\small\item\em Function pointer type for sorting arrays. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sort__utils_8h_af100ac555fe1eddbdae769b8cc6ebc94}{sort\+\_\+utils\+\_\+double\+\_\+cmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_a9db2ce93677513ca27a3c6fdd2bdb186}{sort\+\_\+utils\+\_\+double\+\_\+icmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_a9388529f1f920d931a5569d4918d4139}{sort\+\_\+utils\+\_\+int\+\_\+cmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_af11f4be18a9c78f3192ea44d22bbad5a}{sort\+\_\+utils\+\_\+int\+\_\+icmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_aef4e8c46c2fc2a14631ea719d8b5b3e9}{sort\+\_\+utils\+\_\+uint64\+\_\+t\+\_\+cmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_af7d9dfe0cf8ef70874ad5b4ea81f46ee}{sort\+\_\+utils\+\_\+uint64\+\_\+t\+\_\+icmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_a201fcaa9f03e73fa5254e7f440f08c05}{sort\+\_\+utils\+\_\+int64\+\_\+t\+\_\+cmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_a8b80cd6eda1828516e1d551bfdd6a822}{sort\+\_\+utils\+\_\+int64\+\_\+t\+\_\+icmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_afd32147b9c388389cfca8a0c2f483f73}{sort\+\_\+utils\+\_\+pointer\+\_\+cmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_af070378f0916f5f7eb767e40edb97310}{sort\+\_\+utils\+\_\+pointer\+\_\+icmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_ae1916d1367a93c6c0666e98ccf8fe574}{sort\+\_\+utils\+\_\+string\+\_\+cmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+int \mbox{\hyperlink{sort__utils_8h_af34b4c81b4803d7e89dc28519f831c74}{sort\+\_\+utils\+\_\+string\+\_\+icmp}} (const void $\ast$const a, const void $\ast$const b)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a70cb09d2bf29d460175a3b57e662f2b6}{sort\+\_\+utils\+\_\+insertionsort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_adeadb0598cc181185cabeebf7a671d08}{sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int n)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a023a44655a207cdb291a879723e46512}{sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a56df0c81d22357df3a8fdb0073f1d8a5}{sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a2fc9a4ab4ec0217bf80e46b38f53201b}{sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a30e457a3a2e9c0b2baaa471e1b9f029a}{sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+u64}} (uint64\+\_\+t $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a1f1e7d1c2b504976df2b973b208b976f}{sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+u64}} (uint64\+\_\+t $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a1cadecf527dc55c201d125c6627df110}{sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+i64}} (int64\+\_\+t $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a4d92d0a6de45d1379c2049b3b05f207b}{sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+i64}} (int64\+\_\+t $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a4cd1e805508adfd1659eff52b6cd673c}{sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+p}} (void $\ast$$\ast$const a, const size\+\_\+t count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a3ea1cdfcc53c653b71098c24f1ba18ac}{sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+string}} (char $\ast$$\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a53a2797f2191bd947eba82751e0fe93b}{sort\+\_\+utils\+\_\+binarysort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a47dfda2076576674aca8cac19cc1793f}{sort\+\_\+utils\+\_\+binarysort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_ae2f9e5a3eff300ad3986af17041539cd}{sort\+\_\+utils\+\_\+binarysort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a1a66358da3457bb81708a211726e07a4}{sort\+\_\+utils\+\_\+binarysort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a76bef85c2dbed32bb9e28dd869c68d81}{sort\+\_\+utils\+\_\+binarysort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a25a9e5e52aebda2a6138902adf9dd221}{sort\+\_\+utils\+\_\+heapsort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_afbe5f7faf155e58fe7c8228f4b04040e}{sort\+\_\+utils\+\_\+heapsort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_ab1a36139e6e6f7d930804d8def4414a8}{sort\+\_\+utils\+\_\+heapsort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_af047b5a540264d80d96ce27d3c04e378}{sort\+\_\+utils\+\_\+heapsort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a02335320ead4f4b403288ba1c6f96d10}{sort\+\_\+utils\+\_\+heapsort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a7f188b2daeb7f202233f029d7898a56f}{sort\+\_\+utils\+\_\+smoothsort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a8638370b70e4b6aef0825f1854ba6648}{sort\+\_\+utils\+\_\+smoothsort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a1f3bc83fd237d4c5b70a4fe7014be773}{sort\+\_\+utils\+\_\+smoothsort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_ac6b821489b1d46357d605b10259dfa52}{sort\+\_\+utils\+\_\+smoothsort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a75350e6de9c96ed3153a695702dc74bd}{sort\+\_\+utils\+\_\+smoothsort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_adac1c34aba54623457e17f684e6d0072}{sort\+\_\+utils\+\_\+quicksort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a1e896e5ac21ad8c3470bde12a28dae1d}{sort\+\_\+utils\+\_\+quicksort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_afa0e9f18d4406eaf39d6af564e009341}{sort\+\_\+utils\+\_\+quicksort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a044e375b86c3acb198e7bdedc56cc1bf}{sort\+\_\+utils\+\_\+quicksort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a4d10b6bc33c715c9fc2253cc7b8832ea}{sort\+\_\+utils\+\_\+quicksort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a2bca39216e65eb40cad5c659780a5458}{sort\+\_\+utils\+\_\+shellsort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a3aaa9550b91d66abb5d246f7481677d1}{sort\+\_\+utils\+\_\+shellsort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_ac848f31ab93a8a3eeda1c7ecfa840a3d}{sort\+\_\+utils\+\_\+shellsort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_af4e9948eeb4707ba292cb02cc786913d}{sort\+\_\+utils\+\_\+shellsort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a9f5ea4a80a5dcb84e0ae2aac0b4386b4}{sort\+\_\+utils\+\_\+shellsort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_af6cda73e5b98f02d55fb057ad2ab91e5}{sort\+\_\+utils\+\_\+mergesort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a1a10be5dffc367a1f9bf3cb8ff819eca}{sort\+\_\+utils\+\_\+mergesort\+\_\+a}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t es, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp, void $\ast$const aux)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_aa2a21b8db03125bf17536931af30fdff}{sort\+\_\+utils\+\_\+mergesort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a8683d5e18ebd3bd311bff58c39b9b04b}{sort\+\_\+utils\+\_\+mergesort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a5f07d5302590966387a4b53a24422038}{sort\+\_\+utils\+\_\+mergesort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_aceaf45736d66a51e7fda07c727aaea8c}{sort\+\_\+utils\+\_\+mergesort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_aab581dc46c9be609bcdcbabb20e5761b}{sort\+\_\+utils\+\_\+timsort}} (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_adaabd182fe69291fd6138e52fdf037d9}{sort\+\_\+utils\+\_\+timsort\+\_\+asc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a69daeefee0bbdb703d3f856b830bba35}{sort\+\_\+utils\+\_\+timsort\+\_\+dsc\+\_\+d}} (double $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_aae0546fd3061f151a8fd4d50c8987062}{sort\+\_\+utils\+\_\+timsort\+\_\+asc\+\_\+i}} (int $\ast$const a, const int count)
+\item 
+void \mbox{\hyperlink{sort__utils_8h_a20c839b7ad26d19f3da76fe31a365817}{sort\+\_\+utils\+\_\+timsort\+\_\+dsc\+\_\+i}} (int $\ast$const a, const int count)
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Sort Utils module definitions. 
+
+This module provides sorting functions.
+
+\begin{DoxyParagraph}{sort\+\_\+utils.h}
+{\ttfamily  This file is part of the reversi program \href{http://github.com/rcrr/reversi}{\texttt{ http\+://github.\+com/rcrr/reversi}} } 
+\end{DoxyParagraph}
+\begin{DoxyAuthor}{Auteur}
+Roberto Corradini \href{mailto:rob_corradini@yahoo.it}{\texttt{ rob\+\_\+corradini@yahoo.\+it}} 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+2014, 2015 Roberto Corradini. All rights reserved.
+\end{DoxyCopyright}
+\begin{DoxyParagraph}{License}
+{\ttfamily  This program is free software; you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation; either version 3, or (at your option) any later version. ~\newline
+This program is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details. ~\newline
+You should have received a copy of the G\+NU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place -\/ Suite 330, Boston, MA 02111-\/1307, U\+SA or visit the site \href{http://www.gnu.org/licenses/}{\texttt{ http\+://www.\+gnu.\+org/licenses/}}. } 
+\end{DoxyParagraph}
+
+
+\subsection{Documentation des définitions de type}
+\mbox{\Hypertarget{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}\label{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_compare\_function@{sort\_utils\_compare\_function}}
+\index{sort\_utils\_compare\_function@{sort\_utils\_compare\_function}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_compare\_function}{sort\_utils\_compare\_function}}
+{\footnotesize\ttfamily typedef int($\ast$ sort\+\_\+utils\+\_\+compare\+\_\+function) (const void $\ast$const a, const void $\ast$const b)}
+
+
+
+Compare function signature. 
+
+The implementer has to ensure that when the value refernced by {\ttfamily a} is equal to the one addressed by {\ttfamily b}, than zero is returned. When the value identified by {\ttfamily a} is greater than the one pointed by {\ttfamily b}, than the return value has to be a positive integer, and otherwise a negative one.
+
+Pseudocode\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (*a > *b) \textcolor{keywordflow}{return} +1;}
+\DoxyCodeLine{\textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*a == *b) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\textcolor{keywordflow}{else} \textcolor{keywordflow}{return} -1;}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\texttt{ in}}  & {\em a} & a pointer to the first value \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & a pointer to the second value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+result of comparing the values pointed by {\ttfamily a} and {\ttfamily b} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sort__utils_8h_a805d88c7403cec80ecfb39b594b68575}\label{sort__utils_8h_a805d88c7403cec80ecfb39b594b68575}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_sort\_function@{sort\_utils\_sort\_function}}
+\index{sort\_utils\_sort\_function@{sort\_utils\_sort\_function}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_sort\_function}{sort\_utils\_sort\_function}}
+{\footnotesize\ttfamily typedef void($\ast$ sort\+\_\+utils\+\_\+sort\+\_\+function) (void $\ast$const a, const size\+\_\+t count, const size\+\_\+t element\+\_\+size, const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}} cmp)}
+
+
+
+Function pointer type for sorting arrays. 
+
+This prototype is equal to the qsort definition in the standard library.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\texttt{ in,out}}  & {\em a} & the array to be sorted \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & the number of element in array \\
+\hline
+\mbox{\texttt{ in}}  & {\em element\+\_\+size} & the number of bytes used by one element \\
+\hline
+\mbox{\texttt{ in}}  & {\em cmp} & the compare function applied by the algorithm \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions}
+\mbox{\Hypertarget{sort__utils_8h_a53a2797f2191bd947eba82751e0fe93b}\label{sort__utils_8h_a53a2797f2191bd947eba82751e0fe93b}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_binarysort@{sort\_utils\_binarysort}}
+\index{sort\_utils\_binarysort@{sort\_utils\_binarysort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_binarysort()}{sort\_utils\_binarysort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+binarysort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+endcond Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a}, collecting elements of size {\ttfamily element\+\_\+size}, having length equal to {\ttfamily count}, is sorted in place applying the binary-\/sort algorithm. The compare function {\ttfamily cmp} has to comply with the signature of \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_a47dfda2076576674aca8cac19cc1793f}\label{sort__utils_8h_a47dfda2076576674aca8cac19cc1793f}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_binarysort\_asc\_d@{sort\_utils\_binarysort\_asc\_d}}
+\index{sort\_utils\_binarysort\_asc\_d@{sort\_utils\_binarysort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_binarysort\_asc\_d()}{sort\_utils\_binarysort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+binarysort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the binary-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a1a66358da3457bb81708a211726e07a4}\label{sort__utils_8h_a1a66358da3457bb81708a211726e07a4}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_binarysort\_asc\_i@{sort\_utils\_binarysort\_asc\_i}}
+\index{sort\_utils\_binarysort\_asc\_i@{sort\_utils\_binarysort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_binarysort\_asc\_i()}{sort\_utils\_binarysort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+binarysort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the binary-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_ae2f9e5a3eff300ad3986af17041539cd}\label{sort__utils_8h_ae2f9e5a3eff300ad3986af17041539cd}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_binarysort\_dsc\_d@{sort\_utils\_binarysort\_dsc\_d}}
+\index{sort\_utils\_binarysort\_dsc\_d@{sort\_utils\_binarysort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_binarysort\_dsc\_d()}{sort\_utils\_binarysort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+binarysort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the binary-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a76bef85c2dbed32bb9e28dd869c68d81}\label{sort__utils_8h_a76bef85c2dbed32bb9e28dd869c68d81}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_binarysort\_dsc\_i@{sort\_utils\_binarysort\_dsc\_i}}
+\index{sort\_utils\_binarysort\_dsc\_i@{sort\_utils\_binarysort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_binarysort\_dsc\_i()}{sort\_utils\_binarysort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+binarysort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the binary-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_af100ac555fe1eddbdae769b8cc6ebc94}\label{sort__utils_8h_af100ac555fe1eddbdae769b8cc6ebc94}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_double\_cmp@{sort\_utils\_double\_cmp}}
+\index{sort\_utils\_double\_cmp@{sort\_utils\_double\_cmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_double\_cmp()}{sort\_utils\_double\_cmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+double\+\_\+cmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares double values pointed by {\ttfamily a} and {\ttfamily b}.
+
+Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily +1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily -\/1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first double param b a pointer to the second double return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_a9db2ce93677513ca27a3c6fdd2bdb186}\label{sort__utils_8h_a9db2ce93677513ca27a3c6fdd2bdb186}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_double\_icmp@{sort\_utils\_double\_icmp}}
+\index{sort\_utils\_double\_icmp@{sort\_utils\_double\_icmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_double\_icmp()}{sort\_utils\_double\_icmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+double\+\_\+icmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares double values pointed by {\ttfamily a} and {\ttfamily b}.
+
+Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily -\/1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily +1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first double param b a pointer to the second double return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_a25a9e5e52aebda2a6138902adf9dd221}\label{sort__utils_8h_a25a9e5e52aebda2a6138902adf9dd221}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_heapsort@{sort\_utils\_heapsort}}
+\index{sort\_utils\_heapsort@{sort\_utils\_heapsort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_heapsort()}{sort\_utils\_heapsort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+heapsort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+endcond Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a} having length equal to {\ttfamily count} is sorted in place applying the heap-\/sort algorithm. The compare function is a predicate and must return {\ttfamily true} or {\ttfamily false}.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_afbe5f7faf155e58fe7c8228f4b04040e}\label{sort__utils_8h_afbe5f7faf155e58fe7c8228f4b04040e}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_heapsort\_asc\_d@{sort\_utils\_heapsort\_asc\_d}}
+\index{sort\_utils\_heapsort\_asc\_d@{sort\_utils\_heapsort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_heapsort\_asc\_d()}{sort\_utils\_heapsort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+heapsort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the heap-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a02335320ead4f4b403288ba1c6f96d10}\label{sort__utils_8h_a02335320ead4f4b403288ba1c6f96d10}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_heapsort\_asc\_i@{sort\_utils\_heapsort\_asc\_i}}
+\index{sort\_utils\_heapsort\_asc\_i@{sort\_utils\_heapsort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_heapsort\_asc\_i()}{sort\_utils\_heapsort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+heapsort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the heap-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_ab1a36139e6e6f7d930804d8def4414a8}\label{sort__utils_8h_ab1a36139e6e6f7d930804d8def4414a8}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_heapsort\_dsc\_d@{sort\_utils\_heapsort\_dsc\_d}}
+\index{sort\_utils\_heapsort\_dsc\_d@{sort\_utils\_heapsort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_heapsort\_dsc\_d()}{sort\_utils\_heapsort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+heapsort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the heap-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_af047b5a540264d80d96ce27d3c04e378}\label{sort__utils_8h_af047b5a540264d80d96ce27d3c04e378}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_heapsort\_dsc\_i@{sort\_utils\_heapsort\_dsc\_i}}
+\index{sort\_utils\_heapsort\_dsc\_i@{sort\_utils\_heapsort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_heapsort\_dsc\_i()}{sort\_utils\_heapsort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+heapsort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the heap-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a70cb09d2bf29d460175a3b57e662f2b6}\label{sort__utils_8h_a70cb09d2bf29d460175a3b57e662f2b6}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort@{sort\_utils\_insertionsort}}
+\index{sort\_utils\_insertionsort@{sort\_utils\_insertionsort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort()}{sort\_utils\_insertionsort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a}, collecting elements of size {\ttfamily element\+\_\+size}, having length equal to {\ttfamily count}, is sorted in place applying the insertion-\/sort algorithm. The compare function {\ttfamily cmp} has to comply with the signature of \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}.
+
+Insertion-\/sort is a naive algorithm with asymptotic time complexity of O(n$^\wedge$2), so quick-\/sort or heap-\/sort should be preferred even for small arrays. Nevertheless sometimes its simplicity makes it a valid choice. The given implementation is between two or three percent slower compared to a bare metal version, sorting doubles values, like the one here transcribed\+: code void sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+d (double $\ast$const a, const int count) for (int i = 1; i $<$ count; i++) \{ for (int j = i; j $>$ 0 \&\& a\mbox{[}j -\/ 1\mbox{]} $>$ a\mbox{[}j\mbox{]}; j--) \{ double t = a\mbox{[}j\mbox{]}; a\mbox{[}j\mbox{]} = a\mbox{[}j -\/ 1\mbox{]}; a\mbox{[}j -\/ 1\mbox{]} = t; \} \} endcode
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_adeadb0598cc181185cabeebf7a671d08}\label{sort__utils_8h_adeadb0598cc181185cabeebf7a671d08}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_asc\_d@{sort\_utils\_insertionsort\_asc\_d}}
+\index{sort\_utils\_insertionsort\_asc\_d@{sort\_utils\_insertionsort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_asc\_d()}{sort\_utils\_insertionsort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a56df0c81d22357df3a8fdb0073f1d8a5}\label{sort__utils_8h_a56df0c81d22357df3a8fdb0073f1d8a5}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_asc\_i@{sort\_utils\_insertionsort\_asc\_i}}
+\index{sort\_utils\_insertionsort\_asc\_i@{sort\_utils\_insertionsort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_asc\_i()}{sort\_utils\_insertionsort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a1cadecf527dc55c201d125c6627df110}\label{sort__utils_8h_a1cadecf527dc55c201d125c6627df110}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_asc\_i64@{sort\_utils\_insertionsort\_asc\_i64}}
+\index{sort\_utils\_insertionsort\_asc\_i64@{sort\_utils\_insertionsort\_asc\_i64}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_asc\_i64()}{sort\_utils\_insertionsort\_asc\_i64()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+i64 (\begin{DoxyParamCaption}\item[{int64\+\_\+t $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of signed sixtyfour bit integers.
+
+details The vector of signed sixtyfour bit integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a4cd1e805508adfd1659eff52b6cd673c}\label{sort__utils_8h_a4cd1e805508adfd1659eff52b6cd673c}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_asc\_p@{sort\_utils\_insertionsort\_asc\_p}}
+\index{sort\_utils\_insertionsort\_asc\_p@{sort\_utils\_insertionsort\_asc\_p}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_asc\_p()}{sort\_utils\_insertionsort\_asc\_p()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+p (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$const}]{a,  }\item[{const size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of pointers.
+
+details The vector of pointers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a3ea1cdfcc53c653b71098c24f1ba18ac}\label{sort__utils_8h_a3ea1cdfcc53c653b71098c24f1ba18ac}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_asc\_string@{sort\_utils\_insertionsort\_asc\_string}}
+\index{sort\_utils\_insertionsort\_asc\_string@{sort\_utils\_insertionsort\_asc\_string}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_asc\_string()}{sort\_utils\_insertionsort\_asc\_string()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of pointers to strings.
+
+details The vector of pointersto strings {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a30e457a3a2e9c0b2baaa471e1b9f029a}\label{sort__utils_8h_a30e457a3a2e9c0b2baaa471e1b9f029a}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_asc\_u64@{sort\_utils\_insertionsort\_asc\_u64}}
+\index{sort\_utils\_insertionsort\_asc\_u64@{sort\_utils\_insertionsort\_asc\_u64}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_asc\_u64()}{sort\_utils\_insertionsort\_asc\_u64()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+asc\+\_\+u64 (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of unsigned sixtyfour bit integers.
+
+details The vector of unsigned sixtyfour bit integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a023a44655a207cdb291a879723e46512}\label{sort__utils_8h_a023a44655a207cdb291a879723e46512}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_dsc\_d@{sort\_utils\_insertionsort\_dsc\_d}}
+\index{sort\_utils\_insertionsort\_dsc\_d@{sort\_utils\_insertionsort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_dsc\_d()}{sort\_utils\_insertionsort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a2fc9a4ab4ec0217bf80e46b38f53201b}\label{sort__utils_8h_a2fc9a4ab4ec0217bf80e46b38f53201b}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_dsc\_i@{sort\_utils\_insertionsort\_dsc\_i}}
+\index{sort\_utils\_insertionsort\_dsc\_i@{sort\_utils\_insertionsort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_dsc\_i()}{sort\_utils\_insertionsort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a4d92d0a6de45d1379c2049b3b05f207b}\label{sort__utils_8h_a4d92d0a6de45d1379c2049b3b05f207b}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_dsc\_i64@{sort\_utils\_insertionsort\_dsc\_i64}}
+\index{sort\_utils\_insertionsort\_dsc\_i64@{sort\_utils\_insertionsort\_dsc\_i64}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_dsc\_i64()}{sort\_utils\_insertionsort\_dsc\_i64()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+i64 (\begin{DoxyParamCaption}\item[{int64\+\_\+t $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of signed sixtyfour bit integers.
+
+details The vector of signed sixtyfour bit integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a1f1e7d1c2b504976df2b973b208b976f}\label{sort__utils_8h_a1f1e7d1c2b504976df2b973b208b976f}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_insertionsort\_dsc\_u64@{sort\_utils\_insertionsort\_dsc\_u64}}
+\index{sort\_utils\_insertionsort\_dsc\_u64@{sort\_utils\_insertionsort\_dsc\_u64}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_insertionsort\_dsc\_u64()}{sort\_utils\_insertionsort\_dsc\_u64()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+insertionsort\+\_\+dsc\+\_\+u64 (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of unsigned sixtyfour bit integers.
+
+details The vector of unsigned sixtyfour bit integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the insertion-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a201fcaa9f03e73fa5254e7f440f08c05}\label{sort__utils_8h_a201fcaa9f03e73fa5254e7f440f08c05}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_int64\_t\_cmp@{sort\_utils\_int64\_t\_cmp}}
+\index{sort\_utils\_int64\_t\_cmp@{sort\_utils\_int64\_t\_cmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_int64\_t\_cmp()}{sort\_utils\_int64\_t\_cmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+int64\+\_\+t\+\_\+cmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares {\ttfamily int64\+\_\+t} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily +1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily -\/1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily int64\+\_\+t} value param b a pointer to the second {\ttfamily int64\+\_\+t} value return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_a8b80cd6eda1828516e1d551bfdd6a822}\label{sort__utils_8h_a8b80cd6eda1828516e1d551bfdd6a822}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_int64\_t\_icmp@{sort\_utils\_int64\_t\_icmp}}
+\index{sort\_utils\_int64\_t\_icmp@{sort\_utils\_int64\_t\_icmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_int64\_t\_icmp()}{sort\_utils\_int64\_t\_icmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+int64\+\_\+t\+\_\+icmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares {\ttfamily int64\+\_\+t} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily -\/1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily +1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily int64\+\_\+t} value param b a pointer to the second {\ttfamily int64\+\_\+t} value return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_a9388529f1f920d931a5569d4918d4139}\label{sort__utils_8h_a9388529f1f920d931a5569d4918d4139}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_int\_cmp@{sort\_utils\_int\_cmp}}
+\index{sort\_utils\_int\_cmp@{sort\_utils\_int\_cmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_int\_cmp()}{sort\_utils\_int\_cmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+int\+\_\+cmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares int values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily +1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily -\/1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first integer param b a pointer to the second integer return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_af11f4be18a9c78f3192ea44d22bbad5a}\label{sort__utils_8h_af11f4be18a9c78f3192ea44d22bbad5a}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_int\_icmp@{sort\_utils\_int\_icmp}}
+\index{sort\_utils\_int\_icmp@{sort\_utils\_int\_icmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_int\_icmp()}{sort\_utils\_int\_icmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+int\+\_\+icmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares int values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily -\/1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily +1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first integer param b a pointer to the second integer return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_af6cda73e5b98f02d55fb057ad2ab91e5}\label{sort__utils_8h_af6cda73e5b98f02d55fb057ad2ab91e5}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_mergesort@{sort\_utils\_mergesort}}
+\index{sort\_utils\_mergesort@{sort\_utils\_mergesort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_mergesort()}{sort\_utils\_mergesort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+mergesort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a} having length equal to {\ttfamily count} is sorted using auxiliary space applying the merge-\/sort algorithm. The compare function is a predicate and must return {\ttfamily true} or {\ttfamily false}.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_a1a10be5dffc367a1f9bf3cb8ff819eca}\label{sort__utils_8h_a1a10be5dffc367a1f9bf3cb8ff819eca}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_mergesort\_a@{sort\_utils\_mergesort\_a}}
+\index{sort\_utils\_mergesort\_a@{sort\_utils\_mergesort\_a}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_mergesort\_a()}{sort\_utils\_mergesort\_a()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+mergesort\+\_\+a (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{es,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp,  }\item[{void $\ast$const}]{aux }\end{DoxyParamCaption})}
+
+Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a} having length equal to {\ttfamily count} is sorted using auxiliary space applying the merge-\/sort algorithm. The compare function is a predicate and must return {\ttfamily true} or {\ttfamily false}. The auxiliary space must have the same size of the {\ttfamily a} array or larger, the content of it when the function returns is garbage.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} es the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm param \mbox{[}in\mbox{]} aux an auxiliary array \mbox{\Hypertarget{sort__utils_8h_aa2a21b8db03125bf17536931af30fdff}\label{sort__utils_8h_aa2a21b8db03125bf17536931af30fdff}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_mergesort\_asc\_d@{sort\_utils\_mergesort\_asc\_d}}
+\index{sort\_utils\_mergesort\_asc\_d@{sort\_utils\_mergesort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_mergesort\_asc\_d()}{sort\_utils\_mergesort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+mergesort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the merge-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a5f07d5302590966387a4b53a24422038}\label{sort__utils_8h_a5f07d5302590966387a4b53a24422038}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_mergesort\_asc\_i@{sort\_utils\_mergesort\_asc\_i}}
+\index{sort\_utils\_mergesort\_asc\_i@{sort\_utils\_mergesort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_mergesort\_asc\_i()}{sort\_utils\_mergesort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+mergesort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the merge-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a8683d5e18ebd3bd311bff58c39b9b04b}\label{sort__utils_8h_a8683d5e18ebd3bd311bff58c39b9b04b}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_mergesort\_dsc\_d@{sort\_utils\_mergesort\_dsc\_d}}
+\index{sort\_utils\_mergesort\_dsc\_d@{sort\_utils\_mergesort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_mergesort\_dsc\_d()}{sort\_utils\_mergesort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+mergesort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the merge-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_aceaf45736d66a51e7fda07c727aaea8c}\label{sort__utils_8h_aceaf45736d66a51e7fda07c727aaea8c}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_mergesort\_dsc\_i@{sort\_utils\_mergesort\_dsc\_i}}
+\index{sort\_utils\_mergesort\_dsc\_i@{sort\_utils\_mergesort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_mergesort\_dsc\_i()}{sort\_utils\_mergesort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+mergesort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the merge-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_afd32147b9c388389cfca8a0c2f483f73}\label{sort__utils_8h_afd32147b9c388389cfca8a0c2f483f73}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_pointer\_cmp@{sort\_utils\_pointer\_cmp}}
+\index{sort\_utils\_pointer\_cmp@{sort\_utils\_pointer\_cmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_pointer\_cmp()}{sort\_utils\_pointer\_cmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+pointer\+\_\+cmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares {\ttfamily (void $\ast$)} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily +1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily -\/1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily (void $\ast$)} value param b a pointer to the second {\ttfamily (void $\ast$)} value return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_af070378f0916f5f7eb767e40edb97310}\label{sort__utils_8h_af070378f0916f5f7eb767e40edb97310}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_pointer\_icmp@{sort\_utils\_pointer\_icmp}}
+\index{sort\_utils\_pointer\_icmp@{sort\_utils\_pointer\_icmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_pointer\_icmp()}{sort\_utils\_pointer\_icmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+pointer\+\_\+icmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares {\ttfamily (void $\ast$)} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily -\/1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily +1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily (void $\ast$)} value param b a pointer to the second {\ttfamily (void $\ast$)} value return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_adac1c34aba54623457e17f684e6d0072}\label{sort__utils_8h_adac1c34aba54623457e17f684e6d0072}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_quicksort@{sort\_utils\_quicksort}}
+\index{sort\_utils\_quicksort@{sort\_utils\_quicksort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_quicksort()}{sort\_utils\_quicksort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+quicksort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+endcond Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a} having length equal to {\ttfamily count} is sorted in place applying the quick-\/sort algorithm. The compare function is a comparator and must return {\ttfamily -\/1}, {\ttfamily 0}, or {\ttfamily +1} constrained by the sorting order of the two elements.
+
+Adapted from the paper \char`\"{}\+Engineering a Sort Function\char`\"{} by Jon L. Bentley and M. Douglas Mc\+Ilroy See\+: \href{http://www.skidmore.edu/~meckmann/2009Spring/cs206/papers/spe862jb.pdf}{\texttt{ http\+://www.\+skidmore.\+edu/$\sim$meckmann/2009\+Spring/cs206/papers/spe862jb.\+pdf}} See also\+: \href{http://en.wikipedia.org/wiki/Quicksort}{\texttt{ http\+://en.\+wikipedia.\+org/wiki/\+Quicksort}}
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_a1e896e5ac21ad8c3470bde12a28dae1d}\label{sort__utils_8h_a1e896e5ac21ad8c3470bde12a28dae1d}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_quicksort\_asc\_d@{sort\_utils\_quicksort\_asc\_d}}
+\index{sort\_utils\_quicksort\_asc\_d@{sort\_utils\_quicksort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_quicksort\_asc\_d()}{sort\_utils\_quicksort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+quicksort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the quick-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a044e375b86c3acb198e7bdedc56cc1bf}\label{sort__utils_8h_a044e375b86c3acb198e7bdedc56cc1bf}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_quicksort\_asc\_i@{sort\_utils\_quicksort\_asc\_i}}
+\index{sort\_utils\_quicksort\_asc\_i@{sort\_utils\_quicksort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_quicksort\_asc\_i()}{sort\_utils\_quicksort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+quicksort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the quick-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_afa0e9f18d4406eaf39d6af564e009341}\label{sort__utils_8h_afa0e9f18d4406eaf39d6af564e009341}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_quicksort\_dsc\_d@{sort\_utils\_quicksort\_dsc\_d}}
+\index{sort\_utils\_quicksort\_dsc\_d@{sort\_utils\_quicksort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_quicksort\_dsc\_d()}{sort\_utils\_quicksort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+quicksort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the quick-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a4d10b6bc33c715c9fc2253cc7b8832ea}\label{sort__utils_8h_a4d10b6bc33c715c9fc2253cc7b8832ea}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_quicksort\_dsc\_i@{sort\_utils\_quicksort\_dsc\_i}}
+\index{sort\_utils\_quicksort\_dsc\_i@{sort\_utils\_quicksort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_quicksort\_dsc\_i()}{sort\_utils\_quicksort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+quicksort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the quick-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a2bca39216e65eb40cad5c659780a5458}\label{sort__utils_8h_a2bca39216e65eb40cad5c659780a5458}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_shellsort@{sort\_utils\_shellsort}}
+\index{sort\_utils\_shellsort@{sort\_utils\_shellsort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_shellsort()}{sort\_utils\_shellsort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+shellsort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a} having length equal to {\ttfamily count} is sorted in place applying the shell-\/sort algorithm. The compare function is a predicate and must return {\ttfamily true} or {\ttfamily false}.
+
+See\+:
+
+
+\begin{DoxyItemize}
+\item The Wikipedia page\+: \href{http://en.wikipedia.org/wiki/Shellsort}{\texttt{ Shellsort}}.
+\item Donald E. Knuth (1998), Sorting and Searching (par. 5.\+2.\+1 -\/ pp. 83-\/95). The Art of Computer Programming, Vol. 3 (2nd ed.). Boston\+: Addison–\+Wesley.
+\item N. Tokuda, An Improved Shellsort, I\+F\+IP Transactions, A-\/12 (1992) 449-\/457.
+\item Marcin Ciura, Best Increments for the Average Case of Shellsort, 13th International Symposium on Fundamentals of Computation Theory, Riga, Latvia, Aug 22 2001; Lecture Notes in Computer Science 2001; 2138\+: 106-\/117. \href{http://sun.aei.polsl.pl/~mciura/publikacje/shellsort.pdf}{\texttt{ Download P\+DF}}.
+\end{DoxyItemize}
+
+A few sequences has been tested\+:
+\begin{DoxyEnumerate}
+\item {\ttfamily h(0) = 1, h\mbox{[}s+1\mbox{]} = 3 $\ast$ h\mbox{[}s\mbox{]} + 1}, and stop with {\ttfamily h\mbox{[}t-\/1\mbox{]} when h\mbox{[}t+1\mbox{]} $>$ count}.~\newline
+ The beginning of the sequence is\+: {\ttfamily 1, 4, 13, 40, 121, 364, 1093, 3280, 9841, 29524, 88573, 265720, 797161, 2391484, 7174453, 21523360}.~\newline
+ The web site \char`\"{}\+The On-\/\+Line Encyclopedia of Integer  Sequences\char`\"{} has registered it as\+: \href{https://oeis.org/A003462}{\texttt{ A003462}}.
+\item {\ttfamily h(0) = 1, h\mbox{[}s+1\mbox{]} = 2.\+25 $\ast$ h\mbox{[}s\mbox{]} + 1}, and stop with {\ttfamily h\mbox{[}t-\/1\mbox{]} when h\mbox{[}t+1\mbox{]} $>$ count}.~\newline
+ The beginning of the sequence is\+: {\ttfamily 1, 4, 10, 24, 55, 125, 283, 638, 1437, 3235, 7280, 16381, 36859, 82934, 186603, 419858, 944682, 2125536, 4782457, 10760530, 24211194}.~\newline
+ It is not registered at \char`\"{}\+The On-\/\+Line Encyclopedia of Integer  Sequences\char`\"{}.
+\item {\ttfamily h(k) = ceil((pow(9, k) -\/ pow(4, k)) / (5 $\ast$ pow(4, k -\/ 1)))}.~\newline
+ The beginning of the sequence is\+: {\ttfamily 1, 4, 9, 20, 46, 103, 233, 525, 1182, 2660, 5985, 13467, 30301, 68178, 153401, 345152}.~\newline
+ It is known as the \char`\"{}\+Tokuda\textquotesingle{}s good set of increments for Shell sort\char`\"{} and it is registered as\+: \href{https://oeis.org/A108870}{\texttt{ A108870}}.
+\item {\ttfamily 1, 4, 10, 23, 57, 132, 301, 701}.~\newline
+ No other number is known after {\ttfamily 701}, the sequence has been discovered by Marcin Ciura by empirical evidence, and is the best known sequence of increments for shell sort.~\newline
+ It is registered at O\+E\+IS as\+: \href{https://oeis.org/A102549}{\texttt{ A102549}}.
+\end{DoxyEnumerate}
+
+The first sequence is described by Knuth and works quite well, the second one is a sensible improvement, Knuth himself reports that it has been suggested by Tokuda. The sequence number three, the Tokuda sequence, is slightly better than the second one, and it has been selected and applied here. The last one is too short to be adopted.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_a3aaa9550b91d66abb5d246f7481677d1}\label{sort__utils_8h_a3aaa9550b91d66abb5d246f7481677d1}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_shellsort\_asc\_d@{sort\_utils\_shellsort\_asc\_d}}
+\index{sort\_utils\_shellsort\_asc\_d@{sort\_utils\_shellsort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_shellsort\_asc\_d()}{sort\_utils\_shellsort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+shellsort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the shell-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_af4e9948eeb4707ba292cb02cc786913d}\label{sort__utils_8h_af4e9948eeb4707ba292cb02cc786913d}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_shellsort\_asc\_i@{sort\_utils\_shellsort\_asc\_i}}
+\index{sort\_utils\_shellsort\_asc\_i@{sort\_utils\_shellsort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_shellsort\_asc\_i()}{sort\_utils\_shellsort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+shellsort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the shell-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_ac848f31ab93a8a3eeda1c7ecfa840a3d}\label{sort__utils_8h_ac848f31ab93a8a3eeda1c7ecfa840a3d}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_shellsort\_dsc\_d@{sort\_utils\_shellsort\_dsc\_d}}
+\index{sort\_utils\_shellsort\_dsc\_d@{sort\_utils\_shellsort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_shellsort\_dsc\_d()}{sort\_utils\_shellsort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+shellsort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the shell-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a9f5ea4a80a5dcb84e0ae2aac0b4386b4}\label{sort__utils_8h_a9f5ea4a80a5dcb84e0ae2aac0b4386b4}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_shellsort\_dsc\_i@{sort\_utils\_shellsort\_dsc\_i}}
+\index{sort\_utils\_shellsort\_dsc\_i@{sort\_utils\_shellsort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_shellsort\_dsc\_i()}{sort\_utils\_shellsort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+shellsort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the shell-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a7f188b2daeb7f202233f029d7898a56f}\label{sort__utils_8h_a7f188b2daeb7f202233f029d7898a56f}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_smoothsort@{sort\_utils\_smoothsort}}
+\index{sort\_utils\_smoothsort@{sort\_utils\_smoothsort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_smoothsort()}{sort\_utils\_smoothsort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+smoothsort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+endcond Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a} having length equal to {\ttfamily count} is sorted in place applying the smooth-\/sort algorithm. The compare function is a predicate and must return {\ttfamily true} or {\ttfamily false}.
+
+Adapted from Dijkstra\textquotesingle{}s paper\+: \href{http://www.enterag.ch/hartwig/order/smoothsort.pdf}{\texttt{ http\+://www.\+enterag.\+ch/hartwig/order/smoothsort.\+pdf}} See also\+: \href{http://en.wikipedia.org/wiki/Smoothsort}{\texttt{ http\+://en.\+wikipedia.\+org/wiki/\+Smoothsort}}
+
+Quoting Dijkstra himself\+:~\newline
+ {\itshape "Like Heapsort —which inspired it— smoothsort is an algorithm for sorting in situ. It is of order {\ttfamily N·log N} in the worst case, but of order {\ttfamily N} in the best case, with a smooth transition between the two. (Hence its name.)"}
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_a8638370b70e4b6aef0825f1854ba6648}\label{sort__utils_8h_a8638370b70e4b6aef0825f1854ba6648}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_smoothsort\_asc\_d@{sort\_utils\_smoothsort\_asc\_d}}
+\index{sort\_utils\_smoothsort\_asc\_d@{sort\_utils\_smoothsort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_smoothsort\_asc\_d()}{sort\_utils\_smoothsort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+smoothsort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the smooth-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_ac6b821489b1d46357d605b10259dfa52}\label{sort__utils_8h_ac6b821489b1d46357d605b10259dfa52}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_smoothsort\_asc\_i@{sort\_utils\_smoothsort\_asc\_i}}
+\index{sort\_utils\_smoothsort\_asc\_i@{sort\_utils\_smoothsort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_smoothsort\_asc\_i()}{sort\_utils\_smoothsort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+smoothsort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the smooth-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a1f3bc83fd237d4c5b70a4fe7014be773}\label{sort__utils_8h_a1f3bc83fd237d4c5b70a4fe7014be773}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_smoothsort\_dsc\_d@{sort\_utils\_smoothsort\_dsc\_d}}
+\index{sort\_utils\_smoothsort\_dsc\_d@{sort\_utils\_smoothsort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_smoothsort\_dsc\_d()}{sort\_utils\_smoothsort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+smoothsort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the smooth-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a75350e6de9c96ed3153a695702dc74bd}\label{sort__utils_8h_a75350e6de9c96ed3153a695702dc74bd}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_smoothsort\_dsc\_i@{sort\_utils\_smoothsort\_dsc\_i}}
+\index{sort\_utils\_smoothsort\_dsc\_i@{sort\_utils\_smoothsort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_smoothsort\_dsc\_i()}{sort\_utils\_smoothsort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+smoothsort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the smooth-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_ae1916d1367a93c6c0666e98ccf8fe574}\label{sort__utils_8h_ae1916d1367a93c6c0666e98ccf8fe574}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_string\_cmp@{sort\_utils\_string\_cmp}}
+\index{sort\_utils\_string\_cmp@{sort\_utils\_string\_cmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_string\_cmp()}{sort\_utils\_string\_cmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+string\+\_\+cmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares lexicographically {\ttfamily (char $\ast$$\ast$)} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily greater then 0} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily equal to 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily less than 0} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily (char $\ast$)} value param b a pointer to the second {\ttfamily (char $\ast$)} value return an integer value based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_af34b4c81b4803d7e89dc28519f831c74}\label{sort__utils_8h_af34b4c81b4803d7e89dc28519f831c74}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_string\_icmp@{sort\_utils\_string\_icmp}}
+\index{sort\_utils\_string\_icmp@{sort\_utils\_string\_icmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_string\_icmp()}{sort\_utils\_string\_icmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+string\+\_\+icmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares lexicographically {\ttfamily (char $\ast$$\ast$)} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily less then 0} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily equal to 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily greater than 0} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily (char $\ast$)} value param b a pointer to the second {\ttfamily (char $\ast$)} value return an integer value based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_aab581dc46c9be609bcdcbabb20e5761b}\label{sort__utils_8h_aab581dc46c9be609bcdcbabb20e5761b}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_timsort@{sort\_utils\_timsort}}
+\index{sort\_utils\_timsort@{sort\_utils\_timsort}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_timsort()}{sort\_utils\_timsort()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+timsort (\begin{DoxyParamCaption}\item[{void $\ast$const}]{a,  }\item[{const size\+\_\+t}]{count,  }\item[{const size\+\_\+t}]{element\+\_\+size,  }\item[{const \mbox{\hyperlink{sort__utils_8h_a9cf5dbf2659d97b36bb0065d92103647}{sort\+\_\+utils\+\_\+compare\+\_\+function}}}]{cmp }\end{DoxyParamCaption})}
+
+endcond Sorts the {\ttfamily a} array.
+
+details The vector {\ttfamily a} having length equal to {\ttfamily count} is sorted in place applying the tim-\/sort algorithm. The compare function is a comparator and must return {\ttfamily -\/1}, {\ttfamily 0}, or {\ttfamily +1} constrained by the sorting order of the two elements.
+
+Tim-\/sort is a stable, adaptive, iterative merge-\/sort that requires far fewer than n lg(n) comparisons when running on partially sorted arrays, while offering performance comparable to a traditional merge-\/sort when run on random arrays.
+
+This work is heavily inspired by the code written by Josh Bloch in Java and released to the public as part of the Opne\+J\+DK library.
+
+The original implementation is found in Tim Peters\textquotesingle{}s list sort for Python, which is described in detail here\+:
+
+\href{http://svn.python.org/projects/python/trunk/Objects/listsort.txt}{\texttt{ http\+://svn.\+python.\+org/projects/python/trunk/\+Objects/listsort.\+txt}}
+
+Tim\textquotesingle{}s C code may be found here\+:
+
+\href{http://svn.python.org/projects/python/trunk/Objects/listobject.c}{\texttt{ http\+://svn.\+python.\+org/projects/python/trunk/\+Objects/listobject.\+c}}
+
+The underlying techniques are described in this paper (and may have even earlier origins)\+:
+
+\char`\"{}\+Optimistic Sorting and Information Theoretic Complexity\char`\"{} Peter Mc\+Ilroy S\+O\+DA (Fourth Annual A\+C\+M-\/\+S\+I\+AM Symposium on Discrete Algorithms), pp 467-\/474, Austin, Texas, 25-\/27 January 1993.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element in array param \mbox{[}in\mbox{]} element\+\_\+size the number of bytes used by one element param \mbox{[}in\mbox{]} cmp the compare function applied by the algorithm \mbox{\Hypertarget{sort__utils_8h_adaabd182fe69291fd6138e52fdf037d9}\label{sort__utils_8h_adaabd182fe69291fd6138e52fdf037d9}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_timsort\_asc\_d@{sort\_utils\_timsort\_asc\_d}}
+\index{sort\_utils\_timsort\_asc\_d@{sort\_utils\_timsort\_asc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_timsort\_asc\_d()}{sort\_utils\_timsort\_asc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+timsort\+\_\+asc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the tim-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_aae0546fd3061f151a8fd4d50c8987062}\label{sort__utils_8h_aae0546fd3061f151a8fd4d50c8987062}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_timsort\_asc\_i@{sort\_utils\_timsort\_asc\_i}}
+\index{sort\_utils\_timsort\_asc\_i@{sort\_utils\_timsort\_asc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_timsort\_asc\_i()}{sort\_utils\_timsort\_asc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+timsort\+\_\+asc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in ascending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in ascending order applying the tim-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a69daeefee0bbdb703d3f856b830bba35}\label{sort__utils_8h_a69daeefee0bbdb703d3f856b830bba35}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_timsort\_dsc\_d@{sort\_utils\_timsort\_dsc\_d}}
+\index{sort\_utils\_timsort\_dsc\_d@{sort\_utils\_timsort\_dsc\_d}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_timsort\_dsc\_d()}{sort\_utils\_timsort\_dsc\_d()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+timsort\+\_\+dsc\+\_\+d (\begin{DoxyParamCaption}\item[{double $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of doubles.
+
+details The vector of doubles {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the tim-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_a20c839b7ad26d19f3da76fe31a365817}\label{sort__utils_8h_a20c839b7ad26d19f3da76fe31a365817}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_timsort\_dsc\_i@{sort\_utils\_timsort\_dsc\_i}}
+\index{sort\_utils\_timsort\_dsc\_i@{sort\_utils\_timsort\_dsc\_i}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_timsort\_dsc\_i()}{sort\_utils\_timsort\_dsc\_i()}}
+{\footnotesize\ttfamily void sort\+\_\+utils\+\_\+timsort\+\_\+dsc\+\_\+i (\begin{DoxyParamCaption}\item[{int $\ast$const}]{a,  }\item[{const int}]{count }\end{DoxyParamCaption})}
+
+Sorts in descending order the {\ttfamily a} array of integers.
+
+details The vector of integers {\ttfamily a} having length equal to {\ttfamily count} is sorted in place in descending order applying the tim-\/sort algorithm.
+
+param \mbox{[}in,out\mbox{]} a the array to be sorted param \mbox{[}in\mbox{]} count the number of element of array a \mbox{\Hypertarget{sort__utils_8h_aef4e8c46c2fc2a14631ea719d8b5b3e9}\label{sort__utils_8h_aef4e8c46c2fc2a14631ea719d8b5b3e9}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_uint64\_t\_cmp@{sort\_utils\_uint64\_t\_cmp}}
+\index{sort\_utils\_uint64\_t\_cmp@{sort\_utils\_uint64\_t\_cmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_uint64\_t\_cmp()}{sort\_utils\_uint64\_t\_cmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+uint64\+\_\+t\+\_\+cmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares {\ttfamily uint64\+\_\+t} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily +1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily -\/1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily uint64\+\_\+t} value param b a pointer to the second {\ttfamily uint64\+\_\+t} value return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} \mbox{\Hypertarget{sort__utils_8h_af7d9dfe0cf8ef70874ad5b4ea81f46ee}\label{sort__utils_8h_af7d9dfe0cf8ef70874ad5b4ea81f46ee}} 
+\index{sort\_utils.h@{sort\_utils.h}!sort\_utils\_uint64\_t\_icmp@{sort\_utils\_uint64\_t\_icmp}}
+\index{sort\_utils\_uint64\_t\_icmp@{sort\_utils\_uint64\_t\_icmp}!sort\_utils.h@{sort\_utils.h}}
+\subsubsection{\texorpdfstring{sort\_utils\_uint64\_t\_icmp()}{sort\_utils\_uint64\_t\_icmp()}}
+{\footnotesize\ttfamily int sort\+\_\+utils\+\_\+uint64\+\_\+t\+\_\+icmp (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{a,  }\item[{const void $\ast$const}]{b }\end{DoxyParamCaption})}
+
+Compares {\ttfamily uint64\+\_\+t} values pointed by {\ttfamily a} and {\ttfamily b}.
+
+details Compare function that returns\+:
+\begin{DoxyItemize}
+\item {\ttfamily -\/1} when {\ttfamily a} is greater than {\ttfamily b}
+\item {\ttfamily 0} when {\ttfamily a} is equal to {\ttfamily b}
+\item {\ttfamily +1} when {\ttfamily a} is less then {\ttfamily b}
+\end{DoxyItemize}
+
+param a a pointer to the first {\ttfamily uint64\+\_\+t} value param b a pointer to the second {\ttfamily uint64\+\_\+t} value return a value in {\ttfamily \{-\/1, 0, +1\}} based on the comparison of {\ttfamily a} and {\ttfamily b} 

@@ -1,0 +1,190 @@
+\hypertarget{afficher__jeu_s_d_l_8c}{}\section{Référence du fichier /\+Users/mario/\+Desktop/\+Othello\+\_\+\+Projet\+\_\+\+L2/src/interface\+\_\+graphique/afficher\+\_\+jeu\+S\+DL.c}
+\label{afficher__jeu_s_d_l_8c}\index{/Users/mario/Desktop/Othello\_Projet\_L2/src/interface\_graphique/afficher\_jeuSDL.c@{/Users/mario/Desktop/Othello\_Projet\_L2/src/interface\_graphique/afficher\_jeuSDL.c}}
+
+
+Regroupe les fonctions pour la mise en place du jeu dans un environnement graphique.  
+
+
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+jeu.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a7d36c6fee7cf0a086c2daa5f31a7a684}\label{afficher__jeu_s_d_l_8c_a7d36c6fee7cf0a086c2daa5f31a7a684}} 
+\#define {\bfseries E\+G\+A\+L\+I\+TE}~\textquotesingle{}E\textquotesingle{}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{afficher__jeu_s_d_l_8c_a5f3c5bcaee4a9e0eb1481c2d0e96ef2b}{init\+\_\+jeu\+S\+DL}} (void)
+\begin{DoxyCompactList}\small\item\em Initialise tout les données nécessaire pour l\textquotesingle{}affichage du plateau. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{afficher__jeu_s_d_l_8c_acbd1a7b89858b0f5c63a7bd1b5ed6e85}{afficher\+\_\+matrice\+S\+DL}} (t\+\_\+matrice mat, char joueur, int afficher\+\_\+seul)
+\begin{DoxyCompactList}\small\item\em Affiche le plateau de jeu avec les pions et affiche les coup possible en fonctions du tour du joueur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{afficher__jeu_s_d_l_8c_a8cb7fab57e395785f2d22a1995a4025b}{partie\+\_\+terminee\+S\+DL}} (t\+\_\+matrice mat)
+\begin{DoxyCompactList}\small\item\em La fonction permet de savoir si le jeu est terminé ou non. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{afficher__jeu_s_d_l_8c_a7476978444ad7db8231ed52b1c36400b}{afficher\+\_\+gagnant}} (t\+\_\+matrice mat)
+\begin{DoxyCompactList}\small\item\em La fonction permet de savoir qui a gagné, et aussi si on a match nul. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{afficher__jeu_s_d_l_8c_a269355c546fb2d99f6e87ad5c0b2023c}{afficher\+\_\+cible\+S\+DL}} (t\+\_\+matrice mat, int x, int y)
+\begin{DoxyCompactList}\small\item\em Affichage du coup joué par l\textquotesingle{}adversaire. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{afficher__jeu_s_d_l_8c_ac8bc5005638b23036a96c2b116456427}{pointe}} (S\+D\+L\+\_\+\+Rect r, int x, int y)
+\begin{DoxyCompactList}\small\item\em Permet de savoir si la souris pointe dans la zone selectionné \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a43be591df7d306bdd53561b08690ee79}\label{afficher__jeu_s_d_l_8c_a43be591df7d306bdd53561b08690ee79}} 
+int \mbox{\hyperlink{afficher__jeu_s_d_l_8c_a43be591df7d306bdd53561b08690ee79}{choix\+\_\+type}} (void)
+\begin{DoxyCompactList}\small\item\em Fenetre qui demande à l\textquotesingle{}utilisateur de choisir si il veut héberger ou rejoindre une partie pour bien annuler son choix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a171e2ca96b70a50078e1c22e6074a3b8}\label{afficher__jeu_s_d_l_8c_a171e2ca96b70a50078e1c22e6074a3b8}} 
+void \mbox{\hyperlink{afficher__jeu_s_d_l_8c_a171e2ca96b70a50078e1c22e6074a3b8}{aff\+\_\+joueur\+\_\+parti}} (void)
+\begin{DoxyCompactList}\small\item\em Notifier l\textquotesingle{}utilisateur qui son adversaire a quitté la partie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_abeb02959e92ee37b26e94eaec2ed267a}\label{afficher__jeu_s_d_l_8c_abeb02959e92ee37b26e94eaec2ed267a}} 
+static S\+D\+L\+\_\+\+Texture $\ast$ {\bfseries image\+\_\+case\+Norm\+\_\+tex}
+\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_ad558b74c36bd620c43d12a5144b14a60}\label{afficher__jeu_s_d_l_8c_ad558b74c36bd620c43d12a5144b14a60}} 
+static S\+D\+L\+\_\+\+Texture $\ast$ {\bfseries image\+\_\+case\+Poss\+\_\+tex}
+\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_ab0abbc34ffbc407df5eb0274e20d466b}\label{afficher__jeu_s_d_l_8c_ab0abbc34ffbc407df5eb0274e20d466b}} 
+static S\+D\+L\+\_\+\+Texture $\ast$ {\bfseries image\+\_\+noir\+\_\+tex}
+\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_aa4e1bd81ec2c1659b96c827af845f921}\label{afficher__jeu_s_d_l_8c_aa4e1bd81ec2c1659b96c827af845f921}} 
+static S\+D\+L\+\_\+\+Texture $\ast$ {\bfseries image\+\_\+blanc\+\_\+tex}
+\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a32d936ca84d982b1390a154438046904}\label{afficher__jeu_s_d_l_8c_a32d936ca84d982b1390a154438046904}} 
+static S\+D\+L\+\_\+\+Texture $\ast$ {\bfseries image\+\_\+cible\+\_\+tex}
+\item 
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a69324914f1ceed1ce966b0e156fab937}\label{afficher__jeu_s_d_l_8c_a69324914f1ceed1ce966b0e156fab937}} 
+static S\+D\+L\+\_\+\+Rect {\bfseries img\+Btn\+Rect}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Regroupe les fonctions pour la mise en place du jeu dans un environnement graphique. 
+
+\begin{DoxyAuthor}{Auteur}
+Mario Hotaj 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+4 mars 2019 
+\end{DoxyDate}
+
+
+\subsection{Documentation des fonctions}
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a269355c546fb2d99f6e87ad5c0b2023c}\label{afficher__jeu_s_d_l_8c_a269355c546fb2d99f6e87ad5c0b2023c}} 
+\index{afficher\_jeuSDL.c@{afficher\_jeuSDL.c}!afficher\_cibleSDL@{afficher\_cibleSDL}}
+\index{afficher\_cibleSDL@{afficher\_cibleSDL}!afficher\_jeuSDL.c@{afficher\_jeuSDL.c}}
+\subsubsection{\texorpdfstring{afficher\_cibleSDL()}{afficher\_cibleSDL()}}
+{\footnotesize\ttfamily void afficher\+\_\+cible\+S\+DL (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Affichage du coup joué par l\textquotesingle{}adversaire. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & mat \+: matrice qui va nous servir de support pour l\textquotesingle{}affichage \\
+\hline
+{\em int} & x \+: coordonnée x où pointe la souris \\
+\hline
+{\em int} & y \+: coordonnée y où pointe la souris \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a7476978444ad7db8231ed52b1c36400b}\label{afficher__jeu_s_d_l_8c_a7476978444ad7db8231ed52b1c36400b}} 
+\index{afficher\_jeuSDL.c@{afficher\_jeuSDL.c}!afficher\_gagnant@{afficher\_gagnant}}
+\index{afficher\_gagnant@{afficher\_gagnant}!afficher\_jeuSDL.c@{afficher\_jeuSDL.c}}
+\subsubsection{\texorpdfstring{afficher\_gagnant()}{afficher\_gagnant()}}
+{\footnotesize\ttfamily char afficher\+\_\+gagnant (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat }\end{DoxyParamCaption})}
+
+
+
+La fonction permet de savoir qui a gagné, et aussi si on a match nul. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_acbd1a7b89858b0f5c63a7bd1b5ed6e85}\label{afficher__jeu_s_d_l_8c_acbd1a7b89858b0f5c63a7bd1b5ed6e85}} 
+\index{afficher\_jeuSDL.c@{afficher\_jeuSDL.c}!afficher\_matriceSDL@{afficher\_matriceSDL}}
+\index{afficher\_matriceSDL@{afficher\_matriceSDL}!afficher\_jeuSDL.c@{afficher\_jeuSDL.c}}
+\subsubsection{\texorpdfstring{afficher\_matriceSDL()}{afficher\_matriceSDL()}}
+{\footnotesize\ttfamily void afficher\+\_\+matrice\+S\+DL (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat,  }\item[{char}]{joueur,  }\item[{int}]{afficher\+\_\+seul }\end{DoxyParamCaption})}
+
+
+
+Affiche le plateau de jeu avec les pions et affiche les coup possible en fonctions du tour du joueur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & mat \+: matrice du jeu à analyser \\
+\hline
+{\em char} & joueur \+: B\+L\+A\+NC, N\+O\+IR ou \textquotesingle{} \textquotesingle{}, qui va permettre d\textquotesingle{}afficher les coup possible ou jouer \\
+\hline
+{\em int} & afficher\+\_\+seul \+: O\+UI ou N\+ON, si on veux afficher la matrice seulement \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a5f3c5bcaee4a9e0eb1481c2d0e96ef2b}\label{afficher__jeu_s_d_l_8c_a5f3c5bcaee4a9e0eb1481c2d0e96ef2b}} 
+\index{afficher\_jeuSDL.c@{afficher\_jeuSDL.c}!init\_jeuSDL@{init\_jeuSDL}}
+\index{init\_jeuSDL@{init\_jeuSDL}!afficher\_jeuSDL.c@{afficher\_jeuSDL.c}}
+\subsubsection{\texorpdfstring{init\_jeuSDL()}{init\_jeuSDL()}}
+{\footnotesize\ttfamily void init\+\_\+jeu\+S\+DL (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialise tout les données nécessaire pour l\textquotesingle{}affichage du plateau. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em aucun} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_a8cb7fab57e395785f2d22a1995a4025b}\label{afficher__jeu_s_d_l_8c_a8cb7fab57e395785f2d22a1995a4025b}} 
+\index{afficher\_jeuSDL.c@{afficher\_jeuSDL.c}!partie\_termineeSDL@{partie\_termineeSDL}}
+\index{partie\_termineeSDL@{partie\_termineeSDL}!afficher\_jeuSDL.c@{afficher\_jeuSDL.c}}
+\subsubsection{\texorpdfstring{partie\_termineeSDL()}{partie\_termineeSDL()}}
+{\footnotesize\ttfamily int partie\+\_\+terminee\+S\+DL (\begin{DoxyParamCaption}\item[{t\+\_\+matrice}]{mat }\end{DoxyParamCaption})}
+
+
+
+La fonction permet de savoir si le jeu est terminé ou non. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t\+\_\+matrice} & mat \+: matrice du jeu à analyser \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+entier 
+\end{DoxyReturn}
+\mbox{\Hypertarget{afficher__jeu_s_d_l_8c_ac8bc5005638b23036a96c2b116456427}\label{afficher__jeu_s_d_l_8c_ac8bc5005638b23036a96c2b116456427}} 
+\index{afficher\_jeuSDL.c@{afficher\_jeuSDL.c}!pointe@{pointe}}
+\index{pointe@{pointe}!afficher\_jeuSDL.c@{afficher\_jeuSDL.c}}
+\subsubsection{\texorpdfstring{pointe()}{pointe()}}
+{\footnotesize\ttfamily int pointe (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Rect}]{r,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Permet de savoir si la souris pointe dans la zone selectionné 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em S\+D\+L\+\_\+\+Rect} & r \+: zone selectionné \\
+\hline
+{\em int} & x \+: coordonnée x où pointe la souris \\
+\hline
+{\em int} & y \+: coordonnée y où pointe la souris \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+entier True ou False (1 ou 0) 
+\end{DoxyReturn}

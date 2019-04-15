@@ -1,12 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+/**
+ * \file serveur.c
+ * \brief Fichier qui contient la fonction serveur du réseau.
+ * \author Fatnassi Mendy, Mario Hotaj
+ * \date 15 avril 2019 (dernière modif.)
+ */
+
 #include "reseau.h"
 
+/**
+ * \brief Mise en route du serveur pour reception
+ * \param char* msg : adresse pour la recption du message
+ * \param int port : port de communication
+ */
 void recevoir(char* msg,int port){
 	char buffer[1024];
   int sockfd;

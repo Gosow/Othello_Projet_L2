@@ -25,8 +25,8 @@ Mix_Music *music;
 
 int song;
 //TEXTURE
-SDL_Texture* tex_img_png(char * s, SDL_Renderer* renderer);
-SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color, SDL_Renderer* renderer);
+SDL_Texture* tex_img_png(char * s);
+SDL_Texture* tex_text(char* font,int size, char* s, SDL_Color color);
 void init_jeuSDL(void);
 
 //AFFICHAGE MATRICE / JEU
@@ -42,7 +42,6 @@ void init_obj(void);
 int lancement_jeu(int modeJeu, int type);
 int menu_SDL(void);
 int pointe(SDL_Rect r, int x, int y);
-int config_obj(SDL_Rect* r, SDL_Texture* t, int x, int y);
 int choix_type(void);
 
 #endif
