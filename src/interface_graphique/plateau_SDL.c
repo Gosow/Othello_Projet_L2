@@ -67,19 +67,19 @@ int lancement_jeu(int modeJeu, int type){
             joueur1=getenv("USER");
             fprintf(stderr,"\n JOUEUR : %s\n",joueur1);
             if(joueur1 == NULL) strcpy(joueur1,"Serveur");
-            fprintf(stderr,"\n2\n");
-            recevoir(joueur2,PORT_HOTE);
-            envoyer(joueur1,PORT_EXT);
+                fprintf(stderr,"\n2\n");
+                recevoir(joueur2,PORT_HOTE);
+                envoyer(joueur1,PORT_EXT);
 
         }
         else if(type == CLIENT){
             joueur2=getenv("USER");
             fprintf(stderr,"\n JOUEUR : %s\n",joueur2);
             if(joueur1 == NULL) strcpy(joueur1,"Client");
-            fprintf(stderr,"\n6\n");
-            envoyer(joueur2,PORT_HOTE);
-            recevoir(joueur1,PORT_EXT);
-            fprintf(stderr,"\n7\n");
+                fprintf(stderr,"\n6\n");
+                envoyer(joueur2,PORT_HOTE);
+                recevoir(joueur1,PORT_EXT);
+                fprintf(stderr,"\n7\n");
         }
     }else{
         joueur1=getenv("USER");
