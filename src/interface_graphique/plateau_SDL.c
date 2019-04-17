@@ -238,15 +238,7 @@ int affichage_partie(t_matrice mat,int modeJeu){
         //VOIR
         cpy_render(img_voir);
         afficher_gagnant(mat);
-    }
-    else afficher_matriceSDL(mat, joueur, NON);
 
-    if(!partie_termineeSDL(mat)){
-        cpy_render(joueur == NOIR ? img_noirTour : img_noir);
-        cpy_render(joueur == BLANC ? img_blancTour : img_blanc);
-        text_tab[A_VOUS].rect.x = joueur == NOIR ? x_obj(img_noir) : x_obj(img_blanc);
-        if(!(modeJeu == ONLINE) || joueur == joueur_vous) cpy_render(text_tab[A_VOUS]);
-    }else{
         gagnant=afficher_gagnant(mat);
         cpy_render(gagnant == NOIR ? img_noirTour : img_noir);
         cpy_render(gagnant == BLANC ? img_blancTour : img_blanc);
@@ -263,7 +255,14 @@ int affichage_partie(t_matrice mat,int modeJeu){
             text_tab[PERDU].rect.x=x_obj(gagnant != NOIR ? img_noir : img_blanc);
             cpy_render(text_tab[PERDU]);
         }
+    }else{
+        afficher_matriceSDL(mat, joueur, NON);
+        cpy_render(joueur == NOIR ? img_noirTour : img_noir);
+        cpy_render(joueur == BLANC ? img_blancTour : img_blanc);
+        text_tab[A_VOUS].rect.x = joueur == NOIR ? x_obj(img_noir) : x_obj(img_blanc);
+        if(!(modeJeu == ONLINE) || joueur == joueur_vous) cpy_render(text_tab[A_VOUS]);
     }
+        
     cpy_render(text_tab[SCORE]);
     cpy_render(img_home);
     if(modeJeu != ONLINE) cpy_render(img_replay);
