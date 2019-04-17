@@ -151,6 +151,8 @@ int lancement_jeu(int modeJeu, int type){
                                 }
                             }
                         }else if(pointe(img_voir.rect,x,y)){
+                                //clear();
+                                SDL_SetRenderDrawColor(renderer, 24, 124, 58, 255);
                                 clear();
                                 afficher_matriceSDL(mat_final,' ',NON);
                                 cpy_render(img_voir);
