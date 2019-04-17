@@ -8,9 +8,8 @@ PROG=othello
 
 all: projet
 
-projet: main.c
-	${CC} -o ${PROG} main.c gest_matrice.c gest_matrice.h define.h
-
+projet: main_terminal.c
+	${CC} -o ${PROG} main_terminal.c header/define.h header/include.h fonc_boite_outils/gest_mat.c fonc_boite_outils/gest_matrice.h 
 clean:
 	rm -f ${PROG}
 	rm -f *.o

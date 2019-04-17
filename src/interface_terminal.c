@@ -6,8 +6,8 @@
  * \date 10 mars 2019
  **/
 
-#include "define.h"
-#include "gest_matrice.h"
+#include "header/define.h"
+#include "fonc_boite_outils/gest_matrice.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

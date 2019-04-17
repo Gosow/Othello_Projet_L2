@@ -24,13 +24,13 @@ static SDL_Rect imgBtnRect;
  * \return rien
  */
 void init_jeuSDL(void){
-    image_caseNorm_tex = tex_img_png("/src/img/caseNorm.png");
-    image_casePoss_tex = tex_img_png("/src/img/casePoss.png");
+    image_caseNorm_tex = tex_img_png("src/img/caseNorm.png");
+    image_casePoss_tex = tex_img_png("src/img/casePoss.png");
     //PION NOIR
-    image_noir_tex = tex_img_png("/src/img/noir.png");
+    image_noir_tex = tex_img_png("src/img/noir.png");
     //PION BLANC
-    image_blanc_tex = tex_img_png("/src/img/blanc.png");
-    image_cible_tex = tex_img_png("/src/img/cible.png");
+    image_blanc_tex = tex_img_png("src/img/blanc.png");
+    image_cible_tex = tex_img_png("src/img/cible.png");
     //POSITION ET TAILLE CASE
     imgBtnRect.x = 0;
     imgBtnRect.y = 0;

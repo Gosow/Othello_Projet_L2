@@ -1,7 +1,7 @@
 /**
- * \file client.c
+ * \file gest_matrice.h
  * \brief  Prototype de fonction
- * \author Fatnassi Mendy
+ * \author Alkassoum Yacine
  * \version 2
  * \date 02 avril 2019
  * */
