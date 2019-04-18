@@ -19,10 +19,13 @@ PROG=main_SDL
 all: javel othello
 
 othello: ${FICHIER_O}
-	#rm ./obj/*.o
+
 	${CC} ${OPTS} ${PROG} $(FICHIER_O) ${LIBS} ${INCLUDES} ${CFLAGS}
 	mv *.o obj/
 	mv main_SDL bin/
+	@echo " \033[34m Ended succesfuly "
+	@echo " \033[33m go in obj directory to see .o files"
+	@echo " \033[32m go in bin directory to see executalbe"
 	
 
 main_SDL.o: ./src/main_SDL.c ${INT_SDL}SDL_jeu.h
