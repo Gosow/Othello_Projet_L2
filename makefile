@@ -21,9 +21,9 @@ all: javel othello
 othello: ${FICHIER_O}
 	#rm ./obj/*.o
 	${CC} ${OPTS} ${PROG} $(FICHIER_O) ${LIBS} ${INCLUDES} ${CFLAGS}
-	#mv *.o obj/
-	#rm -f *.o
-	#./main_SDL
+	mv *.o obj/
+	mv main_SDL bin/
+	
 
 main_SDL.o: ./src/main_SDL.c ${INT_SDL}SDL_jeu.h
 	${CC} ${OPTS} main_SDL.o -c ./src/main_SDL.c ${CFLAGS}
