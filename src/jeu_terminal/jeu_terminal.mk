@@ -1,4 +1,3 @@
-
 SDL_DIR=${HOME}/SDL2
 SDLLIB_DIR=${SDL_DIR}/lib
 
@@ -16,6 +15,11 @@ projet: main_terminal.c
 	@echo "Ended succesfuly "
 	@echo "go in bin directory to see executalbe"
 
+
+clean:
+	rm -f ${PROG}
+	rm -f ../../bin/${PROG}
+	@echo "\033[31m Cleaning ended succesfully "
 	
 
 
