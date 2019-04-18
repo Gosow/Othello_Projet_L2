@@ -10,7 +10,7 @@
  * \date 10 mars 2019
  **/
 
-#include "gest_mat.h"
+#include "../header/gest_mat.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
