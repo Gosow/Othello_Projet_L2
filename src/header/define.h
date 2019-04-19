@@ -2,7 +2,7 @@
 #ifndef __DEFINE_H__
 #define __DEFINE_H__
 #define N 8
-#define DEPTH 5
+#define DEPTH 7
 #define MAX_SCORE 64
 /* Pions du jeu */
 #define VIDE ' '

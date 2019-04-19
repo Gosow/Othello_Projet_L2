@@ -3,6 +3,7 @@
  * \brief Fichier qui contient la fonction serveur du réseau.
  * \author Fatnassi Mendy, Mario Hotaj
  * \date 15 avril 2019 (dernière modif.)
+ * \version 2
  */
 
 #include "reseau.h"

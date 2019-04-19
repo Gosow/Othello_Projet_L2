@@ -13,9 +13,10 @@
 
 /**
  *\brief la Fonction init_matrice initialisation de la grille
+ *\param t_matrice m : matrice du jeux 
  **/
-/* toutes les fonctions hors affichage de la matrice*/
 
+/* toutes les fonctions hors affichage de la matrice*/
 
 /*Fonction d'initialisation de la grille*/
 void init_matrice (t_matrice m) {
