@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: Index des classes</title>
+<title>My Project:  Fichier source de /Users/mario/Desktop/Othello_Projet_L2/src/jeu_terminal/include.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,27 +59,17 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_cc6afb1ac85e99b0480bd4e1d02c5ab2.html">jeu_terminal</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Index des classes</div>  </div>
+<div class="title">include.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="qindex"><a class="qindex" href="#letter__">_</a>&#160;|&#160;<a class="qindex" href="#letter_o">o</a>&#160;|&#160;<a class="qindex" href="#letter_s">s</a>&#160;|&#160;<a class="qindex" href="#letter_t">t</a></div>
-<table class="classindex">
-<tr><td rowspan="2" valign="bottom"><a name="letter__"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;_&#160;&#160;</div></td></tr></table>
-</td><td rowspan="2" valign="bottom"><a name="letter_o"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;o&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="structs__highscore.html">s_highscore</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td></td><td></td><td valign="top"><a class="el" href="structs__liste.html">s_liste</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td valign="top"><a class="el" href="struct__cu__test__suite__t.html">_cu_test_suite_t</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="structobj__s.html">obj_s</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classmake-changelog_1_1_section.html">Section</a> (make-changelog)&#160;&#160;&#160;</td><td></td></tr>
-<tr><td valign="top"><a class="el" href="struct__cu__test__suites__t.html">_cu_test_suites_t</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_s"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;s&#160;&#160;</div></td></tr></table>
-</td><td rowspan="2" valign="bottom"><a name="letter_t"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;t&#160;&#160;</div></td></tr></table>
-</td><td></td></tr>
-<tr><td></td><td></td><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a class="el" href="structs__elem__coord.html">s_elem_coord</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_tim_sort.html">TimSort</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td></td><td></td><td></td><td></td></tr>
-</table>
-<div class="qindex"><a class="qindex" href="#letter__">_</a>&#160;|&#160;<a class="qindex" href="#letter_o">o</a>&#160;|&#160;<a class="qindex" href="#letter_s">s</a>&#160;|&#160;<a class="qindex" href="#letter_t">t</a></div>
-</div><!-- contents -->
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* Largeur de la grille */</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef __INCLUDE_H__</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define __INCLUDE_H__</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL_ttf.h&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL_image.h&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL_mixer.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div></div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">
