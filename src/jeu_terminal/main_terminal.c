@@ -47,7 +47,14 @@ int main (void) {
             else printf ("\nLe joueur %d passe son tour\n", joueur_suivant(joueur));
          }
             break;
-        case 2: // min max ordi avec fonction
+        case 2: /*
+          while(joueur == BLANC && peut_jouer(m,joueur)){
+                                        tour_ordi(m,&lig,&col);
+                                        jouer_ordi(m,&lig,&col,joueur);
+                                        jouer_coup(m,lig,col,joueur);
+                                        if(peut_jouer(m, joueur_suivant(joueur))) joueur=joueur_suivant(joueur);
+                                    }// min max ordi avec fonction*/
+                                    //jeu avec l"ordi
         break;
         case 3://Sockets
         break;
