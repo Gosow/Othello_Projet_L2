@@ -47,7 +47,23 @@ void init_obj(void){
     image_BG_tex = tex_img_png("src/img/OthelloBG.png");
     SDL_QueryTexture(image_BG_tex, NULL, NULL, &(bg_rect.w), &(bg_rect.h));
 }
-
+void jouer_ordi(t_matrice m,int *x,int *y, char * couleur){
+    //fonction qui verifie si le coup de l ordi est valable(notament quand il dois jouer aleatoirement)
+    //si le coup est valide il le joue
+    //sinon il joue le premier coup possible
+    if(coup_valide(m,*x,*y,couleur)){
+        return;
+    }
+    for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            if(coup_valide(m,i,j,couleur)){
+                *x=i;
+                *y=j;
+                return;
+            }
+        }
+    }
+}
 
 /**
  * \fn int lancement_jeu(int modeJeu,t_matrice mat)
@@ -107,7 +123,7 @@ int lancement_jeu(int modeJeu, int type){
     
     i=0;
     
-    fprintf(stderr,"MACOULEUR : %c '%c'\n",joueur_vous,joueur);
+    //fprintf(stderr,"MACOULEUR : %c '%c'\n",joueur_vous,joueur);
 
     /* Le fond de la fenêtre sera vert */
 
@@ -144,6 +160,7 @@ int lancement_jeu(int modeJeu, int type){
 
                                     while(modeJeu == SOLO && joueur == BLANC && peut_jouer(mat,BLANC)){
                                         tour_ordi(mat,&x,&y);
+                                        jouer_ordi(mat,&x,&y,BLANC);
                                         afficher_cibleSDL(mat, x, y);
                                         jouer_coup(mat,x,y,BLANC);
                                         if(peut_jouer(mat, NOIR)) joueur=joueur_suivant(joueur);

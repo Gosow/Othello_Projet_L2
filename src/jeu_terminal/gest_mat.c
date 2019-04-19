@@ -1,6 +1,6 @@
 /**
  * \file gest_mat.c
- * \brief Fichier qui contient toutes les fonctions hors affichage de la matrice et SDL du jeu
+ * \brief Fichier qui contient toutes les fonctions du jeu en terminal
  * \author Alkassoum Yacine
  * \version 2
  * \date 10 mars 2019
@@ -13,10 +13,11 @@
 
 /**
  *\brief la Fonction init_matrice initialisation de la grille
- *\param t_matrice m : matrice du jeux 
+  *\param t_matrice m : matrice du jeux 
+   *\return void
+
  **/
 
-/* toutes les fonctions hors affichage de la matrice*/
 
 /*Fonction d'initialisation de la grille*/
 void init_matrice (t_matrice m) {
@@ -35,12 +36,24 @@ void init_matrice (t_matrice m) {
 }
 
 
+/**
+ *\brief Case _existe Fonction qui verifie si la case existe 
+  *\param t_matrice m : ligne et colone
+   *\return 1 => vrai 0 => faux
+
+ **/
+
 
 /* Fonction qui verifie si la case existe */
 int case_existe (int lig, int col) {
     return ((col >= 0) && (col < N) && (lig >= 0) && (lig < N));
 }
+/**
+ *\brief coup_valide fonction qui verifie si le coup est valide selon les règles
+  *\param t_matrice m : matrice du jeux  , ligne , colone et le joueur
+   *\return 1 => vrai 0 => faux
 
+ **/
 /* Fonction qui verifie si le coup est valide */
 int coup_valide (t_matrice m, int lig, int col, int joueur) {
     int i, j, ok;
@@ -138,7 +151,14 @@ int coup_valide (t_matrice m, int lig, int col, int joueur) {
 
     return 0;
 }
+/**
+ *\brief peut_jouer Fonction qui verifie le joueur a la possibilité de jouer
+  *\param t_matrice m : matrice du jeux 
+  *\param int joueur : le joueur
 
+   *\return 1 => vrai 0 => faux
+
+ **/
 /* Fonction qui indique si le joueur peut encore jouer */
 int peut_jouer (t_matrice m, int joueur) {
     int i, j;
@@ -149,12 +169,28 @@ int peut_jouer (t_matrice m, int joueur) {
     /* Le joueur ne peut plus jouer */
     return 0;
 }
+/**
+ *\brief joueur_suivant Fonction qui renvois le joueur suivant
+  *\param int joueur : le joueur
 
+   *\return pair =>joueur impair =>suivant
+
+ **/
 /* Retourne le joueur suivant */
 int joueur_suivant (int joueur) {
     return (joueur %2 + 1);
 }
+/**
+ *\brief choisir_coup Fonction qui verifie récupere les coordonnés de stdin et verifie la bonne validité des données saisies
+  *\param t_matrice m: la matrice de jeu
+    *\param int * lig : pointeur sur la ligne
+    *\param int * col : pointeur sur la colonne
 
+  *\param int joueur : le joueur
+
+   *\return void
+
+ **/
 /* Demander le coup du joueur */
 void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
     char c;
@@ -181,6 +217,12 @@ void choisir_coup (t_matrice m, int *lig, int *col, int joueur) {
         (*lig)--;
     }
 }
+/**
+ *\brief partie_terminee Fonction qui verifie si le jeu est terminé
+  *\param t_matrice m: la matrice de jeu
+   *\return 0 Vrai / 1 Faux
+
+ **/
 
 /* Verifie si la partie est terminee */
 int partie_terminee (t_matrice m) {
@@ -222,7 +264,17 @@ int partie_terminee (t_matrice m) {
     printf ("\n");
     return 1;
 }
+/**
+ *\brief jouer_coup Fonction qui joue le coup dans la matrice m
+  *\param t_matrice m: la matrice de jeu
+    *\param int lig :  la ligne
+    *\param int  col :  la colonne
 
+  *\param int joueur : le joueur
+
+   *\return void
+
+ **/
 /* Fonction qui permet de jouer un coup */
 void jouer_coup (t_matrice m, int lig, int col, int joueur) {
     int i, j;
@@ -384,6 +436,10 @@ void copie_mat(t_matrice src, t_matrice dest){
 
 /**
  *\brief LaFonction afficher_matrice est la fonction qui affiche la grille de jeu
+ *\param t_matrice m: la matrice de jeu
+   *\return void
+
+
 **/
 void afficher_matrice (t_matrice m) {
     int i, j;
