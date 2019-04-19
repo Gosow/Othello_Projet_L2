@@ -1,7 +1,9 @@
 #!/bin/bash
-cd src/
-make -f SDL_jeu.mk mrproper
-make -f SDL_jeu.mk
-./main_SDL
-make -f SDL_jeu.mk javel
+make
+
+cd src/jeu_terminal/
+make -f jeu_terminal.mk
+cd ../../
+./main_SDL ; ./bin/othello_terminal_ed
+
 exit 0

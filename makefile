@@ -63,8 +63,11 @@ serveur.o: ${RES}serveur.c ${RES}reseau.h
 	${CC} ${OPTS} serveur.o -c ${RES}serveur.c ${CFLAGS}
 
 clean:
-	rm -f *.o
+	rm -f obj/*.o
+	@echo "\033[31m Cleaning ended succesfully "
 
 javel:
 	rm -f *.o
+	rm -f obj/*.o
 	rm -f ${PROG}
+	@echo "\033[31m Javeling ended succesfully "

@@ -13,7 +13,7 @@
 #include "gest_mat.h"
 
 //La fonction main
-int main (int argc,char **argv) {
+int main (void) {
     t_matrice m;
     int lig, col, joueur = 1;
     int choix;

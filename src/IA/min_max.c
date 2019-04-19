@@ -47,7 +47,7 @@ void tour_ordi(t_matrice m, int* x, int* y){
 		v = alphabeta(temp,DEPTH,-MAX_SCORE,MAX_SCORE,MIN);
 		if(v > max){
 			max=v;
-			fprintf(stderr," MAX : %d\n",max);
+			//fprintf(stderr," MAX : %d\n",max);
 			*x=elem_x(l);
 			*y=elem_y(l);
 
