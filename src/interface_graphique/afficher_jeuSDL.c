@@ -234,7 +234,7 @@ int choix_type(void){
         SDL_Log("Erreur de l'affichage de la box");
         return 1;
     }
-    fprintf(stderr,"btn : %d\n",buttonid);
+    //fprintf(stderr,"btn : %d\n",buttonid);
     if (buttonid == -1) {
         SDL_Log("no selection");
     } else {
